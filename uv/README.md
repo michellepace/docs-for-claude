@@ -5,7 +5,7 @@ This is a curated selection of key uv documentation sources to help LLMs provide
 ## Documentation Files
 
 | Document | Document Title | Description |
-|----------|----------------|-------------|
+|:---------|:---------------|:------------|
 | [sources_uv_docs.xml](./sources_uv_docs.xml) | Does not contain a title | Documentation source metadata and URL mappings |
 | [uv_about_features.md](uv_about_features.md) | Features \| uv | Core uv capabilities: package management, tools, environments, pip compatibility |
 | [uv_concepts_projects.md](uv_concepts_projects.md) | Index \| uv | Project concepts index: introduction and links to project documentation |
