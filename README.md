@@ -5,8 +5,8 @@ Curated documentation for Claude.ai Projects. Reduces web search tokens by provi
 | Curation | Docs | Sources |
 |:---------|:-----|:--------|
 | **UV** - Python package and project manager | 📁 [`uv/`](uv/) | Official |
-| **Ruff** - Python linter and formatter | 📁 [`ruff/`](ruff/) | Mixed |
-| **Tailwind 4** - Utility-first CSS framework | 📁 [`tailwind/`](tailwind/) | Official |
+| **Horse** - Just a little description | 📁 [`horse/`](horse/) | Mixed |
+| **Cow** - Just a little description | 📁 [`cow/`](cow/) | Official |
 
 **References**
 
