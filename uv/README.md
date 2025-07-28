@@ -1,6 +1,6 @@
-# uv Documentation
+# UV Documentation
 
-This is a curated selection of key uv documentation sources covering core functionality for the Python package and project manager. These sources provide targeted information about uv's capabilities including package management, project workflows, environment handling, and integrations, though they are not comprehensive of the full uv documentation ecosystem.
+This is a curated selection of key uv documentation sources to help LLMs provide more targeted assistance with uv-related queries. These sources cover core functionality but are not comprehensive - the full uv documentation contains additional guides, references, and advanced topics.
 
 ## Documentation Files
 
@@ -20,7 +20,3 @@ This is a curated selection of key uv documentation sources covering core functi
 | [uv_guides_integrations_pre_commit.md](uv_guides_integrations_pre_commit.md) | Using uv in pre-commit \| uv | Using uv with pre-commit hooks: lock file sync, requirements export, pip-compile integration |
 | [uv_guides_publishing_packages.md](uv_guides_publishing_packages.md) | Building and publishing a package \| uv | Package building, versioning, and publishing workflows |
 | [uv_guides_working_on_projects.md](uv_guides_working_on_projects.md) | Working on projects \| uv | Project workflow guide: uv run, dependency management, environment syncing, building |
-
-[test](./uv_concepts_projects_config.md)
-
-[test2](/uv/uv_concepts_projects_dependencies.md)
