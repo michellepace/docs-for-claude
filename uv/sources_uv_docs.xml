@@ -1,0 +1,67 @@
+<uv_documentation_sources>
+
+  <about>
+    This is a curated selection of key uv documentation sources to help LLMs provide more targeted assistance with uv-related queries. These sources cover core functionality but are not comprehensive - the full uv documentation contains additional guides, references, and advanced topics.
+  </about>
+  
+  <source>
+    <title>uv Features Overview</title>
+    <desc>Core uv capabilities: package management, tools, environments, pip compatibility</desc>
+    <url>https://docs.astral.sh/uv/getting-started/features/</url>
+  </source>
+
+  <source>
+    <title>Running Scripts Guide</title>
+    <desc>Running Python scripts with uv: inline metadata, dependencies, PEP 723 support</desc>
+    <url>https://docs.astral.sh/uv/guides/scripts/</url>
+  </source>
+
+  <source>
+    <title>Projects Overview</title>
+    <desc>Project concepts index: introduction and links to project documentation</desc>
+    <url>https://docs.astral.sh/uv/concepts/projects/</url>
+  </source>
+
+  <source>
+    <title>Creating New Projects</title>
+    <desc>Project creation with uv init: app/library templates, build backends, packaging modes</desc>
+    <url>https://docs.astral.sh/uv/concepts/projects/init/</url>
+  </source>
+
+  <source>
+    <title>Project Structure and Files</title>
+    <desc>Project file structure: pyproject.toml, .venv environments, uv.lock lockfiles, metadata</desc>
+    <url>https://docs.astral.sh/uv/concepts/projects/layout/</url>
+  </source>
+
+  <source>
+    <title>Managing Project Dependencies</title>
+    <desc>Dependency management: adding packages, sources, build dependencies, Git/index sources</desc>
+    <url>https://docs.astral.sh/uv/concepts/projects/dependencies/</url>
+  </source>
+
+  <source>
+    <title>Working with Projects Guide</title>
+    <desc>Project workflow guide: uv run, dependency management, environment syncing, building</desc>
+    <url>https://docs.astral.sh/uv/guides/projects/</url>
+  </source>
+
+  <source>
+    <title>Advanced Project Configuration</title>
+    <desc>Project configuration: build systems, packaging modes, editable installs, environment targeting</desc>
+    <url>https://docs.astral.sh/uv/concepts/projects/config/</url>
+  </source>
+
+  <source>
+    <title>Pre-commit Integration Guide</title>
+    <desc>Using uv with pre-commit hooks: lock file sync, requirements export, pip-compile integration</desc>
+    <url>https://docs.astral.sh/uv/guides/integration/pre-commit/</url>
+  </source>
+
+  <source>
+    <title>Configuration Files Setup</title>
+    <desc>Configuration system: pyproject.toml vs uv.toml files, hierarchical discovery, dotenv support</desc>
+    <url>https://docs.astral.sh/uv/concepts/configuration-files/</url>
+  </source>
+
+</uv_documentation_sources>
