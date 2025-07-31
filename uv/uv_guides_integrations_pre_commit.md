@@ -1,5 +1,3 @@
-[Skip to content](https://docs.astral.sh/uv/guides/integration/pre-commit/#using-uv-in-pre-commit)
-
 # [Using uv in pre-commit](https://docs.astral.sh/uv/guides/integration/pre-commit/\#using-uv-in-pre-commit)
 
 An official pre-commit hook is provided at
