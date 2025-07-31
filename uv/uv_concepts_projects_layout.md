@@ -1,10 +1,3 @@
----
-url: "https://docs.astral.sh/uv/concepts/projects/layout/"
-title: "Structure and files | uv"
----
-
-[Skip to content](https://docs.astral.sh/uv/concepts/projects/layout/#project-structure-and-files)
-
 # [Project structure and files](https://docs.astral.sh/uv/concepts/projects/layout/\#project-structure-and-files)
 
 ## [The `pyproject.toml`](https://docs.astral.sh/uv/concepts/projects/layout/\#the-pyprojecttoml)
