@@ -1,10 +1,3 @@
----
-url: "https://docs.astral.sh/uv/concepts/projects/config/"
-title: "Configuring projects | uv"
----
-
-[Skip to content](https://docs.astral.sh/uv/concepts/projects/config/#configuring-projects)
-
 # [Configuring projects](https://docs.astral.sh/uv/concepts/projects/config/\#configuring-projects)
 
 ## [Python version requirement](https://docs.astral.sh/uv/concepts/projects/config/\#python-version-requirement)
