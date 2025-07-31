@@ -1044,5 +1044,5 @@ install `colorama` on Windows (but omit it on other platforms), use
 
 Markers are combined with `and`, `or`, and parentheses, e.g.,
 `aiohttp >=3.7.4,<4; (sys_platform != 'win32' or implementation_name != 'pypy') and python_version >= '3.10'`.
-Note that versions within markers must be quoted, while versions _outside_ of markers must _not_ be
+Note that versions within markers must be quoted, while versions _outside_ of markers must **not** be
 quoted.
