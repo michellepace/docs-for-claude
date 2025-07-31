@@ -1,17 +1,8 @@
----
-url: "https://docs.astral.sh/uv/concepts/projects/"
-title: "Index | uv"
----
-
-[Skip to content](https://docs.astral.sh/uv/concepts/projects/#projects)
-
-# [Projects](https://docs.astral.sh/uv/concepts/projects/\#projects)
+# [Projects](https://docs.astral.sh/uv/concepts/projects/)
 
 Projects help manage Python code spanning multiple files.
 
-Tip
-
-Looking for an introduction to creating a project with uv? See the [projects guide](https://docs.astral.sh/uv/guides/projects/) first.
+> **Tip** Looking for an introduction to creating a project with uv? See the [projects guide](https://docs.astral.sh/uv/guides/projects/) first.
 
 Working on projects is a core part of the uv experience. Learn more about using projects:
 
