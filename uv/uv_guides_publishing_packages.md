@@ -1,5 +1,3 @@
-[Skip to content](https://docs.astral.sh/uv/guides/package/#building-and-publishing-a-package)
-
 # [Building and publishing a package](https://docs.astral.sh/uv/guides/package/\#building-and-publishing-a-package)
 
 uv supports building Python packages into source and binary distributions via `uv build` and
