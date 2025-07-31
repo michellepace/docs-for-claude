@@ -82,13 +82,6 @@
   </source>
 
   <source>
-    <title>Building distributions</title>
-    <desc>Using uv build command: creating sdist and wheel files for package distribution (e.g., on PyPI), command options, build constraints, packaging workflow</desc>
-    <url>https://docs.astral.sh/uv/concepts/projects/build/</url>
-    <repo_file>uv_concepts_projects_build.md</repo_file>
-  </source>
-
-  <source>
     <title>Building and publishing a package</title>
     <desc>Building and publishing Python packages: uv build, uv publish, version management, PyPI distribution</desc>
     <url>https://docs.astral.sh/uv/guides/package/</url>
@@ -109,4 +102,11 @@
     <repo_file>uv_guides_integrations_github_actions.md</repo_file>
   </source>
 
+  <source>
+    <title>Building distributions (for PyPi)</title>
+    <desc>Using uv build command: creating sdist and wheel files for package distribution (e.g., on PyPI), command options, build constraints, packaging workflow</desc>
+    <url>https://docs.astral.sh/uv/concepts/projects/build/</url>
+    <repo_file>uv_concepts_projects_build.md</repo_file>
+  </source>
+  
 </uv_documentation_sources>
