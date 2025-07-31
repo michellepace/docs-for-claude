@@ -1,5 +1,3 @@
-[Skip to content](https://docs.astral.sh/uv/guides/projects/#working-on-projects)
-
 # [Working on projects](https://docs.astral.sh/uv/guides/projects/\#working-on-projects)
 
 uv supports managing Python projects, which define their dependencies in a `pyproject.toml` file.
