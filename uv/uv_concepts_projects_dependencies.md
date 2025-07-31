@@ -1,10 +1,3 @@
----
-url: "https://docs.astral.sh/uv/concepts/projects/dependencies/"
-title: "Managing dependencies | uv"
----
-
-[Skip to content](https://docs.astral.sh/uv/concepts/projects/dependencies/#managing-dependencies)
-
 # [Managing dependencies](https://docs.astral.sh/uv/concepts/projects/dependencies/\#managing-dependencies)
 
 ## [Dependency fields](https://docs.astral.sh/uv/concepts/projects/dependencies/\#dependency-fields)
