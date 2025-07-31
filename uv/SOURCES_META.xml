@@ -19,6 +19,13 @@
   </source>
 
   <source>
+    <title>Installing Python</title>
+    <desc>uv python install command: uv's automatic Python downloads, installing specific CPython/PyPy versions, uv-managed Python installations, integration with uv commands, upgrading uv-managed Python versions</desc>
+    <url>https://docs.astral.sh/uv/guides/install-python/</url>
+    <repo_file>guides_installing_python.md</repo_file>
+  </source>
+
+  <source>
     <title>Projects</title>
     <desc>Project concepts index: introduction and links to project documentation</desc>
     <url>https://docs.astral.sh/uv/concepts/projects/</url>
@@ -72,6 +79,13 @@
     <desc>Configuration system: pyproject.toml vs uv.toml files, hierarchical discovery, dotenv support</desc>
     <url>https://docs.astral.sh/uv/concepts/configuration-files/</url>
     <repo_file>uv_concepts_config_files.md</repo_file>
+  </source>
+
+  <source>
+    <title>Python versions</title>
+    <desc>uv's Python version management system: uv-managed vs system Python discovery, --python flag usage, .python-version file integration, uv's python-preference settings, python-build-standalone distributions</desc>
+    <url>https://docs.astral.sh/uv/concepts/python-versions/</url>
+    <repo_file>uv_concepts_python_versions.md</repo_file>
   </source>
 
   <source>
