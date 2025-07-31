@@ -1,5 +1,3 @@
-[Skip to content](https://docs.astral.sh/uv/getting-started/features/#features)
-
 # [Features](https://docs.astral.sh/uv/getting-started/features/\#features)
 
 uv provides essential features for Python development — from installing Python and hacking on simple
