@@ -47,7 +47,7 @@
   </source>
 
   <source>
-    <title></title>
+    <title>The uv Build Backend</title>
     <desc></desc>
     <url>https://docs.astral.sh/uv/concepts/build-backend/</url>
     <repo_file>uv_concepts_build_backend.md</repo_file>
@@ -56,7 +56,7 @@
 
   <source>
     <title>Building Project Distributions</title>
-    <desc>Project packaging and distribution: building source distributions (sdists) and binary distributions (wheels)</desc>
+    <desc>Build backend concepts: source tree transformation, Python-only support, module configuration, file inclusion patterns</desc>
     <url>https://docs.astral.sh/uv/concepts/projects/build/</url>
     <repo_file>uv_concepts_projects_build.md</repo_file>
   </source>
