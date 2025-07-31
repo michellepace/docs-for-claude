@@ -1,5 +1,3 @@
-[Skip to content](https://docs.astral.sh/uv/concepts/configuration-files/#configuration-files)
-
 # [Configuration files](https://docs.astral.sh/uv/concepts/configuration-files/\#configuration-files)
 
 uv supports persistent configuration files at both the project- and user-level.
