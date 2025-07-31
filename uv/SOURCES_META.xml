@@ -48,11 +48,10 @@
 
   <source>
     <title>The uv build backend</title>
-    <desc></desc>
+    <desc>uv's native build backend (uv_build): Python-only package building, module configuration, file inclusion/exclusion patterns, pyproject.toml integration</desc>
     <url>https://docs.astral.sh/uv/concepts/build-backend/</url>
     <repo_file>uv_concepts_build_backend.md</repo_file>
   </source>
-
 
   <source>
     <title>Building distributions</title>
