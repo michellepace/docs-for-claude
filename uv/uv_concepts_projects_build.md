@@ -1,10 +1,3 @@
----
-url: "https://docs.astral.sh/uv/concepts/projects/build/"
-title: "Building distributions | uv"
----
-
-[Skip to content](https://docs.astral.sh/uv/concepts/projects/build/#building-distributions)
-
 # [Building distributions](https://docs.astral.sh/uv/concepts/projects/build/\#building-distributions)
 
 To distribute your project to others (e.g., to upload it to an index like PyPI), you'll need to
