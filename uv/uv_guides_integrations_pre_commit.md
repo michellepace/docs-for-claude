@@ -16,7 +16,7 @@ To make sure your `uv.lock` file is up to date even if your `pyproject.toml` fil
 repos:
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.8.3
+    rev: 0.8.4
     hooks:
       - id: uv-lock
 
@@ -30,7 +30,7 @@ To keep a `requirements.txt` file in sync with your `uv.lock` file:
 repos:
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.8.3
+    rev: 0.8.4
     hooks:
       - id: uv-export
 
@@ -44,7 +44,7 @@ To compile requirements files:
 repos:
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.8.3
+    rev: 0.8.4
     hooks:
       # Compile requirements
       - id: pip-compile
@@ -60,7 +60,7 @@ To compile alternative requirements files, modify `args` and `files`:
 repos:
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.8.3
+    rev: 0.8.4
     hooks:
       # Compile requirements
       - id: pip-compile
@@ -77,7 +77,7 @@ To run the hook over multiple files at the same time, add additional entries:
 repos:
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.8.3
+    rev: 0.8.4
     hooks:
       # Compile requirements
       - id: pip-compile
