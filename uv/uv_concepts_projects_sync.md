@@ -1,10 +1,3 @@
----
-url: "https://docs.astral.sh/uv/concepts/projects/sync/"
-title: "Locking and syncing | uv"
----
-
-[Skip to content](https://docs.astral.sh/uv/concepts/projects/sync/#locking-and-syncing)
-
 # [Locking and syncing](https://docs.astral.sh/uv/concepts/projects/sync/\#locking-and-syncing)
 
 Locking is the process of resolving your project's dependencies into a
