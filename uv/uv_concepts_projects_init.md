@@ -1,10 +1,3 @@
----
-url: "https://docs.astral.sh/uv/concepts/projects/init/"
-title: "Creating projects | uv"
----
-
-[Skip to content](https://docs.astral.sh/uv/concepts/projects/init/#creating-projects)
-
 # [Creating projects](https://docs.astral.sh/uv/concepts/projects/init/\#creating-projects)
 
 uv supports creating a project with `uv init`.
@@ -130,8 +123,8 @@ dependencies = []
 example-pkg = "example_pkg:main"
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.8.4,<0.9.0"]
+build-backend = "uv_build"
 
 ```
 
@@ -156,8 +149,8 @@ dependencies = []
 example-pkg = "example_pkg:main"
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.8.4,<0.9.0"]
+build-backend = "uv_build"
 
 ```
 
@@ -223,8 +216,8 @@ requires-python = ">=3.11"
 dependencies = []
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.8.4,<0.9.0"]
+build-backend = "uv_build"
 
 ```
 
