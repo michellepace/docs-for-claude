@@ -1,5 +1,3 @@
-[Skip to content](https://docs.astral.sh/uv/guides/integration/github/#using-uv-in-github-actions)
-
 # [Using uv in GitHub Actions](https://docs.astral.sh/uv/guides/integration/github/\#using-uv-in-github-actions)
 
 ## [Installation](https://docs.astral.sh/uv/guides/integration/github/\#installation)
@@ -47,7 +45,7 @@ jobs:
         uses: astral-sh/setup-uv@v6
         with:
           # Install a specific version of uv.
-          version: "0.8.3"
+          version: "0.8.4"
 
 ```
 
