@@ -69,7 +69,7 @@
 
   <source>
     <title>Working on projects</title>
-    <desc>Project workflow guide: uv run, dependency management, environment syncing, building</desc>
+    <desc>Getting started tutorial: complete project workflow from uv init to building, project structure explanation, dependency management, running commands, version management</desc>
     <url>https://docs.astral.sh/uv/guides/projects/</url>
     <repo_file>uv_guides_working_on_projects.md</repo_file>
   </source>
