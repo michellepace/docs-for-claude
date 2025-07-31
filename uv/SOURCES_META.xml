@@ -55,7 +55,7 @@
 
   <source>
     <title>Building distributions</title>
-    <desc>Build backend concepts: source tree transformation, Python-only support, module configuration, file inclusion patterns</desc>
+    <desc>Using uv build command: creating sdist and wheel files for package distribution (e.g., on PyPI), command options, build constraints, packaging workflow</desc>
     <url>https://docs.astral.sh/uv/concepts/projects/build/</url>
     <repo_file>uv_concepts_projects_build.md</repo_file>
   </source>
