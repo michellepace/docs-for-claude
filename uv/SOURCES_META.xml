@@ -12,6 +12,13 @@
   </source>
 
   <source>
+    <title>Working on projects</title>
+    <desc>Getting started tutorial: complete project workflow from uv init to building, project structure explanation, dependency management, running commands, version management</desc>
+    <url>https://docs.astral.sh/uv/guides/projects/</url>
+    <repo_file>uv_guides_working_on_projects.md</repo_file>
+  </source>
+
+  <source>
     <title>Projects</title>
     <desc>Project concepts index: introduction and links to project documentation</desc>
     <url>https://docs.astral.sh/uv/concepts/projects/</url>
@@ -33,6 +40,13 @@
   </source>
 
   <source>
+    <title>Managing dependencies</title>
+    <desc>Dependency management: adding packages, sources, build dependencies, Git/index sources</desc>
+    <url>https://docs.astral.sh/uv/concepts/projects/dependencies/</url>
+    <repo_file>uv_concepts_projects_dependencies.md</repo_file>
+  </source>
+
+  <source>
     <title>Running commands in projects</title>
     <desc>Running commands in project environments: uv run, dependency isolation, additional dependencies</desc>
     <url>https://docs.astral.sh/uv/concepts/projects/run/</url>
@@ -40,10 +54,24 @@
   </source>
 
   <source>
-    <title>Managing dependencies</title>
-    <desc>Dependency management: adding packages, sources, build dependencies, Git/index sources</desc>
-    <url>https://docs.astral.sh/uv/concepts/projects/dependencies/</url>
-    <repo_file>uv_concepts_projects_dependencies.md</repo_file>
+    <title>Locking and syncing</title>
+    <desc>Lockfile creation and environment synchronization: automatic locking, dependency resolution, environment syncing</desc>
+    <url>https://docs.astral.sh/uv/concepts/projects/sync/</url>
+    <repo_file>uv_concepts_projects_sync.md</repo_file>
+  </source>
+
+  <source>
+    <title>Configuring projects</title>
+    <desc>Project configuration: build systems, packaging modes, editable installs, environment targeting</desc>
+    <url>https://docs.astral.sh/uv/concepts/projects/config/</url>
+    <repo_file>uv_concepts_projects_config.md</repo_file>
+  </source>
+
+  <source>
+    <title>Configuration files</title>
+    <desc>Configuration system: pyproject.toml vs uv.toml files, hierarchical discovery, dotenv support</desc>
+    <url>https://docs.astral.sh/uv/concepts/configuration-files/</url>
+    <repo_file>uv_concepts_config_files.md</repo_file>
   </source>
 
   <source>
@@ -61,31 +89,10 @@
   </source>
 
   <source>
-    <title>Locking and syncing</title>
-    <desc>Lockfile creation and environment synchronization: automatic locking, dependency resolution, environment syncing</desc>
-    <url>https://docs.astral.sh/uv/concepts/projects/sync/</url>
-    <repo_file>uv_concepts_projects_sync.md</repo_file>
-  </source>
-
-  <source>
-    <title>Working on projects</title>
-    <desc>Getting started tutorial: complete project workflow from uv init to building, project structure explanation, dependency management, running commands, version management</desc>
-    <url>https://docs.astral.sh/uv/guides/projects/</url>
-    <repo_file>uv_guides_working_on_projects.md</repo_file>
-  </source>
-
-  <source>
     <title>Building and publishing a package</title>
     <desc>Building and publishing Python packages: uv build, uv publish, version management, PyPI distribution</desc>
     <url>https://docs.astral.sh/uv/guides/package/</url>
     <repo_file>uv_guides_publishing_packages.md</repo_file>
-  </source>
-
-  <source>
-    <title>Configuring projects</title>
-    <desc>Project configuration: build systems, packaging modes, editable installs, environment targeting</desc>
-    <url>https://docs.astral.sh/uv/concepts/projects/config/</url>
-    <repo_file>uv_concepts_projects_config.md</repo_file>
   </source>
 
   <source>
@@ -100,13 +107,6 @@
     <desc>GitHub Actions CI/CD integration: setup-uv action, Python installation, caching, workflows</desc>
     <url>https://docs.astral.sh/uv/guides/integration/github/</url>
     <repo_file>uv_guides_integrations_github_actions.md</repo_file>
-  </source>
-
-  <source>
-    <title>Configuration files</title>
-    <desc>Configuration system: pyproject.toml vs uv.toml files, hierarchical discovery, dotenv support</desc>
-    <url>https://docs.astral.sh/uv/concepts/configuration-files/</url>
-    <repo_file>uv_concepts_config_files.md</repo_file>
   </source>
 
 </uv_documentation_sources>
