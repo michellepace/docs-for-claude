@@ -1,10 +1,3 @@
----
-url: "https://docs.astral.sh/uv/concepts/projects/run/"
-title: "Running commands | uv"
----
-
-[Skip to content](https://docs.astral.sh/uv/concepts/projects/run/#running-commands-in-projects)
-
 # [Running commands in projects](https://docs.astral.sh/uv/concepts/projects/run/\#running-commands-in-projects)
 
 When working on a project, it is installed into the virtual environment at `.venv`. This environment
