@@ -1,10 +1,42 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## UV Workflow
+## Project Architecture
 
-**Package Management**: This project uses [uv](https://docs.astral.sh/uv/)
+This repository curates documentation for AI context. Documentation is organised by tool/framework in subdirectories:
+
+```text
+<tool-name>/
+├── INDEX.xml              # Structured index for targeted doc retrieval
+├── README.md              # Subdirectory overview
+└── *.md                   # Documentation markdown files
+```
+
+### INDEX.xml Schema
+
+Each subdirectory contains an `INDEX.xml` file that maps documentation files to metadata:
+
+```xml
+<docs_index>
+  <source>
+    <title>Document title</title>
+    <description>Content summary for context matching</description>
+    <source_url>https://original-docs-url</source_url>
+    <local_file>filename.md</local_file>
+  </source>
+</docs_index>
+```
+
+The index enables targeted document retrieval rather than loading entire documentation sets into context.
+
+### External Tools
+
+- **FireCrawl MCP**: Used for documentation crawling. Pre-configured but requires `API_KEY_MCP_FIRECRAWL` environment variable.
+
+## Development Workflow
+
+**Package Management:** This project uses [uv](https://docs.astral.sh/uv/)
 
 **Strict Rules:**
 
