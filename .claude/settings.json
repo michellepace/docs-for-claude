@@ -1,11 +1,12 @@
 {
   "permissions": {
+    "allow": [
+      "Bash(uv:*)",
+      "Bash(claude mcp:*)"
+    ],
     "deny": [
       "Read(**/.env)",
       "Read(**/.envrc)"
-    ],
-    "allow": [
-      "Bash(uv:*)"
     ]
   }
 }

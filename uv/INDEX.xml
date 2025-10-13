@@ -1,0 +1,122 @@
+<docs_index>
+
+  <source>
+    <title>Features</title>
+    <description>Core uv capabilities: package management, tools, environments, pip compatibility</description>
+    <source_url>https://docs.astral.sh/uv/getting-started/features/</source_url>
+    <local_file>about_features.md</local_file>
+  </source>
+
+  <source>
+    <title>Working on projects</title>
+    <description>Getting started tutorial: complete project workflow from uv init to building, project structure explanation, dependency management, running commands, version management</description>
+    <source_url>https://docs.astral.sh/uv/guides/projects/</source_url>
+    <local_file>guides_working_on_projects.md</local_file>
+  </source>
+
+  <source>
+    <title>Installing Python</title>
+    <description>uv python install command: uv's automatic Python downloads, installing specific CPython/PyPy versions, uv-managed Python installations, integration with uv commands, upgrading uv-managed Python versions</description>
+    <source_url>https://docs.astral.sh/uv/guides/install-python/</source_url>
+    <local_file>guides_install_python.md</local_file>
+  </source>
+
+  <source>
+    <title>Projects</title>
+    <description>Project concepts index: introduction and links to project documentation</description>
+    <source_url>https://docs.astral.sh/uv/concepts/projects/</source_url>
+    <local_file>concepts_projects.md</local_file>
+  </source>
+
+  <source>
+    <title>Creating projects</title>
+    <description>Project creation with uv init: app/library templates, build backends, packaging modes</description>
+    <source_url>https://docs.astral.sh/uv/concepts/projects/init/</source_url>
+    <local_file>concepts_projects_init.md</local_file>
+  </source>
+
+  <source>
+    <title>Project structure and files</title>
+    <description>Project file structure: pyproject.toml, .venv environments, uv.lock lockfiles, metadata</description>
+    <source_url>https://docs.astral.sh/uv/concepts/projects/layout/</source_url>
+    <local_file>concepts_projects_layout.md</local_file>
+  </source>
+
+  <source>
+    <title>Managing dependencies</title>
+    <description>Dependency management: adding packages, sources, build dependencies, Git/index sources</description>
+    <source_url>https://docs.astral.sh/uv/concepts/projects/dependencies/</source_url>
+    <local_file>concepts_projects_dependencies.md</local_file>
+  </source>
+
+  <source>
+    <title>Running commands in projects</title>
+    <description>Running commands in project environments: uv run, dependency isolation, additional dependencies</description>
+    <source_url>https://docs.astral.sh/uv/concepts/projects/run/</source_url>
+    <local_file>concepts_projects_run.md</local_file>
+  </source>
+
+  <source>
+    <title>Locking and syncing</title>
+    <description>Lockfile creation and environment synchronization: automatic locking, dependency resolution, environment syncing</description>
+    <source_url>https://docs.astral.sh/uv/concepts/projects/sync/</source_url>
+    <local_file>concepts_projects_sync.md</local_file>
+  </source>
+
+  <source>
+    <title>Configuring projects</title>
+    <description>Project configuration: build systems, packaging modes, editable installs, environment targeting</description>
+    <source_url>https://docs.astral.sh/uv/concepts/projects/config/</source_url>
+    <local_file>concepts_projects_config.md</local_file>
+  </source>
+
+  <source>
+    <title>Configuration files</title>
+    <description>Configuration system: pyproject.toml vs uv.toml files, hierarchical discovery, dotenv support</description>
+    <source_url>https://docs.astral.sh/uv/concepts/configuration-files/</source_url>
+    <local_file>concepts_config_files.md</local_file>
+  </source>
+
+  <source>
+    <title>Python versions</title>
+    <description>uv's Python version management system: uv-managed vs system Python discovery, --python flag usage, .python-version file integration, uv's python-preference settings, python-build-standalone distributions</description>
+    <source_url>https://docs.astral.sh/uv/concepts/python-versions/</source_url>
+    <local_file>concepts_python_versions.md</local_file>
+  </source>
+
+  <source>
+    <title>The uv build backend</title>
+    <description>uv's native build backend (uv_build): Python-only package building, module discovery, file inclusion/exclusion patterns, pyproject.toml integration</description>
+    <source_url>https://docs.astral.sh/uv/concepts/build-backend/</source_url>
+    <local_file>concepts_build_backend.md</local_file>
+  </source>
+
+  <source>
+    <title>Building and publishing a package</title>
+    <description>Building and publishing Python packages: uv build, uv publish, version management, PyPI distribution</description>
+    <source_url>https://docs.astral.sh/uv/guides/package/</source_url>
+    <local_file>guides_publishing_packages.md</local_file>
+  </source>
+
+  <source>
+    <title>Using uv in pre-commit</title>
+    <description>Using uv with pre-commit hooks: lock file sync, requirements export, pip-compile integration</description>
+    <source_url>https://docs.astral.sh/uv/guides/integration/pre-commit/</source_url>
+    <local_file>guides_integrations_pre_commit.md</local_file>
+  </source>
+
+  <source>
+    <title>Using uv in GitHub Actions</title>
+    <description>GitHub Actions CI/CD integration: setup-uv action, Python installation, caching, workflows</description>
+    <source_url>https://docs.astral.sh/uv/guides/integration/github/</source_url>
+    <local_file>guides_integrations_github_actions.md</local_file>
+  </source>
+
+  <source>
+    <title>Building distributions (for PyPi)</title>
+    <description>Using uv build command: creating sdist and wheel files for package distribution (e.g., on PyPI), command options, build constraints, packaging workflow</description>
+    <source_url>https://docs.astral.sh/uv/concepts/projects/build/</source_url>
+    <local_file>concepts_projects_build.md</local_file>
+  </source>
+
+</docs_index>
