@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-After researching Claude Code's slash command capabilities and analyzing your `validate_subdir.py` script, **there is an excellent use case for creating a `/validate-subdir` slash command** in your project. Your validation script is well-designed and perfectly suited for integration as a slash command, providing immediate quality assurance for your documentation curation workflow.
+After researching Claude Code's slash command capabilities and analyzing your `validate_dir.py` script, **there is an excellent use case for creating a `/validate-dir` slash command** in your project. Your validation script is well-designed and perfectly suited for integration as a slash command, providing immediate quality assurance for your documentation curation workflow.
 
 ---
 
@@ -13,7 +13,7 @@ Slash commands are reusable prompt templates stored as Markdown files that Claud
 ### Core Benefits
 
 **Efficiency** 🚀
-Instead of typing lengthy instructions repeatedly, you invoke a single command like `/validate-subdir uv` to execute a complete workflow. This transforms multi-step operations into one-line invocations.
+Instead of typing lengthy instructions repeatedly, you invoke a single command like `/validate-dir uv` to execute a complete workflow. This transforms multi-step operations into one-line invocations.
 
 **Consistency** 🎯
 Slash commands encode best practices and standardized workflows directly into your project. Every team member executes validation the same way, eliminating variations in how tasks are performed.
@@ -22,7 +22,7 @@ Slash commands encode best practices and standardized workflows directly into yo
 Commands can execute bash scripts, access file contents via `@` references, and inject dynamic output into Claude's context. This enables data-driven workflows where validation results inform subsequent actions.
 
 **Automation** ⚡
-Commands support argument placeholders (`$1`, `$2`, `$ARGUMENTS`), enabling parameterized workflows. Your validation script becomes a flexible tool that works across all subdirectories without modification.
+Commands support argument placeholders (`$1`, `$2`, `$ARGUMENTS`), enabling parameterized workflows. Your validation script becomes a flexible tool that works across all directories without modification.
 
 **Documentation** 📖
 The command itself becomes living documentation of your workflow. New contributors can discover available operations via `/help` and understand project conventions through command descriptions.
@@ -68,32 +68,32 @@ Your documentation curation system has a **clear, hierarchical workflow**:
 docs-for-claude/
 ├── uv/                  # Tool-specific documentation
 │   ├── INDEX.xml        # Structured metadata
-│   ├── README.md        # Subdirectory overview
+│   ├── README.md        # Directory overview
 │   └── *.md             # Documentation files
 ├── tailwind/
 │   └── README.md
 └── scripts/
-    └── validate_subdir.py
+    └── validate_dir.py
 ```
 
 Your README documents **six planned slash commands**, five of which are marked as TODO:
 
 | Command | Status | Purpose |
 |:--------|:-------|:--------|
-| `/ask-subdir-docs` | ⚠️ TODO | Query documentation intelligently |
-| `/update-subdir-doc` | ⚠️ TODO | Refresh single documentation file |
-| `/update-subdir-docs` | ⚠️ TODO | Refresh entire subdirectory |
-| `/add-new-subdir-doc` | ⚠️ TODO | Add new documentation source |
-| `/create-subdir-index` | ⚠️ TODO | Generate INDEX.xml from existing files |
-| **`/validate-subdir`** | **✅ Ready** | **Verify INDEX.xml ↔ .md sync** |
+| `/ask-dir-docs` | ⚠️ TODO | Query documentation intelligently |
+| `/update-dir-doc` | ⚠️ TODO | Refresh single documentation file |
+| `/update-dir-docs` | ⚠️ TODO | Refresh entire directory |
+| `/add-new-dir-doc` | ⚠️ TODO | Add new documentation source |
+| `/create-dir-index` | ⚠️ TODO | Generate INDEX.xml from existing files |
+| **`/validate-dir`** | **✅ Ready** | **Verify INDEX.xml ↔ .md sync** |
 
 ---
 
-## ✅ Why `/validate-subdir` Is an Ideal Candidate
+## ✅ Why `/validate-dir` Is an Ideal Candidate
 
 ### Script Design Analysis
 
-Your `validate_subdir.py` script demonstrates **excellent design** for slash command integration:
+Your `validate_dir.py` script demonstrates **excellent design** for slash command integration:
 
 **Well-Structured Architecture** 📐
 The script follows clean separation of concerns with focused functions: `parse_index_xml()`, `validate_source_element()`, `validate_markdown_file()`, `print_report()`. Each function has a single responsibility and clear inputs/outputs.
@@ -108,12 +108,12 @@ The validation report uses emoji indicators (✅/❌), structured sections (INDE
 Returns `0` for success and `1` for validation failures, making it perfect for CI/CD integration and slash command workflows.
 
 **Standalone Execution** 🎯
-Accepts a single argument (`subdir`), has no external dependencies beyond standard library, and produces deterministic results.
+Accepts a single argument (`dir`), has no external dependencies beyond standard library, and produces deterministic results.
 
 ### Integration Benefits
 
 **Immediate Quality Feedback**
-As you add or update documentation, `/validate-subdir uv` instantly verifies synchronization. Claude receives validation results in context and can automatically fix issues.
+As you add or update documentation, `/validate-dir uv` instantly verifies synchronization. Claude receives validation results in context and can automatically fix issues.
 
 **Workflow Enhancement**
 The slash command becomes part of your documentation curation lifecycle: crawl documentation → update files → validate → commit. Each step is a single command.
@@ -135,7 +135,7 @@ Create `.claude/commands/validate.md`:
 ```markdown
 ---
 allowed-tools: Bash(uv run:*)
-argument-hint: <subdir>
+argument-hint: <dir>
 description: Validate INDEX.xml sync with markdown files
 ---
 
@@ -143,7 +143,7 @@ description: Validate INDEX.xml sync with markdown files
 
 Current validation results for `$1`:
 
-!`uv run scripts/validate_subdir.py $1`
+!`uv run scripts/validate_dir.py $1`
 
 # Your Task
 
@@ -154,7 +154,7 @@ Analyze the validation results above. If there are any issues:
 3. Fix the issues automatically if possible
 4. Provide a summary of changes made
 
-If validation passed, confirm that the `$1` subdirectory is properly synchronized.
+If validation passed, confirm that the `$1` directory is properly synchronized.
 ```
 
 ### Usage Examples
@@ -163,7 +163,7 @@ If validation passed, confirm that the `$1` subdirectory is properly synchronize
 
 ```bash
 > /validate uv
-# Validates uv/ subdirectory, Claude receives results and can auto-fix issues
+# Validates uv/ directory, Claude receives results and can auto-fix issues
 ```
 
 **After Adding New Docs**
@@ -186,7 +186,7 @@ If validation passed, confirm that the `$1` subdirectory is properly synchronize
 The `!` prefix executes your validation script and injects output into Claude's context before the slash command runs. Claude sees the full validation report and can reason about issues.
 
 **Argument Placeholder**
-`$1` captures the subdirectory argument, making the command flexible across all documentation collections without modification.
+`$1` captures the directory argument, making the command flexible across all documentation collections without modification.
 
 **Tool Permissions**
 `allowed-tools: Bash(uv run:*)` restricts the command to only execute `uv run` commands, following your project's strict "never activate venv" policy documented in CLAUDE.md.
@@ -198,35 +198,35 @@ The command doesn't just validate—it empowers Claude to analyze results, ident
 
 ## 🚀 Additional Slash Command Opportunities
 
-Beyond `/validate-subdir`, your README outlines five more commands that would significantly enhance your workflow:
+Beyond `/validate-dir`, your README outlines five more commands that would significantly enhance your workflow:
 
-### `/ask-subdir-docs`
+### `/ask-dir-docs`
 
 **Purpose:** Intelligent documentation querying using INDEX.xml metadata
 **Workflow:** Parse INDEX.xml → match question to relevant sources → analyze only targeted docs → answer
 **Benefit:** Avoids loading entire documentation sets into context, using targeted retrieval instead
 
-### `/update-subdir-doc`
+### `/update-dir-doc`
 
 **Purpose:** Refresh single documentation file from source URL
 **Workflow:** Extract source_url from INDEX.xml → crawl with FireCrawl MCP → update .md file → update metadata if changed
-**Benefit:** Keeps individual docs current without full subdirectory refresh
+**Benefit:** Keeps individual docs current without full directory refresh
 
-### `/create-subdir-index`
+### `/create-dir-index`
 
 **Purpose:** Generate INDEX.xml from existing markdown files
-**Workflow:** Scan subdirectory for .md files → parse first line for title/URL → generate XML structure
+**Workflow:** Scan directory for .md files → parse first line for title/URL → generate XML structure
 **Benefit:** Bootstraps INDEX.xml for new documentation collections
 
-### `/add-new-subdir-doc`
+### `/add-new-dir-doc`
 
 **Purpose:** Add new documentation source to existing collection
 **Workflow:** Crawl new URL → create .md file → add `<source>` element to INDEX.xml
 **Benefit:** Streamlines documentation expansion process
 
-### `/update-subdir-docs`
+### `/update-dir-docs`
 
-**Purpose:** Bulk refresh all documentation in subdirectory
+**Purpose:** Bulk refresh all documentation in directory
 **Workflow:** Iterate through INDEX.xml sources → crawl each URL → update files → validate
 **Benefit:** Ensures entire collection stays synchronized with upstream sources
 
@@ -242,10 +242,10 @@ Store validation commands in `.claude/commands/validate/`, documentation update 
 ### Argument Validation
 
 **Early Exit on Invalid Input**
-Your bash commands should validate that subdirectories exist before proceeding:
+Your bash commands should validate that directories exist before proceeding:
 
 ```bash
-!`test -d "$1" && uv run scripts/validate_subdir.py "$1" || echo "Error: Directory '$1' not found"`
+!`test -d "$1" && uv run scripts/validate_dir.py "$1" || echo "Error: Directory '$1' not found"`
 ```
 
 ### Error Handling
@@ -267,7 +267,7 @@ Use `allowed-tools` frontmatter to limit commands to only necessary tools. Your 
 
 ## 🎯 Conclusion
 
-Your `validate_subdir.py` script is **production-ready** for slash command integration. The script's clean architecture, comprehensive validation logic, and clear output format make it ideal for automated workflow integration.
+Your `validate_dir.py` script is **production-ready** for slash command integration. The script's clean architecture, comprehensive validation logic, and clear output format make it ideal for automated workflow integration.
 
 **Immediate Next Steps:**
 
@@ -276,4 +276,4 @@ Your `validate_subdir.py` script is **production-ready** for slash command integ
 3. Integrate validation into your documentation update workflow
 4. Expand to the remaining five planned commands documented in your README
 
-The `/validate-subdir` command will serve as a **quality gate** in your documentation curation process, ensuring that INDEX.xml and markdown files remain synchronized as you add, update, and expand your curated documentation collections. 🎉
+The `/validate-dir` command will serve as a **quality gate** in your documentation curation process, ensuring that INDEX.xml and markdown files remain synchronized as you add, update, and expand your curated documentation collections. 🎉
