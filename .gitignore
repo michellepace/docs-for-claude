@@ -1,0 +1,13 @@
+# Security & Environment
+.env*
+
+# Python core
+__pycache__/
+*.py[oc]
+
+# Virtual environments
+.venv
+
+# Development tools
+.pytest_cache/
+.ruff_cache/

@@ -1,0 +1,70 @@
+# =================================
+# Project Metadata & Configuration
+# =================================
+[project]
+name = "docs-for-claude-new"
+version = "0.1.0"
+description = "Curate and index clean docs for Claude Code context and keep it fresh"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.406",
+    "ruff>=0.14.0",
+]
+
+
+# =================================
+# Pyright Type Checking
+# =================================
+[tool.pyright]
+# Type Checker is needed as Ruff is only a linter: https://docs.astral.sh/ruff/faq/
+# For Cursor (Cursor Pyright extension), for VSCode (Microsoft Pylance)
+# Cursor Pyright forks BasedPyright, some lint rules overlap with Ruff, causes dupe errors
+
+typeCheckingMode = "standard" # Cursor Pyright default
+pythonVersion = "3.13"
+
+# Disable Basedpyright rules that duplicate Ruff
+reportUnusedImport = false      # Ruff F401 handles it
+reportUnusedVariable = false    # Ruff F841 handles it
+reportDuplicateImport = false   # Ruff F811 handles it
+reportUnusedParameter = false   # Ruff ARG001 handles it
+
+
+# =================================
+# Ruff Linter Configuration
+# =================================
+[tool.ruff]
+# Strictest ruff settings
+line-length = 90
+target-version = "py313"
+
+[tool.ruff.lint]
+# Enable all available rules
+select = ["ALL"]
+# Only ignore rules that are incompatible or overly pedantic
+ignore = [
+    "D100",    # Missing docstring in public module
+    "D104",    # Missing docstring in public package
+    "D203",    # 1 blank line required before class docstring (conflicts with D211)
+    "D213",    # Multi-line docstring summary should start at the second line (conflicts with D212)
+    "COM812",  # Trailing comma missing (conflicts with formatter)
+    "ISC001",  # Implicitly concatenated string literals on one line (conflicts with formatter)
+    "T201",    # Print found (allow print statements)
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.pylint]
+max-args = 5
+max-branches = 12
+max-returns = 6
+max-statements = 50
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
