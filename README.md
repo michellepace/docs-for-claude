@@ -28,69 +28,69 @@ Curated documentation for Claude Code projects. Each collection is indexed for t
 
 ### 🔵 Daily Use
 
-⚠️ **TODO** - Ask Questions: `/ask-subdir-docs <repo-subdir> <question>`
+⚠️ **TODO** - Ask Questions: `/ask-dir-docs <repo-dir> <question>`
 
 ```bash
-# Searches <repo-subdir>/INDEX.xml to find relevant docs
+# Searches <repo-dir>/INDEX.xml to find relevant docs
 # Analyses chosen docs to answer your question
 
 # UV example
-/ask-subdir-docs uv What does "init --package" do?
+/ask-dir-docs uv What does "init --package" do?
 
 # Tailwind example
-/ask-subdir-docs tailwind Is "tailwind.config" still used?
+/ask-dir-docs tailwind Is "tailwind.config" still used?
 ```
 
 ### 🟢 Update Docs
 
-⚠️ **TODO** - Update Single Doc: `/update-subdir-doc <repo-subdir> <filename>`
+⚠️ **TODO** - Update Single Doc: `/update-dir-doc <repo-dir> <filename>`
 
 ```bash
 # Crawls for a single doc file and overwrites .md content
 # Updates <source> elements in INDEX.xml if needed: <title>, <description>
-/update-subdir-doc uv concepts_projects_build.md
+/update-dir-doc uv concepts_projects_build.md
 ```
 
-⚠️ **TODO** - Update Subdir Docs: `/update-subdir-docs <repo-subdir>`
+⚠️ **TODO** - Update Directory Docs: `/update-dir-docs <repo-dir>`
 
 ```bash
-# Crawls for all docs in subdirectory and overwrites .md content
+# Crawls for all docs in directory and overwrites .md content
 # Updates <source> elements in INDEX.xml if needed: <title>, <description>
-/update-subdir-docs uv
+/update-dir-docs uv
 ```
 
 ### 🟠 Expand Docs
 
-⚠️ **TODO** - Add New Subdir Doc: `/add-new-subdir-doc <repo-subdir> <new-doc-url-to-crawl>`
+⚠️ **TODO** - Add New Directory Doc: `/add-new-dir-doc <repo-dir> <new-doc-url-to-crawl>`
 
 ```bash
 # Crawls for new doc and creates .md file
 # Adds <source> element to existing INDEX.xml: <title>, <description>, <url>, <file>
-/add-new-subdir-doc uv https://docs.astral.sh/uv/concepts/preview/
+/add-new-dir-doc uv https://docs.astral.sh/uv/concepts/preview/
 ```
 
-⚠️ **TODO** - Create Subdir Index: `/create-subdir-index <repo-subdir>`
+⚠️ **TODO** - Create Directory Index: `/create-dir-index <repo-dir>`
 
 ```bash
-# Creates INDEX.xml from existing .md files in subdirectory
-# Scans subdirectory and generates <source> elements for each .md file
-/create-subdir-index reflex
+# Creates INDEX.xml from existing .md files in directory
+# Scans directory and generates <source> elements for each .md file
+/create-dir-index reflex
 ```
 
-⚠️ **TODO** - Validate Subdir: `/validate-subdir <repo-subdir>`
+Validate Directory: `/validate-dir <repo-dir>`
 
 ```bash
 # Verifies bidirectional sync: INDEX.xml ↔ .md files
 # Reports any problems found
-/validate-subdir uv
+/validate-dir uv
 ```
 
-**Add New Subdir of Documents** (manual + automatic workflow):
+**Add New Directory of Documents** (manual + automatic workflow):
 
 1. Add a new row to the README.md table
-2. Create the new root subdirectory e.g., `mkdir reflex`
-3. Create subdirectory README.md following established pattern
+2. Create the new root directory e.g., `mkdir reflex`
+3. Create directory README.md following established pattern
 4. Add docs (.md) files manually and name as desired
-5. Create an index, run: `/create-subdir-index reflex`
-6. Optional verification, run: `/validate-subdir reflex`
-7. Optional to add more docs, run: `/add-new-subdir-doc reflex <new-doc-url-to-crawl>`
+5. Create an index, run: `/create-dir-index reflex`
+6. Optional verification, run: `/validate-dir reflex`
+7. Optional to add more docs, run: `/add-new-dir-doc reflex <new-doc-url-to-crawl>`

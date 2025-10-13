@@ -1,8 +1,12 @@
 {
   "permissions": {
     "allow": [
+      "Bash(test:*)",
+
       "Bash(uv:*)",
-      "Bash(claude mcp:*)"
+      "Bash(claude mcp list)",
+      "Bash(claude mcp get:*)",
+      "SlashCommand(/validate-dir:*)"
     ],
     "deny": [
       "Read(**/.env)",

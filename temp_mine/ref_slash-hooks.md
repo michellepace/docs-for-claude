@@ -160,7 +160,7 @@ Hooks are automated shell commands that execute in response to specific events d
 #### 1. Design and Organization
 
 - **Use descriptive names**: `/analyze-performance` not `/ap`
-- **Organize with subdirectories**: Group related commands in folders
+- **Organize with directories**: Group related commands in folders
 - **Share project commands**: Commit to `.claude/commands/` for team use
 - **Keep personal commands separate**: Use `~/.claude/commands/` for individual preferences
 

@@ -4,18 +4,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Architecture
 
-This repository curates documentation for AI context. Documentation is organised by tool/framework in subdirectories:
+This repository curates documentation for AI context. Documentation is organised by tool/framework in directories:
 
 ```text
 <tool-name>/
 ├── INDEX.xml              # Structured index for targeted doc retrieval
-├── README.md              # Subdirectory overview
+├── README.md              # Directory overview
 └── *.md                   # Documentation markdown files
 ```
 
 ### INDEX.xml Schema
 
-Each subdirectory contains an `INDEX.xml` file that maps documentation files to metadata:
+Each directory contains an `INDEX.xml` file that maps documentation files to metadata:
 
 ```xml
 <docs_index>

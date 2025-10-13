@@ -59,6 +59,11 @@ ignore = [
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
+[tool.ruff.lint.per-file-ignores]
+"scripts/validate_dir.py" = [
+    "S314",    # XML parsing (safe - trusted local files only)
+]
+
 [tool.ruff.lint.pylint]
 max-args = 5
 max-branches = 12
