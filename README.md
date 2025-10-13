@@ -77,7 +77,7 @@ Curated documentation for Claude Code projects. Each collection is indexed for t
 /create-dir-index reflex
 ```
 
-⚠️ **TODO** - Validate Directory: `/validate-dir <repo-dir>`
+Validate Directory: `/validate-dir <repo-dir>`
 
 ```bash
 # Verifies bidirectional sync: INDEX.xml ↔ .md files
