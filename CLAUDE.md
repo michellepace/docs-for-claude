@@ -39,6 +39,7 @@ Documentation is scraped using FireCrawl.
 
 **Strict Rules:**
 
+- Use British spelling - never American
 - Use `uv run` - never activate venv
 - Use `uv add` - never pip
 - Use `pyproject.toml` - never requirements.txt
