@@ -1,96 +1,106 @@
-# Curated Docs For Clean Claude Code Context
+# 📚 Curated Docs For Claude Code
 
-Curated documentation for Claude Code projects. Each collection is indexed for targeted AI context and kept up to date with automation. Crawled via [FireCrawl MCP](https://docs.firecrawl.dev/mcp-server).
+**CURRENTLY UNDER DEVELOPMENT**
 
-## Available Docs
+Curate documentation for your Claude Code (or any AI). Each collection is indexed for targeted AI context. Keep fresh with included Claude Code slash commands and configured [FireCrawl MCP](https://docs.firecrawl.dev/mcp-server). Clone and make your own.
 
-| Tool | Description | Source | Updated | Docs Path | Docs Index |
-|:-----|:------------|:------------|:-------------|:----------|:------|
-| **UV** | Python projects | [Official](https://docs.astral.sh/uv/) | 2025.07.31 | 📁 [`uv/`](uv/) | 📄 [`uv/INDEX.xml`](uv/INDEX.xml) |
-| **Tailwind** | CSS framework | [Official](https://tailwindcss.com/docs/) | ⚠️ TODO | 📁 [`tailwind/`](tailwind/) | 📄 - |
+## 🎯 Philosophy
 
-*NB: For all Anthropic docs, use [this tool](https://github.com/ericbuess/claude-code-docs)*
+- **Markdown files are source of truth** - INDEX.xml is a derived artifact
+- **INDEX.xml metadata generation** - Claude Code intelligently extracts from markdown
+- **Efficient search** - Index.xml descriptions optimised for AI context matching
 
-## Install
+## 📦 Available Collections
 
-1. Clone this repo: `git clone https://github.com/michellepace/docs-for-claude.git`
-2. FireCrawl is pre-configured in [.mcp.json](.mcp.json) and requires an API key
-3. Get a free FireCrawl API key: [firecrawl.dev/app/api-keys](https://www.firecrawl.dev/app/api-keys)
-4. Add it to your shell profile (`.zshrc`, `.bashrc`, etc.):
+| Tool | Description | Source | Updated | Path | Index |
+|------|-------------|--------|---------|------|-------|
+| **UV** | Python projects | [Official](https://docs.astral.sh/uv/) | 2025.07.31 | [`uv/`](uv/) | [`uv/INDEX.xml`](uv/INDEX.xml) |
+| **Tailwind** | CSS framework | [Official](https://tailwindcss.com/docs/) | empty | [`tailwind/`](tailwind/) | empty |
+| **Anthropic** | use [this tool](https://github.com/ericbuess/claude-code-docs) | [Official](https://docs.claude.com/) | n/a | n/a | n/a |
 
-   ```bash
-   echo 'export API_KEY_MCP_FIRECRAWL=your-api-key-here' >> ~/.zshrc
-   source ~/.zshrc  # reload shell profile
-   echo $API_KEY_MCP_FIRECRAWL  # check it's set
-   ```
-
-## Usage
-
-### 🔵 Daily Use
-
-⚠️ **TODO** - Ask Questions: `/ask-dir-docs <repo-dir> <question>`
+## 🚀 Setup
 
 ```bash
-# Searches <repo-dir>/INDEX.xml to find relevant docs
-# Analyses chosen docs to answer your question
+# 1. Clone repository
+git clone https://github.com/michellepace/docs-for-claude.git
+cd docs-for-claude
 
-# UV example
-/ask-dir-docs uv What does "init --package" do?
+# 2. Get free FireCrawl API key
+# Visit: https://www.firecrawl.dev/app/api-keys
 
-# Tailwind example
-/ask-dir-docs tailwind Is "tailwind.config" still used?
+# 3. Add to shell profile
+echo 'export API_KEY_MCP_FIRECRAWL=your-api-key-here' >> ~/.zshrc
+source ~/.zshrc
 ```
 
-### 🟢 Update Docs
+## 📖 Slash Command Reference
 
-⚠️ **TODO** - Update Single Doc: `/update-dir-doc <repo-dir> <filename>`
+| Command | Purpose | INDEX.xml | .md Files |
+|---------|---------|-----------|-----------|
+| `/ask-docs` | Query docs with AI | ❌ Read-only | ❌ Read-only |
+| `/add-new-doc` | Crawl & add single doc | ✅ Add source | ✅ Create |
+| `/sync-index` | Sync index with current files | ✅ Add/remove | ❌ |
+| `/recrawl-docs` | Refresh from upstream | ✅ If changed | ✅ Overwrite |
+| `/generate-index` | Create new index from scratch | ✅ Full regen | ❌ |
+
+*All commands require `<directory>` as first argument*
+
+## 💡 Usage Examples
 
 ```bash
-# Crawls for a single doc file and overwrites .md content
-# Updates <source> elements in INDEX.xml if needed: <title>, <description>
-/update-dir-doc uv concepts_projects_build.md
+# Daily usage - Ask questions about documentation
+/ask-docs tailwind "How do I customise colors?"
+# → Searches INDEX.xml descriptions, reads relevant docs, answers question
+
+# Add a new doc by crawling URL
+/add-new-doc tailwind https://tailwindcss.com/docs/customizing-colors
+# → Crawls page, creates .md file, adds to INDEX.xml (fully atomic)
+
+# Manually added .md files? Synchronise the index
+/sync-index tailwind
+# → Finds new files, removes orphans, offers to populate metadata
+
+# Refresh docs from upstream (monthly maintenance)
+/recrawl-docs tailwind
+# → Re-crawls all URLs, detects changes, updates .md files
+
+# Start new collection from existing markdown files
+mkdir reflex/ && cp ~/docs/*.md reflex/
+/generate-index reflex
+# → Analyses all .md files, generates INDEX.xml with AI metadata
 ```
 
-⚠️ **TODO** - Update Directory Docs: `/update-dir-docs <repo-dir>`
+## 🏗️ How It Works
 
-```bash
-# Crawls for all docs in directory and overwrites .md content
-# Updates <source> elements in INDEX.xml if needed: <title>, <description>
-/update-dir-docs uv
+### Directory Structure
+
+```text
+uv/
+├── INDEX.xml              # AI-generated index for semantic search
+├── README.md              # Collection overview
+├── concepts_projects.md   # Documentation content
+├── cli_init.md
+└── ...
 ```
 
-### 🟠 Expand Docs
+### INDEX.xml Schema
 
-⚠️ **TODO** - Add New Directory Doc: `/add-new-dir-doc <repo-dir> <new-doc-url-to-crawl>`
-
-```bash
-# Crawls for new doc and creates .md file
-# Adds <source> element to existing INDEX.xml: <title>, <description>, <url>, <file>
-/add-new-dir-doc uv https://docs.astral.sh/uv/concepts/preview/
+```xml
+<docs_index>
+  <source>
+    <title>Projects and Packaging</title>
+    <description>Explains UV project structure, pyproject.toml...</description>
+    <source_url>https://docs.astral.sh/uv/concepts/projects/</source_url>
+    <local_file>concepts_projects.md</local_file>
+  </source>
+</docs_index>
 ```
 
-⚠️ **TODO** - Create Directory Index: `/create-dir-index <repo-dir>`
+**How metadata is generated:**
 
-```bash
-# Creates INDEX.xml from existing .md files in directory
-# Scans directory and generates <source> elements for each .md file
-/create-dir-index reflex
-```
+- **Title**: Extracted from document structure and headings
+- **Description**: AI-generated summary (2-3 sentences, optimised for semantic search)
+- **URL**: Extracted from content or crawl source
+- **File**: Direct mapping to .md filename
 
-Validate Directory: `/validate-dir <repo-dir>`
-
-```bash
-# Verifies bidirectional sync: INDEX.xml ↔ .md files
-# Reports any problems found
-/validate-dir uv
-```
-
-**Add New Directory of Documents** (manual + automatic workflow):
-
-1. Add a new row to the README.md table
-2. Create the new root directory e.g., `mkdir reflex`
-3. Create directory README.md following established pattern
-4. Add docs (.md) files manually and name as desired
-5. Create an index, run: `/create-dir-index reflex`
-6. Optional verification, run: `/validate-dir reflex`
-7. Optional to add more docs, run: `/add-new-dir-doc reflex <new-doc-url-to-crawl>`
+**No format required**: Claude Code uses AI to understand any markdown structure.
