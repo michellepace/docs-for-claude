@@ -2,9 +2,13 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Project Architecture
+## Overview
 
-This repository curates documentation for AI context. Documentation is organised by tool/framework in directories:
+This repository curates documentation collections that AI coding agents can search and retrieve efficiently. Each collection contains markdown files with an INDEX.xml that enables semantic search - AI agents query descriptions to load only relevant docs into context.
+
+## Structure
+
+Documentation is organised by tool/framework in collection directories:
 
 ```text
 <tool-name>/
@@ -13,9 +17,7 @@ This repository curates documentation for AI context. Documentation is organised
 └── *.md                   # Documentation markdown files
 ```
 
-### INDEX.xml Schema
-
-Each directory contains an `INDEX.xml` file that maps documentation files to metadata:
+Each INDEX.xml maps markdown files to searchable metadata:
 
 ```xml
 <docs_index>
@@ -25,16 +27,13 @@ Each directory contains an `INDEX.xml` file that maps documentation files to met
     <source_url>https://original-docs-url</source_url>
     <local_file>filename.md</local_file>
   </source>
+  <!-- Multiple <source> entries, one per markdown file -->
 </docs_index>
 ```
 
-The index enables targeted document retrieval rather than loading entire documentation sets into context.
+Documentation is scraped using FireCrawl.
 
-### External Tools
-
-- **FireCrawl MCP**: Used for documentation crawling. Pre-configured but requires `API_KEY_MCP_FIRECRAWL` environment variable.
-
-## Development Workflow
+## Development Workflow (Python 3.13)
 
 **Package Management:** This project uses [uv](https://docs.astral.sh/uv/)
 
