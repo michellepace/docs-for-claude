@@ -21,27 +21,30 @@ Curate documentation for your Claude Code (or any AI). Each collection is indexe
 ## 🚀 Setup
 
 ```bash
-# 1. Clone repository
+# 1. Install UV
+# https://docs.astral.sh/uv/getting-started/installation/
+
+# 2. Clone repository
 git clone https://github.com/michellepace/docs-for-claude.git
 cd docs-for-claude
 
-# 2. Get free FireCrawl API key
+# 3. Get free FireCrawl API key
 # Visit: https://www.firecrawl.dev/app/api-keys
 
-# 3. Add to shell profile
+# 4. Add to shell profile
 echo 'export API_KEY_MCP_FIRECRAWL=your-api-key-here' >> ~/.zshrc
 source ~/.zshrc
 ```
 
 ## 📖 Slash Command Reference
 
-| Command | Purpose | INDEX.xml | .md Files |
-|---------|---------|-----------|-----------|
-| `/ask-docs` | Query docs with AI | ❌ Read-only | ❌ Read-only |
-| `/add-new-doc` | Crawl & add single doc | ✅ Add source | ✅ Create |
-| `/sync-index` | Sync index with current files | ✅ Add/remove | ❌ |
-| `/recrawl-docs` | Refresh from upstream | ✅ If changed | ✅ Overwrite |
-| `/generate-index` | Create new index from scratch | ✅ Full regen | ❌ |
+| Command | Purpose | INDEX.xml | .md Files | Done |
+|---------|---------|-----------|-----------|------|
+| `/ask-docs` | Query docs with AI | ❌ Read-only | ❌ Read-only | - |
+| `/add-doc` | Crawl & add single doc | ✅ Add source | ✅ Create | 👍 yes |
+| `/sync-index` | Sync index with current files | ✅ Add/remove | ❌ | - |
+| `/recrawl-docs` | Refresh from upstream | ✅ If changed | ✅ Overwrite | - |
+| `/generate-index` | Create new index from scratch | ✅ Full regen | ❌ | - |
 
 *All commands require `<directory>` as first argument*
 
@@ -53,7 +56,7 @@ source ~/.zshrc
 # → Searches INDEX.xml descriptions, reads relevant docs, answers question
 
 # Add a new doc by crawling URL
-/add-new-doc tailwind https://tailwindcss.com/docs/customizing-colors
+/add-doc tailwind https://tailwindcss.com/docs/customizing-colors
 # → Crawls page, creates .md file, adds to INDEX.xml (fully atomic)
 
 # Manually added .md files? Synchronise the index
