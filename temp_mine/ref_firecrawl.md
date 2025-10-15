@@ -19,65 +19,66 @@ Used to scrape a URL and get its content.
 ### Installation
 
 <CodeGroup>
-  ```python Python theme={null}
-  # pip install firecrawl-py
 
-  from firecrawl import Firecrawl
+```python Python theme={null}
+# pip install firecrawl-py
 
-  firecrawl = Firecrawl(api_key="fc-YOUR-API-KEY")
+from firecrawl import Firecrawl
 
-  ```
+firecrawl = Firecrawl(api_key="fc-YOUR-API-KEY")
 
-  ```js Node theme={null}
-  # npm install @mendable/firecrawl-js
+```
 
-  import Firecrawl from '@mendable/firecrawl-js';
+```js Node theme={null}
+# npm install @mendable/firecrawl-js
 
-  const firecrawl = new Firecrawl({ apiKey: "fc-YOUR-API-KEY" });
-  ```
+import Firecrawl from '@mendable/firecrawl-js';
+
+const firecrawl = new Firecrawl({ apiKey: "fc-YOUR-API-KEY" });
+```
 
 </CodeGroup>
 
 ### Usage
 
 <CodeGroup>
-  ```python Python theme={null}
-  from firecrawl import Firecrawl
 
-  firecrawl = Firecrawl(api_key="fc-YOUR-API-KEY")
+```python Python theme={null}
+from firecrawl import Firecrawl
+
+firecrawl = Firecrawl(api_key="fc-YOUR-API-KEY")
 
 # Scrape a website
+doc = firecrawl.scrape("<https://firecrawl.dev>", formats=["markdown", "html"])
+print(doc)
 
-  doc = firecrawl.scrape("<https://firecrawl.dev>", formats=["markdown", "html"])
-  print(doc)
+```
 
-  ```
+```js Node theme={null}
+import Firecrawl from '@mendable/firecrawl-js';
 
-  ```js Node theme={null}
-  import Firecrawl from '@mendable/firecrawl-js';
+const firecrawl = new Firecrawl({ apiKey: "fc-YOUR-API-KEY" });
 
-  const firecrawl = new Firecrawl({ apiKey: "fc-YOUR-API-KEY" });
+// Scrape a website:
+const doc = await firecrawl.scrape('https://firecrawl.dev', { formats: ['markdown', 'html'] });
+console.log(doc);
+```
 
-  // Scrape a website:
-  const doc = await firecrawl.scrape('https://firecrawl.dev', { formats: ['markdown', 'html'] });
-  console.log(doc);
-  ```
-
-  ```bash cURL theme={null}
-  curl -s -X POST "https://api.firecrawl.dev/v2/scrape" \
-    -H "Authorization: Bearer $FIRECRAWL_API_KEY" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "url": "https://firecrawl.dev",
-      "formats": ["markdown", "html"]
-    }'
-  ```
+```bash cURL theme={null}
+curl -s -X POST "https://api.firecrawl.dev/v2/scrape" \
+  -H "Authorization: Bearer $FIRECRAWL_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "url": "https://firecrawl.dev",
+    "formats": ["markdown", "html"]
+  }'
+```
 
 </CodeGroup>
 
 For more details about the parameters, refer to the [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/scrape).
 
-### Response
+## Response
 
 SDKs will return the data object directly. cURL will return the payload exactly as shown below.
 
@@ -127,91 +128,92 @@ Output keys will match the format you choose.
 Used to extract structured data from scraped pages.
 
 <CodeGroup>
-  ```python Python theme={null}
-  from firecrawl import Firecrawl
-  from pydantic import BaseModel
-  app = Firecrawl(api_key="fc-YOUR-API-KEY")
 
-  class JsonSchema(BaseModel):
-      company_mission: str
-      supports_sso: bool
-      is_open_source: bool
-      is_in_yc: bool
+```python Python theme={null}
+from firecrawl import Firecrawl
+from pydantic import BaseModel
+app = Firecrawl(api_key="fc-YOUR-API-KEY")
 
-  result = app.scrape(
-      '<https://firecrawl.dev>',
-      formats=[{
-        "type": "json",
-        "schema": JsonSchema
-      }],
-      only_main_content=False,
-      timeout=120000
-  )
+class JsonSchema(BaseModel):
+    company_mission: str
+    supports_sso: bool
+    is_open_source: bool
+    is_in_yc: bool
 
-  print(result)
-
-  ```
-
-  ```js Node theme={null}
-  import FirecrawlApp from "@mendable/firecrawl-js";
-  import { z } from "zod";
-
-  const app = new FirecrawlApp({
-    apiKey: "fc-YOUR_API_KEY"
-  });
-
-  // Define schema to extract contents into
-  const schema = z.object({
-    company_mission: z.string(),
-    supports_sso: z.boolean(),
-    is_open_source: z.boolean(),
-    is_in_yc: z.boolean()
-  });
-
-  const result = await app.scrape("https://docs.firecrawl.dev/", {
-    formats: [{
-      type: "json",
-      schema: schema
+result = app.scrape(
+    '<https://firecrawl.dev>',
+    formats=[{
+      "type": "json",
+      "schema": JsonSchema
     }],
-  });
+    only_main_content=False,
+    timeout=120000
+)
 
-  console.log(result);
-  ```
+print(result)
 
-  ```bash cURL theme={null}
-  curl -X POST https://api.firecrawl.dev/v2/scrape \
-      -H 'Content-Type: application/json' \
-      -H 'Authorization: Bearer YOUR_API_KEY' \
-      -d '{
-        "url": "https://docs.firecrawl.dev/",
-        "formats": [ {
-          "type": "json",
-          "schema": {
-            "type": "object",
-            "properties": {
-              "company_mission": {
-                        "type": "string"
-              },
-              "supports_sso": {
-                        "type": "boolean"
-              },
-              "is_open_source": {
-                        "type": "boolean"
-              },
-              "is_in_yc": {
-                        "type": "boolean"
-              }
+```
+
+```js Node theme={null}
+import FirecrawlApp from "@mendable/firecrawl-js";
+import { z } from "zod";
+
+const app = new FirecrawlApp({
+  apiKey: "fc-YOUR_API_KEY"
+});
+
+// Define schema to extract contents into
+const schema = z.object({
+  company_mission: z.string(),
+  supports_sso: z.boolean(),
+  is_open_source: z.boolean(),
+  is_in_yc: z.boolean()
+});
+
+const result = await app.scrape("https://docs.firecrawl.dev/", {
+  formats: [{
+    type: "json",
+    schema: schema
+  }],
+});
+
+console.log(result);
+```
+
+```bash cURL theme={null}
+curl -X POST https://api.firecrawl.dev/v2/scrape \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer YOUR_API_KEY' \
+    -d '{
+      "url": "https://docs.firecrawl.dev/",
+      "formats": [ {
+        "type": "json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "company_mission": {
+                      "type": "string"
             },
-            "required": [
-              "company_mission",
-              "supports_sso",
-              "is_open_source",
-              "is_in_yc"
-            ]
-          }
-        } ]
-      }'
-  ```
+            "supports_sso": {
+                      "type": "boolean"
+            },
+            "is_open_source": {
+                      "type": "boolean"
+            },
+            "is_in_yc": {
+                      "type": "boolean"
+            }
+          },
+          "required": [
+            "company_mission",
+            "supports_sso",
+            "is_open_source",
+            "is_in_yc"
+          ]
+        }
+      } ]
+    }'
+```
 
 </CodeGroup>
 
@@ -248,54 +250,55 @@ Output:
 You can now extract without a schema by just passing a `prompt` to the endpoint. The llm chooses the structure of the data.
 
 <CodeGroup>
-  ```python Python theme={null}
-  from firecrawl import Firecrawl
 
-  app = Firecrawl(api_key="fc-YOUR-API-KEY")
+```python Python theme={null}
+from firecrawl import Firecrawl
 
-  result = app.scrape(
-      '<https://firecrawl.dev>',
-      formats=[{
+app = Firecrawl(api_key="fc-YOUR-API-KEY")
+
+result = app.scrape(
+    '<https://firecrawl.dev>',
+    formats=[{
+      "type": "json",
+      "prompt": "Extract the company mission from the page."
+    }],
+    only_main_content=False,
+    timeout=120000
+)
+
+print(result)
+
+```
+
+```js Node theme={null}
+import FirecrawlApp from "@mendable/firecrawl-js";
+
+const app = new FirecrawlApp({
+  apiKey: "fc-YOUR_API_KEY"
+});
+
+const result = await app.scrape("https://docs.firecrawl.dev/", {
+  formats: [{
+    type: "json",
+    prompt: "Extract the company mission from the page."
+  }]
+});
+
+console.log(result);
+```
+
+```bash cURL theme={null}
+curl -X POST https://api.firecrawl.dev/v2/scrape \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer YOUR_API_KEY' \
+    -d '{
+      "url": "https://docs.firecrawl.dev/",
+      "formats": [{
         "type": "json",
         "prompt": "Extract the company mission from the page."
-      }],
-      only_main_content=False,
-      timeout=120000
-  )
-
-  print(result)
-
-  ```
-
-  ```js Node theme={null}
-  import FirecrawlApp from "@mendable/firecrawl-js";
-
-  const app = new FirecrawlApp({
-    apiKey: "fc-YOUR_API_KEY"
-  });
-
-  const result = await app.scrape("https://docs.firecrawl.dev/", {
-    formats: [{
-      type: "json",
-      prompt: "Extract the company mission from the page."
-    }]
-  });
-
-  console.log(result);
-  ```
-
-  ```bash cURL theme={null}
-  curl -X POST https://api.firecrawl.dev/v2/scrape \
-      -H 'Content-Type: application/json' \
-      -H 'Authorization: Bearer YOUR_API_KEY' \
-      -d '{
-        "url": "https://docs.firecrawl.dev/",
-        "formats": [{
-          "type": "json",
-          "prompt": "Extract the company mission from the page."
-        }]
-      }'
-  ```
+      }]
+    }'
+```
 
 </CodeGroup>
 
@@ -342,104 +345,107 @@ It is important to almost always use the `wait` action before/after executing ot
 ### Example
 
 <CodeGroup>
-  ```python Python theme={null}
-  from firecrawl import Firecrawl
 
-  firecrawl = Firecrawl(api_key="fc-YOUR-API-KEY")
+```python Python theme={null}
+from firecrawl import Firecrawl
 
-  doc = firecrawl.scrape('<https://example.com/login>', {
-    formats=['markdown'],
-    actions=[
-      { type: 'write', text: 'john@example.com' },
-      { type: 'press', key: 'Tab' },
-      { type: 'write', text: 'secret' },
-      { type: 'click', selector: 'button[type="submit"]' },
-      { type: 'wait', milliseconds: 1500 },
-      { type: 'screenshot', fullPage: true },
-    ],
-  });
+firecrawl = Firecrawl(api_key="fc-YOUR-API-KEY")
 
-  print(doc.markdown, doc.screenshot);
+doc = firecrawl.scrape('<https://example.com/login>', {
+  formats=['markdown'],
+  actions=[
+    { type: 'write', text: 'john@example.com' },
+    { type: 'press', key: 'Tab' },
+    { type: 'write', text: 'secret' },
+    { type: 'click', selector: 'button[type="submit"]' },
+    { type: 'wait', milliseconds: 1500 },
+    { type: 'screenshot', fullPage: true },
+  ],
+});
 
-  ```
+print(doc.markdown, doc.screenshot);
 
-  ```js Node theme={null}
-  import Firecrawl from '@mendable/firecrawl-js';
+```
 
-  const firecrawl = new Firecrawl({ apiKey: "fc-YOUR-API-KEY" });
+```js Node theme={null}
+import Firecrawl from '@mendable/firecrawl-js';
 
-  const doc = await firecrawl.scrape('https://example.com/login', {
-    formats: ['markdown'],
-    actions: [
-      { type: 'write', text: 'john@example.com' },
-      { type: 'press', key: 'Tab' },
-      { type: 'write', text: 'secret' },
-      { type: 'click', selector: 'button[type="submit"]' },
-      { type: 'wait', milliseconds: 1500 },
-      { type: 'screenshot', fullPage: true },
-    ],
-  });
+const firecrawl = new Firecrawl({ apiKey: "fc-YOUR-API-KEY" });
 
-  console.log(doc.markdown, doc.screenshot);
-  ```
+const doc = await firecrawl.scrape('https://example.com/login', {
+  formats: ['markdown'],
+  actions: [
+    { type: 'write', text: 'john@example.com' },
+    { type: 'press', key: 'Tab' },
+    { type: 'write', text: 'secret' },
+    { type: 'click', selector: 'button[type="submit"]' },
+    { type: 'wait', milliseconds: 1500 },
+    { type: 'screenshot', fullPage: true },
+  ],
+});
 
-  ```bash cURL theme={null}
-  curl -X POST https://api.firecrawl.dev/v2/scrape \
-      -H 'Content-Type: application/json' \
-      -H 'Authorization: Bearer YOUR_API_KEY' \
-      -d '{
-        "url": "https://example.com/login",
-        "formats": ["markdown"],
-        "actions": [
-          { "type": "write", "text": "john@example.com" },
-          { "type": "press", "key": "Tab" },
-          { "type": "write", "text": "secret" },
-          { "type": "click", "selector": "button[type=\"submit\"]" },
-          { "type": "wait", "milliseconds": 1500 },
-          { "type": "screenshot", "fullPage": true },
-        ],
-    }'
-  ```
+console.log(doc.markdown, doc.screenshot);
+```
+
+```bash cURL theme={null}
+curl -X POST https://api.firecrawl.dev/v2/scrape \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer YOUR_API_KEY' \
+    -d '{
+      "url": "https://example.com/login",
+      "formats": ["markdown"],
+      "actions": [
+        { "type": "write", "text": "john@example.com" },
+        { "type": "press", "key": "Tab" },
+        { "type": "write", "text": "secret" },
+        { "type": "click", "selector": "button[type=\"submit\"]" },
+        { "type": "wait", "milliseconds": 1500 },
+        { "type": "screenshot", "fullPage": true },
+      ],
+  }'
+```
 
 </CodeGroup>
 
 ### Output
 
 <CodeGroup>
-  ```json JSON theme={null}
-  {
-    "success": true,
-    "data": {
-      "markdown": "Our first Launch Week is over! [See the recap 🚀](blog/firecrawl-launch-week-1-recap)...",
-      "actions": {
-        "screenshots": [
-          "https://alttmdsdujxrfnakrkyi.supabase.co/storage/v1/object/public/media/screenshot-75ef2d87-31e0-4349-a478-fb432a29e241.png"
-        ],
-        "scrapes": [
-          {
-            "url": "https://www.firecrawl.dev/",
-            "html": "<html><body><h1>Firecrawl</h1></body></html>"
-          }
-        ]
-      },
-      "metadata": {
-        "title": "Home - Firecrawl",
-        "description": "Firecrawl crawls and converts any website into clean markdown.",
-        "language": "en",
-        "keywords": "Firecrawl,Markdown,Data,Mendable,Langchain",
-        "robots": "follow, index",
-        "ogTitle": "Firecrawl",
-        "ogDescription": "Turn any website into LLM-ready data.",
-        "ogUrl": "https://www.firecrawl.dev/",
-        "ogImage": "https://www.firecrawl.dev/og.png?123",
-        "ogLocaleAlternate": [],
-        "ogSiteName": "Firecrawl",
-        "sourceURL": "http://google.com",
-        "statusCode": 200
-      }
+
+```json JSON theme={null}
+{
+  "success": true,
+  "data": {
+    "markdown": "Our first Launch Week is over! [See the recap 🚀](blog/firecrawl-launch-week-1-recap)...",
+    "actions": {
+      "screenshots": [
+        "https://alttmdsdujxrfnakrkyi.supabase.co/storage/v1/object/public/media/screenshot-75ef2d87-31e0-4349-a478-fb432a29e241.png"
+      ],
+      "scrapes": [
+        {
+          "url": "https://www.firecrawl.dev/",
+          "html": "<html><body><h1>Firecrawl</h1></body></html>"
+        }
+      ]
+    },
+    "metadata": {
+      "title": "Home - Firecrawl",
+      "description": "Firecrawl crawls and converts any website into clean markdown.",
+      "language": "en",
+      "keywords": "Firecrawl,Markdown,Data,Mendable,Langchain",
+      "robots": "follow, index",
+      "ogTitle": "Firecrawl",
+      "ogDescription": "Turn any website into LLM-ready data.",
+      "ogUrl": "https://www.firecrawl.dev/",
+      "ogImage": "https://www.firecrawl.dev/og.png?123",
+      "ogLocaleAlternate": [],
+      "ogSiteName": "Firecrawl",
+      "sourceURL": "http://google.com",
+      "statusCode": 200
     }
   }
-  ```
+}
+```
+
 </CodeGroup>
 
 For more details about the actions parameters, refer to the [API Reference](https://docs.firecrawl.dev/api-reference/endpoint/scrape).
@@ -460,46 +466,47 @@ To use the location and language settings, include the `location` object in your
 * `languages`: An array of preferred languages and locales for the request in order of priority. Defaults to the language of the specified location.
 
 <CodeGroup>
-  ```python Python theme={null}
-  from firecrawl import Firecrawl
 
-  firecrawl = Firecrawl(api_key="fc-YOUR-API-KEY")
+```python Python theme={null}
+from firecrawl import Firecrawl
 
-  doc = firecrawl.scrape('<https://example.com>',
-      formats=['markdown'],
-      location={
-          'country': 'US',
-          'languages': ['en']
-      }
-  )
+firecrawl = Firecrawl(api_key="fc-YOUR-API-KEY")
 
-  print(doc)
+doc = firecrawl.scrape('<https://example.com>',
+    formats=['markdown'],
+    location={
+        'country': 'US',
+        'languages': ['en']
+    }
+)
 
-  ```
+print(doc)
 
-  ```js Node theme={null}
-  import Firecrawl from '@mendable/firecrawl-js';
+```
 
-  const firecrawl = new Firecrawl({ apiKey: "fc-YOUR-API-KEY" });
+```js Node theme={null}
+import Firecrawl from '@mendable/firecrawl-js';
 
-  const doc = await firecrawl.scrape('https://example.com', {
-    formats: ['markdown'],
-    location: { country: 'US', languages: ['en'] },
-  });
+const firecrawl = new Firecrawl({ apiKey: "fc-YOUR-API-KEY" });
 
-  console.log(doc.metadata);
-  ```
+const doc = await firecrawl.scrape('https://example.com', {
+  formats: ['markdown'],
+  location: { country: 'US', languages: ['en'] },
+});
 
-  ```bash cURL theme={null}
-  curl -X POST "https://api.firecrawl.dev/v2/scrape" \
-    -H "Authorization: Bearer $FIRECRAWL_API_KEY" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "url": "https://example.com",
-      "formats": ["markdown"],
-      "location": { "country": "US", "languages": ["en"] }
-    }'
-  ```
+console.log(doc.metadata);
+```
+
+```bash cURL theme={null}
+curl -X POST "https://api.firecrawl.dev/v2/scrape" \
+  -H "Authorization: Bearer $FIRECRAWL_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "url": "https://example.com",
+    "formats": ["markdown"],
+    "location": { "country": "US", "languages": ["en"] }
+  }'
+```
 
 </CodeGroup>
 
@@ -517,67 +524,69 @@ To make requests faster, Firecrawl serves results from cache by default when a r
 Example (force fresh content):
 
 <CodeGroup>
-  ```python Python theme={null}
-  from firecrawl import Firecrawl
-  firecrawl = Firecrawl(api_key='fc-YOUR_API_KEY')
 
-  doc = firecrawl.scrape(url='<https://example.com>', maxAge=0, formats=['markdown'])
-  print(doc)
+```python Python theme={null}
+from firecrawl import Firecrawl
+firecrawl = Firecrawl(api_key='fc-YOUR_API_KEY')
 
-  ```
+doc = firecrawl.scrape(url='<https://example.com>', maxAge=0, formats=['markdown'])
+print(doc)
 
-  ```js Node theme={null}
-  import Firecrawl from '@mendable/firecrawl-js';
+```
 
-  const firecrawl = new Firecrawl({ apiKey: "fc-YOUR-API-KEY" });
+```js Node theme={null}
+import Firecrawl from '@mendable/firecrawl-js';
 
-  const doc = await firecrawl.scrape('https://example.com', { maxAge: 0, formats: ['markdown'] });
-  console.log(doc);
-  ```
+const firecrawl = new Firecrawl({ apiKey: "fc-YOUR-API-KEY" });
 
-  ```bash cURL theme={null}
-  curl -s -X POST "https://api.firecrawl.dev/v2/scrape" \
-    -H "Authorization: Bearer $FIRECRAWL_API_KEY" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "url": "https://example.com",
-      "maxAge": 0,
-      "formats": ["markdown"]
-    }'
-  ```
+const doc = await firecrawl.scrape('https://example.com', { maxAge: 0, formats: ['markdown'] });
+console.log(doc);
+```
+
+```bash cURL theme={null}
+curl -s -X POST "https://api.firecrawl.dev/v2/scrape" \
+  -H "Authorization: Bearer $FIRECRAWL_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "url": "https://example.com",
+    "maxAge": 0,
+    "formats": ["markdown"]
+  }'
+```
 
 </CodeGroup>
 
 Example (use a 10-minute cache window):
 
 <CodeGroup>
-  ```python Python theme={null}
-  from firecrawl import Firecrawl
-  firecrawl = Firecrawl(api_key='fc-YOUR_API_KEY')
 
-  doc = firecrawl.scrape(url='<https://example.com>', maxAge=600000, formats=['markdown', 'html'])
-  print(doc)
+```python Python theme={null}
+from firecrawl import Firecrawl
+firecrawl = Firecrawl(api_key='fc-YOUR_API_KEY')
 
-  ```
+doc = firecrawl.scrape(url='<https://example.com>', maxAge=600000, formats=['markdown', 'html'])
+print(doc)
 
-  ```js Node theme={null}
+```
 
-  const firecrawl = new Firecrawl({ apiKey: "fc-YOUR-API-KEY" });
+```js Node theme={null}
 
-  const doc = await firecrawl.scrape('https://example.com', { maxAge: 600000, formats: ['markdown', 'html'] });
-  console.log(doc);
-  ```
+const firecrawl = new Firecrawl({ apiKey: "fc-YOUR-API-KEY" });
 
-  ```bash cURL theme={null}
-  curl -s -X POST "https://api.firecrawl.dev/v2/scrape" \
-    -H "Authorization: Bearer $FIRECRAWL_API_KEY" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "url": "https://example.com",
-      "maxAge": 600000,
-      "formats": ["markdown", "html"]
-    }'
-  ```
+const doc = await firecrawl.scrape('https://example.com', { maxAge: 600000, formats: ['markdown', 'html'] });
+console.log(doc);
+```
+
+```bash cURL theme={null}
+curl -s -X POST "https://api.firecrawl.dev/v2/scrape" \
+  -H "Authorization: Bearer $FIRECRAWL_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "url": "https://example.com",
+    "maxAge": 600000,
+    "formats": ["markdown", "html"]
+  }'
+```
 
 </CodeGroup>
 
@@ -594,42 +603,43 @@ The sdk provides 2 methods, synchronous and asynchronous. The synchronous method
 ### Usage
 
 <CodeGroup>
-  ```python Python theme={null}
-  from firecrawl import Firecrawl
 
-  firecrawl = Firecrawl(api_key="fc-YOUR-API-KEY")
+```python Python theme={null}
+from firecrawl import Firecrawl
 
-  job = firecrawl.batch_scrape([
-      "https://firecrawl.dev",
-      "https://docs.firecrawl.dev",
-  ], formats=["markdown"], poll_interval=2, wait_timeout=120)
+firecrawl = Firecrawl(api_key="fc-YOUR-API-KEY")
 
-  print(job)
+job = firecrawl.batch_scrape([
+    "https://firecrawl.dev",
+    "https://docs.firecrawl.dev",
+], formats=["markdown"], poll_interval=2, wait_timeout=120)
 
-  ```
+print(job)
 
-  ```js Node theme={null}
-  import Firecrawl from '@mendable/firecrawl-js';
+```
 
-  const firecrawl = new Firecrawl({ apiKey: "fc-YOUR-API-KEY" });
+```js Node theme={null}
+import Firecrawl from '@mendable/firecrawl-js';
 
-  const job = await firecrawl.batchScrape([
-    'https://firecrawl.dev',
-    'https://docs.firecrawl.dev',
-  ], { options: { formats: ['markdown'] }, pollInterval: 2, timeout: 120 });
+const firecrawl = new Firecrawl({ apiKey: "fc-YOUR-API-KEY" });
 
-  console.log(job);
-  ```
+const job = await firecrawl.batchScrape([
+  'https://firecrawl.dev',
+  'https://docs.firecrawl.dev',
+], { options: { formats: ['markdown'] }, pollInterval: 2, timeout: 120 });
 
-  ```bash cURL theme={null}
-  curl -s -X POST "https://api.firecrawl.dev/v2/batch/scrape" \
-    -H "Authorization: Bearer $FIRECRAWL_API_KEY" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "urls": ["https://firecrawl.dev", "https://docs.firecrawl.dev"],
-      "formats": ["markdown"]
-    }'
-  ```
+console.log(job);
+```
+
+```bash cURL theme={null}
+curl -s -X POST "https://api.firecrawl.dev/v2/batch/scrape" \
+  -H "Authorization: Bearer $FIRECRAWL_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "urls": ["https://firecrawl.dev", "https://docs.firecrawl.dev"],
+    "formats": ["markdown"]
+  }'
+```
 
 </CodeGroup>
 
