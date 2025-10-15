@@ -88,9 +88,4 @@ INDEX.xml Schema
 </docs_index>
 ```
 
-**How `/add-doc` generates metadata:**
-
-1. **Scrapes URL** with FireCrawl (extracts title, content, canonical URL)
-2. **Writes .md file** with slugified filename from title
-3. **Adds/replaces source in INDEX.xml** with placeholder description
-4. **Claude analyses content** and writes semantic description
+The script uses the FireCrawl Python SDK. But the project has the MCP configured anyway: [.mcp.json](.mcp.json), [.claude/settings.json](.claude/settings.json). This is so its available to Claude Code to self-heal when needed.
