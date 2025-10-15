@@ -84,7 +84,7 @@ When script outputs `✅ Successfully added` or `♻️ Re-scraped and updated`:
 1. Read the scraped markdown file
 2. Write a 15-25 word dense summary optimised for semantic search (single line, no line breaks).
 3. In INDEX.xml, find the `<source>` entry where `<source_url>` matches `$2` (the URL argument)
-4. Replace that entry's `<description>PLACEHOLDER</description>` with `<description>your dense summary here</description>` - everything stays on one line including both tags
+4. In that entry's `<description>` element, replace the value `PLACEHOLDER` with your dense summary (single line, no line breaks). Ensure the closing `</description>` tag remains on the same line after editing.
 
 Example:
 
