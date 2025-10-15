@@ -1,8 +1,8 @@
 # Curate Docs For Claude Code
 
-Build curated documentation collections for Claude Code using slash commands and FireCrawl. The indices target the right docs to analyse e.g. `@INDEX.xml How do I setup darkmode?`.
+Curate documentation collections using slash commands and FireCrawl. Reference INDEX.xml files to target specific docs efficiently e.g. `@INDEX.xml what's a utility?`.
 
-**Why?** Cleaner context than web-fetch, find the relevant docs faster, persists.
+**Why?** Cleaner than web-fetch, smaller context, curated persistence.
 
 ## 📦 Repo Collections
 
@@ -67,10 +67,10 @@ To use the docs (from other projects):
 # From a different project
 
 # 1. Give Claude Code access to the repo
-/add-dir /home/mp/projects/python/docs-for-claude
+/add-dir /home/mp/projects/docs-for-claude
 
 # 2. Then reference as normal to ask your question
-@/home/mp/projects/python/docs-for-claude/tailwind/INDEX.xml How do I setup darkmode?
+@/home/mp/projects/docs-for-claude/tailwind/INDEX.xml what's a utility?
 ```
 
 ## 🏗️ How This Repo Works
