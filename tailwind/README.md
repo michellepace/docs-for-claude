@@ -1,6 +1,6 @@
-# Tailwind CSS Documentation
+# tailwind Documentation
 
 Curated docs for targeted AI context.
 
-**Index**: [INDEX.xml](INDEX.xml)
-**Source**: [tailwindcss.com/docs](https://tailwindcss.com/docs/)
+- Curation Index: [INDEX.xml](INDEX.xml)
+- Curation Source: <https://tailwindcss.com>
