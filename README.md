@@ -1,24 +1,17 @@
 # Curate Docs For Claude Code
 
-Build curated documentation collections for Claude Code using slash commands and FireCrawl. AI-generated indices help target the right docs instantly.
+Build curated documentation collections for Claude Code using slash commands and FireCrawl. The indices help target the right docs to analyse when you run `/ask-docs`.
 
-**Why?** Cleaner context than web-fetch, faster than live scraping, no MCPs loaded.
-
-## 🎯 Philosophy
-
-- **Simple atomic workflow** - `/add-doc` handles everything (scrape, write, index)
-- **INDEX.xml is derived** - Generated automatically from `/add-doc` operations
-- **AI-powered index** - Claude generates semantic descriptions optimised for search
-- **Deterministic scripts** - Python handles reliable operations, Claude handles semantic analysis
+**Why?** Cleaner context than web-fetch, find the relevant docs faster, no MCPs needed, persists.
 
 ## 📦 Repo Collections
+
+*Examples in this repo, but curate your own. For Anthropic docs use [this tool](https://github.com/ericbuess/claude-code-docs).*
 
 | Tool | Description | Source | Updated | Path | Index |
 |------|-------------|--------|---------|------|-------|
 | **UV** | Python projects | [Official](https://docs.astral.sh/uv/) | 2025.07.31 | [`uv/`](uv/) | [`uv/INDEX.xml`](uv/INDEX.xml) |
 | **Tailwind** | CSS framework | [Official](https://tailwindcss.com/docs/) | empty | [`tailwind/`](tailwind/) | empty |
-
-*For Anthropic docs use [this tool](https://github.com/ericbuess/claude-code-docs).*
 
 ## 🚀 Setup
 
@@ -43,6 +36,7 @@ source ~/.zshrc
 | Command | Purpose | .md Files | INDEX.xml | Done |
 |---------|---------|-----------|-----------|------|
 | `/add-doc <directory> <url>` | Crawl & add single doc | ✅ Write | ✅ Add/replace | 👍 yes |
+| `/ask-docs <directory> [question]` | Query index & analyse docs | ✅ Read | ✅ Search | - |
 | `/recrawl-docs <directory>` | Refresh from upstream | ✅ Write all | ✅ Replace all | - |
 
 ## 💡 Usage Examples
@@ -66,6 +60,8 @@ source ~/.zshrc
 ```
 
 ## 🏗️ How It Works
+
+The `/add-doc <directory> <url>` command handles everything (scrape, write, index). It calls a Python script for deterministic operations (scraping, file I/O, XML updates) that print progress so Claude Code can self-heal when needed. Claude Code completes the index by writting a dense `<description>` for the doc. When you run `/ask-docs`, it uses these descriptions to choose which docs to analyse. To refresh a collection when upstream docs change, just run `/recrawl-docs`. To refresh one doc, just add it again `/add-doc`.
 
 Directory Structure:
 
