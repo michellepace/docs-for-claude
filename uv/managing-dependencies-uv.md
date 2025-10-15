@@ -1,3 +1,5 @@
+[Skip to content](https://docs.astral.sh/uv/concepts/projects/dependencies/#managing-dependencies)
+
 # [Managing dependencies](https://docs.astral.sh/uv/concepts/projects/dependencies/\#managing-dependencies)
 
 ## [Dependency fields](https://docs.astral.sh/uv/concepts/projects/dependencies/\#dependency-fields)
@@ -88,7 +90,7 @@ $ uv add "httpx>9999"
 
 ```
 
-### [Importing dependencies](https://docs.astral.sh/uv/concepts/projects/dependencies/\#importing-dependencies)
+### [Importing dependencies from requirements files](https://docs.astral.sh/uv/concepts/projects/dependencies/\#importing-dependencies-from-requirements-files)
 
 Dependencies declared in a `requirements.txt` file can be added to the project with the `-r` option:
 
@@ -96,6 +98,9 @@ Dependencies declared in a `requirements.txt` file can be added to the project w
 uv add -r requirements.txt
 
 ```
+
+See the [pip migration guide](https://docs.astral.sh/uv/guides/migration/pip-to-project/#importing-requirements-files)
+for more details.
 
 ## [Removing dependencies](https://docs.astral.sh/uv/concepts/projects/dependencies/\#removing-dependencies)
 
@@ -620,8 +625,8 @@ installation of Excel parsers and `matplotlib` unless someone explicitly require
 requested with the `package[<extra>]` syntax, e.g., `pandas[plot, excel]`.
 
 Optional dependencies are specified in `[project.optional-dependencies]`, a TOML table that maps
-from extra name to its dependencies, following
-[dependency specifiers](https://docs.astral.sh/uv/concepts/projects/dependencies/#dependency-specifiers-pep-508) syntax.
+from extra name to its dependencies, following [dependency specifiers](https://docs.astral.sh/uv/concepts/projects/dependencies/#dependency-specifiers)
+syntax.
 
 Optional dependencies can have entries in `tool.uv.sources` the same as normal dependencies.
 
@@ -819,6 +824,29 @@ Tip
 
 To disable this behaviour during `uv run` or `uv sync`, use `--no-default-groups`.
 To exclude a specific default group, use `--no-group <name>`.
+
+### [Group `requires-python`](https://docs.astral.sh/uv/concepts/projects/dependencies/\#group-requires-python)
+
+By default, dependency groups must be compatible with your project's `requires-python` range.
+
+If a dependency group requires a different range of Python versions than your project, you can
+specify a `requires-python` for the group in `[tool.uv.dependency-groups]`, e.g.:
+
+pyproject.toml
+
+```
+[project]
+name = "example"
+version = "0.0.0"
+requires-python = ">=3.10"
+
+[dependency-groups]
+dev = ["pytest"]
+
+[tool.uv.dependency-groups]
+dev = {requires-python = ">=3.12"}
+
+```
 
 ### [Legacy `dev-dependencies`](https://docs.astral.sh/uv/concepts/projects/dependencies/\#legacy-dev-dependencies)
 
@@ -1044,5 +1072,7 @@ install `colorama` on Windows (but omit it on other platforms), use
 
 Markers are combined with `and`, `or`, and parentheses, e.g.,
 `aiohttp >=3.7.4,<4; (sys_platform != 'win32' or implementation_name != 'pypy') and python_version >= '3.10'`.
-Note that versions within markers must be quoted, while versions _outside_ of markers must **not** be
+Note that versions within markers must be quoted, while versions _outside_ of markers must _not_ be
 quoted.
+
+Back to top

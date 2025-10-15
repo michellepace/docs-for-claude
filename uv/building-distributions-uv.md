@@ -1,3 +1,5 @@
+[Skip to content](https://docs.astral.sh/uv/concepts/projects/build/#building-distributions)
+
 # [Building distributions](https://docs.astral.sh/uv/concepts/projects/build/\#building-distributions)
 
 To distribute your project to others (e.g., to upload it to an index like PyPI), you'll need to
@@ -60,3 +62,5 @@ that the downloaded `setuptools` distribution matches the specified hash:
 $ uv build --build-constraint constraints.txt --require-hashes
 
 ```
+
+Back to top

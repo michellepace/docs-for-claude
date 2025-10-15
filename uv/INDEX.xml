@@ -1,122 +1,121 @@
 <docs_index>
-
   <source>
-    <title>Features</title>
-    <description>Core uv capabilities: package management, tools, environments, pip compatibility</description>
+    <title>Features | uv</title>
+    <description>Overview of uv's command-line interface covering Python version management, script execution, project workflows, tool installation, pip-compatible operations, and cache utilities.</description>
     <source_url>https://docs.astral.sh/uv/getting-started/features/</source_url>
-    <local_file>about_features.md</local_file>
+    <local_file>features-uv.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
   </source>
-
   <source>
-    <title>Working on projects</title>
-    <description>Getting started tutorial: complete project workflow from uv init to building, project structure explanation, dependency management, running commands, version management</description>
+    <title>Working on projects | uv</title>
+    <description>Covers project initialisation with uv init, structure including pyproject.toml and uv.lock, dependency management with uv add/remove, running commands with uv run, and building distributions.</description>
     <source_url>https://docs.astral.sh/uv/guides/projects/</source_url>
-    <local_file>guides_working_on_projects.md</local_file>
+    <local_file>working-on-projects-uv.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
   </source>
-
   <source>
-    <title>Installing Python</title>
-    <description>uv python install command: uv's automatic Python downloads, installing specific CPython/PyPy versions, uv-managed Python installations, integration with uv commands, upgrading uv-managed Python versions</description>
+    <title>Installing and managing Python | uv</title>
+    <description>Details installing Python versions with uv python install, automatic downloads, viewing available versions, upgrading patch releases, reinstalling distributions, and using existing system Python installations.</description>
     <source_url>https://docs.astral.sh/uv/guides/install-python/</source_url>
-    <local_file>guides_install_python.md</local_file>
+    <local_file>installing-and-managing-python-uv.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
   </source>
-
   <source>
-    <title>Projects</title>
-    <description>Project concepts index: introduction and links to project documentation</description>
+    <title>Index | uv</title>
+    <description>Hub page linking to detailed concepts: project structure, initialisation, dependencies, running commands, lockfiles, syncing, configuration, building distributions, and workspaces.</description>
     <source_url>https://docs.astral.sh/uv/concepts/projects/</source_url>
-    <local_file>concepts_projects.md</local_file>
+    <local_file>index-uv.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
   </source>
-
   <source>
-    <title>Creating projects</title>
-    <description>Project creation with uv init: app/library templates, build backends, packaging modes</description>
+    <title>Creating projects | uv</title>
+    <description>Explains uv init templates for applications, packaged applications with build systems and entry points, libraries with src layout, extension modules using maturin or scikit-build-core, and minimal bare projects.</description>
     <source_url>https://docs.astral.sh/uv/concepts/projects/init/</source_url>
-    <local_file>concepts_projects_init.md</local_file>
+    <local_file>creating-projects-uv.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
   </source>
-
   <source>
-    <title>Project structure and files</title>
-    <description>Project file structure: pyproject.toml, .venv environments, uv.lock lockfiles, metadata</description>
+    <title>Structure and files | uv</title>
+    <description>Details pyproject.toml configuration, the .venv project environment and its automatic management, uv.lock universal lockfile format, and relationship to standardised pylock.toml format.</description>
     <source_url>https://docs.astral.sh/uv/concepts/projects/layout/</source_url>
-    <local_file>concepts_projects_layout.md</local_file>
+    <local_file>structure-and-files-uv.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
   </source>
-
   <source>
-    <title>Managing dependencies</title>
-    <description>Dependency management: adding packages, sources, build dependencies, Git/index sources</description>
+    <title>Managing dependencies | uv</title>
+    <description>Comprehensive guide to dependency fields, uv add/remove commands, dependency sources (Git, URL, path, workspace), optional dependencies, development groups, build dependencies, editable installations, and dependency specifiers syntax.</description>
     <source_url>https://docs.astral.sh/uv/concepts/projects/dependencies/</source_url>
-    <local_file>concepts_projects_dependencies.md</local_file>
+    <local_file>managing-dependencies-uv.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
   </source>
-
   <source>
-    <title>Running commands in projects</title>
-    <description>Running commands in project environments: uv run, dependency isolation, additional dependencies</description>
+    <title>Running commands | uv</title>
+    <description>Explains uv run for executing commands in project environments, requesting additional dependencies with --with, running scripts with inline metadata, legacy Windows script support, and signal handling behaviour.</description>
     <source_url>https://docs.astral.sh/uv/concepts/projects/run/</source_url>
-    <local_file>concepts_projects_run.md</local_file>
+    <local_file>running-commands-uv.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
   </source>
-
   <source>
-    <title>Locking and syncing</title>
-    <description>Lockfile creation and environment synchronization: automatic locking, dependency resolution, environment syncing</description>
+    <title>Locking and syncing | uv</title>
+    <description>Details uv lock and uv sync behaviour including automatic locking, lockfile validation with --locked/--frozen, upgrading packages with --upgrade-package, syncing optional dependencies and development groups, editable installations, and partial installations.</description>
     <source_url>https://docs.astral.sh/uv/concepts/projects/sync/</source_url>
-    <local_file>concepts_projects_sync.md</local_file>
+    <local_file>locking-and-syncing-uv.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
   </source>
-
   <source>
-    <title>Configuring projects</title>
-    <description>Project configuration: build systems, packaging modes, editable installs, environment targeting</description>
+    <title>Configuring projects | uv</title>
+    <description>Comprehensive guide to Python version requirements, entry points (CLI/GUI/plugins), build systems, packaging options, environment paths, build isolation strategies, augmenting build dependencies with match-runtime, editable mode, and dependency conflicts.</description>
     <source_url>https://docs.astral.sh/uv/concepts/projects/config/</source_url>
-    <local_file>concepts_projects_config.md</local_file>
+    <local_file>configuring-projects-uv.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
   </source>
-
   <source>
-    <title>Configuration files</title>
-    <description>Configuration system: pyproject.toml vs uv.toml files, hierarchical discovery, dotenv support</description>
+    <title>Configuration files | uv</title>
+    <description>Explains project-level pyproject.toml and uv.toml files, user and system configuration hierarchy, settings precedence rules, --no-config and --config-file options, dotenv file loading with UV_ENV_FILE, and uv.pip section for pip-interface configuration.</description>
     <source_url>https://docs.astral.sh/uv/concepts/configuration-files/</source_url>
-    <local_file>concepts_config_files.md</local_file>
+    <local_file>configuration-files-uv.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
   </source>
-
   <source>
-    <title>Python versions</title>
-    <description>uv's Python version management system: uv-managed vs system Python discovery, --python flag usage, .python-version file integration, uv's python-preference settings, python-build-standalone distributions</description>
+    <title>Python versions | uv</title>
+    <description>Comprehensive guide to requesting, installing, upgrading, discovering, and managing Python versions including version formats, .python-version files, automatic downloads, managed vs system installations, CPython/PyPy/GraalPy support, free-threaded variants, and python-preference settings.</description>
     <source_url>https://docs.astral.sh/uv/concepts/python-versions/</source_url>
-    <local_file>concepts_python_versions.md</local_file>
+    <local_file>python-versions-uv.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
   </source>
-
   <source>
-    <title>The uv build backend</title>
-    <description>uv's native build backend (uv_build): Python-only package building, module discovery, file inclusion/exclusion patterns, pyproject.toml integration</description>
+    <title>Build backend | uv</title>
+    <description>Details uv_build backend for pure Python packages including module discovery, namespace packages, stub packages, file inclusion/exclusion patterns with glob syntax, bundled vs published backend, and configuration options for module-name and module-root.</description>
     <source_url>https://docs.astral.sh/uv/concepts/build-backend/</source_url>
-    <local_file>concepts_build_backend.md</local_file>
+    <local_file>build-backend-uv.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
   </source>
-
   <source>
-    <title>Building and publishing a package</title>
-    <description>Building and publishing Python packages: uv build, uv publish, version management, PyPI distribution</description>
+    <title>Building and publishing a package | uv</title>
+    <description>Guide to preparing projects for packaging, building distributions with uv build, updating versions with uv version --bump options, publishing to PyPI with uv publish including token authentication and custom indices.</description>
     <source_url>https://docs.astral.sh/uv/guides/package/</source_url>
-    <local_file>guides_publishing_packages.md</local_file>
+    <local_file>building-and-publishing-a-package-uv.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
   </source>
-
   <source>
-    <title>Using uv in pre-commit</title>
-    <description>Using uv with pre-commit hooks: lock file sync, requirements export, pip-compile integration</description>
+    <title>Using uv with pre-commit | uv</title>
+    <description>Demonstrates configuring astral-sh/uv-pre-commit hooks for automatic lockfile updates with uv-lock, exporting requirements with uv-export, and compiling requirements files with pip-compile including multi-file configurations and customisation options.</description>
     <source_url>https://docs.astral.sh/uv/guides/integration/pre-commit/</source_url>
-    <local_file>guides_integrations_pre_commit.md</local_file>
+    <local_file>using-uv-with-pre-commit-uv.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
   </source>
-
   <source>
-    <title>Using uv in GitHub Actions</title>
-    <description>GitHub Actions CI/CD integration: setup-uv action, Python installation, caching, workflows</description>
+    <title>Using uv in GitHub Actions | uv</title>
+    <description>Guide to installing uv with astral-sh/setup-uv action, setting up Python versions including matrix testing, syncing projects, caching strategies with UV_CACHE_DIR, using uv pip with UV_SYSTEM_PYTHON, private repository authentication, and publishing to PyPI with trusted publishing.</description>
     <source_url>https://docs.astral.sh/uv/guides/integration/github/</source_url>
-    <local_file>guides_integrations_github_actions.md</local_file>
+    <local_file>using-uv-in-github-actions-uv.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
   </source>
-
   <source>
-    <title>Building distributions (for PyPi)</title>
-    <description>Using uv build command: creating sdist and wheel files for package distribution (e.g., on PyPI), command options, build constraints, packaging workflow</description>
+    <title>Building distributions | uv</title>
+    <description>Explains uv build command as PEP 517 build frontend for creating source distributions (sdists) and wheels, including --sdist/--wheel options, build constraints with --build-constraint, hash verification with --require-hashes, and build backend configuration.</description>
     <source_url>https://docs.astral.sh/uv/concepts/projects/build/</source_url>
-    <local_file>concepts_projects_build.md</local_file>
+    <local_file>building-distributions-uv.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
   </source>
-
 </docs_index>

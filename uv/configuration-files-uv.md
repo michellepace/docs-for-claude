@@ -1,3 +1,5 @@
+[Skip to content](https://docs.astral.sh/uv/concepts/configuration-files/#configuration-files)
+
 # [Configuration files](https://docs.astral.sh/uv/concepts/configuration-files/\#configuration-files)
 
 uv supports persistent configuration files at both the project- and user-level.
@@ -121,7 +123,7 @@ The `uv.pip` settings are designed to adhere closely to pip's interface and are 
 to retain compatibility while allowing the global settings to use alternate designs (e.g.,
 `--no-build`).
 
-As an example - setting the `index-url` under `[tool.uv.pip]`, as in the following `pyproject.toml`,
+As an example, setting the `index-url` under `[tool.uv.pip]`, as in the following `pyproject.toml`,
 would only affect the `uv pip` subcommands (e.g., `uv pip install`, but not `uv sync`, `uv lock`, or
 `uv run`):
 
@@ -132,3 +134,5 @@ pyproject.toml
 index-url = "https://test.pypi.org/simple"
 
 ```
+
+Back to top

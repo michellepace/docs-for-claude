@@ -1,3 +1,5 @@
+[Skip to content](https://docs.astral.sh/uv/concepts/projects/sync/#locking-and-syncing)
+
 # [Locking and syncing](https://docs.astral.sh/uv/concepts/projects/sync/\#locking-and-syncing)
 
 Locking is the process of resolving your project's dependencies into a
@@ -35,7 +37,7 @@ $ uv run --no-sync ...
 
 ```
 
-## [Checking if the lockfile is up-to-date](https://docs.astral.sh/uv/concepts/projects/sync/\#checking-if-the-lockfile-is-up-to-date)
+## [Checking the lockfile](https://docs.astral.sh/uv/concepts/projects/sync/\#checking-the-lockfile)
 
 When considering if the lockfile is up-to-date, uv will check if it matches the project metadata.
 For example, if you add a dependency to your `pyproject.toml`, the lockfile will be considered
@@ -219,3 +221,5 @@ When these options are used, all the dependencies of the target are still instal
 
 If used improperly, these flags can result in a broken environment since a package can be missing
 its dependencies.
+
+Back to top

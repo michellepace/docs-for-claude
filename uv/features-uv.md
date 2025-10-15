@@ -1,3 +1,5 @@
+[Skip to content](https://docs.astral.sh/uv/getting-started/features/#features)
+
 # [Features](https://docs.astral.sh/uv/getting-started/features/\#features)
 
 uv provides essential features for Python development — from installing Python and hacking on simple
@@ -22,8 +24,8 @@ See the [guide on installing Python](https://docs.astral.sh/uv/guides/install-py
 Executing standalone Python scripts, e.g., `example.py`.
 
 - `uv run`: Run a script.
-- `uv add --script`: Add a dependency to a script
-- `uv remove --script`: Remove a dependency from a script
+- `uv add --script`: Add a dependency to a script.
+- `uv remove --script`: Remove a dependency from a script.
 
 See the [guide on running scripts](https://docs.astral.sh/uv/guides/scripts/) to get started.
 
@@ -107,3 +109,5 @@ self-update:
 Read the [guides](https://docs.astral.sh/uv/guides/) for an introduction to each feature, check out the
 [concept](https://docs.astral.sh/uv/concepts/) pages for in-depth details about uv's features, or learn how to
 [get help](https://docs.astral.sh/uv/getting-started/help/) if you run into any problems.
+
+Back to top
