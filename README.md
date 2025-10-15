@@ -1,14 +1,14 @@
 # Curate Docs For Claude Code
 
-Build curated documentation collections for Claude Code using slash commands and FireCrawl. The indices help target the right docs to analyse when you run `/ask-docs`.
+Build curated documentation collections for Claude Code using slash commands and FireCrawl. The indices target the right docs to analyse e.g. `@INDEX.xml How do I setup darkmode?`.
 
 **Why?** Cleaner context than web-fetch, find the relevant docs faster, persists.
 
 ## 📦 Repo Collections
 
-*Examples in this repo, but curate your own. For Anthropic docs use [this tool](https://github.com/ericbuess/claude-code-docs).*
+*Examples in this repo, but curate your own. For fresh Anthropic docs use [this tool](https://github.com/ericbuess/claude-code-docs).*
 
-| Tool | Description | Source | Updated | Path | Index |
+| Tool | Description | Source | Scraped | Path | Index |
 |------|-------------|--------|---------|------|-------|
 | **Tailwind** | CSS framework | [Official](https://tailwindcss.com/docs/) | 2025-10-15 | 📁 [`tailwind/`](tailwind/) | 📄 [`tailwind/INDEX.xml`](tailwind/INDEX.xml) |
 | **UV** | Python projects | [Official](https://docs.astral.sh/uv/) | 2025-10-15 | 📁 [`uv/`](uv/) | 📄 [`uv/INDEX.xml`](uv/INDEX.xml) |
@@ -32,22 +32,23 @@ echo 'export API_KEY_MCP_FIRECRAWL=your-api-key-here' >> ~/.zshrc
 source ~/.zshrc
 ```
 
-## 📖 Slash Commands
+## 📖 Curate With Slash Commands
 
-| Command | Purpose | .md Files | INDEX.xml | Done |
-|---------|---------|-----------|-----------|------|
-| `/add-doc <directory> <url>` | Crawl & add single doc | ✅ Write | ✅ Add/replace | 👍 yes |
-| `/ask-docs <directory> [question]` | Query index & analyse docs | ✅ Read | ✅ Search | - |
-| `/recrawl-docs <directory>` | Refresh from upstream | ✅ Write all | ✅ Replace all | - |
+| Command | Purpose | .md Files | INDEX.xml |
+|---------|---------|-----------|-----------|
+| `/add-doc <directory> <url>` | Add / re-scrape doc | ✅ Write | ✅ Add/replace |
+| `/rescrape-docs <directory>` | 🚧 TODO: Re-scrape all | ✅ Write all | ✅ Replace all |
 
 ## 💡 Usage Examples
+
+To curate and keep docs fresh in this repo:
 
 ```bash
 # Add a new doc by scraping a URL
 /add-doc tailwind https://tailwindcss.com/docs/customizing-colors
 # → Scrapes page, writes .md file, adds source to INDEX.xml
 
-# Update existing doc (re-scrape same URL)
+# Re-scrape existing doc (same URL)
 /add-doc tailwind https://tailwindcss.com/docs/customizing-colors
 # → Re-scrapes, writes .md file, replaces source in INDEX.xml
 
@@ -55,14 +56,26 @@ source ~/.zshrc
 /add-doc reflex https://reflex.dev/docs/getting-started/installation
 # → Creates reflex/ directory, README.md, INDEX.xml, and first doc
 
-# Refresh all docs in collection (monthly maintenance)
-/recrawl-docs tailwind
+# Re-scrape all docs in collection (monthly maintenance)
+/rescrape-docs tailwind
 # → Re-scrapes all URLs in INDEX.xml, writes all .md files, replaces all sources
 ```
 
-## 🏗️ How It Works
+To use the docs (from other projects):
 
-The `/add-doc <directory> <url>` command handles everything. It calls a Python script for deterministic operations (scraping, file I/O, XML updates) and print progress so Claude Code can self-heal. Claude Code completes the index by writing a dense `<description>` for the doc. When you run `/ask-docs`, it uses these descriptions to choose which docs to analyse. To refresh an entire collection, run `/recrawl-docs`. To refresh one doc, just run `/add-doc` again.
+```bash
+# From a different project
+
+# 1. Give Claude Code access to the repo
+/add-dir /home/mp/projects/python/docs-for-claude
+
+# 2. Then reference as normal to ask your question
+@/home/mp/projects/python/docs-for-claude/tailwind/INDEX.xml How do I setup darkmode?
+```
+
+## 🏗️ How This Repo Works
+
+The `/add-doc <directory> <url>` command handles everything. It calls a Python script for deterministic operations (scraping, file I/O, XML updates) and print progress so Claude Code can self-heal. Claude Code completes the index by writing a dense `<description>` for the doc. When you run `/ask-docs`, it uses these descriptions to choose which docs to analyse. To re-scrape an entire collection, run `/rescrape-docs`. To re-scrape one doc, just run `/add-doc` again.
 
 Directory Structure:
 
@@ -90,4 +103,4 @@ INDEX.xml Schema
 </docs_index>
 ```
 
-The script uses the FireCrawl Python SDK. But the project has the MCP configured anyway: [.mcp.json](.mcp.json), [.claude/settings.json](.claude/settings.json). This is so its available to Claude Code to self-heal when needed.
+The script uses the FireCrawl Python SDK. But the project has the MCP configured anyway: [.mcp.json](.mcp.json), [.claude/settings.json](.claude/settings.json). This is so it's available to Claude Code to self-heal if needed.
