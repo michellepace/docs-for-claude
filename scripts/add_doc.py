@@ -4,6 +4,7 @@ import argparse
 import re
 import sys
 import xml.etree.ElementTree as ET
+from datetime import date
 from os import environ
 from pathlib import Path
 from urllib.parse import urlparse
@@ -49,8 +50,8 @@ def create_readme(dir_path: Path, dir_name: str, source_url: str) -> None:
 
 Curated docs for targeted AI context.
 
-**Index**: [INDEX.xml](INDEX.xml)
-**Source**: {source_url}
+- Curation Index: [INDEX.xml](INDEX.xml)
+- Curation Source: <{source_url}>
 """
     readme_path = dir_path / "README.md"
     readme_path.write_text(readme_content)
@@ -107,6 +108,7 @@ def add_or_update_source_in_index(
     ET.SubElement(source, "description").text = "PLACEHOLDER"
     ET.SubElement(source, "source_url").text = source_url
     ET.SubElement(source, "local_file").text = local_file
+    ET.SubElement(source, "scraped_at").text = date.today().isoformat()
 
     # Re-indent entire tree for pretty printing
     ET.indent(root, space="  ")
@@ -140,7 +142,7 @@ def scrape_with_firecrawl(url: str) -> dict:
 
     Returns dict with:
     - markdown: str (content)
-    - metadata: dict (title, ogUrl, etc.)
+    - metadata: dict (title)
 
     Raises:
     - SystemExit(1) on errors (prints to stderr)
@@ -174,7 +176,6 @@ def scrape_with_firecrawl(url: str) -> dict:
             if hasattr(result, "metadata") and result.metadata:
                 metadata = {
                     "title": getattr(result.metadata, "title", "Untitled"),
-                    "ogUrl": getattr(result.metadata, "og_url", url),
                 }
 
             return {
@@ -212,11 +213,14 @@ def main() -> None:
     content = scraped_doc["markdown"]
     metadata = scraped_doc["metadata"]
     title = metadata.get("title", "Untitled")
-    og_url = metadata.get("ogUrl", args.source_url)
+
+    # Extract base URL (scheme + netloc) for README collection source
+    parsed_url = urlparse(args.source_url)
+    base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
 
     # Create README and INDEX if new collection
     if not index_path.exists():
-        create_readme(dir_path, dir_path.name, og_url)
+        create_readme(dir_path, dir_path.name, base_url)
         create_index_xml(dir_path)
 
     # Generate filename from title

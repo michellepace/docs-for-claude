@@ -1,3 +1,5 @@
+[Skip to content](https://docs.astral.sh/uv/guides/integration/github/#using-uv-in-github-actions)
+
 # [Using uv in GitHub Actions](https://docs.astral.sh/uv/guides/integration/github/\#using-uv-in-github-actions)
 
 ## [Installation](https://docs.astral.sh/uv/guides/integration/github/\#installation)
@@ -19,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6
@@ -39,13 +41,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6
         with:
           # Install a specific version of uv.
-          version: "0.8.4"
+          version: "0.9.3"
 
 ```
 
@@ -64,7 +66,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6
@@ -94,7 +96,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: "Set up Python"
         uses: actions/setup-python@v5
@@ -120,7 +122,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: "Set up Python"
         uses: actions/setup-python@v5
@@ -153,9 +155,9 @@ jobs:
           - "3.12"
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - name: Install uv and set the python version
+      - name: Install uv and set the Python version
         uses: astral-sh/setup-uv@v6
         with:
           python-version: ${{ matrix.python-version }}
@@ -180,7 +182,7 @@ jobs:
     env:
       UV_PYTHON: ${{ matrix.python-version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
 ```
 
@@ -200,7 +202,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6
@@ -359,8 +361,8 @@ secret](https://docs.github.com/en/actions/security-for-github-actions/security-
 
 Then, you can use the [`gh`](https://cli.github.com/) CLI (which is installed in GitHub Actions
 runners by default) to configure a
-[credential helper for Git](https://docs.astral.sh/uv/concepts/authentication/#git-credential-helpers) to use the PAT
-for queries to repositories hosted on `github.com`.
+[credential helper for Git](https://docs.astral.sh/uv/concepts/authentication/git/#git-credential-helpers) to use the
+PAT for queries to repositories hosted on `github.com`.
 
 For example, if you called your repository secret `MY_PAT`:
 
@@ -374,3 +376,80 @@ steps:
     run: gh auth setup-git
 
 ```
+
+## [Publishing to PyPI](https://docs.astral.sh/uv/guides/integration/github/\#publishing-to-pypi)
+
+uv can be used to build and publish your package to PyPI from GitHub Actions. We provide a
+standalone example alongside this guide in
+[astral-sh/trusted-publishing-examples](https://github.com/astral-sh/trusted-publishing-examples).
+The workflow uses [trusted publishing](https://docs.pypi.org/trusted-publishers/), so no credentials
+need to be configured.
+
+In the example workflow, we use a script to test that the source distribution and the wheel are both
+functional and we didn't miss any files. This step is recommended, but optional.
+
+First, add a release workflow to your project:
+
+.github/workflows/publish.yml
+
+```
+name: "Publish"
+
+on:
+  push:
+    tags:
+      # Publish on any tag starting with a `v`, e.g., v0.1.0
+      - v*
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+      - name: Install Python 3.13
+        run: uv python install 3.13
+      - name: Build
+        run: uv build
+      # Check that basic features work and we didn't miss to include crucial files
+      - name: Smoke test (wheel)
+        run: uv run --isolated --no-project --with dist/*.whl tests/smoke_test.py
+      - name: Smoke test (source distribution)
+        run: uv run --isolated --no-project --with dist/*.tar.gz tests/smoke_test.py
+      - name: Publish
+        run: uv publish
+
+```
+
+Then, create the environment defined in the workflow in the GitHub repository under "Settings" ->
+"Environments".
+
+![GitHub settings dialog showing how to add the "pypi" environment under "Settings" -> "Environments"](https://docs.astral.sh/uv/assets/github-add-environment.png)
+
+Add a [trusted publisher](https://docs.pypi.org/trusted-publishers/adding-a-publisher/) to your PyPI
+project in the project settings under "Publishing". Ensure that all fields match with your GitHub
+configuration.
+
+![PyPI project publishing settings dialog showing how to set all fields for a trusted publisher configuration](https://docs.astral.sh/uv/assets/pypi-add-trusted-publisher.png)
+
+After saving:
+
+![PyPI project publishing settings dialog showing the configured trusted publishing settings](https://docs.astral.sh/uv/assets/pypi-with-trusted-publisher.png)
+
+Finally, tag a release and push it. Make sure it starts with `v` to match the pattern in the
+workflow.
+
+```
+$ git tag -a v0.1.0 -m v0.1.0
+$ git push --tags
+
+```
+
+Back to top

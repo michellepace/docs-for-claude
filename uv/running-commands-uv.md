@@ -1,3 +1,5 @@
+[Skip to content](https://docs.astral.sh/uv/concepts/projects/run/#running-commands-in-projects)
+
 # [Running commands in projects](https://docs.astral.sh/uv/concepts/projects/run/\#running-commands-in-projects)
 
 When working on a project, it is installed into the virtual environment at `.venv`. This environment
@@ -70,7 +72,7 @@ print([(k, v["title"]) for k, v in data.items()][:10])
 The invocation `uv run example.py` would run _isolated_ from the project with only the given
 dependencies listed.
 
-## [Legacy Windows Scripts](https://docs.astral.sh/uv/concepts/projects/run/\#legacy-windows-scripts)
+## [Legacy scripts on Windows](https://docs.astral.sh/uv/concepts/projects/run/\#legacy-scripts-on-windows)
 
 Support is provided for
 [legacy setuptools scripts](https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/#scripts).
@@ -105,3 +107,5 @@ if it is sent more than once or the child process group differs from uv's.
 
 On Windows, these concepts do not apply and uv ignores Ctrl-C events, deferring handling to the
 child process so it can exit cleanly.
+
+Back to top

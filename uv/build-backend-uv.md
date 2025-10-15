@@ -1,3 +1,5 @@
+[Skip to content](https://docs.astral.sh/uv/concepts/build-backend/#the-uv-build-backend)
+
 # [The uv build backend](https://docs.astral.sh/uv/concepts/build-backend/\#the-uv-build-backend)
 
 A build backend transforms a source tree (i.e., a directory) into a source distribution or a wheel.
@@ -33,7 +35,7 @@ pyproject.toml
 
 ```
 [build-system]
-requires = ["uv_build>=0.8.4,<0.9.0"]
+requires = ["uv_build>=0.9.3,<0.10.0"]
 build-backend = "uv_build"
 
 ```
@@ -262,6 +264,13 @@ must either be under the module root or in the appropriate
 [data directory](https://docs.astral.sh/uv/reference/settings/#build-backend_data). Most packages store small data in the
 module root alongside the source code.
 
+Tip
+
+When using the uv build backend through a frontend that is not uv, such as pip or
+`python -m build`, debug logging can be enabled through environment variables with
+`RUST_LOG=uv=debug` or `RUST_LOG=uv=verbose`. When used through uv, the uv build backend shares
+the verbosity level of uv.
+
 ### [Include and exclude syntax](https://docs.astral.sh/uv/concepts/build-backend/\#include-and-exclude-syntax)
 
 Includes are anchored, which means that `pyproject.toml` includes only `<root>/pyproject.toml` and
@@ -280,3 +289,5 @@ To anchor a directory, use a `/` prefix, e.g., `/dist` will exclude only `<root>
 All fields accepting patterns use the reduced portable glob syntax from
 [PEP 639](https://peps.python.org/pep-0639/#add-license-FILES-key), with the addition that
 characters can be escaped with a backslash.
+
+Back to top

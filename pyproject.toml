@@ -13,6 +13,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "pre-commit>=4.3.0",
     "pyright>=1.1.406",
     "pytest>=8.4.2",
     "ruff>=0.14.0",
@@ -65,6 +66,7 @@ convention = "google"
 [tool.ruff.lint.per-file-ignores]
 "scripts/*" = [
     "S314",    # XML parsing (safe - trusted local files only)
+    "DTZ011",  # date.today() appropriate for local date tracking
 ]
 "tests/*" = [
     "D103",    # Missing docstring in public function
@@ -72,6 +74,7 @@ convention = "google"
     "S101",    # Use of assert detected
     "S603",    # subprocess call: check for execution of untrusted input
     "S607",    # Partial executable paths (controlled test env)
+    "DTZ011",  # date.today() appropriate for matching script behavior
 ]
 
 [tool.ruff.lint.pylint]

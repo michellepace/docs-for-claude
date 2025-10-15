@@ -1,3 +1,5 @@
+[Skip to content](https://docs.astral.sh/uv/guides/package/#building-and-publishing-a-package)
+
 # [Building and publishing a package](https://docs.astral.sh/uv/guides/package/\#building-and-publishing-a-package)
 
 uv supports building Python packages into source and binary distributions via `uv build` and
@@ -103,8 +105,8 @@ When moving from a pre-release to a new pre-release version, just bump the relev
 component:
 
 ```
-uv version --bump beta
-hello-world 1.3.0b1 => 1.3.1b2
+$ uv version --bump beta
+hello-world 1.3.0b1 => 1.3.0b2
 
 ```
 
@@ -112,7 +114,7 @@ When moving from a pre-release to a stable version, the `stable` option can be u
 pre-release component:
 
 ```
-uv version --bump stable
+$ uv version --bump stable
 hello-world 1.3.1b2 => 1.3.1
 
 ```
@@ -124,6 +126,11 @@ prevent locking and syncing, use `--frozen`, or, to just prevent syncing, use `-
 
 ## [Publishing your package](https://docs.astral.sh/uv/guides/package/\#publishing-your-package)
 
+Note
+
+A complete guide to publishing from GitHub Actions to PyPI can be found in the
+[GitHub Guide](https://docs.astral.sh/uv/guides/integration/github/#publishing-to-pypi)
+
 Publish your package with `uv publish`:
 
 ```
@@ -133,7 +140,8 @@ $ uv publish
 
 Set a PyPI token with `--token` or `UV_PUBLISH_TOKEN`, or set a username with `--username` or
 `UV_PUBLISH_USERNAME` and password with `--password` or `UV_PUBLISH_PASSWORD`. For publishing to
-PyPI from GitHub Actions, you don't need to set any credentials. Instead,
+PyPI from GitHub Actions or another Trusted Publisher, you don't need to set any credentials.
+Instead,
 [add a trusted publisher to the PyPI project](https://docs.pypi.org/trusted-publishers/adding-a-publisher/).
 
 Note
@@ -191,3 +199,5 @@ To learn more about publishing packages, check out the
 and publishing.
 
 Or, read on for [guides](https://docs.astral.sh/uv/guides/integration/) on integrating uv with other software.
+
+Back to top

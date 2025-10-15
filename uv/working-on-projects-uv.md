@@ -1,3 +1,5 @@
+[Skip to content](https://docs.astral.sh/uv/guides/projects/#working-on-projects)
+
 # [Working on projects](https://docs.astral.sh/uv/guides/projects/\#working-on-projects)
 
 uv supports managing Python projects, which define their dependencies in a `pyproject.toml` file.
@@ -166,7 +168,7 @@ version, while keeping the rest of the lockfile intact.
 See the documentation on [managing dependencies](https://docs.astral.sh/uv/concepts/projects/dependencies/) for more
 details.
 
-## [Managing version](https://docs.astral.sh/uv/guides/projects/\#managing-version)
+## [Viewing your version](https://docs.astral.sh/uv/guides/projects/\#viewing-your-version)
 
 The `uv version` command can be used to read your package's version.
 
@@ -288,3 +290,5 @@ To learn more about working on projects with uv, see the
 [command reference](https://docs.astral.sh/uv/reference/cli/#uv).
 
 Or, read on to learn how to [build and publish your project to a package index](https://docs.astral.sh/uv/guides/package/).
+
+Back to top

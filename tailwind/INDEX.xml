@@ -1,0 +1,86 @@
+<docs_index>
+  <source>
+    <title>Install Tailwind CSS with Next.js - Tailwind CSS</title>
+    <description>Step-by-step guide to install and configure Tailwind CSS v4 in Next.js projects using PostCSS plugin and TypeScript setup.</description>
+    <source_url>https://tailwindcss.com/docs/installation/framework-guides/nextjs</source_url>
+    <local_file>install-tailwind-css-with-nextjs-tailwind-css.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
+  </source>
+  <source>
+    <title>Editor setup - Getting started - Tailwind CSS</title>
+    <description>Editor tooling for Tailwind CSS including VS Code IntelliSense extension, Prettier plugin for class sorting, and IDE support for syntax highlighting and autocomplete.</description>
+    <source_url>https://tailwindcss.com/docs/editor-setup</source_url>
+    <local_file>editor-setup-getting-started-tailwind-css.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
+  </source>
+  <source>
+    <title>Compatibility - Getting started - Tailwind CSS</title>
+    <description>Browser support requirements, CSS preprocessor alternatives, CSS modules compatibility, and framework integration guidance for Vue, Svelte, and Astro with Tailwind CSS v4.</description>
+    <source_url>https://tailwindcss.com/docs/compatibility</source_url>
+    <local_file>compatibility-getting-started-tailwind-css.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
+  </source>
+  <source>
+    <title>Styling with utility classes - Core concepts - Tailwind CSS</title>
+    <description>Core utility-first methodology covering variants, responsive design, dark mode, arbitrary values, class composition, complex selectors, managing duplication, and resolving style conflicts in Tailwind.</description>
+    <source_url>https://tailwindcss.com/docs/styling-with-utility-classes</source_url>
+    <local_file>styling-with-utility-classes-core-concepts-tailwind-css.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
+  </source>
+  <source>
+    <title>Hover, focus, and other states - Core concepts - Tailwind CSS</title>
+    <description>Comprehensive guide to variants including pseudo-classes (hover, focus, disabled), pseudo-elements (before, after, placeholder), media queries, ARIA states, data attributes, RTL support, and parent/sibling styling.</description>
+    <source_url>https://tailwindcss.com/docs/hover-focus-and-other-states</source_url>
+    <local_file>hover-focus-and-other-states-core-concepts-tailwind-css.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
+  </source>
+  <source>
+    <title>Colors - Core concepts - Tailwind CSS</title>
+    <description>Default OKLCH color palette with 11-step scales (50-950), color utilities, opacity modifiers, CSS variable referencing, custom palette creation, and dark mode support.</description>
+    <source_url>https://tailwindcss.com/docs/colors</source_url>
+    <local_file>colors-core-concepts-tailwind-css.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
+  </source>
+  <source>
+    <title>Adding custom styles - Core concepts - Tailwind CSS</title>
+    <description>Customising Tailwind via @theme directive, arbitrary values/properties/variants, custom CSS layers (base, components, utilities), @utility directive for functional utilities, and @custom-variant for custom selectors.</description>
+    <source_url>https://tailwindcss.com/docs/adding-custom-styles</source_url>
+    <local_file>adding-custom-styles-core-concepts-tailwind-css.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
+  </source>
+  <source>
+    <title>Detecting classes in source files - Core concepts - Tailwind CSS</title>
+    <description>Plain-text scanning mechanism, dynamic class name restrictions, @source directives for explicit registration, safelisting utilities with inline() and brace expansion, and excluding classes.</description>
+    <source_url>https://tailwindcss.com/docs/detecting-classes-in-source-files</source_url>
+    <local_file>detecting-classes-in-source-files-core-concepts-tailwind-css.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
+  </source>
+  <source>
+    <title>Functions and directives - Core concepts - Tailwind CSS</title>
+    <description>Reference for Tailwind CSS directives (@import, @theme, @source, @utility, @variant, @custom-variant, @apply, @reference) and functions (--alpha(), --spacing()) plus v3.x compatibility directives (@config, @plugin).</description>
+    <source_url>https://tailwindcss.com/docs/functions-and-directives</source_url>
+    <local_file>functions-and-directives-core-concepts-tailwind-css.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
+  </source>
+  <source>
+    <title>Preflight - Base styles - Tailwind CSS</title>
+    <description>Modern-normalize CSS reset removing margins, resetting borders, unstyling headings and lists, making images block-level and constrained, with extension and disabling options.</description>
+    <source_url>https://tailwindcss.com/docs/preflight</source_url>
+    <local_file>preflight-base-styles-tailwind-css.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
+  </source>
+  <source>
+    <title>Dark mode - Core concepts - Tailwind CSS</title>
+    <description>Dark mode implementation using the dark: variant with prefers-color-scheme media query, manual class-based toggling, data attributes, and system theme synchronisation via localStorage.</description>
+    <source_url>https://tailwindcss.com/docs/dark-mode</source_url>
+    <local_file>dark-mode-core-concepts-tailwind-css.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
+  </source>
+  <source>
+    <title>Responsive design - Core concepts - Tailwind CSS</title>
+    <description>Mobile-first responsive breakpoints (sm, md, lg, xl, 2xl), custom breakpoints, max-width variants, breakpoint ranges, container queries with named containers and size variants, and arbitrary value support.</description>
+    <source_url>https://tailwindcss.com/docs/responsive-design</source_url>
+    <local_file>responsive-design-core-concepts-tailwind-css.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
+  </source>
+</docs_index>

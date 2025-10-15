@@ -1,4 +1,6 @@
-# [Installing Python](https://docs.astral.sh/uv/guides/install-python/)
+[Skip to content](https://docs.astral.sh/uv/guides/install-python/#installing-python)
+
+# [Installing Python](https://docs.astral.sh/uv/guides/install-python/\#installing-python)
 
 If Python is already installed on your system, uv will
 [detect and use](https://docs.astral.sh/uv/guides/install-python/#using-existing-python-versions) it without configuration. However, uv can also
@@ -156,3 +158,5 @@ To learn more about `uv python`, see the [Python version concept](https://docs.a
 page and the [command reference](https://docs.astral.sh/uv/reference/cli/#uv-python).
 
 Or, read on to learn how to [run scripts](https://docs.astral.sh/uv/guides/scripts/) and invoke Python with uv.
+
+Back to top
