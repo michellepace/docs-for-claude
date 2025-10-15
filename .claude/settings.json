@@ -12,6 +12,7 @@
       "Bash(cat:*)",
       "Bash(echo:*)",
       "Bash(find:*)",
+      "Bash(git log:*)",
       "Bash(grep:*)",
       "Bash(head:*)",
       "Bash(ls:*)",
