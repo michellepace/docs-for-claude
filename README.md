@@ -1,15 +1,15 @@
-# 📚 Curate Docs For Claude Code
+# Curate Docs For Claude Code
 
-Curate documentation using Claude Code slash commands and FireCrawl. Each collection is indexed for semantic AI search. Curate and keep it fresh with a slash.
+Build curated documentation collections for Claude Code using slash commands and FireCrawl. AI-generated indices help target the right docs instantly.
 
-The benefit is cleaner and focussed context for Claude Code. The index helps target the right docs to answer your question. Markdown is cleaner than web-fetch. No need to keep MCPs on.
+**Why?** Cleaner context than web-fetch, faster than live scraping, no MCPs loaded.
 
 ## 🎯 Philosophy
 
-- **Markdown files are source of truth** - INDEX.xml is a derived artifact from the collection
-- **Deterministic** - Heavy lifting with Python scripts, output for Claude Code to self-heal
-- **INDEX.xml metadata generation** - Claude Code generates semantic descriptions from docs
-- **Efficient search** - INDEX.xml descriptions optimised for AI context matching
+- **Simple atomic workflow** - `/add-doc` handles everything (scrape, write, index)
+- **INDEX.xml is derived** - Generated automatically from `/add-doc` operations
+- **AI-powered index** - Claude generates semantic descriptions optimised for search
+- **Deterministic scripts** - Python handles reliable operations, Claude handles semantic analysis
 
 ## 📦 Repo Collections
 
@@ -33,79 +33,68 @@ cd docs-for-claude
 # 3. Get free FireCrawl API key
 # Visit: https://www.firecrawl.dev/app/api-keys
 
-# 4. Add to shell profile
+# 4. Add to shell profile (.zshrc, .bashrc, .profile)
 echo 'export API_KEY_MCP_FIRECRAWL=your-api-key-here' >> ~/.zshrc
 source ~/.zshrc
 ```
 
-## 📖 Slash Command Reference
+## 📖 Slash Commands
 
-| Command | Purpose | INDEX.xml | .md Files | Done |
+| Command | Purpose | .md Files | INDEX.xml | Done |
 |---------|---------|-----------|-----------|------|
-| `/ask-docs` | Query docs with AI | ❌ Read-only | ❌ Read-only | - |
-| `/add-doc` | Crawl & add single doc | ✅ Add source | ✅ Create | 👍 yes |
-| `/sync-index` | Sync index with current files | ✅ Add/remove | ❌ | - |
-| `/recrawl-docs` | Refresh from upstream | ✅ If changed | ✅ Overwrite | - |
-| `/generate-index` | Create new index from scratch | ✅ Full regen | ❌ | - |
-
-*All commands require `<directory>` as first argument*
+| `/add-doc <directory> <url>` | Crawl & add single doc | ✅ Write | ✅ Add/replace | 👍 yes |
+| `/recrawl-docs <directory>` | Refresh from upstream | ✅ Write all | ✅ Replace all | - |
 
 ## 💡 Usage Examples
 
 ```bash
-# Daily usage - ask questions about documentation
-/ask-docs tailwind "How do I customise colors?"
-# → Searches INDEX.xml descriptions, reads relevant docs, answers question
-
-# Add a new doc by crawling a URL
+# Add a new doc by scraping a URL
 /add-doc tailwind https://tailwindcss.com/docs/customizing-colors
-# → Crawls page, creates .md file, adds to INDEX.xml (fully atomic)
+# → Scrapes page, writes .md file, adds source to INDEX.xml
 
-# Manually added .md files? Sync the index
-/sync-index tailwind
-# → Finds new files, removes orphans, offers to populate metadata
+# Update existing doc (re-scrape same URL)
+/add-doc tailwind https://tailwindcss.com/docs/customizing-colors
+# → Re-scrapes, writes .md file, replaces source in INDEX.xml
 
-# Refresh docs from upstream (monthly maintenance)
+# Start a new collection
+/add-doc reflex https://reflex.dev/docs/getting-started/installation
+# → Creates reflex/ directory, README.md, INDEX.xml, and first doc
+
+# Refresh all docs in collection (monthly maintenance)
 /recrawl-docs tailwind
-# → Re-crawls all URLs, detects changes, updates .md files
-
-# Start a new collection from existing markdown files
-mkdir reflex/ && cp ~/docs/*.md reflex/
-/generate-index reflex
-# → Analyses all .md files, generates INDEX.xml with AI metadata
+# → Re-scrapes all URLs in INDEX.xml, writes all .md files, replaces all sources
 ```
 
 ## 🏗️ How It Works
 
-### Directory Structure
+Directory Structure:
 
 ```text
 uv/
-├── INDEX.xml              # AI-generated index for semantic search
-├── README.md              # Collection overview
-├── concepts_projects.md   # Documentation content
-├── cli_init.md
+├── INDEX.xml               # Index of all docs
+├── README.md
+├── hello-document-title.md # Scraped doc
+├── overview.md             # Scraped doc
 └── ...
 ```
 
-### INDEX.xml Schema
+INDEX.xml Schema
 
 ```xml
 <docs_index>
   <source>
-    <title>Projects and Packaging</title>
-    <description>Explains UV project structure, pyproject.toml...</description>
-    <source_url>https://docs.astral.sh/uv/concepts/projects/</source_url>
-    <local_file>concepts_projects.md</local_file>
+    <title>Hello Document Title</title>
+    <description>2-3 sentence summary optimised for AI semantic search...</description>
+    <source_url>https://docs.example.com/hello</source_url>
+    <local_file>hello-document-title.md</local_file>
   </source>
+  <!-- Multiple <source> entries, one per .md file -->
 </docs_index>
 ```
 
-**How metadata is generated:**
+**How `/add-doc` generates metadata:**
 
-- **Title**: Extracted from document structure and headings
-- **Description**: AI-generated summary (2-3 sentences, optimised for semantic search)
-- **URL**: Extracted from content or crawl source
-- **File**: Direct mapping to .md filename
-
-**No format required**: Claude Code uses AI to understand any markdown structure.
+1. **Scrapes URL** with FireCrawl (extracts title, content, canonical URL)
+2. **Writes .md file** with slugified filename from title
+3. **Adds/replaces source in INDEX.xml** with placeholder description
+4. **Claude analyses content** and writes semantic description
