@@ -1,22 +1,24 @@
-# 📚 Curated Docs For Claude Code
+# 📚 Curate Docs For Claude Code
 
-**CURRENTLY UNDER DEVELOPMENT**
+Curate documentation using Claude Code slash commands and FireCrawl. Each collection is indexed for semantic AI search. Curate and keep it fresh with a slash.
 
-Curate documentation for your Claude Code (or any AI). Each collection is indexed for targeted AI context. Keep fresh with included Claude Code slash commands and configured [FireCrawl MCP](https://docs.firecrawl.dev/mcp-server). Clone and make your own.
+The benefit is cleaner and focussed context for Claude Code. The index helps target the right docs to answer your question. Markdown is cleaner than web-fetch. No need to keep MCPs on.
 
 ## 🎯 Philosophy
 
-- **Markdown files are source of truth** - INDEX.xml is a derived artifact
-- **INDEX.xml metadata generation** - Claude Code intelligently extracts from markdown
-- **Efficient search** - Index.xml descriptions optimised for AI context matching
+- **Markdown files are source of truth** - INDEX.xml is a derived artifact from the collection
+- **Deterministic** - Heavy lifting with Python scripts, output for Claude Code to self-heal
+- **INDEX.xml metadata generation** - Claude Code generates semantic descriptions from docs
+- **Efficient search** - INDEX.xml descriptions optimised for AI context matching
 
-## 📦 Available Collections
+## 📦 Repo Collections
 
 | Tool | Description | Source | Updated | Path | Index |
 |------|-------------|--------|---------|------|-------|
 | **UV** | Python projects | [Official](https://docs.astral.sh/uv/) | 2025.07.31 | [`uv/`](uv/) | [`uv/INDEX.xml`](uv/INDEX.xml) |
 | **Tailwind** | CSS framework | [Official](https://tailwindcss.com/docs/) | empty | [`tailwind/`](tailwind/) | empty |
-| **Anthropic** | use [this tool](https://github.com/ericbuess/claude-code-docs) | [Official](https://docs.claude.com/) | n/a | n/a | n/a |
+
+*For Anthropic docs use [this tool](https://github.com/ericbuess/claude-code-docs).*
 
 ## 🚀 Setup
 
@@ -51,15 +53,15 @@ source ~/.zshrc
 ## 💡 Usage Examples
 
 ```bash
-# Daily usage - Ask questions about documentation
+# Daily usage - ask questions about documentation
 /ask-docs tailwind "How do I customise colors?"
 # → Searches INDEX.xml descriptions, reads relevant docs, answers question
 
-# Add a new doc by crawling URL
+# Add a new doc by crawling a URL
 /add-doc tailwind https://tailwindcss.com/docs/customizing-colors
 # → Crawls page, creates .md file, adds to INDEX.xml (fully atomic)
 
-# Manually added .md files? Synchronise the index
+# Manually added .md files? Sync the index
 /sync-index tailwind
 # → Finds new files, removes orphans, offers to populate metadata
 
@@ -67,7 +69,7 @@ source ~/.zshrc
 /recrawl-docs tailwind
 # → Re-crawls all URLs, detects changes, updates .md files
 
-# Start new collection from existing markdown files
+# Start a new collection from existing markdown files
 mkdir reflex/ && cp ~/docs/*.md reflex/
 /generate-index reflex
 # → Analyses all .md files, generates INDEX.xml with AI metadata
