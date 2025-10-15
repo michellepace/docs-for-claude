@@ -2,6 +2,7 @@
 
 import subprocess
 import tempfile
+from datetime import date
 from pathlib import Path
 
 # Test URL constant - valid documentation page for integration tests
@@ -202,19 +203,18 @@ class TestOutputContent:
             index_path = new_dir / "INDEX.xml"
             index_content = index_path.read_text()
 
-            # Assert XML structure
-            assert "<docs_index>" in index_content
-            assert "</docs_index>" in index_content
-            assert "<source>" in index_content
-            assert "</source>" in index_content
-            assert "<title>" in index_content
-            assert "</title>" in index_content
-            assert "<local_file>" in index_content
-            assert "</local_file>" in index_content
+            # Assert XML structure and content based on TEST_URL
+            today = date.today().isoformat()
 
-            # Assert fields we have so far
-            assert "<description>PLACEHOLDER</description>" in index_content
-            assert f"<source_url>{TEST_URL}</source_url>" in index_content
+            assert index_content.startswith("<docs_index>")
+            assert "<source>\n" in index_content
+            assert "<title>Updating state - Zustand</title>\n" in index_content
+            assert "<description>PLACEHOLDER</description>\n" in index_content
+            assert f"<source_url>{TEST_URL}</source_url>\n" in index_content
+            assert "<local_file>updating-state-zustand.md</local_file>\n" in index_content
+            assert f"<scraped_at>{today}</scraped_at>\n" in index_content
+            assert "</source>\n" in index_content
+            assert index_content.endswith("</docs_index>")
 
     def test_readme_md_contains_required_content(self) -> None:
         """Test README.md contains required content elements."""
@@ -231,6 +231,6 @@ class TestOutputContent:
 
             # Assert required content
             assert "# test_collection Documentation" in readme_content
-            assert "Curated docs for targeted AI context." in readme_content
-            assert "[INDEX.xml](INDEX.xml)" in readme_content
-            assert "https://zustand.docs.pmnd.rs" in readme_content
+            assert "Curated docs for targeted AI context.\n" in readme_content
+            assert "- Curation Index: [INDEX.xml](INDEX.xml)\n" in readme_content
+            assert "- Curation Source: <https://zustand.docs.pmnd.rs>\n" in readme_content

@@ -26,6 +26,7 @@ Each INDEX.xml maps markdown files to searchable metadata:
     <description>Content summary for context matching</description>
     <source_url>https://original-docs-url</source_url>
     <local_file>filename.md</local_file>
+    <scraped_at>2025-10-15</scraped_at>
   </source>
   <!-- Multiple <source> entries, one per markdown file -->
 </docs_index>
@@ -61,5 +62,5 @@ uv run pyright                    # Type checking
 uv run ruff format                # Format code
 
 # Markdown (config in .markdownlint.yaml)
-npx markdownlint-cli2 --fix "**/*.md"  # Lint and auto-fix
+npx markdownlint-cli2 --fix "filename.md"  # Lint and auto-fix
 ```
