@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code when working with code in this repository. Always use British spelling.
 
 ## Overview
 
@@ -10,14 +10,14 @@ Documentation is organised by tool/framework in collection directories:
 
 ```text
 <tool-name>/
-├── INDEX.xml              # Structured index for targeted doc retrieval
-├── README.md              # Directory overview
-└── *.md                   # Documentation markdown files
+├── INDEX.xml       # Structured index for targeted doc retrieval
+├── README.md       # Directory overview
+└── *.md            # Documentation markdown files
 ```
 
 ## Development Workflow (Python 3.13)
 
-**Package Management:** This project uses [uv](https://docs.astral.sh/uv/)
+**Package Management:** [uv](https://docs.astral.sh/uv/)
 
 **Strict Rules:**
 
