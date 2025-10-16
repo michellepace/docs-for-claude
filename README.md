@@ -1,6 +1,6 @@
 # Curate Docs For Claude Code
 
-Curate documentation collections using slash commands and FireCrawl. Reference INDEX.xml files to target specific docs efficiently e.g. `@INDEX.xml what's a utility?`.
+Curate documentation collections using slash commands and FireCrawl. Reference indexes to target specific docs efficiently e.g. `@INDEX.xml what's a utility?`.
 
 **Why?** Cleaner than web-fetch, smaller context, curated persistence.
 
@@ -9,7 +9,7 @@ Curate documentation collections using slash commands and FireCrawl. Reference I
 *Examples in this repo, but curate your own. For fresh Anthropic docs use [this tool](https://github.com/ericbuess/claude-code-docs).*
 
 | Tool | Description | Source | Scraped | Path | Index |
-|------|-------------|--------|---------|------|-------|
+|:-----|:------------|:-------|:--------|:-----|:------|
 | **Shiny** | Python web apps | [Official](https://shiny.posit.co/py/) | 2025-10-16 | 📁 [`shiny/`](shiny/) | 📄 [`shiny/INDEX.xml`](shiny/INDEX.xml) |
 | **Tailwind** | CSS framework | [Official](https://tailwindcss.com/docs/) | 2025-10-15 | 📁 [`tailwind/`](tailwind/) | 📄 [`tailwind/INDEX.xml`](tailwind/INDEX.xml) |
 | **UV** | Python projects | [Official](https://docs.astral.sh/uv/) | 2025-10-15 | 📁 [`uv/`](uv/) | 📄 [`uv/INDEX.xml`](uv/INDEX.xml) |
@@ -35,8 +35,8 @@ source ~/.zshrc
 
 ## 📖 Curate With Slash Commands
 
-| Command | Purpose | .md Files | INDEX.xml |
-|---------|---------|-----------|-----------|
+| Command | Purpose | .md Files | INDEX `<source>` |
+|:--------|:--------|:----------|:----------|
 | `/add-doc <directory> <url>` | Add / re-scrape doc | ✅ Write | ✅ Add/replace |
 | `/rescrape-docs <directory>` | 🚧 TODO: Re-scrape all | ✅ Write all | ✅ Replace all |
 
@@ -78,7 +78,7 @@ To use the docs (from other projects):
 
 The `/add-doc <directory> <url>` command handles everything. It calls a Python script for deterministic operations (scraping, file I/O, XML updates) and prints progress so Claude Code can self-heal. Claude Code writes a dense index `<description>` for the doc. When you `@INDEX.xml [your question]` it uses the descriptions to find docs to analyse.
 
-Running `./add-doc` or `/rescrape-docs` will re-scrape existing docs so it's fresh again.
+Running `./add-doc <directory> <url>` or `/rescrape-docs <directory>` will re-scrape and replace index `<source>` for existing docs — fresh again.
 
 Directory Structure:
 
