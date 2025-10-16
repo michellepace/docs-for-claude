@@ -44,6 +44,40 @@ def slugify_title(title: str) -> str:
     return slug.strip("-")
 
 
+def get_duplicate_title_count(dir_path: Path, title: str, source_url: str) -> int:
+    """Count existing sources with same title but different URL.
+
+    Returns:
+        int: Number of existing sources with matching title and different URL
+             (0 if no duplicates, used to calculate suffix)
+    """
+    index_path = dir_path / "INDEX.xml"
+
+    # If INDEX doesn't exist yet, no duplicates possible
+    if not index_path.exists():
+        return 0
+
+    # Parse INDEX.xml
+    tree = ET.parse(index_path)
+    root = tree.getroot()
+
+    count = 0
+    for source in root.findall("source"):
+        title_elem = source.find("title")
+        url_elem = source.find("source_url")
+
+        # Count if same title AND different URL
+        if (
+            title_elem is not None
+            and title_elem.text == title
+            and url_elem is not None
+            and url_elem.text != source_url
+        ):
+            count += 1
+
+    return count
+
+
 def create_readme(dir_path: Path, dir_name: str, source_url: str) -> None:
     """Create README.md for new directory."""
     readme_content = f"""# {dir_name} Documentation
@@ -223,8 +257,15 @@ def main() -> None:
         create_readme(dir_path, dir_path.name, base_url)
         create_index_xml(dir_path)
 
-    # Generate filename from title
-    filename = f"{slugify_title(title)}.md"
+    # Generate filename from title (with suffix if duplicate title exists)
+    base_slug = slugify_title(title)
+    duplicate_count = get_duplicate_title_count(dir_path, title, args.source_url)
+
+    if duplicate_count == 0:
+        filename = f"{base_slug}.md"
+    else:
+        filename = f"{base_slug}-{duplicate_count + 1}.md"
+
     file_path = dir_path / filename
 
     # Write markdown file (overwrites if exists)
