@@ -76,7 +76,9 @@ To use the docs (from other projects):
 
 ## 🏗️ How This Repo Works
 
-The `/add-doc <directory> <url>` command handles everything. It calls a Python script for deterministic operations (scraping, file I/O, XML updates) and print progress so Claude Code can self-heal. Claude Code completes the index by writing a dense `<description>` for the doc. When you run `/ask-docs`, it uses these descriptions to choose which docs to analyse. To re-scrape an entire collection, run `/rescrape-docs`. To re-scrape one doc, just run `/add-doc` again.
+The `/add-doc <directory> <url>` command handles everything. It calls a Python script for deterministic operations (scraping, file I/O, XML updates) and prints progress so Claude Code can self-heal. Claude Code writes a dense index `<description>` for the doc. When you `@INDEX.xml [your question]` it uses the descriptions to find docs to analyse.
+
+Running `./add-doc` or `/rescrape-docs` will re-scrape existing docs so it's fresh again.
 
 Directory Structure:
 
