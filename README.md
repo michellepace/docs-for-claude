@@ -78,7 +78,7 @@ To use the docs (from other projects):
 
 The `/add-doc <directory> <url>` command handles everything. It calls a Python script for deterministic operations (scraping, file I/O, XML updates) and prints progress so Claude Code can self-heal. Claude Code writes a dense index `<description>` for the doc. When you `@INDEX.xml [your question]` it uses the descriptions to find docs to analyse.
 
-Running `./add-doc <directory> <url>` or `/rescrape-docs <directory>` will re-scrape and replace index `<source>` for existing docs — fresh again.
+Running `./add-doc <directory> <url>` or `/rescrape-docs <directory>` will re-scrape and replace doc(s) and index sources — so fresh again.
 
 Directory Structure:
 
