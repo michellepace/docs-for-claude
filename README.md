@@ -10,9 +10,10 @@ Curate documentation collections using slash commands and FireCrawl. Reference I
 
 | Tool | Description | Source | Scraped | Path | Index |
 |------|-------------|--------|---------|------|-------|
+| **Shiny** | Python web apps | [Official](https://shiny.posit.co/py/) | 2025-10-16 | 📁 [`shiny/`](shiny/) | 📄 [`shiny/INDEX.xml`](shiny/INDEX.xml) |
 | **Tailwind** | CSS framework | [Official](https://tailwindcss.com/docs/) | 2025-10-15 | 📁 [`tailwind/`](tailwind/) | 📄 [`tailwind/INDEX.xml`](tailwind/INDEX.xml) |
 | **UV** | Python projects | [Official](https://docs.astral.sh/uv/) | 2025-10-15 | 📁 [`uv/`](uv/) | 📄 [`uv/INDEX.xml`](uv/INDEX.xml) |
-| **Anything** | Add your own | ? | ? | 📁 ? | 📄 ? |
+| **Anything** | Add your own | ~ | ~ | 📁 | 📄 |
 
 ## 🚀 Setup
 
