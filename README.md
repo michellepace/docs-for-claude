@@ -1,6 +1,6 @@
 # Curate Docs For Claude Code
 
-Curate documentation collections using slash commands and FireCrawl. Reference indexes to target specific docs efficiently e.g. `@INDEX.xml what's a utility?`.
+Curate documentation collections using slash commands and FireCrawl. Reference indexes to get answers efficiently e.g. `@INDEX.xml what's a utility?`.
 
 **Why?** Cleaner than web-fetch, smaller context, curated persistence.
 
