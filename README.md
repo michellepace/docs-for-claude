@@ -78,7 +78,7 @@ To use the docs (from other projects):
 
 The `/add-doc <directory> <url>` command handles everything. It calls a Python script for deterministic operations (scraping, file I/O, XML updates) and prints progress so Claude Code can self-heal. Claude Code writes a dense index `<description>` for the doc. When you `@INDEX.xml [your question]` it uses the descriptions to find docs to analyse.
 
-Running `./add-doc <directory> <url>` or `/rescrape-docs <directory>` will re-scrape and replace doc(s) and index sources — so fresh again.
+Running `./add-doc` or `/rescrape-docs` will re-scrape and replace doc(s) and index sources — so fresh again.
 
 Directory Structure:
 
@@ -106,4 +106,4 @@ INDEX.xml Schema
 </docs_index>
 ```
 
-The script uses the FireCrawl Python SDK. But the project has the MCP configured anyway: [.mcp.json](.mcp.json), [.claude/settings.json](.claude/settings.json). This is so it's available to Claude Code to self-heal if needed.
+The script uses the FireCrawl Python SDK. But the project has the MCP configured anyway: [.mcp.json](.mcp.json), [.claude/settings.json](.claude/settings.json). Just in case Claude Code needs it.
