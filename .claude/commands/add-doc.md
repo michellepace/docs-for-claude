@@ -79,7 +79,7 @@ Then help the new user:
 
 ### 3. On success
 
-When script outputs `✅ Successfully added` or `♻️ Re-scraped and updated`:
+When script outputs `✨ Collection Success!`:
 
 1. Read the scraped markdown file
 2. Write a 15-25 word dense summary optimised for semantic search (single line, no line breaks).

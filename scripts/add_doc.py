@@ -134,7 +134,7 @@ def add_or_update_source_in_index(
             # Delete old source entry
             root.remove(existing_source)
             is_update = True
-            print(f"💡 Updating existing source for: {source_url}")
+            print(f"💡 Existing source found: {source_url}")
             break
 
     # Add new source entry (whether new or replacing old)
@@ -151,8 +151,10 @@ def add_or_update_source_in_index(
     # Write back to file
     tree.write(index_path, encoding="unicode", xml_declaration=False)
 
-    action = "Updated" if is_update else "Added new"
-    print(f"✅ {action} <source> to INDEX.xml with local_file: {local_file}")
+    if is_update:
+        print(f"✅ Updated INDEX.xml <source> entry: {local_file}")
+    else:
+        print(f"✅ Added INDEX.xml <source> entry: {local_file}")
 
     # Return Path object for cleanup (if filename changed)
     old_file_path = (
@@ -247,6 +249,11 @@ def main() -> None:
     scraped_doc = scrape_with_firecrawl(args.source_url)
     content = scraped_doc["markdown"]
     metadata = scraped_doc["metadata"]
+
+    # Confirm successful scrape
+    char_count = len(content)
+    print(f"✅ Scraped content ({char_count:,} characters)")
+
     title = metadata.get("title", "Untitled")
 
     # Extract base URL (scheme + netloc) for README collection source
@@ -271,6 +278,7 @@ def main() -> None:
 
     # Write markdown file (overwrites if exists)
     file_path.write_text(content)
+    print(f"✅ Written markdown file: {filename}")
 
     # Update INDEX.xml (add or update)
     is_update, old_file_path = add_or_update_source_in_index(
@@ -281,8 +289,13 @@ def main() -> None:
     cleanup_old_file(old_file_path)
 
     # Print final success message
-    action = "Re-scraped and updated" if is_update else "Successfully added and indexed"
-    print(f"{'♻️' if is_update else '✅'} {action}: {filename}")
+    if is_update:
+        print(f"✨ Collection Success! overwrote and re-indexed: {filename}")
+    else:
+        print(f"✨ Collection Success! added and indexed: {filename}")
+
+    # Remind about pending PLACEHOLDER replacement
+    print("💡 INDEX.xml <description> pending: PLACEHOLDER requires summary")
 
 
 if __name__ == "__main__":
