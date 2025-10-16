@@ -4,7 +4,7 @@ This file provides guidance to Claude Code when working with code in this reposi
 
 ## Overview
 
-Documentation collections scraped via FireCrawl. INDEX.xml maps markdown files to semantic descriptions for targeted context retrieval.
+Documentation collections scraped via FireCrawl Python SDK. INDEX.xml maps markdown files to semantic descriptions for targeted context retrieval.
 
 Documentation is organised by tool/framework in collection directories:
 
