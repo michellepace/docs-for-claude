@@ -29,8 +29,9 @@ def validate_directory(dir_path: Path, index_path: Path) -> None:
     """Validate directory is suitable for docs collection, exit if invalid."""
     if dir_path.exists() and not index_path.exists() and any(dir_path.iterdir()):
         print(
-            f"Error: ❌ Directory '{dir_path}' is not empty and "
-            f"missing INDEX.xml. Use an empty directory or a valid docs collection.",
+            f"Error: ❌ Directory '{dir_path}' is not empty and missing INDEX.xml—\n"
+            "rejected to prevent inadvertent file overwrites.\n"
+            "Use new, empty, or valid collection directory.",
             file=sys.stderr,
         )
         sys.exit(1)

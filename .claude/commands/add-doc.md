@@ -1,6 +1,6 @@
 ---
 argument-hint: <directory> <source_url>
-description: Scrape URL and save to collection directory
+description: Scrape source URL and save to collection directory
 ---
 
 Scrape "$2" and add to "$1" collection directory with INDEX.xml entry.
@@ -64,18 +64,18 @@ If the script fails:
 
 **Missing INDEX.xml:**
 
-- `❌ Directory '[dir]' is not empty and missing INDEX.xml`
+- `❌ Directory '[dir]' is not empty and missing INDEX.xml—`
 
-Then help the user:
+Then help the new user:
 
-1. Find existing collections: `find . -name "INDEX.xml" -type f`
-2. Recommend appropriate numbered options based on the source URL, include full command with "SCRAPE_URL" for brevity e.g `/add-doc <recommendation> SCRAPE_URL`. Use "$2" to inform recommendation.
-3. Keep output brief and clear for new users, well-structured with some emojis
+1. State existing collections: `find . -maxdepth 1 -type d -exec test -f {}/INDEX.xml \; -print`
+2. Recommend relevant collections (numbered list) based on "$2" topic. If none match, suggest creating new collection. Format: `/add-doc <collection-name> SOURCE_URL` (use literal "SOURCE_URL").
+3. Keep output concise and clear, well-structured with some emojis
 
 **Other errors:**
 
-- Investigate from script output and suggest fixes
-- Wait for user confirmation before attempting repairs
+- Investigate from script output for pragmatic fixes
+- Propose specific fixes but wait for explicit user approval
 
 ### 3. On success
 

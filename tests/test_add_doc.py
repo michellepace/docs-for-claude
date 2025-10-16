@@ -146,19 +146,21 @@ class TestDirectoryScenarios:
         """Nonempty directory without INDEX.xml fails with clear error message."""
         with tempfile.TemporaryDirectory() as tmp_dir:
             tmp_path = Path(tmp_dir)
-            non_collection_dir = tmp_path / "not_a_collection"
+            invalid_dir = tmp_path / "not_a_collection"
 
-            non_collection_dir.mkdir()
-            (non_collection_dir / "some_file.txt").write_text("random content")
+            invalid_dir.mkdir()
+            (invalid_dir / "some_file.txt").write_text("random content")
 
-            exit_code, output = run_script(str(non_collection_dir), TEST_URL)
+            exit_code, output = run_script(str(invalid_dir), TEST_URL)
 
             # Assert failure
             assert exit_code != 0
 
             expected_msg = (
-                f"Error: ❌ Directory '{non_collection_dir}' is not empty and "
-                f"missing INDEX.xml. Use an empty directory or a valid docs collection."
+                f"Error: ❌ Directory '{invalid_dir}' is not empty and "
+                "missing INDEX.xml—\n"
+                "rejected to prevent inadvertent file overwrites.\n"
+                "Use new, empty, or valid collection directory."
             )
             assert expected_msg in output
 
