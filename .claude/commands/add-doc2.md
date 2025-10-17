@@ -57,13 +57,11 @@ The script scrapes the URL, creates the markdown file, and appends a new `<sourc
 
 ## Workflow
 
-Present just enough information to the overwhelmed new user, well-structured with strategic emojis.
+Keep all output compact and well structured. Use emojis for readabilty. Be friendly.
 
 ### 1. Pre-flight validation
 
-First, state existing collections for contextual awareness e.g. `collection1/`, `collection2/` etc.
-
-Then, validate arguments and recommend an alternative with clear format e.g. `/add-doc2.try <recommended> SOURCE_URL` (use literal "SOURCE_URL"):
+Validate arguments and recommend an alternative with clear format e.g. `/add-doc2.try <recommended> SOURCE_URL` (use literal "SOURCE_URL"):
 
 - **Invalid directory:** If "$1" is an "Invalid directory" above, reject it—non-empty directories without INDEX.xml risk inadvertent file overwrites
 - **Typo detection:** Check if "$1" is similar to (but doesn't match) an existing collection
