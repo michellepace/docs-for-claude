@@ -75,8 +75,10 @@ class TestDirectoryScenarios:
             assert len(md_files) == 1
             assert md_files[0].name in output
 
-            assert "✅ Added new <source> to INDEX.xml with local_file:" in output
-            assert f"✅ Successfully added and indexed: {md_files[0].name}" in output
+            assert "✅ Added INDEX.xml <source> entry:" in output
+            assert (
+                f"✨ Collection Success! added and indexed: {md_files[0].name}" in output
+            )
 
     def test_empty_directory_creates_new_collection(self) -> None:
         """Empty directory is initialized with README, INDEX.xml, and scraped document."""
@@ -107,8 +109,10 @@ class TestDirectoryScenarios:
             ]
             assert len(md_files) == 1
 
-            assert "✅ Added new <source> to INDEX.xml with local_file:" in output
-            assert f"✅ Successfully added and indexed: {md_files[0].name}" in output
+            assert "✅ Added INDEX.xml <source> entry:" in output
+            assert (
+                f"✨ Collection Success! added and indexed: {md_files[0].name}" in output
+            )
 
     def test_existing_collection_appends_without_readme(self) -> None:
         """Existing collection with INDEX.xml appends new doc without creating README."""
@@ -134,8 +138,10 @@ class TestDirectoryScenarios:
             ]
             assert len(md_files) == 1
 
-            assert "✅ Added new <source> to INDEX.xml with local_file:" in output
-            assert f"✅ Successfully added and indexed: {md_files[0].name}" in output
+            assert "✅ Added INDEX.xml <source> entry:" in output
+            assert (
+                f"✨ Collection Success! added and indexed: {md_files[0].name}" in output
+            )
 
             # README should NOT be created
             readme_path = existing_dir / "README.md"
@@ -146,19 +152,21 @@ class TestDirectoryScenarios:
         """Nonempty directory without INDEX.xml fails with clear error message."""
         with tempfile.TemporaryDirectory() as tmp_dir:
             tmp_path = Path(tmp_dir)
-            non_collection_dir = tmp_path / "not_a_collection"
+            invalid_dir = tmp_path / "not_a_collection"
 
-            non_collection_dir.mkdir()
-            (non_collection_dir / "some_file.txt").write_text("random content")
+            invalid_dir.mkdir()
+            (invalid_dir / "some_file.txt").write_text("random content")
 
-            exit_code, output = run_script(str(non_collection_dir), TEST_URL)
+            exit_code, output = run_script(str(invalid_dir), TEST_URL)
 
             # Assert failure
             assert exit_code != 0
 
             expected_msg = (
-                f"Error: ❌ Directory '{non_collection_dir}' is not empty and "
-                f"missing INDEX.xml. Use an empty directory or a valid docs collection."
+                f"Error: ❌ Directory '{invalid_dir}' is not empty and "
+                "missing INDEX.xml—\n"
+                "rejected to prevent inadvertent file overwrites.\n"
+                "Use new, empty, or valid collection directory."
             )
             assert expected_msg in output
 
@@ -171,14 +179,14 @@ class TestDirectoryScenarios:
             # First add - should succeed
             exit_code1, output1 = run_script(str(collection_dir), TEST_URL)
             assert exit_code1 == 0
-            assert "✅ Added new <source> to INDEX.xml" in output1
-            assert "✅ Successfully added and indexed:" in output1
+            assert "✅ Added INDEX.xml <source> entry:" in output1
+            assert "✨ Collection Success! added and indexed:" in output1
 
             # Second add with same URL - should UPDATE (not fail)
             exit_code2, output2 = run_script(str(collection_dir), TEST_URL)
             assert exit_code2 == 0  # Should succeed
-            assert "💡 Updating existing source for:" in output2
-            assert "♻️ Re-scraped and updated:" in output2
+            assert "💡 Existing source found:" in output2
+            assert "✨ Collection Success! overwrote and re-indexed:" in output2
 
             # Verify INDEX.xml has only ONE source entry (not two)
             index_path = collection_dir / "INDEX.xml"
