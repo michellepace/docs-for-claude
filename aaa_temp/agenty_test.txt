@@ -1,0 +1,53 @@
+## 🌿 Invalid Input
+
+Case 1
+
+/add-doc 🏅
+/add-doc2 
+
+Case 2
+
+/add-doc tailwind 🏅
+/add-doc2 tailwind 
+
+Case 3
+
+/add-doc https://tailwindcss.com/docs/clear 🏅
+/add-doc2 https://tailwindcss.com/docs/clear
+
+## 🌿 Add new and again
+
+New 1
+
+/add-doc nextjs https://nextjs.org/docs/app/api-reference/cli
+/add-doc2 nextjs https://nextjs.org/docs/app/api-reference/cli
+
+New 2
+
+/add-doc nextjs https://nextjs.org/docs/architecture/fast-refresh
+/add-doc2 nextjs https://nextjs.org/docs/architecture/fast-refresh
+
+Add again
+
+/add-doc nextjs https://nextjs.org/docs/architecture/fast-refresh
+/add-doc2 nextjs https://nextjs.org/docs/architecture/fast-refresh
+
+## 🌸 Wrong topic semantic
+
+/add-doc wordpress https://docs.joomla.org/Portal:Beginners
+/add-doc2 wordpress https://docs.joomla.org/Portal:Beginners
+
+## 🌸 Wrong topic putting in the wrong one (tw exists)
+
+/add-doc shiny https://tailwindcss.com/docs/z-index
+/add-doc2 shiny https://tailwindcss.com/docs/z-index
+
+## 🌸 Wrong topic putting in the wrong one (nextjs doesn't exist)
+
+/add-doc tailwind https://nextjs.org/docs/app/api-reference/functions
+/add-doc2 tailwind https://nextjs.org/docs/app/api-reference/functions
+
+## 🍁 Invalid Folder
+
+/add-doc scripts https://tailwindcss.com/docs/z-index
+/add-doc2 scripts https://tailwindcss.com/docs/z-index
