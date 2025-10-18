@@ -194,10 +194,10 @@ def scrape_with_firecrawl(url: str) -> dict:
         result = firecrawl.scrape(
             url,
             formats=["markdown"],
-            only_main_content=True,
-            remove_base64_images=True,
-            wait_for=2000,
-            max_age=172800000,
+            only_main_content=True,  # Excl. nav menu, footer, sidebars, etc.
+            remove_base64_images=True,  # Removes base64 strings (keeps alt text)
+            wait_for=2000,  # Wait to capture dynamic content (2 seconds)
+            max_age=86400000,  # Use cached content for speed (24 hours)
         )
 
         # Validate result (it's a Document object with attributes)
