@@ -4,7 +4,7 @@ description: Scrape source URL and save to collection directory
 allowed-tools: Bash(find:*), Bash(uv run:scripts/add_doc.py:*), Read, Edit
 ---
 
-Scrape "$2" and add to "$1" collection directory with INDEX.xml entry.
+Scrape $2 and add to $1 collection directory with INDEX.xml entry.
 
 ## Context
 
@@ -17,6 +17,10 @@ This adds documentation to curated collections that AI agents search efficiently
 The script scrapes the URL, creates the markdown file, and appends a new `<source>` entry to INDEX.xml. You will replace that entry's `<description>` `PLACEHOLDER` value after script success.
 
 **Existing collections:** !`find . -maxdepth 1 -type d -exec test -f {}/INDEX.xml \; -printf '%P\n'`
+
+The script modifies INDEX.xml in this pattern:
+
+<example_structure>
 
 **Before** (existing INDEX.xml):
 
@@ -53,40 +57,80 @@ The script scrapes the URL, creates the markdown file, and appends a new `<sourc
 </docs_index>
 ```
 
+</example_structure>
+
 ## Workflow
 
-**Communication style always:** Be brief and write simply. Format for readability and use emojies.
+**Communication style always:** Be brief and write simply. Format for readability and use emojis.
 
 ### 1. 🤔 Validate arguments
 
 First, validate in this order:
 
-1. **Missing args:** If either missing → show usage with inline collections list
-2. **Invalid directory:** If `$1` non-empty without `INDEX.xml` → reject (risk of overwrites)
-3. **Typo detection:** If `$1` similar to existing collection → suggest correction
-4. **Semantic check:** Does `$2` URL topic match `$1` collection name?
+1. **Missing args:** If either $1 or $2 is missing → show inline collections list and suggest alternative
+2. **Typo detection:** If $1 similar to existing collection → suggest correction
+3. **Semantic mismatch:** If $2 URL topic/framework doesn't match $1 collection name → warn and suggest appropriate collection
 
-**Example validation FAILURE (missing args):**
+If all validation checks pass, output a success message and proceed to step 2 directly "just do it, don't wait":
 
-```
-## 🤔 Missing arguments!
-- Usage: `/add-doc <collection> <url>`
-- Existing collections: `shiny`, `uv`, `tailwind`
-- Example: `/add-doc shiny https://shiny.posit.co/py/docs/overview.html`
-```
-
-**Example validation FAILURE (typo detection):**
-
-```
-## 🤔 Collection "shiyy" doesn't exist, but you have "shiny".
-- Did you mean: `/add-doc shiny https://example.com/docs` ?
-```
-
-**Example validation SUCCESS:**
+<example_output_success>
 
 ```
 ## 🙂 Super! Scraping Shiny doc to shiny/ collection...
 ```
+
+</example_output_success>
+
+Example output on validation failures:
+
+<example_output_failure>
+
+This are examples, adjust as needed.
+
+- Missing args (generic):
+
+  ```
+  ## 🤔 Missing arguments!
+  - Usage: `/add-doc <collection> <url>`
+  - Existing collections: `shiny`, `uv`, `tailwind`
+  - Example: `/add-doc shiny https://shiny.posit.co/py/docs/overview.html`
+
+  [Friendly recommendation in 1 short sentence]
+  ```
+
+- Missing args (URL as $1, smart inference):
+
+  ```
+  ## 🤔 Missing collection argument!
+  - URL detected: `https://nextjs.org/docs/app/getting-started/caching`
+  - Suggested collection: `nextjs`
+  - Try: `/add-doc nextjs https://nextjs.org/docs/app/getting-started/caching`
+
+  [Friendly recommendation in 1 short sentence]
+  ```
+
+- Typo detection:
+
+  ```
+  ## 🤔 Collection "shiyy" doesn't exist, but you have "shiny".
+  - Did you mean: `/add-doc shiny https://example.com/docs` ?
+
+  [Friendly recommendation in 1 short sentence]
+  ```
+
+- Semantic mismatch:
+
+  ```
+  ## 🤔 Collection mismatch!
+  - Collection: `shiny`
+  - URL: `https://tailwindcss.com/docs/installation`
+  - This appears to be Tailwind CSS docs, not Shiny
+  - Did you mean: `/add-doc tailwind https://tailwindcss.com/docs/installation` ?
+
+  [Friendly recommendation in 1 short sentence]
+  ```
+
+</example_output_failure>
 
 ### 2. 🚀 Run the script
 
@@ -103,26 +147,32 @@ Script errors print actionable information. If recovery is possible, propose spe
 When script outputs `✨ Collection Success!`:
 
 1. Read the scraped markdown file
-2. Write a 15-25 word dense summary optimised for semantic search (single line, no line breaks).
+2. Write a 20-30 word dense summary optimised for semantic search (single line, no line breaks).
 3. In INDEX.xml, find the `<source>` entry where `<source_url>` matches `$2` (the URL argument)
 4. In that entry's `<description>` element, replace the value `PLACEHOLDER` with your dense summary (single line, no line breaks). Ensure the closing `</description>` tag remains on the same line after editing for consistent index formatting.
 
 Example:
 
-```xml
-<description>Covers Next.js routing, layouts, and file conventions including dynamic routes, metadata, and project organisation strategies.</description>
-```
+<example>
 
-Finally, show success on successfully completion.
+- Description format:
 
-```
-## ✨ Collection Success! overwrote and re-indexed:
+  ```xml
+  <description>Covers Next.js routing, layouts, and file conventions including dynamic routes, metadata, and project organisation strategies.</description>
+  ```
 
-🎯 What happened
-- In Collection:         `collection`
-- Scraped and overwrote: `collection/document.md`
-- Updated the index:     `collection/INDEX.xml`
-- Dense description:     (see below)
+- Final success message:
 
-*your actual 15-25 word summary here*
-```
+  ```
+  ## ✨ Collection Success! overwrote and re-indexed:
+
+  🎯 What happened
+  - In Collection:         `collection`
+  - Scraped and overwrote: `collection/document.md`
+  - Updated the index:     `collection/INDEX.xml`
+  - Dense description:     (see below)
+
+  *your actual 15-25 word summary here*
+  ```
+
+</example>

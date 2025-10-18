@@ -1,0 +1,37 @@
+<docs_index>
+  <source>
+    <title>Getting Started: Installation | Next.js</title>
+    <description>Covers Next.js project creation via CLI or manual installation, including TypeScript, ESLint, Turbopack setup, and absolute import configuration.</description>
+    <source_url>https://nextjs.org/docs/app/getting-started/installation</source_url>
+    <local_file>getting-started-installation-nextjs.md</local_file>
+    <scraped_at>2025-10-18</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started: Image Optimization | Next.js</title>
+    <description>Details Next.js Image component features including automatic optimisation, lazy loading, local and remote image handling, and remotePatterns configuration for secure image sources.</description>
+    <source_url>https://nextjs.org/docs/app/getting-started/images</source_url>
+    <local_file>getting-started-image-optimization-nextjs.md</local_file>
+    <scraped_at>2025-10-18</scraped_at>
+  </source>
+  <source>
+    <title>Architecture: Supported Browsers | Next.js</title>
+    <description>Documents Next.js browser support (Chrome 64+, Edge 79+, Firefox 67+, Safari 12+), Browserslist configuration, built-in polyfills, and custom polyfill strategies.</description>
+    <source_url>https://nextjs.org/docs/architecture/supported-browsers</source_url>
+    <local_file>architecture-supported-browsers-nextjs.md</local_file>
+    <scraped_at>2025-10-18</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started: Caching and Revalidating | Next.js</title>
+    <description>Explains Next.js caching strategies using fetch, unstable_cache for database queries, and revalidation techniques via revalidateTag and revalidatePath in Server Actions.</description>
+    <source_url>https://nextjs.org/docs/app/getting-started/caching-and-revalidating</source_url>
+    <local_file>getting-started-caching-and-revalidating-nextjs.md</local_file>
+    <scraped_at>2025-10-18</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started: Project Structure | Next.js</title>
+    <description>Comprehensive guide to Next.js folder conventions, file naming patterns, routing files, dynamic routes, route groups, private folders, metadata files, and project organisation strategies.</description>
+    <source_url>https://nextjs.org/docs/app/getting-started/project-structure</source_url>
+    <local_file>getting-started-project-structure-nextjs.md</local_file>
+    <scraped_at>2025-10-18</scraped_at>
+  </source>
+</docs_index>
