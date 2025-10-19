@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "SlashCommand(/add-doc:*)",
+      "SlashCommand(/curate-doc:*)",
+      "SlashCommand(/rescrape-docs:*)",
 
       "Bash(claude mcp list)",
       "Bash(claude mcp get:*)",

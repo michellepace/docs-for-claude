@@ -37,7 +37,7 @@ source ~/.zshrc
 
 | Command | Purpose | .md Files | INDEX `<source>` |
 |:--------|:--------|:----------|:----------|
-| `/add-doc <directory> <url>` | Add / re-scrape doc | ✅ Write | ✅ Add/replace |
+| `/curate-doc <directory> <url>` | Add / re-scrape doc | ✅ Write | ✅ Add/replace |
 | `/rescrape-docs <directory>` | 🚧 TODO: Re-scrape all | ✅ Write all | ✅ Replace all |
 
 ## 💡 Usage Examples
@@ -45,17 +45,17 @@ source ~/.zshrc
 To curate and keep docs fresh in this repo:
 
 ```bash
-# Add a new doc by scraping a URL
-/add-doc tailwind https://tailwindcss.com/docs/customizing-colors
+# Curate a new doc from a URL
+/curate-doc tailwind https://tailwindcss.com/docs/customizing-colors
 # → Scrapes page, writes .md file, adds source to INDEX.xml
 
-# Re-scrape existing doc (same URL)
-/add-doc tailwind https://tailwindcss.com/docs/customizing-colors
+# Re-scrape existing doc (refresh content from same URL)
+/curate-doc tailwind https://tailwindcss.com/docs/customizing-colors
 # → Re-scrapes, writes .md file, replaces source in INDEX.xml
 
 # Start a new collection
-/add-doc reflex https://reflex.dev/docs/getting-started/installation
-# → Creates reflex/ directory, README.md, INDEX.xml, and first doc
+/curate-doc reflex https://reflex.dev/docs/getting-started/installation
+# → Creates reflex/ directory, README.md, INDEX.xml, and first curated doc
 
 # Re-scrape all docs in collection (monthly maintenance)
 /rescrape-docs tailwind
@@ -76,9 +76,9 @@ To use the docs (from other projects):
 
 ## 🏗️ How This Repo Works
 
-The `/add-doc <directory> <url>` command handles everything. It calls a Python script for deterministic operations (scraping, file I/O, XML updates) and prints progress so Claude Code can self-heal. Claude Code writes a dense index `<description>` for the doc. When you `@INDEX.xml [your question]` it uses the descriptions to find docs to analyse.
+The `/curate-doc <directory> <url>` command handles everything. It calls a Python script for deterministic operations (scraping, file I/O, XML updates) and prints progress so Claude Code can self-heal. Claude Code writes a dense index `<description>` for the doc. When you `@INDEX.xml [your question]` it uses the descriptions to find docs to analyse.
 
-Running `./add-doc` or `/rescrape-docs` will re-scrape and replace doc(s) and index sources — so fresh again.
+With existing docs, `/curate-doc` and `/rescrape-docs` will re-scrape and replace documents and index sources.
 
 Directory Structure:
 

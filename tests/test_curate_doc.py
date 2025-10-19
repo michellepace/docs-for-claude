@@ -1,4 +1,4 @@
-"""Tests for add_doc.py script."""
+"""Tests for curate_doc.py script."""
 
 import subprocess
 import tempfile
@@ -10,8 +10,8 @@ TEST_URL = "https://zustand.docs.pmnd.rs/guides/updating-state"
 
 
 def run_script(*args: str, cwd: Path | None = None) -> tuple[int, str]:
-    """Run add_doc.py script via uv and return (exit_code, output)."""
-    cmd = ["uv", "run", "python", "scripts/add_doc.py"]
+    """Run curate_doc.py script via uv and return (exit_code, output)."""
+    cmd = ["uv", "run", "python", "scripts/curate_doc.py"]
     cmd.extend(args)
 
     result = subprocess.run(
