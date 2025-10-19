@@ -41,7 +41,7 @@ class TestInputValidation:
             exit_code, output = run_script(tmp_dir, "not-a-url")
 
             assert exit_code != 0
-            assert "not a valid URL" in output or "invalid URL" in output
+            assert "❌ Error: INVALID_URL|" in output
 
 
 class TestDirectoryScenarios:
@@ -58,13 +58,14 @@ class TestDirectoryScenarios:
             # Assert success and file paths in output
             assert exit_code == 0
 
-            index_path = new_dir / "INDEX.xml"
-            assert f"✅ Created empty INDEX.xml at {index_path}" in output
-            assert index_path.exists()
-
             readme_path = new_dir / "README.md"
-            assert f"✅ Successfully added {readme_path}" in output
+            index_path = new_dir / "INDEX.xml"
+
+            # Assert creation messages appear in output
+            assert f"✅ Created {readme_path}" in output
+            assert f"✅ Created {index_path}" in output
             assert readme_path.exists()
+            assert index_path.exists()
 
             # Check that a markdown file was created (dynamic filename from real scrape)
             md_files = [
@@ -75,10 +76,15 @@ class TestDirectoryScenarios:
             assert len(md_files) == 1
             assert md_files[0].name in output
 
-            assert "✅ Added INDEX.xml <source> entry:" in output
+            assert "✅ Indexed in INDEX.xml:" in output
+            # Full format validation: prefix|action|filepath|URL|
+            # Script outputs absolute path for files outside project root
             assert (
-                f"✨ Collection Success! added and indexed: {md_files[0].name}" in output
-            )
+                f"🎉 Curation Success!|"
+                f"added and indexed document|"
+                f"{md_files[0]}|"
+                f"{TEST_URL}|"
+            ) in output
 
     def test_empty_directory_creates_new_collection(self) -> None:
         """Empty directory is initialized with README, INDEX.xml, and scraped document."""
@@ -94,11 +100,12 @@ class TestDirectoryScenarios:
             assert exit_code == 0
 
             readme_path = empty_dir / "README.md"
-            assert f"✅ Successfully added {readme_path}" in output
-            assert readme_path.exists()
-
             index_path = empty_dir / "INDEX.xml"
-            assert f"✅ Created empty INDEX.xml at {index_path}" in output
+
+            # Script outputs absolute paths for files outside project root
+            assert f"✅ Created {readme_path}" in output
+            assert f"✅ Created {index_path}" in output
+            assert readme_path.exists()
             assert index_path.exists()
 
             # Check that a markdown file was created (dynamic filename from real scrape)
@@ -109,10 +116,9 @@ class TestDirectoryScenarios:
             ]
             assert len(md_files) == 1
 
-            assert "✅ Added INDEX.xml <source> entry:" in output
-            assert (
-                f"✨ Collection Success! added and indexed: {md_files[0].name}" in output
-            )
+            assert "✅ Indexed in INDEX.xml:" in output
+            # Pattern matching only - simpler and less brittle
+            assert "🎉 Curation Success!|added and indexed document|" in output
 
     def test_existing_collection_appends_without_readme(self) -> None:
         """Existing collection with INDEX.xml appends new doc without creating README."""
@@ -138,15 +144,16 @@ class TestDirectoryScenarios:
             ]
             assert len(md_files) == 1
 
-            assert "✅ Added INDEX.xml <source> entry:" in output
-            assert (
-                f"✨ Collection Success! added and indexed: {md_files[0].name}" in output
-            )
+            assert "✅ Indexed in INDEX.xml:" in output
+            # Pattern matching only
+            assert "🎉 Curation Success!|added and indexed document|" in output
 
             # README should NOT be created
             readme_path = existing_dir / "README.md"
             assert not readme_path.exists()
-            assert f"✅ Successfully added {readme_path}" not in output
+            # Check that README creation message is not in output
+            readme_created_count = output.count("README.md")
+            assert readme_created_count == 0
 
     def test_nonempty_noncollection_directory_fails(self) -> None:
         """Nonempty directory without INDEX.xml fails with clear error message."""
@@ -161,14 +168,11 @@ class TestDirectoryScenarios:
 
             # Assert failure
             assert exit_code != 0
-
-            expected_msg = (
-                f"Error: ❌ Directory '{invalid_dir}' is not empty and "
-                "missing INDEX.xml—\n"
-                "rejected to prevent inadvertent file overwrites.\n"
-                "Use new, empty, or valid collection directory."
-            )
-            assert expected_msg in output
+            assert (
+                "❌ Error: INVALID_COLLECTION|"
+                "Directory non-empty and missing INDEX.xml. "
+                "Rejected to prevent inadvertent file overwrites|"
+            ) in output
 
     def test_duplicate_url_updates_source(self) -> None:
         """Adding same URL twice should update existing source, not fail."""
@@ -179,14 +183,16 @@ class TestDirectoryScenarios:
             # First add - should succeed
             exit_code1, output1 = run_script(str(collection_dir), TEST_URL)
             assert exit_code1 == 0
-            assert "✅ Added INDEX.xml <source> entry:" in output1
-            assert "✨ Collection Success! added and indexed:" in output1
+            assert "✅ Indexed in INDEX.xml:" in output1
+            # Pattern matching only - first scrape (add)
+            assert "🎉 Curation Success!|added and indexed document|" in output1
 
             # Second add with same URL - should UPDATE (not fail)
             exit_code2, output2 = run_script(str(collection_dir), TEST_URL)
             assert exit_code2 == 0  # Should succeed
-            assert "💡 Existing source found:" in output2
-            assert "✨ Collection Success! overwrote and re-indexed:" in output2
+            assert "✅ Updated in INDEX.xml:" in output2
+            # Pattern matching only - second scrape (update)
+            assert "🎉 Curation Success!|overwrote and re-indexed document|" in output2
 
             # Verify INDEX.xml has only ONE source entry (not two)
             index_path = collection_dir / "INDEX.xml"

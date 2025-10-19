@@ -1,7 +1,8 @@
 ---
-argument-hint: <directory> <source_url>
+argument-hint: <collection-dir> <source_url>
 description: Scrape source URL and save to collection directory
 allowed-tools: Bash(find:*), Bash(uv run:scripts/add_doc.py:*), Read, Edit
+model: claude-sonnet-4-5-20250929
 ---
 
 Scrape $2 and add to $1 collection directory with INDEX.xml entry.
@@ -15,8 +16,6 @@ This adds documentation to curated collections that AI agents search efficiently
 - `README.md` - collection overview
 
 The script scrapes the URL, creates the markdown file, and appends a new `<source>` entry to INDEX.xml. You will replace that entry's `<description>` `PLACEHOLDER` value after script success.
-
-**Existing collections:** !`find . -maxdepth 1 -type d -exec test -f {}/INDEX.xml \; -printf '%P\n'`
 
 The script modifies INDEX.xml in this pattern:
 
@@ -61,31 +60,19 @@ The script modifies INDEX.xml in this pattern:
 
 ## Workflow
 
-**Communication style always:** Be brief and write simply. Format for readability and use emojis.
-
 ### 1. 🤔 Validate arguments
 
-First, validate in this order:
+You are helping a new user add a new document to an existing collection or a new one.
 
-1. **Missing args:** If either $1 or $2 is missing → show inline collections list and suggest alternative
-2. **Typo detection:** If $1 similar to existing collection → suggest correction
-3. **Semantic mismatch:** If $2 URL topic/framework doesn't match $1 collection name → warn and suggest appropriate collection
+**Existing collections:** !`find . -maxdepth 1 -type d -exec test -f {}/INDEX.xml \; -printf '%P\n'`
 
-If all validation checks pass, output a success message and proceed to step 2 directly "just do it, don't wait":
+Here are just a few examples what new users can inadvertantly get wrong - you are to help them do what they intend:
 
-<example_output_success>
+<validation_examples>
 
-```
-## 🙂 Super! Scraping Shiny doc to shiny/ collection...
-```
+Examples of validation failures:
 
-</example_output_success>
-
-Example output on validation failures:
-
-<example_output_failure>
-
-This are examples, adjust as needed.
+<validation_failure>
 
 - Missing args (generic):
 
@@ -95,42 +82,56 @@ This are examples, adjust as needed.
   - Existing collections: `shiny`, `uv`, `tailwind`
   - Example: `/add-doc shiny https://shiny.posit.co/py/docs/overview.html`
 
-  [Friendly recommendation in 1 short sentence]
+  [Friendly suggestion. Ask for confirmation.]
   ```
 
 - Missing args (URL as $1, smart inference):
 
   ```
-  ## 🤔 Missing collection argument!
-  - URL detected: `https://nextjs.org/docs/app/getting-started/caching`
-  - Suggested collection: `nextjs`
-  - Try: `/add-doc nextjs https://nextjs.org/docs/app/getting-started/caching`
+  ## 🤔 You didn't give me a collection?
+  - URL detected: `https://vite.dev/guide/cli.html`
+  - My Suggestion: A new `vite` collection looks ideal!
+  - Try: `/add-doc vite https://vite.dev/guide/cli.html`
 
-  [Friendly recommendation in 1 short sentence]
+  [Shall we proceed with `vite` as a new collection? It will get created automatically 🙂]
   ```
 
 - Typo detection:
 
   ```
-  ## 🤔 Collection "shiyy" doesn't exist, but you have "shiny".
+  ## 🤔 Collection "shiyy" doesn't exist, but you have "shiny"!
   - Did you mean: `/add-doc shiny https://example.com/docs` ?
 
-  [Friendly recommendation in 1 short sentence]
+  [Friendly suggestion. Ask for confirmation.]
   ```
 
 - Semantic mismatch:
 
   ```
-  ## 🤔 Collection mismatch!
+  ## 🤔 Mmm.. are you sure you meant `shiny`?
   - Collection: `shiny`
   - URL: `https://tailwindcss.com/docs/installation`
   - This appears to be Tailwind CSS docs, not Shiny
   - Did you mean: `/add-doc tailwind https://tailwindcss.com/docs/installation` ?
 
-  [Friendly recommendation in 1 short sentence]
+  [Friendly recommendation in 1-2 short sentence, ask for confirmation]
   ```
 
-</example_output_failure>
+</validation_failure>
+
+Success:
+
+<validation_success>
+
+```
+## 🙂 Super! Scraping Shiny doc to shiny/ collection...
+```
+
+</validation_success>
+
+</validation_examples>
+
+Be emoji led, brief, and helpful for an overwhelmed new user. Analyse "Existing Collections" and both arguments $1 (proposed collection directory) and $2 (URL). Determine if the arguments should fail validation. Use the above examples as a guide and adapt for user experience (think emojis, structure, `highlighting`). Otherwise output a success message and proceed without confirmation.
 
 ### 2. 🚀 Run the script
 
@@ -142,14 +143,14 @@ uv run scripts/add_doc.py "$1" "$2"
 
 Script errors print actionable information. If recovery is possible, propose specific fixes but wait for explicit user approval.
 
-### 4. ✨ On success
+### 4. 🎉 On success
 
-When script outputs `✨ Collection Success!`:
+When script outputs `🎉 Curation Success!`:
 
-1. Read the scraped markdown file
-2. Write a 20-30 word dense summary optimised for semantic search (single line, no line breaks).
-3. In INDEX.xml, find the `<source>` entry where `<source_url>` matches `$2` (the URL argument)
-4. In that entry's `<description>` element, replace the value `PLACEHOLDER` with your dense summary (single line, no line breaks). Ensure the closing `</description>` tag remains on the same line after editing for consistent index formatting.
+1. Read the scraped markdown file shown in the `🎉 Curation Success!` output
+2. Write a 20-30 word dense description optimised for semantic search (single line, no line breaks).
+3. In `$1/INDEX.xml`, find the `<source>` entry where `<source_url>` matches `$2` (the URL argument)
+4. In that entry's `<description>` element, replace the value `PLACEHOLDER` with your dense description (single line, no line breaks). Ensure the closing `</description>` tag remains on the same line after editing for consistent index formatting.
 
 Example:
 
@@ -158,21 +159,20 @@ Example:
 - Description format:
 
   ```xml
-  <description>Covers Next.js routing, layouts, and file conventions including dynamic routes, metadata, and project organisation strategies.</description>
+  <description>Next.js folder structure covering top-level folders (`app`, `pages`, `public`, `src`), routing files (`page.js`, `layout.js`, `loading.js`, `error.js`), dynamic routes, route groups, private folders, parallel/intercepted routes, colocation patterns, component hierarchy, and metadata file conventions.</description>
   ```
 
 - Final success message:
 
   ```
-  ## ✨ Collection Success! overwrote and re-indexed:
+  ## 🎉 Curation Success!
 
   🎯 What happened
-  - In Collection:         `collection`
-  - Scraped and overwrote: `collection/document.md`
-  - Updated the index:     `collection/INDEX.xml`
-  - Dense description:     (see below)
+  - Scraped source URL: https://shiny.posit.co/py/docs/overview.html
+  - Overwrote document: `shiny/overview.md`
+  - Generated description: *actual 20-30 word dense description here*
+  - Updated index: `shiny/INDEX.xml`
 
-  *your actual 20-30 word summary here*
   ```
 
 </example>
