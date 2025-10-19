@@ -124,7 +124,7 @@ Curated docs for targeted AI context.
 """
     readme_path = dir_path / "README.md"
     readme_path.write_text(readme_content)
-    print(f"✅ Created {_format_path_for_display(readme_path)}")
+    print(f"✅ Created curation readme|{_format_path_for_display(readme_path)}|")
 
 
 def _create_index_xml(dir_path: Path) -> None:
@@ -135,7 +135,7 @@ def _create_index_xml(dir_path: Path) -> None:
     tree = ET.ElementTree(root)
     index_path = dir_path / "INDEX.xml"
     tree.write(index_path, encoding="unicode", xml_declaration=False)
-    print(f"✅ Created {_format_path_for_display(index_path)}")
+    print(f"✅ Created curation index|{_format_path_for_display(index_path)}|")
 
 
 def _add_or_update_source_in_index(
@@ -184,15 +184,12 @@ def _add_or_update_source_in_index(
     # Write back to file
     tree.write(index_path, encoding="unicode", xml_declaration=False)
 
-    # Format relative path for display
-    file_path = dir_path / local_file
-
     if is_update:
-        print(f"✅ Updated in INDEX.xml: {_format_path_for_display(file_path)}")
+        print(f"✅ Updated index source|{_format_path_for_display(index_path)}|")
     else:
-        print(f"✅ Indexed in INDEX.xml: {_format_path_for_display(file_path)}")
+        print(f"✅ Added index source|{_format_path_for_display(index_path)}|")
 
-    print("💡 INDEX.xml <description> pending: PLACEHOLDER requires summary")
+    print("💡 INDEX.xml <description> pending: PLACEHOLDER requires summary|")
 
     # Return Path object for cleanup (if filename changed)
     old_file_path = (
@@ -209,7 +206,7 @@ def _cleanup_old_file(old_file_path: Path | None) -> None:
     """
     if old_file_path:
         old_file_path.unlink(missing_ok=True)
-        print(f"🗑️  Removed old file: {_format_path_for_display(old_file_path)}")
+        print(f"🗑️ Removed old file|{_format_path_for_display(old_file_path)}|")
 
 
 def _get_firecrawl_client() -> Firecrawl:
@@ -224,7 +221,7 @@ def _get_firecrawl_client() -> Firecrawl:
 def _parse_retry_seconds(error: RateLimitError) -> int:
     """Parse retry-after seconds from rate limit error message."""
     error_msg = str(error)
-    retry_match = re.search(r"retry after (\d+)s", error_msg)
+    retry_match = re.search(r"retry after (\d+)s", error_msg, re.IGNORECASE)
     if retry_match:
         return int(retry_match.group(1))
     # Default to 60s if pattern not found (rate limit window is per minute)
@@ -304,7 +301,7 @@ def _scrape_with_firecrawl(url: str, max_attempts: int = 2) -> dict:
             if attempt < max_attempts - 1:  # More attempts available
                 retry_seconds = _parse_retry_seconds(e)
                 wait_time = retry_seconds + 2  # Add 2s safety buffer
-                print(f"⏳ Rate limited. Waiting {wait_time}s before retry...")
+                print(f"⏳ Rate limited|Waiting {wait_time}s before retry...|")
                 time.sleep(wait_time)
                 continue
 
@@ -363,6 +360,9 @@ def main() -> None:
     _validate_url(source_url)
     _validate_directory_for_collection(dir_path, index_path)
 
+    # Print initial status message
+    print(f"✅ Starting to curate from|{source_url}|")
+
     # Ensure directory exists
     dir_path.mkdir(parents=True, exist_ok=True)
 
@@ -373,7 +373,7 @@ def main() -> None:
 
     # Confirm successful scrape
     char_count = len(content)
-    print(f"✅ Scraped content ({char_count:,} characters)")
+    print(f"✅ Scraped content|({char_count:,} characters)|")
 
     title = metadata.get("title", "Untitled")
 
@@ -399,7 +399,7 @@ def main() -> None:
 
     # Write markdown file (overwrites if exists)
     file_path.write_text(content)
-    print(f"✅ Written markdown file: {_format_path_for_display(file_path)}")
+    print(f"✅ Written scrape to file|{_format_path_for_display(file_path)}|")
 
     # Update INDEX.xml (add or update)
     is_update, old_file_path = _add_or_update_source_in_index(
@@ -411,15 +411,9 @@ def main() -> None:
 
     # Print final success message
     if is_update:
-        print(
-            f"🎉 Curation Success!|overwrote and re-indexed document|"
-            f"{_format_path_for_display(file_path)}|{source_url}|\n"
-        )
+        print("🎉 Curation Success!|scraped, overwrote and re-indexed document|\n")
     else:
-        print(
-            f"🎉 Curation Success!|added and indexed document|"
-            f"{_format_path_for_display(file_path)}|{source_url}|\n"
-        )
+        print("🎉 Curation Success!|scraped, added and indexed document|\n")
 
 
 if __name__ == "__main__":
