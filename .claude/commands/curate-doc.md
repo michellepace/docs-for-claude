@@ -1,7 +1,7 @@
 ---
 argument-hint: <collection-dir> <source_url>
 description: Scrape source URL and save to collection directory
-allowed-tools: Bash(find:*), Bash(uv run:scripts/add_doc.py:*), Read, Edit
+allowed-tools: Bash(find:*), Bash(uv run:scripts/curate_doc.py:*), Read, Edit
 model: claude-sonnet-4-5-20250929
 ---
 
@@ -62,7 +62,7 @@ The script modifies INDEX.xml in this pattern:
 
 ### 1. 🤔 Validate arguments
 
-You are helping a new user add a new document to an existing collection or a new one.
+You are helping a new user curate a document from source URL $2 into an existing or new collection directory $1.
 
 **Existing collections:** !`find . -maxdepth 1 -type d -exec test -f {}/INDEX.xml \; -printf '%P\n'`
 
@@ -78,9 +78,9 @@ Examples of validation failures:
 
   ```
   ## 🤔 Missing arguments!
-  - Usage: `/add-doc <collection> <url>`
+  - Usage: `/curate-doc <collection> <url>`
   - Existing collections: `shiny`, `uv`, `tailwind`
-  - Example: `/add-doc shiny https://shiny.posit.co/py/docs/overview.html`
+  - Example: `/curate-doc shiny https://shiny.posit.co/py/docs/overview.html`
 
   [Friendly suggestion. Ask for confirmation.]
   ```
@@ -91,7 +91,7 @@ Examples of validation failures:
   ## 🤔 You didn't give me a collection?
   - URL detected: `https://vite.dev/guide/cli.html`
   - My Suggestion: A new `vite` collection looks ideal!
-  - Try: `/add-doc vite https://vite.dev/guide/cli.html`
+  - Try: `/curate-doc vite https://vite.dev/guide/cli.html`
 
   [Shall we proceed with `vite` as a new collection? It will get created automatically 🙂]
   ```
@@ -100,7 +100,7 @@ Examples of validation failures:
 
   ```
   ## 🤔 Collection "shiyy" doesn't exist, but you have "shiny"!
-  - Did you mean: `/add-doc shiny https://example.com/docs` ?
+  - Did you mean: `/curate-doc shiny https://example.com/docs` ?
 
   [Friendly suggestion. Ask for confirmation.]
   ```
@@ -112,7 +112,7 @@ Examples of validation failures:
   - Collection: `shiny`
   - URL: `https://tailwindcss.com/docs/installation`
   - This appears to be Tailwind CSS docs, not Shiny
-  - Did you mean: `/add-doc tailwind https://tailwindcss.com/docs/installation` ?
+  - Did you mean: `/curate-doc tailwind https://tailwindcss.com/docs/installation` ?
 
   [Friendly recommendation in 1-2 short sentence, ask for confirmation]
   ```
@@ -136,7 +136,7 @@ Be emoji led, brief, and helpful for an overwhelmed new user. Analyse "Existing 
 ### 2. 🚀 Run the script
 
 ```bash
-uv run scripts/add_doc.py "$1" "$2"
+uv run scripts/curate_doc.py "$1" "$2"
 ```
 
 ### 3. ❌ On script error
