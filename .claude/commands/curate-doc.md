@@ -130,9 +130,9 @@ Output the final success message following the `<example_success_message>` forma
 
 🎯 What happened
 - Scraped source URL: https://shiny.posit.co/py/docs/overview.html
-- Created/Overwrote document: `shiny/overview.md`
+- [Created/Overwrote] document: `shiny/overview.md`
 - Generated description: (see below!)
-- Updated index: `shiny/INDEX.xml`
+- [Added/Updated] index: `shiny/INDEX.xml`
 
 _[your generated description]_
 ```

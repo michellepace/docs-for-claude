@@ -29,19 +29,25 @@ class TestInputValidation:
     """Fast tests for argument and URL validation (no API calls)."""
 
     def test_requires_both_directory_and_url_arguments(self) -> None:
-        """Test that script requires both directory and url arguments."""
+        """Script requires both directory and URL arguments.
+
+        Fails when either is missing.
+        """
         # Test with no args
         exit_code, output = run_script()
         assert exit_code == 2
         assert "required" in output
 
     def test_fails_when_url_is_invalid(self) -> None:
-        """Test that script exits with error when URL is invalid."""
+        """Script rejects malformed URLs with INVALID_URL error.
+
+        Error message includes the invalid URL.
+        """
         with tempfile.TemporaryDirectory() as tmp_dir:
-            exit_code, output = run_script(tmp_dir, "not-a-url")
+            exit_code, output = run_script(tmp_dir, "horse-donkey-cow")
 
             assert exit_code != 0
-            assert "❌ Error: INVALID_URL|" in output
+            assert "❌ Error: INVALID_URL|horse-donkey-cow" in output
 
 
 class TestDirectoryScenarios:
@@ -77,8 +83,7 @@ class TestDirectoryScenarios:
             assert md_files[0].name in output
 
             assert "✅ Added index source|" in output
-            # Pattern matching only - simplified final message
-            assert "🎉 Curation Success!|scraped, added and indexed document|" in output
+            assert "🎉 Curation Success!|" in output
 
     def test_empty_directory_creates_new_collection(self) -> None:
         """Empty directory is initialized with README, INDEX.xml, and scraped document."""
@@ -111,11 +116,10 @@ class TestDirectoryScenarios:
             assert len(md_files) == 1
 
             assert "✅ Added index source|" in output
-            # Pattern matching only - simpler and less brittle
-            assert "🎉 Curation Success!|scraped, added and indexed document|" in output
+            assert "🎉 Curation Success!|" in output
 
-    def test_existing_collection_appends_without_readme(self) -> None:
-        """Existing collection with INDEX.xml appends new doc without creating README."""
+    def test_existing_collection_adds_document_without_creating_readme(self) -> None:
+        """Existing collection adds new document without creating README."""
         with tempfile.TemporaryDirectory() as tmp_dir:
             tmp_path = Path(tmp_dir)
             existing_dir = tmp_path / "existing_collection"
@@ -139,8 +143,7 @@ class TestDirectoryScenarios:
             assert len(md_files) == 1
 
             assert "✅ Added index source|" in output
-            # Pattern matching only
-            assert "🎉 Curation Success!|scraped, added and indexed document|" in output
+            assert "🎉 Curation Success!|" in output
 
             # README should NOT be created
             readme_path = existing_dir / "README.md"
@@ -150,7 +153,7 @@ class TestDirectoryScenarios:
             assert readme_created_count == 0
 
     def test_nonempty_noncollection_directory_fails(self) -> None:
-        """Nonempty directory without INDEX.xml fails with clear error message."""
+        """Non-empty directory without INDEX.xml fails with INVALID_COLLECTION error."""
         with tempfile.TemporaryDirectory() as tmp_dir:
             tmp_path = Path(tmp_dir)
             invalid_dir = tmp_path / "not_a_collection"
@@ -168,8 +171,8 @@ class TestDirectoryScenarios:
                 "Rejected to prevent inadvertent file overwrites|"
             ) in output
 
-    def test_duplicate_url_updates_source(self) -> None:
-        """Adding same URL twice should update existing source, not fail."""
+    def test_curating_same_url_twice_updates_existing_source(self) -> None:
+        """Curating the same URL twice should update existing source, not fail."""
         with tempfile.TemporaryDirectory() as tmp_dir:
             tmp_path = Path(tmp_dir)
             collection_dir = tmp_path / "test_collection"
@@ -179,7 +182,10 @@ class TestDirectoryScenarios:
             assert exit_code1 == 0
             assert "✅ Added index source|" in output1
             # Pattern matching only - first scrape (add)
-            assert "🎉 Curation Success!|scraped, added and indexed document|" in output1
+            assert (
+                "🎉 Curation Success!|scraped, created and indexed new document|"
+                in output1
+            )
 
             # Second add with same URL - should UPDATE (not fail)
             exit_code2, output2 = run_script(str(collection_dir), TEST_URL)
@@ -197,8 +203,8 @@ class TestDirectoryScenarios:
             source_count = index_content.count("<source>")
             assert source_count == 1, f"Expected 1 source, found {source_count}"
 
-    def test_duplicate_title_gets_unique_filename(self) -> None:
-        """Two URLs with same title should create files with -2 suffix on second."""
+    def test_different_urls_with_same_title_get_numbered_filenames(self) -> None:
+        """Different URLs with same title get numbered filenames (-2 suffix)."""
         with tempfile.TemporaryDirectory() as tmp_dir:
             tmp_path = Path(tmp_dir)
             collection_dir = tmp_path / "test_shiny"
@@ -230,7 +236,7 @@ class TestOutputContent:
     """Integration tests validating generated file content (requires API)."""
 
     def test_index_xml_structure_and_content(self) -> None:
-        """Test INDEX.xml has correct XML structure and content."""
+        """INDEX.xml includes all source fields and correct XML structure."""
         with tempfile.TemporaryDirectory() as tmp_dir:
             tmp_path = Path(tmp_dir)
             new_dir = tmp_path / "test_collection"
@@ -256,7 +262,7 @@ class TestOutputContent:
             assert index_content.endswith("</docs_index>")
 
     def test_readme_md_contains_required_content(self) -> None:
-        """Test README.md contains required content elements."""
+        """README.md includes collection heading, index link, and source site URL."""
         with tempfile.TemporaryDirectory() as tmp_dir:
             tmp_path = Path(tmp_dir)
             new_dir = tmp_path / "test_collection"

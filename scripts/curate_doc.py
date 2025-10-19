@@ -398,8 +398,12 @@ def main() -> None:
     file_path = dir_path / filename
 
     # Write markdown file (overwrites if exists)
+    file_existed = file_path.exists()
     file_path.write_text(content)
-    print(f"✅ Written scrape to file|{_format_path_for_display(file_path)}|")
+    if file_existed:
+        print(f"✅ Overwrote existing document|{_format_path_for_display(file_path)}|")
+    else:
+        print(f"✅ Created new document|{_format_path_for_display(file_path)}|")
 
     # Update INDEX.xml (add or update)
     is_update, old_file_path = _add_or_update_source_in_index(
@@ -413,7 +417,7 @@ def main() -> None:
     if is_update:
         print("🎉 Curation Success!|scraped, overwrote and re-indexed document|\n")
     else:
-        print("🎉 Curation Success!|scraped, added and indexed document|\n")
+        print("🎉 Curation Success!|scraped, created and indexed new document|\n")
 
 
 if __name__ == "__main__":
