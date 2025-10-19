@@ -1,0 +1,44 @@
+<docs_index>
+  <source>
+    <title>Using the REST API - Vercel API Docs</title>
+    <description>Vercel REST API fundamentals covering HTTP/TLS server specs, JSON content-type requirements, bearer token authentication with access token creation and team scope, data types (ID, String, Integer, Float, Map, List, Enum, Date, IsoDate, Boolean), pagination with timestamp-based cursors, rate limits with headers, and endpoint versioning.</description>
+    <source_url>https://vercel.com/docs/rest-api/reference</source_url>
+    <local_file>using-the-rest-api-vercel-api-docs.md</local_file>
+    <scraped_at>2025-10-19</scraped_at>
+  </source>
+  <source>
+    <title>Integrations - Vercel API Docs</title>
+    <description>Integration management example demonstrating the Vercel SDK usage to list account integrations with the `getConfigurations` method, displaying integration slugs, installation types, and associated projects using bearer token authentication.</description>
+    <source_url>https://vercel.com/docs/rest-api/reference/examples/integrations</source_url>
+    <local_file>integrations-vercel-api-docs.md</local_file>
+    <scraped_at>2025-10-19</scraped_at>
+  </source>
+  <source>
+    <title>Vercel Hobby Plan</title>
+    <description>Vercel Hobby plan free tier limits (Edge Config reads/writes, CPU hours, provisioned memory, function invocations/duration, image optimisation, Speed Insights, Web Analytics), 30-day non-commercial billing, fair use restrictions, and Pro comparison.</description>
+    <source_url>https://vercel.com/docs/plans/hobby</source_url>
+    <local_file>vercel-hobby-plan.md</local_file>
+    <scraped_at>2025-10-20</scraped_at>
+  </source>
+  <source>
+    <title>AI SDK</title>
+    <description>Vercel AI SDK TypeScript toolkit overview covering AI SDK Core's unified API for text generation across providers (OpenAI, Anthropic), structured data generation with `generateObject` and `streamObject` using Zod schemas, tool calling integration for external systems, framework support (Next.js, Vue, Svelte, Node.js), and installation guide.</description>
+    <source_url>https://vercel.com/docs/ai-sdk</source_url>
+    <local_file>ai-sdk.md</local_file>
+    <scraped_at>2025-10-20</scraped_at>
+  </source>
+  <source>
+    <title>Vercel Pro Plan</title>
+    <description>Vercel Pro plan pricing covering $20/month platform fee with included deploying seat and monthly credit, credit-based billing for infrastructure resources (1TB Fast Data Transfer, 10M Edge Requests included), team seats (paid Owner/Member at $20/month, unlimited free Viewer seats), paid add-ons (SAML SSO, HIPAA BAA, Flags Explorer, Observability Plus), spend management, and Hobby downgrade process.</description>
+    <source_url>https://vercel.com/docs/plans/pro-plan</source_url>
+    <local_file>vercel-pro-plan.md</local_file>
+    <scraped_at>2025-10-20</scraped_at>
+  </source>
+  <source>
+    <title>Spend Management</title>
+    <description>Vercel spend management for Pro plans covering spend amount configuration per billing cycle, automatic actions (notifications at 50%/75%/100%, webhook triggers, production deployment pausing), metered resource coverage, alert threshold notifications (web, email, SMS), project pausing/unpausing procedures, webhook payload structures, and activity logging.</description>
+    <source_url>https://vercel.com/docs/spend-management</source_url>
+    <local_file>spend-management.md</local_file>
+    <scraped_at>2025-10-20</scraped_at>
+  </source>
+</docs_index>
