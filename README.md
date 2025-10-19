@@ -97,7 +97,7 @@ INDEX.xml Schema
 <docs_index>
   <source>
     <title>Hello Document Title</title>
-    <description>15-25 word dense summary optimised for semantic search...</description>
+    <description>20-30 word dense summary optimised for semantic search...</description>
     <source_url>https://docs.example.com/hello</source_url>
     <local_file>hello-document-title.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
