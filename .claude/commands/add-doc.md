@@ -172,7 +172,7 @@ Example:
   - Updated the index:     `collection/INDEX.xml`
   - Dense description:     (see below)
 
-  *your actual 15-25 word summary here*
+  *your actual 20-30 word summary here*
   ```
 
 </example>

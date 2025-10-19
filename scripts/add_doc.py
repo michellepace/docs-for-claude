@@ -196,7 +196,7 @@ def scrape_with_firecrawl(url: str) -> dict:
             formats=["markdown"],
             only_main_content=True,  # Excl. nav menu, footer, sidebars, etc.
             remove_base64_images=True,  # Removes base64 strings (keeps alt text)
-            wait_for=2000,  # Wait to capture dynamic content (2 seconds)
+            wait_for=3000,  # Wait to capture dynamic content (3 seconds)
             max_age=86400000,  # Use cached content for speed (24 hours)
         )
 
