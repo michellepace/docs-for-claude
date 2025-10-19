@@ -9,64 +9,19 @@ Scrape $2 and add to $1 collection directory with INDEX.xml entry.
 
 ## Context
 
-This adds documentation to curated collections that AI agents search efficiently. Each `collection/` contains:
+Documentation curation enables targeted, efficient context retrieval for AI agents. Rather than searching entire documentation sites, curated collections provide semantic descriptions in INDEX.xml that map specific topics to relevant markdown files.
 
-- `INDEX.xml` - structured index mapping markdown files to searchable metadata
-- `*.md` - scraped documentation files
-- `README.md` - collection overview
-
-The script scrapes the URL, creates the markdown file, and appends a new `<source>` entry to INDEX.xml. You will replace that entry's `<description>` `PLACEHOLDER` value after script success.
-
-The script modifies INDEX.xml in this pattern:
-
-<example_structure>
-
-**Before** (existing INDEX.xml):
-
-```xml
-<docs_index>
-  <source>
-    <title>Existing Document</title>
-    <description>Existing content summary...</description>
-    <source_url>https://example.com/docs/existing</source_url>
-    <local_file>existing-document.md</local_file>
-    <scraped_at>2025-08-25</scraped_at>
-  </source>
-</docs_index>
-```
-
-**After** (new source appended):
-
-```xml
-<docs_index>
-  <source>
-    <title>Existing Document</title>
-    <description>Existing content summary...</description>
-    <source_url>https://example.com/docs/existing</source_url>
-    <local_file>existing-document.md</local_file>
-    <scraped_at>2025-08-25</scraped_at>
-  </source>
-  <source>
-    <title>New Document Title</title>
-    <description>PLACEHOLDER</description> <!-- You replace PLACEHOLDER -->
-    <source_url>$2</source_url>
-    <local_file>new-document-title.md</local_file>
-    <scraped_at>2025-10-15</scraped_at>
-  </source>
-</docs_index>
-```
-
-</example_structure>
+The script scrapes content from $2, writes it to a markdown file in $1/, and adds a new `<source>` entry to INDEX.xml with a PLACEHOLDER description. Your task is to replace PLACEHOLDER with a semantic summary after successful scraping.
 
 ## Workflow
 
-### 1. 🤔 Validate arguments
+### 1. Validate arguments
 
 You are helping a new user curate a document from source URL $2 into an existing or new collection directory $1.
 
 **Existing collections:** !`find . -maxdepth 1 -type d -exec test -f {}/INDEX.xml \; -printf '%P\n'`
 
-Here are just a few examples what new users can inadvertantly get wrong - you are to help them do what they intend:
+Here are just a few examples what new users can inadvertently get wrong - you are to help them do what they intend:
 
 <validation_examples>
 
@@ -133,46 +88,53 @@ Success:
 
 Be emoji led, brief, and helpful for an overwhelmed new user. Analyse "Existing Collections" and both arguments $1 (proposed collection directory) and $2 (URL). Determine if the arguments should fail validation. Use the above examples as a guide and adapt for user experience (think emojis, structure, `highlighting`). Otherwise output a success message and proceed without confirmation.
 
-### 2. 🚀 Run the script
+### 2. Run the script
 
 ```bash
 uv run scripts/curate_doc.py "$1" "$2"
 ```
 
-### 3. ❌ On script error
+### 3. On script error
 
-Script errors print actionable information. If recovery is possible, propose specific fixes but wait for explicit user approval.
+Script errors print actionable information. If recovery is possible, propose specific fixes but wait for explicit user approval. Proceed ONLY when script outputs `🎉 Curation Success!` - don't waste effort if the script failed.
 
-### 4. 🎉 On success
+### 4. Generate and update description
 
-When script outputs `🎉 Curation Success!`:
+Read the scraped markdown file and write a 20-30 word dense description following the example patterns in between `<example_description>`. In `$1/INDEX.xml`, find the `<source>` entry where `<source_url>` matches $2.
 
-1. Read the scraped markdown file shown in the `🎉 Curation Success!` output
-2. Write a 20-30 word dense description optimised for semantic search (single line, no line breaks).
-3. In `$1/INDEX.xml`, find the `<source>` entry where `<source_url>` matches `$2` (the URL argument)
-4. In that entry's `<description>` element, replace the value `PLACEHOLDER` with your dense description (single line, no line breaks). Ensure the closing `</description>` tag remains on the same line after editing for consistent index formatting.
+⚠️ **CRITICAL**: Replace ONLY the text `PLACEHOLDER` - do NOT replace the entire `<description>` tag or you will break the XML structure. After replacement, ensure description tags are matched on a single line.
 
-Example:
+<example_description>
 
-<example>
+```xml
+<!-- Example 1 (single line, no line breaks) -->
+<description>Next.js folder structure covering top-level folders (`app`, `pages`, `public`, `src`), routing files (`page.js`, `layout.js`, `loading.js`, `error.js`), dynamic routes, route groups, private folders, parallel/intercepted routes, colocation patterns, component hierarchy, and metadata file conventions.</description>
 
-- Description format:
+<!-- Example 2 (single line, no line breaks) -->
+<description>Dependency fields, uv add/remove commands, dependency sources (Git, URL, path, workspace), optional dependencies, development groups, build dependencies, editable installations, and dependency specifiers syntax.</description>
 
-  ```xml
-  <description>Next.js folder structure covering top-level folders (`app`, `pages`, `public`, `src`), routing files (`page.js`, `layout.js`, `loading.js`, `error.js`), dynamic routes, route groups, private folders, parallel/intercepted routes, colocation patterns, component hierarchy, and metadata file conventions.</description>
-  ```
+<!-- Example 3 (single line, no line breaks) -->
+<description>Advanced reactive patterns including `@reactive.event` and `isolate` for event-driven execution, `req` for conditional execution, `invalidate_later` for scheduled updates, `@reactive.file_reader` for monitoring files, and `@reactive.poll` for conditional polling.</description>
+```
 
-- Final success message:
+</example_description>
 
-  ```
-  ## 🎉 Curation Success!
+### 5. Report success
 
-  🎯 What happened
-  - Scraped source URL: https://shiny.posit.co/py/docs/overview.html
-  - Overwrote document: `shiny/overview.md`
-  - Generated description: *actual 20-30 word dense description here*
-  - Updated index: `shiny/INDEX.xml`
+Output the final success message following the `<example_success_message>` format:
 
-  ```
+<example_success_message>
 
-</example>
+```
+## 🎉 Curation Success!
+
+🎯 What happened
+- Scraped source URL: https://shiny.posit.co/py/docs/overview.html
+- Created/Overwrote document: `shiny/overview.md`
+- Generated description: (see below!)
+- Updated index: `shiny/INDEX.xml`
+
+_[your generated description]_
+```
+
+</example_success_message>
