@@ -40,7 +40,9 @@ source ~/.zshrc
 | Command | Purpose | .md Files | INDEX `<source>` |
 |:--------|:--------|:----------|:----------|
 | `/curate-doc <directory> <url>` | Add / re-scrape doc | ✅ Write | ✅ Add/replace |
-| `/rescrape-docs <directory>` | 🚧 TODO: Re-scrape all | ✅ Write all | ✅ Replace all |
+| `/rescrape-docs <directory>` | Re-scrape all docs | ✅ Write all | ✅ Replace all |
+
+⚠️ **Current limitation:** `/rescrape-docs` is suitable for small-medium collections (≤12 docs). Large collections (shiny=36, uv=17) exceed context limits. Use `/curate-doc` for individual updates until batch processing is optimised.
 
 ## 💡 Usage Examples
 
