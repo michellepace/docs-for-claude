@@ -1,12 +1,10 @@
 # Curate Docs For Claude Code
 
-Curate documentation collections using slash commands and FireCrawl. Reference indexes to get answers efficiently e.g. `@INDEX.xml what's a utility?`.
+Curate documentation collections using slash commands and FireCrawl. Reference indexes to get answers efficiently e.g. `@tailwind/INDEX.xml what's a utility?`.
 
-**Why?** Cleaner than web-fetch, smaller context, curated persistence.
+**Why?** Cleaner than web-fetch, focussed context, curated persistence.
 
 ## 📦 Repo Collections
-
-*Examples in this repo, but curate your own. For fresh Anthropic docs use [this tool](https://github.com/ericbuess/claude-code-docs).*
 
 | Tool | Description | Source | Scraped | Path | Index |
 |:-----|:------------|:-------|:--------|:-----|:------|
@@ -16,6 +14,8 @@ Curate documentation collections using slash commands and FireCrawl. Reference i
 | **UV** | Python projects | [Official](https://docs.astral.sh/uv/) | 2025-10-15 | 📁 [`uv/`](uv/) | 📄 [`uv/INDEX.xml`](uv/INDEX.xml) |
 | **Vercel** | Deployment platform | [Official](https://vercel.com) | 2025-10-20 | 📁 [`vercel/`](vercel/) | 📄 [`vercel/INDEX.xml`](vercel/INDEX.xml) |
 | **Anything** | Add your own | ~ | ~ | 📁 | 📄 |
+
+*Examples in this repo, but curate your own. For fresh Anthropic docs use [this tool](https://github.com/ericbuess/claude-code-docs).*
 
 ## 🚀 Setup
 
@@ -42,7 +42,7 @@ source ~/.zshrc
 | `/curate-doc <directory> <url>` | Add / re-scrape doc | ✅ Write | ✅ Add/replace |
 | `/rescrape-docs <directory>` | Re-scrape all docs | ✅ Write all | ✅ Replace all |
 
-⚠️ **Current limitation:** `/rescrape-docs` is suitable for small-medium collections (≤12 docs). Large collections (shiny=36, uv=17) exceed context limits. Use `/curate-doc` for individual updates until batch processing is optimised.
+*Limitation `/rescrape-docs`: works for small collections else exceeds context window, will be improved.*
 
 ## 💡 Usage Examples
 
