@@ -40,9 +40,9 @@ source ~/.zshrc
 | Command | Purpose | .md Files | INDEX `<source>` |
 |:--------|:--------|:----------|:----------|
 | `/curate-doc <directory> <url>` | Add / re-scrape doc | ✅ Write | ✅ Add/replace |
-| `/rescrape-docs <directory>` | Re-scrape all docs | ✅ Write all | ✅ Replace all |
+| `/rescrape-docs <directory>` | Re-scrape all docs | ✅ Write all | ✅ Selective update |
 
-*Limitation `/rescrape-docs`: works for small collections else exceeds context window, will be improved.*
+*Note: `/rescrape-docs` only regenerates descriptions for files with non-whitespace changes, reducing token usage.*
 
 ## 💡 Usage Examples
 
@@ -80,22 +80,25 @@ To use the docs (from other projects):
 
 ## 🏗️ How This Repo Works
 
-The `/curate-doc <directory> <url>` command handles everything. It calls a Python script for deterministic operations (scraping, file I/O, XML updates) and prints progress so Claude Code can self-heal. Claude Code writes a dense index `<description>` for the doc. When you `@INDEX.xml [your question]` it uses the descriptions to find docs to analyse.
+**Workflow:** Python script scrapes URL → writes .md file → creates INDEX.xml entry with `PLACEHOLDER` description → Claude Code generates semantic description.
 
-With existing docs, `/curate-doc` and `/rescrape-docs` will re-scrape and replace documents and index sources.
+- `/curate-doc` - Always regenerates description for the doc
+- `/rescrape-docs` - Only regenerates descriptions for files with content changes (ignores whitespace)
 
-Directory Structure:
+**Usage:** Reference `@INDEX.xml [question]` to let Claude Code use descriptions to find relevant docs.
+
+**Directory Structure:**
 
 ```text
 uv/
 ├── INDEX.xml               # Index of all docs
 ├── README.md
-├── hello-document-title.md # Scraped doc
-├── overview.md             # Scraped doc
+├── api-reference.md        # Scraped doc
+├── getting-started.md      # Scraped doc
 └── ...
 ```
 
-INDEX.xml Schema
+**INDEX.xml Schema:**
 
 ```xml
 <docs_index>
@@ -110,4 +113,4 @@ INDEX.xml Schema
 </docs_index>
 ```
 
-The script uses the FireCrawl Python SDK. But the project has the MCP configured anyway: [.mcp.json](.mcp.json), [.claude/settings.json](.claude/settings.json). Just in case Claude Code needs it.
+Scripts use FireCrawl Python SDK for scraping. MCP server configured ([.mcp.json](.mcp.json), [.claude/settings.json](.claude/settings.json)) for Claude Code self-healing beyond scripts.
