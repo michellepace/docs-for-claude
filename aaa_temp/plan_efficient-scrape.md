@@ -61,10 +61,16 @@ This is acceptable for individual curation, but breaks batch re-scraping. Soluti
 **Helper function:**
 
 ```python
-def run_sync_script(collection_dir: str) -> tuple[int, str]:
+def run_sync_script(collection_dir: str, cwd: Path | None = None) -> tuple[int, str]:
     """Run sync_index.py via uv and return (exit_code, output)."""
     cmd = ["uv", "run", "python", "scripts/sync_index.py", collection_dir]
-    result = subprocess.run(cmd, capture_output=True, text=True, check=False)
+    result = subprocess.run(
+        cmd,
+        capture_output=True,
+        text=True,
+        cwd=cwd,
+        check=False,
+    )
     return result.returncode, result.stdout + result.stderr
 ```
 
@@ -245,11 +251,7 @@ def _cleanup_backup(backup_path: Path) -> None:
 
 ### Modify main() function
 
-Add imports at top:
-
-```python
-import shutil  # If not already imported
-```
+**Note:** All required imports (`shutil`, `subprocess`, `sys`, `ET`, `Path`) are already present in `sync_index.py`.
 
 Insert in main() after validation, before scraping loop:
 
@@ -278,9 +280,10 @@ _cleanup_backup(backup_path)
 
 **File:** `.claude/commands/rescrape-docs.md`
 
-**Modify Step 3 (lines 57-83):** Replace entire section with:
+**Modify Step 3 (lines 57-83):** Replace entire section with content between `<replace_with>` tags:
 
-```markdown
+<replace_with>
+
 ### 3. Generate descriptions for PLACEHOLDER entries only
 
 Parse `$1/INDEX.xml` to get all `<source>` entries where `<description>PLACEHOLDER</description>`.
@@ -289,13 +292,11 @@ For each PLACEHOLDER source, read the corresponding markdown file and write a 20
 
 Write all descriptions to `descriptions.txt` in this format:
 
-```
-
-<https://example.com/url1>
+```text
+https://example.com/url1
 Description for url1 here
-<https://example.com/url2>
+https://example.com/url2
 Description for url2 here
-
 ```
 
 <example_description>
@@ -303,9 +304,10 @@ Description for url2 here
 [Keep existing examples unchanged]
 
 </example_description>
-```
 
 **Critical:** Only generate for PLACEHOLDER entries. Unchanged files already have descriptions restored by sync_index.py.
+
+</replace_with>
 
 ---
 
