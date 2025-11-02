@@ -88,7 +88,7 @@ def _scrape_doc(collection_dir: Path, source_url: str) -> bool:
     # - collection_dir is validated by main() to be existing dir with INDEX.xml
     # - source_url is validated by curate_doc.py via urlparse
     # - Using list (not shell=True) prevents command injection
-    result = subprocess.run(  # noqa: S603
+    result = subprocess.run(
         [uv_path, "run", "scripts/curate_doc.py", str(collection_dir), source_url],
         check=False,
         capture_output=False,  # Let output stream through
@@ -111,11 +111,12 @@ def _print_git_changes_summary(collection_dir: Path) -> None:
     # S603: Subprocess call is safe - calling git with validated directory path
     # - collection_dir validated in main() to be existing directory
     # - Using list (not shell=True) prevents command injection
-    result = subprocess.run(  # noqa: S603
-        [git_path, "diff", "--stat", "-w", str(collection_dir)],
+    result = subprocess.run(
+        [git_path, "diff", "--stat", "-w", "."],
         check=False,
         capture_output=True,
         text=True,
+        cwd=collection_dir,
     )
 
     if result.stdout.strip():
@@ -176,6 +177,92 @@ def _print_structured_output(
         print()
 
 
+def _backup_index_xml(index_path: Path) -> Path:
+    """Validate XML structure and create backup file."""
+    try:
+        ET.parse(index_path)
+    except ET.ParseError as e:
+        print(f"❌ Error: INVALID_XML|{e}|{index_path}|", file=sys.stderr)
+        sys.exit(1)
+
+    backup_path = index_path.with_suffix(".xml.backup")
+    shutil.copy2(index_path, backup_path)
+    return backup_path
+
+
+def _get_changed_markdown_files(collection_dir: Path) -> set[str]:
+    """Get set of changed .md filenames from git diff (excludes README.md)."""
+    git_path = shutil.which("git")
+    if not git_path:
+        return set()
+
+    result = subprocess.run(
+        [git_path, "diff", "--name-only", "-w", "."],
+        capture_output=True,
+        text=True,
+        check=False,
+        cwd=collection_dir,
+    )
+
+    changed_files = set()
+    for line in result.stdout.strip().split("\n"):
+        if line.endswith(".md") and not line.endswith("README.md"):
+            changed_files.add(Path(line).name)
+
+    return changed_files
+
+
+def _restore_unchanged_descriptions(
+    index_path: Path, backup_path: Path, changed_files: set[str]
+) -> int:
+    """Restore descriptions for unchanged files from backup."""
+    backup_tree = ET.parse(backup_path)
+    backup_root = backup_tree.getroot()
+    backup_descriptions = {}
+
+    for source in backup_root.findall("source"):
+        local_file_elem = source.find("local_file")
+        desc_elem = source.find("description")
+
+        if local_file_elem is not None and desc_elem is not None:
+            backup_descriptions[local_file_elem.text] = desc_elem.text
+
+    tree = ET.parse(index_path)
+    root = tree.getroot()
+    restored_count = 0
+
+    for source in root.findall("source"):
+        local_file_elem = source.find("local_file")
+        desc_elem = source.find("description")
+
+        if local_file_elem is None or desc_elem is None:
+            continue
+
+        local_file = local_file_elem.text
+
+        if (
+            local_file not in changed_files
+            and local_file in backup_descriptions
+            and backup_descriptions[local_file] != "PLACEHOLDER"
+        ):
+            desc_elem.text = backup_descriptions[local_file]
+            restored_count += 1
+
+    if restored_count > 0:
+        ET.indent(root, space="  ")
+        tree.write(index_path, encoding="unicode", xml_declaration=False)
+
+    return restored_count
+
+
+def _cleanup_backup(backup_path: Path) -> None:
+    """Delete backup file with error handling (non-fatal)."""
+    try:
+        backup_path.unlink(missing_ok=True)
+    except OSError as e:
+        print(f"⚠️  Could not delete backup: {e}", file=sys.stderr)
+
+
 def main() -> None:
     """Sync INDEX.xml, scrape all docs, output structured results."""
     parser = argparse.ArgumentParser(
@@ -195,6 +282,9 @@ def main() -> None:
     if not index_path.exists():
         print(f"Error: INDEX.xml not found in '{collection_dir}'", file=sys.stderr)
         sys.exit(1)
+
+    # Backup INDEX.xml (validates XML structure)
+    backup_path = _backup_index_xml(index_path)
 
     # Step 1: Sync INDEX.xml
     md_files = get_markdown_files(collection_dir)
@@ -226,6 +316,16 @@ def main() -> None:
     # Step 4: Show git changes summary
     print()
     _print_git_changes_summary(collection_dir)
+
+    # Restore unchanged descriptions
+    changed_files = _get_changed_markdown_files(collection_dir)
+    restored_count = _restore_unchanged_descriptions(
+        index_path, backup_path, changed_files
+    )
+    print(f"📝 Restored {restored_count} unchanged description(s)")
+
+    # Cleanup backup file
+    _cleanup_backup(backup_path)
 
 
 if __name__ == "__main__":

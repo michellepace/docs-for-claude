@@ -54,9 +54,11 @@ This script:
 - Outputs structured results
 - Script errors print actionable information
 
-### 3. Generate descriptions for all docs
+### 3. Generate descriptions for PLACEHOLDER entries only
 
-Parse `$1/INDEX.xml` to get all `<source>` entries. For each source, read the markdown file and write a 20-30 word dense description (single line, no line breaks) following the example patterns in between `<example_description>`.
+Parse `$1/INDEX.xml` to get all `<source>` entries where `<description>PLACEHOLDER</description>`.
+
+For each PLACEHOLDER source, read the corresponding markdown file and write a 20-30 word dense description (single line, no line breaks) following the example patterns in between `<example_description>`.
 
 Write all descriptions to `descriptions.txt` in this format:
 
@@ -71,7 +73,7 @@ Description for url2 here
 
 ```xml
 <!-- Example 1 (single line, no line breaks) -->
-<description>Next.js folder structure covering top-level folders (`app`, `pages`, `public`, `src`), routing files (`page.js`, `layout.js`, `loading.js`, `error.js`), dynamic routes, route groups, private folders, parallel/intercepted routes, colocation patterns, component hierarchy, and metadata file conventions.</description>
+<description>Folder structure covering top-level folders (`app`, `pages`, `public`, `src`), routing files (`page.js`, `layout.js`, `loading.js`, `error.js`), dynamic routes, route groups, private folders, parallel/intercepted routes, colocation patterns, component hierarchy, and metadata file conventions.</description>
 
 <!-- Example 2 (single line, no line breaks) -->
 <description>Dependency fields, uv add/remove commands, dependency sources (Git, URL, path, workspace), optional dependencies, development groups, build dependencies, editable installations, and dependency specifiers syntax.</description>
@@ -81,6 +83,8 @@ Description for url2 here
 ```
 
 </example_description>
+
+**Critical:** Only generate for PLACEHOLDER entries. Unchanged files already have descriptions restored by sync_index.py.
 
 ### 4. Update INDEX.xml
 
@@ -100,15 +104,17 @@ Parse structured output from the script and report completion following the `<ex
 ## ✅ Re-scrape Complete!
 
 📊 Statistics
-- Collection:           `$1`
-- Removed stale:        [N]
-- Total docs:           [M]
-- Successfully scraped: [X]
-- Failed to scrape:     [Y]
-- Descriptions updated: [X]
+- Collection:            `$1`
+- Stale sources removed: [N]
+- Total docs:            [M]
+- Successfully scraped:  [X]
+- Failed to scrape:      [Y]
+- Descriptions updated:  [X]
 
-💡 Content changes detected:
-- [List files from GIT_CHANGES block, or "No content changes" if git reported none]
+💡 Collection Content Changes for `$1`:
+- [List files from GIT_CHANGES block]
+
+*NB: excludes files with whitespace changes*
 ```
 
 </example_summary_message>
