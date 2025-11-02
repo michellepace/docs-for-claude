@@ -100,7 +100,7 @@ There are templates for common use cases. For example, [data dashboards](https:/
 
 Use the terminal command below to [create and run](https://shiny.posit.co/py/get-started/create-run.html) the same dashboard locally with `shiny create`, starting from a [template](https://shiny.posit.co/py/templates/).
 
-```sourceCode bash
+```bash
 shiny create --template dashboard
 ```
 
@@ -110,12 +110,12 @@ While Shiny includes everything you need to build an app, it is also built on a 
 
 Take the [action button](https://shiny.posit.co/py/components/inputs/action-button/), for example. You can print the input in the Python console to see that it’s just a regular HTML `<button>` element.
 
-```sourceCode python
+```python
 >>> from shiny import ui
 >>> ui.input_action_button("update_data", "Button")
 ```
 
-```sourceCode html
+```html
 <button class="btn btn-default action-button" id="update_data" type="button">Button</button>
 ```
 

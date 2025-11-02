@@ -6,7 +6,7 @@ Shiny apps can be put alongside each other, and other starlette applications.
 
 Here is an example.
 
-```sourceCode python
+```python
 from starlette.applications import Starlette
 from starlette.routing import Mount
 from starlette.staticfiles import StaticFiles

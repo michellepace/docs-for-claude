@@ -4,7 +4,7 @@ When you [install shiny](https://shiny.posit.co/py/get-started/install.html), yo
 
 The best way to create a new Shiny app is with the `shiny create` command. This command asks you a series of questions about what kind of app you want to create, and then provides all the boilerplate code you need to get started with a working app.
 
-```sourceCode bash
+```bash
 shiny create
 ```
 
@@ -44,7 +44,7 @@ To run a Shiny app from the command line, use the `shiny run` command. The requi
 
 You can also include optional flags to improve your development experience. For example, if your app’s entry point is `app.py` inside a folder called `app_dir`, you can run:
 
-```sourceCode bash
+```bash
 shiny run --reload --launch-browser app_dir/app.py
 ```
 

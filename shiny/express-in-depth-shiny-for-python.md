@@ -12,103 +12,47 @@ The following information is organized into two broad topics: [Programming UI](h
 
 Let’s start with an unremarkable bit of Shiny Express UI code: one card container, with a heading tag and a string inside.
 
-app.py+
+app.py:
 
-9
-
-1
-
-2
-
-3
-
-4
-
-5
-
+```python
 from shiny.express import ui
 
-with ui.card(class\_="mt-3"):
-
-ui.h3("Socrates")
-
-"470-399 BC"
+with ui.card(class_="mt-3"):
+    ui.h3("Socrates")
+    "470-399 BC"
+```
 
 Now let’s say we want to add a second card.
 
-app.py+
+app.py:
 
-9
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
+```python
 from shiny.express import ui
 
-with ui.card(class\_="mt-3"):
+with ui.card(class_="mt-3"):
+    ui.h3("Socrates")
+    "470-399 BC"
 
-ui.h3("Socrates")
-
-"470-399 BC"
-
-with ui.card(class\_="mt-3"):
-
-ui.h3("Immanuel Kant")
-
-"1724-1804"
+with ui.card(class_="mt-3"):
+    ui.h3("Immanuel Kant")
+    "1724-1804"
+```
 
 That works. But as good programmers, we don’t like to repeat ourselves. So we’ll follow programming best practices and refactor that UI logic into a function:
 
-app.py+
+app.py:
 
-9
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
+```python
 from shiny.express import ui
 
-defperson(name, years):
-
-with ui.card(class\_="mt-3"):
-
-ui.h3(name)
-
-years
+def person(name, years):
+    with ui.card(class_="mt-3"):
+        ui.h3(name)
+        years
 
 person("Socrates", "470-399 BC")
-
 person("Immanuel Kant", "1724-1804")
+```
 
 Uh oh, that doesn’t look right. Such a simple and obviously correct refactor, yet the cards are now empty!
 
@@ -126,7 +70,7 @@ This is so important that we’ll repeat it: **Shiny Express executes your `app.
 
 That’s why, in our simple examples above, a bare string like `"470-399 BC"` gets printed to the screen. If Shiny Express was executed in script mode (like Shiny Core is, by the way), you’d have to rewrite it as:
 
-```sourceCode python
+```python
 sys.displayhook("470-399 BC")
 ```
 
@@ -136,7 +80,7 @@ to get the string to appear in the UI. Gross.
 
 One important aspect of interactive mode is that only top-level expressions are printed. If you define a function in interactive mode, the expressions that make it up are not automatically printed.
 
-```sourceCode python
+```python
 >>> def foo():
 ...     "470-399 BC"
 ...
@@ -148,45 +92,20 @@ Now that you understand that Shiny Express executes in interactive mode, you can
 
 You could fix this by calling `sys.displayhook` on each UI element.
 
-app.py+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
+```python
 import sys
-
 from shiny.express import ui
 
-defperson(name, years):
-
-with ui.card(class\_="mt-3"):
-
-sys.displayhook(ui.h3(name))
-
-sys.displayhook(years)
+def person(name, years):
+    with ui.card(class_="mt-3"):
+        sys.displayhook(ui.h3(name))
+        sys.displayhook(years)
 
 person("Socrates", "470-399 BC")
-
 person("Immanuel Kant", "1724-1804")
+```
 
 OK, it works, but that’s pretty gross. Is there a better way to fix this problem?
 
@@ -206,45 +125,20 @@ We want to write functions that generate UI, and we don’t want to have to call
 
 Apply the `@expressify` decorator to a function to tell Shiny Express that the function body should be executed in interactive mode. Think of it as rewriting the function body so that `sys.displayhook()` wraps every expression.
 
-app.py+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
+```python
 from shiny.express import expressify, ui
 
 @expressify
-
-defperson(name, years):
-
-with ui.card(class\_="mt-3"):
-
-ui.h3(name)
-
-years
+def person(name, years):
+    with ui.card(class_="mt-3"):
+        ui.h3(name)
+        years
 
 person("Socrates", "470-399 BC")
-
 person("Immanuel Kant", "1724-1804")
+```
 
 Shiny Core perspective
 
@@ -256,7 +150,7 @@ Sometimes we have a need to generate UI for some purpose other than directly dis
 
 This works OK for simple objects like strings (naturally) and even non-container UI elements—you can simply store them as variables, and that works. But in the examples above, we’re using `with ui.card():`, and you can’t store a `with` statement in a variable.
 
-```sourceCode python
+```python
 >>> x = with ui.card():
   File "<stdin>", line 1
     x = with ui.card():
@@ -266,41 +160,19 @@ SyntaxError: invalid syntax
 
 You also cannot use `with ui.card() as x:` syntax, because UI context managers like `ui.card()` don’t yield anything, for reasons we’ll get to in a moment.
 
-app.py+
+app.py:
 
-9
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
+```python
 from shiny.express import expressify, ui
 
-with ui.card(class\_="mt-3") as x:
-
-ui.h3("Socrates")
-
-"470-399 BC"
+with ui.card(class_="mt-3") as x:
+    ui.h3("Socrates")
+    "470-399 BC"
 
 x
-
 x
-
 x
+```
 
 It looks for a moment like it worked, but no, it didn’t; instead of displaying the card three times, it displayed it once. That’s because leaving the `with ui.card():` context immediately displays the entire card, and then the `x` is just assigned a `None` value, which doesn’t display anything.
 
@@ -308,45 +180,20 @@ It looks for a moment like it worked, but no, it didn’t; instead of displaying
 
 The `ui.hold()` context manager allows you to collect UI code into a variable.
 
-app.py+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
+```python
 from shiny.express import expressify, ui
 
 with ui.hold() as x:
-
-with ui.card(class\_="mt-3"):
-
-ui.h3("Socrates")
-
-"470-399 BC"
+    with ui.card(class_="mt-3"):
+        ui.h3("Socrates")
+        "470-399 BC"
 
 x
-
 x
-
 x
+```
 
 In this case, it’s just a single card, but there’s no limit to how much or how little UI you can nest under `ui.hold()`.
 
@@ -360,57 +207,23 @@ So far, all of the UI we’ve generated has been “static”—it’s generated
 
 We can do this in Shiny Express by using the `@render.ui` decorator, which expects a function that returns a UI object. We can combine `@expressify` and `ui.hold()` to make this work. (Spoiler alert: we’re just setting up a strawman solution here, we’ll get to the “right” way in a moment.)
 
-app.py+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
+```python
 from shiny.express import expressify, input, render, ui
 
-ui.input\_text("name", "Name", "Socrates")
-
-ui.input\_text("years", "Years", "470-399 BC")
+ui.input_text("name", "Name", "Socrates")
+ui.input_text("years", "Years", "470-399 BC")
 
 @render.ui
-
 @expressify
-
-defperson():
-
-with ui.hold() as result:
-
-with ui.card(class\_="mt-3"):
-
-ui.h3(input.name())
-
-input.years()
-
-return result
+def person():
+    with ui.hold() as result:
+        with ui.card(class_="mt-3"):
+            ui.h3(input.name())
+            input.years()
+    return result
+```
 
 That does work; change the name or year inputs, and the card updates. But it’s way more boilerplate than we’d like.
 
@@ -418,45 +231,20 @@ That does work; change the name or year inputs, and the card updates. But it’s
 
 The `@render.express` decorator is a shorthand for that combination of `@render.ui` \+ `@expressify` \+ `ui.hold`. You can just think of it as “reactively render a chunk of Express code”.
 
-app.py+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
+```python
 from shiny.express import expressify, input, render, ui
 
-ui.input\_text("name", "Name", "Socrates")
-
-ui.input\_text("years", "Years", "470-399 BC")
+ui.input_text("name", "Name", "Socrates")
+ui.input_text("years", "Years", "470-399 BC")
 
 @render.express
-
-defperson():
-
-with ui.card(class\_="mt-3"):
-
-ui.h3(input.name())
-
-input.years()
+def person():
+    with ui.card(class_="mt-3"):
+        ui.h3(input.name())
+        input.years()
+```
 
 It’s almost anticlimactically simple to use, considering how much explaining we had to do to get here.
 
@@ -468,13 +256,13 @@ In Shiny Core, you should use `@render.ui` and skip `@expressify` or `ui.hold()`
 
 When Express currently raises an error when attempting to display an object that is not a valid UI object. This can surface in suprising ways, for example, when calling a function to perform a side-effect (like logging) which returns an unknown class of object.
 
-```sourceCode python
+```python
 from shiny.express import session
 
 session.on_ended(lambda: "Session ended!")
 ```
 
-```sourceCode python
+```python
 TypeError: Invalid tag item type: <class 'function'>. Consider calling str() on this value before treating it as a tag item.
 ```
 
@@ -482,7 +270,7 @@ TypeError: Invalid tag item type: <class 'function'>. Consider calling str() on 
 
 In Express, you can assign the result of a function call to a variable to prevent displaying it, so you can use it to work around this issue.
 
-```sourceCode python
+```python
 from shiny.express import session
 
 _ = session.on_ended(lambda: "Session ended!")
@@ -500,35 +288,33 @@ For better performance, it’s often useful to have some code run _once_ when th
 
 Fortunately, if you move expensive code to a separate module, it will only be executed once (and objects can then be shared across sessions).
 
-app.py×shared.py×data.csv×+
+app.py:
 
-9
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
+```python
 from shiny.express import render
-
 import shared
+# Runs once per session
+@render.data_frame
+def df():
+    return shared.df
+```
 
-\# Runs once per session
+shared.py:
 
-@render.data\_frame
+```python
+# Runs once per startup
+import pandas as pd
+from pathlib import Path
+df = pd.read_csv(Path(__file__).parent / "data.csv")
+```
 
-defdf():
+data.csv:
 
-return shared.df
+```text
+col1,col2
+1,2
+3,4
+```
 
 Shiny Core perspective
 
@@ -536,7 +322,7 @@ In Shiny Core, code outside of the `server` function scope runs once per startup
 
 Show code
 
-```sourceCode python
+```python
 from shiny import App, render, ui
 import pandas as pd
 from pathlib import Path
@@ -562,65 +348,25 @@ It’s also possible to share reactive objects across sessions. This can be pote
 
 Shiny apps have an object that represent a particular user’s [session](https://shiny.posit.co/py/api/Session.html). This object is useful for a variety of more advanced tasks like [sending messages to the client](https://shiny.posit.co/py/api/Session.html#shiny.Session.send_custom_message) and [serving up session-specific data](https://shiny.posit.co/py/api/Session.html#shiny.Session.dynamic_route). In Express, you’ll need to import `session` from `shiny.express` and only use it inside a reactive function, like a `@reactive.effect`:
 
-app.py+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
+```python
 from shiny import reactive
-
 from shiny.express import session, ui
 
 @reactive.effect
-
-asyncdef\_():
-
-x = {"message": "Hello from Python!"}
-
-await session.send\_custom\_message("send\_alert", x)
+async def _():
+    x = {"message": "Hello from Python!"}
+    await session.send_custom_message("send_alert", x)
 
 ui.tags.script(
-
-"""
-
-Shiny.addCustomMessageHandler("send\_alert", function(x) {
-
-document.body.innerHTML = x.message;
-
-});
-
-"""
-
+    """
+    Shiny.addCustomMessageHandler("send_alert", function(x) {
+        document.body.innerHTML = x.message;
+    });
+    """
 )
+```
 
 Shiny Core sessions
 

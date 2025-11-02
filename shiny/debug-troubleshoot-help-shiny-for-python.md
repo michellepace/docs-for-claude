@@ -148,7 +148,7 @@ When you run a Shiny app in debug mode, you’ll see detailed messages in the te
 
 This is an example of the raw data behind how your app works:
 
-```sourceCode json
+```json
 SEND: {"busy": "busy"}
 SEND: {"recalculating": {"name": "my_cool_output", "status": "recalculating"}}
 SEND: {"recalculating": {"name": "my_cool_output", "status": "recalculated"}}
@@ -165,7 +165,7 @@ Note also that Shiny applications use Python’s [asyncio](https://docs.python.o
 
 You can use `breakpoint()` to pause your app while it’s running and inspect what’s going on. This serves the same purpose as clicking and marking a breakpoint in the Positron IDE a, but requires you manually adding new code to the application. This lets you debug using the .
 
-```sourceCode python
+```
 @render.text
 def bad():
     breakpoint()
@@ -203,7 +203,6 @@ If your Shiny application is running with [Shinylive (Python in the browser)](ht
 
 3. You can also check the [“shiny+python” tag on Stack Overflow](https://stackoverflow.com/questions/tagged/shiny+python) for existing answers, or post your own question. (Keep in mind that general [Shiny for R answers](https://stackoverflow.com/questions/tagged/shiny) may also point you in the right direction.) Note that questions posted on Stack Overflow are not closely monitored by our developers.
 
-
 ### Posit Connect Cloud [Anchor](https://shiny.posit.co/py/get-started/debug.html\#posit-connect-cloud)
 
 1. For information about [Posit Connect Cloud](https://connect.posit.cloud/), see the [Connect Cloud Documentation](https://docs.posit.co/connect-cloud/)
@@ -212,7 +211,6 @@ If your Shiny application is running with [Shinylive (Python in the browser)](ht
 
 3. Customers with Starter, Basic, Standard or Pro subscriptions can get direct access to our support engineers by opening a case on [the Posit Support site](https://support.posit.co/). Questions are answered from 9AM - 5PM(EST) Monday - Friday.
 
-
 ### shinyapps.io [Anchor](https://shiny.posit.co/py/get-started/debug.html\#shinyapps.io)
 
 1. For documentation and instructions on how to use [shinyapps.io](http://shinyapps.io/), see the [shinyapps.io user guide](https://docs.posit.co/shinyapps.io/).
@@ -220,7 +218,6 @@ If your Shiny application is running with [Shinylive (Python in the browser)](ht
 2. The best place to get community support for shinyapps.io is the [shinyapps.io category on Posit Community](https://community.rstudio.com/tags/shinyappsio). If you’re having difficulties with shinyapps.io, feel free to ask questions there. Another option is to file an issue in the [rsconnect-python package repo](https://github.com/rstudio/rsconnect-python/issues).
 
 3. Customers with Starter, Basic, Standard or Pro subscriptions can get direct access to our support engineers by opening a case on [the Posit Support site](https://support.posit.co/). Questions are answered from 9AM - 5PM(EST) Monday - Friday.
-
 
 ### Posit Connect and Shiny Server Pro [Anchor](https://shiny.posit.co/py/get-started/debug.html\#posit-connect-and-shiny-server-pro)
 

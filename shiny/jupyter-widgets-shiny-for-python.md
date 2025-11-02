@@ -17,13 +17,13 @@ Although the term “Jupyter Widgets” is often used to refer to ipywidgets, it
 
 To use ipywidgets in Shiny, start by installing `shinywidgets`:
 
-```sourceCode bash
+```
 pip install shinywidgets
 ```
 
 Then, install the ipywidgets that you’d like to use. For this article, we’ll need the following:
 
-```sourceCode bash
+```
 pip install altair bokeh plotly ipyleaflet pydeck==0.8.0
 ```
 
@@ -31,356 +31,94 @@ pip install altair bokeh plotly ipyleaflet pydeck==0.8.0
 
 To render an ipywidget you first define a reactive function that returns the widget and then decorate it with `@render_widget`. Some popular widgets like `altair` have specially-designed decorators for better ergonomics and we recommend using them if they exist.
 
-- Altair
-- Bokeh
-- Plotly
-- Pydeck
-- Other
+Altair:
 
-app.py×requirements.txt×+
-
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
+```python
 from shiny.express import input, ui
+from shinywidgets import render_altair
 
-from shinywidgets import render\_altair
+ui.input_selectize("var", "Select variable", choices=["bill_length_mm", "body_mass_g"])
 
-ui.input\_selectize("var", "Select variable", choices=\["bill\_length\_mm", "body\_mass\_g"\])
 
-@render\_altair
+@render_altair
+def hist():
+    import altair as alt
+    from palmerpenguins import load_penguins
+    df = load_penguins()
+    return (
+        alt.Chart(df)
+        .mark_bar()
+        .encode(x=alt.X(f"{input.var()}:Q", bin=True), y="count()")
+    )
+```
 
-defhist():
+Requirements:
 
-import altair as alt
+```text
+altair
+anywidget
+palmerpenguins
+```
 
-from palmerpenguins import load\_penguins
+Bokeh:
 
-df = load\_penguins()
-
-return (
-
-alt.Chart(df)
-
-.mark\_bar()
-
-.encode(x=alt.X(f"{input.var()}:Q", bin=True), y="count()")
-
-)
-
-app.py×requirements.txt×+
-
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
+```python
 from shiny.express import input, ui
+from shinywidgets import render_bokeh
 
-from shinywidgets import render\_bokeh
-
-ui.input\_selectize(
-
-"var", "Select variable",
-
-choices=\["bill\_length\_mm", "body\_mass\_g"\]
-
+ui.input_selectize(
+    "var", "Select variable",
+    choices=["bill_length_mm", "body_mass_g"]
 )
 
-@render\_bokeh
+@render_bokeh
+def hist():
+    from bokeh.plotting import figure
+    from palmerpenguins import load_penguins
 
-defhist():
+    p = figure(x_axis_label=input.var(), y_axis_label="count")
+    bins = load_penguins()[input.var()].value_counts().sort_index()
+    p.quad(
+        top=bins.values,
+        bottom=0,
+        left=bins.index - 0.5,
+        right=bins.index + 0.5,
+    )
+    return p
+```
 
-from bokeh.plotting import figure
+Requirements:
 
-from palmerpenguins import load\_penguins
+```text
+bokeh
+jupyter_bokeh
+xyzservices
+```
 
-p = figure(x\_axis\_label=input.var(), y\_axis\_label="count")
+Plotly:
 
-bins = load\_penguins()\[input.var()\].value\_counts().sort\_index()
-
-p.quad(
-
-top=bins.values,
-
-bottom=0,
-
-left=bins.index - 0.5,
-
-right=bins.index + 0.5,
-
-)
-
-return p
-
-app.py×requirements.txt×+
-
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
+```python
 from shiny.express import input, ui
+from shinywidgets import render_plotly
 
-from shinywidgets import render\_plotly
-
-ui.input\_selectize(
-
-"var", "Select variable",
-
-choices=\["bill\_length\_mm", "body\_mass\_g"\]
-
+ui.input_selectize(
+    "var", "Select variable",
+    choices=["bill_length_mm", "body_mass_g"]
 )
 
-@render\_plotly
-
-defhist():
-
-import plotly.express as px
-
-from palmerpenguins import load\_penguins
-
-df = load\_penguins()
-
-return px.histogram(df, x=input.var())
-
-app.py×requirements.txt×+
-
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
-23
-
-24
-
-25
-
-26
-
-27
-
-28
-
-29
-
-30
-
-31
-
-32
-
-33
-
-import pydeck as pdk
-
-import shiny.express
-
-from shinywidgets import render\_pydeck
-
-@render\_pydeck
-
-defmap():
-
-UK\_ACCIDENTS\_DATA = "https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv"
-
-layer = pdk.Layer(
-
-"HexagonLayer", \# \`type\` positional argument is here
-
-UK\_ACCIDENTS\_DATA,
-
-get\_position=\["lng", "lat"\],
-
-auto\_highlight=True,
-
-elevation\_scale=50,
-
-pickable=True,
-
-elevation\_range=\[0, 3000\],
-
-extruded=True,
-
-coverage=1,
-
-)
-
-\# Set the viewport location
-
-view\_state = pdk.ViewState(
-
-longitude=-1.415,
-
-latitude=52.2323,
-
-zoom=6,
-
-min\_zoom=5,
-
-max\_zoom=15,
-
-pitch=40.5,
-
-bearing=-27.36,
-
-)
-
-\# Combined all of it and render a viewport
-
-return pdk.Deck(layers=\[layer\], initial\_view\_state=view\_state)
-
-Many [other awesome Python packages](https://github.com/markusschanta/awesome-jupyter#visualization) provide widgets that are compatible with Shiny. In general, you can render them by applying the `@render_widget` decorator.
-
-```sourceCode python
-import shiny.express
-from shinywidgets import render_widget
-
-@render_widget
-def widget():
-    # Widget code goes here
-    ...
+@render_plotly
+def hist():
+    import plotly.express as px
+    from palmerpenguins import load_penguins
+    df = load_penguins()
+    return px.histogram(df, x=input.var())
+```
+
+Requirements:
+
+```text
+palmerpenguins
+plotly
 ```
 
 ## Widget object [Anchor](https://shiny.posit.co/py/docs/jupyter-widgets.html\#widget-object)
@@ -393,49 +131,28 @@ If you’re not sure what traits are available, you can use the `widget.traits()
 
 This `widget` object is always a subclass of `ipywidgets.Widget` and may be different from the object returned by the render function. For example, the `hist` function below returns `Figure`, but the `widget` property is a `FigureWidget` (a subclass of `ipywidgets.Widget`). In many cases, this is useful since `ipywidgets.Widget` provides a standard way to [efficiently update](https://shiny.posit.co/py/docs/jupyter-widgets.html#efficient-updates) and [respond to user input](https://shiny.posit.co/py/docs/jupyter-widgets.html#user-input) that shinywidgets knows how to handle. If you need the actual return value of the render function, you can access it via the `value` property.
 
-app.py×requirements.txt×+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
+```python
 from shiny.express import render
+from shinywidgets import render_plotly
 
-from shinywidgets import render\_plotly
-
-@render\_plotly
-
-defhist():
-
-import plotly.express as px
-
-return px.histogram(px.data.tips(), x="tip")
+@render_plotly
+def hist():
+    import plotly.express as px
+    return px.histogram(px.data.tips(), x="tip")
 
 @render.code
+def info():
+    return str([type(hist.widget), type(hist.value)])
+```
 
-definfo():
+requirements:
 
-return str(\[type(hist.widget), type(hist.value)\])
+```text
+pandas
+plotly
+```
 
 Typing & class coercion
 
@@ -449,94 +166,49 @@ If you’ve used ipywidgets before, you may know that widgets have traits that c
 
 For example, in a notebook, you may have written a code cell like this to first display a map:
 
-```sourceCode python
+```
 import ipyleaflet as ipyl
 map = ipyl.Map()
 ```
 
 Then, in a later cell, you may have updated the map’s `center` trait to change the map’s location:
 
-```sourceCode python
+```
 map.center = (51, 0)
 ```
 
 With shinywidgets, we can do the same thing _reactively_ in Shiny by updating the `widget` property of the render function. For example, the following code creates a `map`, then updates the map’s center whenever the dropdown changes.
 
-app.py×requirements.txt×+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
+```python
 from shiny import reactive
-
 from shiny.express import input, ui
-
-from shinywidgets import render\_widget
-
+from shinywidgets import render_widget
 import ipyleaflet as ipyl
 
-city\_centers = {
-
-"London": (51.5074, 0.1278),
-
-"Paris": (48.8566, 2.3522),
-
-"New York": (40.7128, -74.0060)
-
+city_centers = {
+    "London": (51.5074, 0.1278),
+    "Paris": (48.8566, 2.3522),
+    "New York": (40.7128, -74.0060)
 }
 
-ui.input\_select("center", "Center", choices=list(city\_centers.keys()))
+ui.input_select("center", "Center", choices=list(city_centers.keys()))
 
-@render\_widget
-
-defmap():
-
-return ipyl.Map(zoom=4)
+@render_widget
+def map():
+    return ipyl.Map(zoom=4)
 
 @reactive.effect
+def _():
+    map.widget.center = city_centers[input.center()]
+```
 
-def\_():
+requirements.txt:
 
-map.widget.center = city\_centers\[input.center()\]
+```text
+ipyleaflet
+```
 
 Re-render vs efficient update
 
@@ -555,72 +227,43 @@ It’s usually easiest to use reactive traits but you may need to use event call
 
 If you’ve used ipywidgets before, you may know that widgets have traits that can be accessed and observed. For example, in a notebook, you may have written a code cell like this to display a map:
 
-```sourceCode python
+```
 import ipyleaflet as ipyl
 map = ipyl.Map()
 ```
 
 Then, in a later cell, you may have read the map’s `center` trait to get the current map’s location:
 
-```sourceCode python
+```
 map.center
 ```
 
 With shinywidgets, we can do the same thing _reactively_ in Shiny by using the `reactive_read()` function to read the trait in a reactive context. For example, the following example creates a `map`, then displays/updates the map’s current center whenever the map is panned.
 
-app.py×requirements.txt×+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
+```python
 import ipyleaflet as ipyl
-
 from shiny.express import render
-
-from shinywidgets import reactive\_read, render\_widget
+from shinywidgets import reactive_read, render_widget
 
 "Click and drag to pan the map"
 
-@render\_widget
-
-defmap():
-
-return ipyl.Map(zoom=2)
+@render_widget
+def map():
+    return ipyl.Map(zoom=2)
 
 @render.text
+def center():
+    cntr = reactive_read(map.widget, 'center')
+    return f"Current center: {cntr}"
+```
 
-defcenter():
+requirements.txt:
 
-cntr = reactive\_read(map.widget, 'center')
-
-returnf"Current center: {cntr}"
+```text
+ipyleaflet
+```
 
 Observable traits
 
@@ -628,203 +271,84 @@ Under the hood, `reactive_read()` uses [ipywidgets’ `observe()` method](https:
 
 Some widgets have attributes that _contain_ observable traits. One practical example of this is the `selections` attribute of altair’s `JupyterChart` class, which has an [observable `point` trait](https://altair-viz.github.io/user_guide/interactions/jupyter_chart.html#point-selections).
 
-app.py×requirements.txt×+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
-23
-
-24
-
-25
-
-26
-
-27
-
+```python
 import altair as alt
-
 from shiny.express import render
-
-from shinywidgets import reactive\_read, render\_altair
-
-from vega\_datasets import data
+from shinywidgets import reactive_read, render_altair
+from vega_datasets import data
 
 "Click the legend to update the selection"
 
 @render.code
+def selection():
+    pt = reactive_read(jchart.widget.selections, "point")
+    return str(pt)
 
-defselection():
+@render_altair
+def jchart():
+    brush = alt.selection_point(name="point", encodings=["color"], bind="legend")
+    return (
+        alt.Chart(data.cars())
+        .mark_point()
+        .encode(
+            x="Horsepower:Q",
+            y="Miles_per_Gallon:Q",
+            color=alt.condition(brush, "Origin:N", alt.value("grey")),
+        )
+        .add_params(brush)
+    )
 
-pt = reactive\_read(jchart.widget.selections, "point")
 
-return str(pt)
+```
 
-@render\_altair
+requirements.txt:
 
-defjchart():
-
-brush = alt.selection\_point(name="point", encodings=\["color"\], bind="legend")
-
-return (
-
-alt.Chart(data.cars())
-
-.mark\_point()
-
-.encode(
-
-x="Horsepower:Q",
-
-y="Miles\_per\_Gallon:Q",
-
-color=alt.condition(brush, "Origin:N", alt.value("grey")),
-
-)
-
-.add\_params(brush)
-
-)
+```text
+altair
+anywidget
+vega_datasets
+```
 
 ### Widget event callbacks [Anchor](https://shiny.posit.co/py/docs/jupyter-widgets.html\#event-callbacks)
 
 Sometimes, you may want to capture user interaction that isn’t available through a widget trait. For example, `ipyleaflet.CircleMarker` has an `.on_click()` method that allows you to execute a callback when a marker is clicked. In this case, you’ll want to define a callback that updates some `reactive.value` everytime its triggered to capture the relevant information. That way, the callback information can be used to cause invalidation of other outputs (or trigger reactive side-effects):
 
-app.py×requirements.txt×+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
-23
-
-24
-
+```python
 import ipyleaflet as ipyl
-
 from shiny.express import render
-
 from shiny import reactive
+from shinywidgets import render_widget
 
-from shinywidgets import render\_widget
+# Stores the number of clicks
+n_clicks = reactive.value(0)
 
-\# Stores the number of clicks
+# A click callback that updates the reactive value
+def on_click(**kwargs):
+    n_clicks.set(n_clicks() + 1)
 
-n\_clicks = reactive.value(0)
-
-\# A click callback that updates the reactive value
-
-defon\_click(\*\*kwargs):
-
-n\_clicks.set(n\_clicks() + 1)
-
-\# Create the map, add the CircleMarker, and register the map with Shiny
-
-@render\_widget
-
-defmap():
-
-cm = ipyl.CircleMarker(location=(55, 360))
-
-cm.on\_click(on\_click)
-
-m = ipyl.Map(center=(53, 354), zoom=5)
-
-m.add\_layer(cm)
-
-return m
+# Create the map, add the CircleMarker, and register the map with Shiny
+@render_widget
+def map():
+    cm = ipyl.CircleMarker(location=(55, 360))
+    cm.on_click(on_click)
+    m = ipyl.Map(center=(53, 354), zoom=5)
+    m.add_layer(cm)
+    return m
 
 @render.text
+def nClicks():
+    return f"Number of clicks: {n_clicks.get()}"
+```
 
-defnClicks():
+requirements.txt:
 
-returnf"Number of clicks: {n\_clicks.get()}"
+```text
+ipyleaflet
+```
 
 Widgets can contain other widgets
 
@@ -840,119 +364,62 @@ Layout and styling of ipywidgets can get a bit convoluted, partially due to pote
 
 Generally speaking, it’s preferable to use the widget’s layout API if it is available since the API is designed specifically for the widget. For example, if you want to set the size and theme of a plotly figure, can use its `update_layout` method:
 
-app.py×requirements.txt×+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
+```python
 import plotly.express as px
-
 from shiny.express import input, ui
+from shinywidgets import render_plotly
 
-from shinywidgets import render\_plotly
-
-ui.input\_selectize(
-
-"theme", "Choose a theme",
-
-choices=\["plotly", "plotly\_white", "plotly\_dark"\]
-
+ui.input_selectize(
+    "theme", "Choose a theme",
+    choices=["plotly", "plotly_white", "plotly_dark"]
 )
 
-@render\_plotly
+@render_plotly
+def plot():
+    p = px.histogram(px.data.tips(), x="tip")
+    p.update_layout(template=input.theme(), height=200)
+    return p
+```
 
-defplot():
+requirements.txt:
 
-p = px.histogram(px.data.tips(), x="tip")
-
-p.update\_layout(template=input.theme(), height=200)
-
-return p
+```text
+pandas
+plotly
+```
 
 ### Arranging widgets [Anchor](https://shiny.posit.co/py/docs/jupyter-widgets.html\#arranging-widgets)
 
 The best way to include widgets in your application is to wrap them in one of Shiny’s UI components. In addition to being quite expressive and flexible, these components make it easy to implement filling and responsive layouts. For example, the following code arranges two widgets side-by-side, and fills the available space:
 
-app.py×requirements.txt×+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
+```python
 import plotly.express as px
-
 from shiny.express import input, ui
+from shinywidgets import render_plotly
 
-from shinywidgets import render\_plotly
+ui.page_opts(title = "Filling layout", fillable = True)
 
-ui.page\_opts(title = "Filling layout", fillable = True)
+with ui.layout_columns():
+  @render_plotly
+  def plot1():
+      return px.histogram(px.data.tips(), y="tip")
 
-with ui.layout\_columns():
+  @render_plotly
+  def plot2():
+      return px.histogram(px.data.tips(), y="total_bill")
+      
+```
 
-@render\_plotly
+requirements.txt:
 
-defplot1():
-
-return px.histogram(px.data.tips(), y="tip")
-
-@render\_plotly
-
-defplot2():
-
-return px.histogram(px.data.tips(), y="total\_bill")
+```text
+pandas
+plotly
+```
 
 Layout gallery
 
@@ -968,25 +435,25 @@ For more shinywidgets examples, see the [`examples/` directory](https://github.c
 
 ## Troubleshooting [Anchor](https://shiny.posit.co/py/docs/jupyter-widgets.html\#troubleshooting)
 
-If after [installing](https://shiny.posit.co/py/docs/jupyter-widgets.html#installation) `shinywidgets`, you have trouble rendering widgets, first try running this “hello world” ipywidgets [example](https://github.com/rstudio/py-shinywidgets/blob/main/examples/ipywidgets/app.py). If that doesn’t work, it could be that you have an unsupported version of a dependency like `ipywidgets` or `shiny`.
+If after [installing](https://shiny.posit.co/py/docs/jupyter-widgets.html#installation)`shinywidgets`, you have trouble rendering widgets, first try running this “hello world” ipywidgets [example](https://github.com/rstudio/py-shinywidgets/blob/main/examples/ipywidgets/app.py). If that doesn’t work, it could be that you have an unsupported version of a dependency like `ipywidgets` or `shiny`.
 
 If you can run the “hello world” example, but other widgets don’t work, first check that the extension is properly configured with `jupyter nbextension list`. If the extension is properly configured, and still isn’t working, here are some possible reasons why:
 
 1. The widget requires initialization code to work in a notebook environment.
 
-- In this case, `shinywidgets` probably won’t work without providing the equivalent setup information to Shiny. A known case of this is bokeh, shinywidgets’ `@render_bokeh` decorator handles through inclusion of additional HTML [dependencies](https://github.com/posit-dev/py-shinywidgets/blob/9ea804c3/shinywidgets/_render_widget.py#L38-L42).
+   - In this case, `shinywidgets` probably won’t work without providing the equivalent setup information to Shiny. A known case of this is bokeh, shinywidgets’ `@render_bokeh` decorator handles through inclusion of additional HTML [dependencies](https://github.com/posit-dev/py-shinywidgets/blob/9ea804c3/shinywidgets/_render_widget.py#L38-L42).
 
 2. Not all widgets are compatible with ipywidgets!
 
-- Some web-based widgets in Python aren’t compatible with the ipywidgets framework, but do provide a `repr_html` method for getting the HTML representation (e.g., [folium](https://python-visualization.github.io/folium/latest/)). It may be possible to display these widgets using Shiny’s [`@render.ui`](https://shiny.posit.co/py/api/render.ui.html) decorator, but be aware that, you may not be able to do things mentioned in this article with these widgets.
+   - Some web-based widgets in Python aren’t compatible with the ipywidgets framework, but do provide a `repr_html` method for getting the HTML representation (e.g., [folium](https://python-visualization.github.io/folium/latest/)). It may be possible to display these widgets using Shiny’s [`@render.ui`](https://shiny.posit.co/py/api/render.ui.html) decorator, but be aware that, you may not be able to do things mentioned in this article with these widgets.
 
 3. The widget itself is broken.
 
-- If you think this is the case, try running the code in a notebook to see if it works there. If it doesn’t work in a notebook, then it’s likely a problem with the widget itself (and the issue should be reported to the widget’s maintainers).
+   - If you think this is the case, try running the code in a notebook to see if it works there. If it doesn’t work in a notebook, then it’s likely a problem with the widget itself (and the issue should be reported to the widget’s maintainers).
 
 4. The widget is otherwise misconfigured (or your offline).
 
-- `shinywidgets` tries its best to load widget dependencies from local files, but if it fails to do so, it will try to load them from a CDN. If you’re offline, then the CDN won’t work, and the widget will fail to load. If you’re online, and the widget still fails to load, then please let us know by [opening an issue](https://github.com/posit-dev/py-shinywidgets/issues/new).
+   - `shinywidgets` tries its best to load widget dependencies from local files, but if it fails to do so, it will try to load them from a CDN. If you’re offline, then the CDN won’t work, and the widget will fail to load. If you’re online, and the widget still fails to load, then please let us know by [opening an issue](https://github.com/posit-dev/py-shinywidgets/issues/new).
 
 ## For developers [Anchor](https://shiny.posit.co/py/docs/jupyter-widgets.html\#for-developers)
 

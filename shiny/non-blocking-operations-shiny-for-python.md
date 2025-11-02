@@ -6,7 +6,7 @@ In this article, we’ll learn how to make Shiny apps more responsive by using n
 
 ## Using async/await in Shiny [Anchor](https://shiny.posit.co/py/docs/nonblocking.html\#using-asyncawait-in-shiny)
 
-Asynchronous programming is a technique used in many programming languages to increase scalability and responsiveness, usually in programs that do a lot of networking like web servers and clients. Python supports async programming at the language level, using the `async`/ `await` keywords; in the standard library, with the [`asyncio`](https://docs.python.org/3/library/asyncio.html) module; and in third-party libraries, like [FastAPI](https://fastapi.tiangolo.com/) and [aiohttp](https://docs.aiohttp.org/).
+Asynchronous programming is a technique used in many programming languages to increase scalability and responsiveness, usually in programs that do a lot of networking like web servers and clients. Python supports async programming at the language level, using the `async`/`await` keywords; in the standard library, with the [`asyncio`](https://docs.python.org/3/library/asyncio.html) module; and in third-party libraries, like [FastAPI](https://fastapi.tiangolo.com/) and [aiohttp](https://docs.aiohttp.org/).
 
 Shiny has async support as well, but it’s a bit different from your typical async Python framework. On the one hand, Shiny is built on top of [Starlette](https://www.starlette.io/), which is an async web framework, so it’s possible to use async functions in many parts of your Shiny app. On the other hand, Shiny is also designed around reactive programming concepts, and that creates constraints on how async functions can be used.
 
@@ -302,7 +302,7 @@ If you use some other UI gesture or condition besides `ui.input_task_button` to 
 
 Unlike a reactive effect, simply creating an extended task does not cause it to run. It needs to be invoked (called like a function).
 
-In this case, the `sum_values` extended task is called from the `btn_click` reactive effect ( `@reactive.effect`), which runs whenever the button is clicked ( `@reactive.event(input.btn)`).
+In this case, the `sum_values` extended task is called from the `btn_click` reactive effect (`@reactive.effect`), which runs whenever the button is clicked (`@reactive.event(input.btn)`).
 
 Notice also that the `sum_values` logic no longer reads `input.x()` and `input.y()` directly in the function body. Because it is now an extended task, attempting to do so would result in an error. Instead, it takes `x` and `y` as arguments, which are passed in by `btn_click` based on reactive inputs.
 
@@ -347,7 +347,7 @@ Note
 
 The following example shows how to run a task on a different thread. This is a good strategy for code that does synchronous I/O, like reading from disk, a database, or a remote API endpoint. It’s not as good of a strategy for CPU-bound code, because Python’s [global interpreter lock](https://realpython.com/python-gil/) will prevent the task from running concurrently with other Python code.
 
-```sourceCode python
+```
 import asyncio
 import concurrent.futures
 import time

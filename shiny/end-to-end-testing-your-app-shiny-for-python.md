@@ -39,7 +39,7 @@ First, let’s create a tiny Shiny app with just a slider and some text.
 1. **Create a new file:** Create a file named `app.py`.
 2. **Copy and paste this code:**
 
-```sourceCode python
+```python
 from shiny.express import input, render, ui
 
 ui.panel_title("Hello Shiny!")
@@ -67,7 +67,7 @@ Now for the exciting part – writing the test code!
 1. **Create a new file:** Create a new file named `test_basic_app.py` in the same directory as your `app.py` file. Remember, test file names must start with `test_`.
 2. **Copy and paste this code:**
 
-```sourceCode python
+```
 from shiny.playwright import controller
 from shiny.run import ShinyAppProc
 from playwright.sync_api import Page
@@ -97,10 +97,10 @@ def test_basic_app(page: Page, local_app: ShinyAppProc) -> None:
 
 Controllers such as `OutputText` and `InputSlider` provide abstraction over Playwright’s low-level interactions by:
 
-  - Automatically handling element waiting and state changes
-  - Offering specialized interfaces for specific Shiny component types
-  - Managing Shiny-specific behaviors without additional code
-  - Providing consistent patterns for testing similar components
+- Automatically handling element waiting and state changes
+- Offering specialized interfaces for specific Shiny component types
+- Managing Shiny-specific behaviors without additional code
+- Providing consistent patterns for testing similar components
 
 And visually, this is what happens when the test runs:
 
@@ -112,7 +112,7 @@ Before you run the test, you need to install a couple of things:
 
 1. **Install pytest and pytest-playwright**: Open your terminal (or command prompt) and type:
 
-```sourceCode bash
+```bash
 pip install pytest pytest-playwright
 ```
 
@@ -120,8 +120,7 @@ pip install pytest pytest-playwright
 
 3. **Run the test**: Type the following command and press Enter:
 
-
-```sourceCode bash
+```bash
 pytest
 ```
 
@@ -143,13 +142,13 @@ What does this mean?
 
 If you want to see what Playwright is doing, you can run the test in “headed” mode. This will open a browser window and show you the interactions.
 
-```sourceCode bash
+```bash
 pytest --headed
 ```
 
 You can also specify a particular browser:
 
-```sourceCode bash
+```bash
 pytest --browser firefox
 ```
 
@@ -160,7 +159,7 @@ If you already have a Shiny app, you can easily add tests:
 1. Open your terminal: Navigate to your app’s directory.
 2. Run the shiny add test command:
 
-```sourceCode bash
+```bash
 shiny add test
 ```
 
@@ -175,13 +174,13 @@ Before generating tests, make sure you have:
 - A working Shiny app file (e.g. `app.py`).
 - Shiny testing dependencies installed. If you haven’t installed the extras yet:
 
-```sourceCode bash
+```bash
 pip install "shiny[add-test]"
 ```
 
 #### Choosing a provider for generating tests [Anchor](https://shiny.posit.co/py/docs/end-to-end-testing.html\#choosing-a-provider-for-generating-tests)
 
-```sourceCode bash
+```bash
 # Anthropic (default)
 shiny add test --app app.py
 
@@ -197,7 +196,6 @@ shiny add test --app app.py --provider openai --model gpt-5-mini
 - Test fails with an error about finding an element: Make sure the IDs you’re using in your test code (e.g., “txt”, “n”) match the IDs in your Shiny app code. Inspect your app’s HTML in the browser’s developer tools if you’re unsure.
 
 - Test is flaky (sometimes passes, sometimes fails): This can happen if your app takes a while to load or if there are timing issues. Playwright has built-in waiting mechanisms, but you might need to add explicit waits in some cases. See the [Playwright documentation](https://playwright.dev/python/docs/events#waiting-for-event) on waiting.
-
 
 ### Keep Exploring! [Anchor](https://shiny.posit.co/py/docs/end-to-end-testing.html\#keep-exploring)
 

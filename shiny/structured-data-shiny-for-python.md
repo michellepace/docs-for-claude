@@ -16,7 +16,7 @@ The [`chatlas` package](https://posit-dev.github.io/chatlas/) provides a simple 
    - Here you’ll define the fields and value types you’re expecting in the input.
 3. Pass the unstructured input and `data_model` to the `.extract_data()` method.
 
-```sourceCode python
+```python
 from chatlas import ChatOpenAI
 from pydantic import BaseModel
 
@@ -33,7 +33,7 @@ chat_client.extract_data(
 
 `.extract_data()` then returns a dictionary matching the fields and types in the `data_model`:
 
-```sourceCode python
+```python
 {'name': 'Susan', 'age': 13}
 ```
 
@@ -60,7 +60,7 @@ For now, let’s keep it simple and use a text input field:
 
 `app.py`
 
-```sourceCode python
+```python
 from chatlas import ChatOpenAI
 from pydantic import BaseModel
 
@@ -104,7 +104,7 @@ Remember that the LLM is not perfect – you may want to manually correct or ref
 
 `data_model.py`
 
-```sourceCode python
+```python
 from pydantic import BaseModel, Field
 
 class NamedEntity(BaseModel):
@@ -130,7 +130,7 @@ _ = NamedEntities.model_rebuild()
 
 `app.py`
 
-```sourceCode python
+```python
 import pandas as pd
 from chatlas import ChatOpenAI
 from faicons import icon_svg
@@ -190,7 +190,7 @@ Building on [Google’s invoice and form data extraction example](https://github
 
 `data_model.py`
 
-```sourceCode python
+```python
 from pydantic import BaseModel, Field
 
 class Item(BaseModel):
@@ -213,7 +213,7 @@ _ = Invoice.model_rebuild()
 
 `app.py`
 
-```sourceCode python
+```python
 import chatlas as ctl
 import dateparser
 import faicons
@@ -299,6 +299,6 @@ with ui.layout_column_wrap(height_equal="row"):
                 return render.DataGrid(df, editable=True)
 ```
 
-![](https://shiny.posit.co/py/images/genai-invoice-data.png)
+<https://shiny.posit.co/py/images/genai-invoice-data.png>
 
 Screenshot of the editable invoice data app

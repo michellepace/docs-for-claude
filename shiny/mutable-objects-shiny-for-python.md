@@ -14,7 +14,7 @@ a += 1
 
 b
 
-```output-content
+```
 
 ```
 
@@ -30,7 +30,7 @@ a.append(3)
 
 b
 
-```output-content
+```
 
 ```
 
@@ -40,7 +40,7 @@ Mutability can cause unexpected behavior in any Python program, but especially s
 
 ## Solutions [Anchor](https://shiny.posit.co/py/docs/reactive-mutable.html\#solutions)
 
-There are a few ways to fix this problem and end up with the results we want ( `b == [1, 2]`).
+There are a few ways to fix this problem and end up with the results we want (`b == [1, 2]`).
 
 ### Copy on assignment [Anchor](https://shiny.posit.co/py/docs/reactive-mutable.html\#copy-on-assignment)
 
@@ -54,7 +54,7 @@ a.append(3)
 
 b
 
-```output-content
+```
 
 ```
 
@@ -70,7 +70,7 @@ a = a + \[3\]
 
 b
 
-```output-content
+```
 
 ```
 
@@ -84,10 +84,9 @@ We’ve seen that `x + [value]` creates a new list object and that `x.copy()` cr
 
 2. **Slicing**: `a[:]` creates a new list with the same elements as `a`. This is useful when you need to copy the entire list, or a subset of it.
 
-3. **Star operator**: `[*a, value]` creates a new list with the same elements as `a`, with the additional `value` appended after them. This is an easy way to add a single element to the end or start of a list ( `[value, *a]`).
+3. **Star operator**: `[*a, value]` creates a new list with the same elements as `a`, with the additional `value` appended after them. This is an easy way to add a single element to the end or start of a list (`[value, *a]`).
 
 4. **Double star operator**: `{**a, key: value}` creates a new dictionary with the same key-value pairs as `a`, with the additional key-value pair `key: value` added. This is an easy way to add a single key-value pair to a dictionary.
-
 
 ### Use immutable objects [Anchor](https://shiny.posit.co/py/docs/reactive-mutable.html\#use-immutable-objects)
 
@@ -101,7 +100,7 @@ a = (\*a, 3) \# alternatively, a = a + (3,)
 
 b
 
-```output-content
+```
 
 ```
 

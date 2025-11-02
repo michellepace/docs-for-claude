@@ -10,7 +10,7 @@ Consider the following Shiny app that filters a dataset based on a user’s sele
 app.py
 ```
 
-```sourceCode python
+```python
 from palmerpenguins import load_penguins
 from shiny.express import input, render, ui
 
@@ -29,7 +29,7 @@ def display_dat():
 
 None of the logic can be tested directly through a unit test. [1](https://shiny.posit.co/py/docs/unit-testing.html#fn1) We can, however, put the logic for `display_dat` inside separate function, which can be then be tested independently of the Shiny app:
 
-```sourceCode python
+```python
 @render.data_frame
 def display_dat():
     return filter_penguins(input.species())
@@ -44,7 +44,7 @@ Now that we have a function that doesn’t rely on a reactive `input` value, we 
 
 [`pytest`](https://docs.pytest.org/en/8.2.x/contents.html) is a popular, open-source testing framework for Python. To get started, you’ll first want to install `pytest`:
 
-```sourceCode bash
+```bash
 pip install pytest
 ```
 
@@ -54,7 +54,7 @@ pip install pytest
 test_filter_penguins.py
 ```
 
-```sourceCode python
+```python
 from app import filter_penguins
 
 def test_filter_penguins():
@@ -67,7 +67,7 @@ def test_filter_penguins():
 
 Assuming both the `app.py` and `test_filter_penguins.py` files are in the same directory, you can now run the test by typing `pytest` in your terminal. `pytest` will automatically locate the test file and run it with the results shown below.
 
-```sourceCode bash
+```python
 platform darwin -- Python 3.10.12, pytest-7.4.4, pluggy-1.4.0
 configfile: pytest.ini
 plugins: asyncio-0.21.0, timeout-2.1.0, Faker-20.1.0, cov-4.1.0, playwright-0.4.4, rerunfailures-11.1.2, xdist-3.3.1, base-url-2.1.0, hydra-core-1.3.2, anyio-3.7.0, syrupy-4.0.5, shiny-1.0.0
@@ -79,7 +79,7 @@ asyncio: mode=strict
 
 If a test fails, `pytest` will show you which test failed and why:
 
-```sourceCode bash
+```bash
 ======================================================= test session starts =======================================================
 platform darwin -- Python 3.10.12, pytest-7.4.4, pluggy-1.4.0
 configfile: pytest.ini

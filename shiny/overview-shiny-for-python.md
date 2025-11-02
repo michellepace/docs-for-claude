@@ -12,33 +12,17 @@ Many examples on this site have a code editor for modifying the source code for 
 
 Shiny apps typically start with [input components](https://shiny.posit.co/py/components/#inputs) to gather information from a user, which are then used to reactively render [output components](https://shiny.posit.co/py/components/#outputs). Here’s a basic example that displays a slider’s value as formatted text.
 
-app.py+
+app.py:
 
-9
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
+```python
 from shiny.express import input, render, ui
 
-ui.input\_slider("val", "Slider label", min=0, max=100, value=50)
+ui.input_slider("val", "Slider label", min=0, max=100, value=50)
 
 @render.text
-
-defslider\_val():
-
-returnf"Slider value: {input.val()}"
+def slider_val():
+    return f"Slider value: {input.val()}"
+```
 
 This example demonstrates the basic mechanics behind Shiny apps:
 
@@ -53,7 +37,7 @@ This example demonstrates the basic mechanics behind Shiny apps:
 
 ### Components [Anchor](https://shiny.posit.co/py/docs/overview.html\#components)
 
-Shiny includes many useful user interface ( `ui`) components for creating inputs, outputs, displaying messages, and more. For brevity sake, we’ll highlight just a few output and layout components here, but for a more comprehensive list, see the [components gallery](https://shiny.posit.co/py/components).
+Shiny includes many useful user interface (`ui`) components for creating inputs, outputs, displaying messages, and more. For brevity sake, we’ll highlight just a few output and layout components here, but for a more comprehensive list, see the [components gallery](https://shiny.posit.co/py/components).
 
 #### Outputs [Anchor](https://shiny.posit.co/py/docs/overview.html\#outputs)
 
@@ -65,475 +49,91 @@ Shiny makes it easy to create dynamic plots, tables, and other interactive widge
 
 To include a plot in an application, apply `@render.plot` to a function that creates a [matplotlib](https://matplotlib.org/) visual. Note that packages like [seaborn](https://seaborn.pydata.org/), [plotnine](https://plotnine.readthedocs.io/en/stable/), [pandas](https://pandas.pydata.org/), etc., are all compatible (as long as they create a matplotlib visual).
 
-app.py×requirements.txt×+
+blocks - app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
+```python
 from shiny.express import input, render, ui
 
-ui.input\_selectize(
-
-"var", "Select variable",
-
-choices=\["bill\_length\_mm", "body\_mass\_g"\]
-
+ui.input_selectize(
+    "var", "Select variable",
+    choices=["bill_length_mm", "body_mass_g"]
 )
 
 @render.plot
+def hist():
+    from matplotlib import pyplot as plt
+    from palmerpenguins import load_penguins
 
-defhist():
+    df = load_penguins()
+    df[input.var()].hist(grid=False)
+    plt.xlabel(input.var())
+    plt.ylabel("count")
 
-from matplotlib import pyplot as plt
+```
 
-from palmerpenguins import load\_penguins
+requirements.txt:
 
-df = load\_penguins()
+```text
+palmerpenguins
+```
 
-df\[input.var()\].hist(grid=False)
+tables - app.py:
 
-plt.xlabel(input.var())
-
-plt.ylabel("count")
-
-Apply `@render.data_frame` to any code that returns a [pandas](https://pandas.pydata.org/) or [polars](https://pola.rs/) DataFrame for a basic table. For more sophisticated tables, you can use [`render.DataGrid`](https://shiny.posit.co/py/components/outputs/data-grid.html) to add things like filters to your table.
-
-app.py×requirements.txt×+
-
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
+```python
 from shiny.express import input, render, ui
 
-ui.input\_selectize(
-
-"var", "Select variable",
-
-choices=\["bill\_length\_mm", "body\_mass\_g"\]
-
+ui.input_selectize(
+    "var", "Select variable",
+    choices=["bill_length_mm", "body_mass_g"]
 )
 
-@render.data\_frame
+@render.data_frame
+def head():
+    from palmerpenguins import load_penguins
+    df = load_penguins()
+    return df[["species", input.var()]]
+```
 
-defhead():
+requirements.txt:
 
-from palmerpenguins import load\_penguins
+```text
+palmerpenguins
+```
 
-df = load\_penguins()
+widgets - app.py:
 
-return df\[\["species", input.var()\]\]
-
-See the [Jupyter Widgets article](https://shiny.posit.co/py/docs/jupyter-widgets.html) for more information on rendering Jupyter Widgets in Shiny.
-
-- Altair
-- Bokeh
-- Plotly
-- Pydeck
-- Other
-
-app.py×requirements.txt×+
-
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
+```python
 from shiny.express import input, ui
+from shinywidgets import render_altair
 
-from shinywidgets import render\_altair
-
-ui.input\_selectize(
-
-"var", "Select variable",
-
-choices=\["bill\_length\_mm", "body\_mass\_g"\]
-
+ui.input_selectize(
+    "var", "Select variable",
+    choices=["bill_length_mm", "body_mass_g"]
 )
 
-@render\_altair
-
-defhist():
-
-import altair as alt
-
-from palmerpenguins import load\_penguins
-
-df = load\_penguins()
-
-return (
-
-alt.Chart(df)
-
-.mark\_bar()
-
-.encode(x=alt.X(f"{input.var()}:Q", bin=True), y="count()")
-
-)
-
-app.py×requirements.txt×+
-
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
-from shiny.express import input, ui
-
-from shinywidgets import render\_bokeh
-
-ui.input\_selectize(
-
-"var", "Select variable",
-
-choices=\["bill\_length\_mm", "body\_mass\_g"\]
-
-)
-
-@render\_bokeh
-
-defhist():
-
-from bokeh.plotting import figure
-
-from palmerpenguins import load\_penguins
-
-p = figure(x\_axis\_label=input.var(), y\_axis\_label="count")
-
-bins = load\_penguins()\[input.var()\].value\_counts().sort\_index()
-
-p.quad(
-
-top=bins.values,
-
-bottom=0,
-
-left=bins.index - 0.5,
-
-right=bins.index + 0.5,
-
-)
-
-return p
-
-app.py×requirements.txt×+
-
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-from shiny.express import input, ui
-
-from shinywidgets import render\_plotly
-
-ui.input\_selectize(
-
-"var", "Select variable",
-
-choices=\["bill\_length\_mm", "body\_mass\_g"\]
-
-)
-
-@render\_plotly
-
-defhist():
-
-import plotly.express as px
-
-from palmerpenguins import load\_penguins
-
-df = load\_penguins()
-
-return px.histogram(df, x=input.var())
-
-app.py×requirements.txt×+
-
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
-23
-
-24
-
-25
-
-26
-
-27
-
-28
-
-29
-
-30
-
-31
-
-32
-
-33
-
-import pydeck as pdk
-
-import shiny.express
-
-from shinywidgets import render\_pydeck
-
-@render\_pydeck
-
-defmap():
-
-UK\_ACCIDENTS\_DATA = "https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv"
-
-layer = pdk.Layer(
-
-"HexagonLayer", \# \`type\` positional argument is here
-
-UK\_ACCIDENTS\_DATA,
-
-get\_position=\["lng", "lat"\],
-
-auto\_highlight=True,
-
-elevation\_scale=50,
-
-pickable=True,
-
-elevation\_range=\[0, 3000\],
-
-extruded=True,
-
-coverage=1,
-
-)
-
-\# Set the viewport location
-
-view\_state = pdk.ViewState(
-
-longitude=-1.415,
-
-latitude=52.2323,
-
-zoom=6,
-
-min\_zoom=5,
-
-max\_zoom=15,
-
-pitch=40.5,
-
-bearing=-27.36,
-
-)
-
-\# Combined all of it and render a viewport
-
-return pdk.Deck(layers=\[layer\], initial\_view\_state=view\_state)
+@render_altair
+def hist():
+    import altair as alt
+    from palmerpenguins import load_penguins
+    df = load_penguins()
+    return (
+        alt.Chart(df)
+        .mark_bar()
+        .encode(x=alt.X(f"{input.var()}:Q", bin=True), y="count()")
+    )
+```
+
+requirements.txt:
+
+```text
+altair
+anywidget
+palmerpenguins
+```
 
 Many [other awesome Python packages](https://github.com/markusschanta/awesome-jupyter#visualization) provide widgets that are compatible with Shiny. In general, you can render them by applying the `@render_widget` decorator.
 
-```sourceCode python
+```python
 import shiny.express
 from shinywidgets import render_widget
 
@@ -816,173 +416,77 @@ Shiny uses something called [transparent reactivity](https://blog.machinezoo.com
 
 To demonstrate how Shiny minimally re-renders, consider the following app which contains two different plots, each of which depends on a different input. When the first input changes, Shiny knows to only re-render the first plot, and vice versa.
 
-app.py×requirements.txt×+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
+```python
 import plotly.express as px
-
 from shiny.express import input, render, ui
-
-from shinywidgets import render\_plotly
+from shinywidgets import render_plotly
 
 tips = px.data.tips()
 
-with ui.layout\_columns():
+with ui.layout_columns():
+    @render_plotly
+    def plot1():
+        p = px.histogram(tips, x=input.var1())
+        p.update_layout(height=200, xaxis_title=None)
+        return p
 
-@render\_plotly
+    @render_plotly
+    def plot2():
+        p = px.histogram(tips, x=input.var2())
+        p.update_layout(height=200, xaxis_title=None)
+        return p
 
-defplot1():
+with ui.layout_columns():
+    ui.input_select("var1", None, choices=["total_bill", "tip"], width="100%")
+    ui.input_select("var2", None, choices=["tip", "total_bill"], width="100%")
+```
 
-p = px.histogram(tips, x=input.var1())
+requirements.txt:
 
-p.update\_layout(height=200, xaxis\_title=None)
-
-return p
-
-@render\_plotly
-
-defplot2():
-
-p = px.histogram(tips, x=input.var2())
-
-p.update\_layout(height=200, xaxis\_title=None)
-
-return p
-
-with ui.layout\_columns():
-
-ui.input\_select("var1", None, choices=\["total\_bill", "tip"\], width="100%")
-
-ui.input\_select("var2", None, choices=\["tip", "total\_bill"\], width="100%")
+```text
+palmerpenguins
+plotly
+pandas
+```
 
 Shiny also knows when outputs are visible or not, and so, will only call `render` functions when needed. For example, in the app below, the `table` function doesn’t get called until the “Table” page is selected.
 
-app.py×requirements.txt×+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
+```python
 import plotly.express as px
-
 from shiny.express import input, render, ui
-
-from shinywidgets import render\_plotly
+from shinywidgets import render_plotly
 
 tips = px.data.tips()
 
 with ui.sidebar():
+    ui.input_selectize("var", "Select variable", choices=["total_bill", "tip"])
 
-ui.input\_selectize("var", "Select variable", choices=\["total\_bill", "tip"\])
+ui.nav_spacer()
 
-ui.nav\_spacer()
+with ui.nav_panel("Plot"):
+    @render_plotly
+    def plot():
+        p = px.histogram(tips, x=input.var())
+        p.update_layout(height=225)
+        return p
 
-with ui.nav\_panel("Plot"):
+with ui.nav_panel("Table"):
+    @render.data_frame
+    def table():
+        return tips[[input.var()]]
+```
 
-@render\_plotly
+requirements.txt:
 
-defplot():
-
-p = px.histogram(tips, x=input.var())
-
-p.update\_layout(height=225)
-
-return p
-
-with ui.nav\_panel("Table"):
-
-@render.data\_frame
-
-deftable():
-
-return tips\[\[input.var()\]\]
+```text
+palmerpenguins
+plotly
+pandas
+```
 
 Learn more
 
@@ -992,7 +496,7 @@ For a more in-depth look at reactivity, check out the [reactivity article](https
 
 Once you’ve [installed](https://shiny.posit.co/py/get-started/install.html) Shiny, the `shiny create` CLI command provides access to a collection of useful starter templates. This command walks you through a series of prompts to help you get started quickly with a helpful example. One great option is the dashboard template, which can be created with:
 
-```sourceCode bash
+```bash
 shiny create --template dashboard
 ```
 
@@ -1008,7 +512,7 @@ See how to [create and run apps](https://shiny.posit.co/py/get-started/create-ru
 
 Shiny is built on a foundation of web standards, allowing you to incrementally adopt custom HTML, CSS, and/or JavaScript as needed. In fact, Shiny UI components themselves are built on a Python representation of HTML/CSS/JavaScript, which you can see by printing them in a Python REPL:
 
-```sourceCode python
+```python
 >>> from shiny import ui
 >>> ui.input_action_button("btn", "Button")
 <button class="btn btn-default action-button" id="btn" type="button">Button</button>

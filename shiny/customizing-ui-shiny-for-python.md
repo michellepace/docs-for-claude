@@ -8,39 +8,25 @@ The techniques covered here are intentionally generic (i.e., applies to all UI).
 
 The [shinyswatch](https://github.com/posit-dev/py-shinyswatch) package makes is very easy to change the look of your app, and provides over a dozen different [bootswatch](https://bootswatch.com/) themes to choose from. Simply choose a theme from `shinyswatch.theme.<theme_name>` and pass it to the `theme` argument of the page function (Shiny Core) or `ui.page_opts()` (Shiny Express).
 
-app.py×requirements.txt×+
+app.py:
 
-9
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
+```python
 from shinyswatch import theme
-
 from shiny.express import render, ui
 
-ui.page\_opts(title="Hello shinyswatch theme", theme=theme.darkly)
+ui.page_opts(title="Hello shinyswatch theme", theme=theme.darkly)
 
 with ui.sidebar():
-
-"Sidebar content"
+    "Sidebar content"
 
 "Main content"
+```
+
+requirements.txt:
+
+```text
+shinyswatch
+```
 
 ## Custom CSS [Anchor](https://shiny.posit.co/py/docs/ui-customize.html\#custom-css)
 
@@ -50,111 +36,51 @@ If you want to customize the look of your app beyond what is available in shinys
 
 If you don’t need much CSS, you can add a string of CSS directly to your UI with `ui.tags.style()`. This is convenient because you don’t need to create an external file, but it can be a bit cumbersome if you have a lot of CSS.
 
-app.py+
+app.py:
 
-9
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
+```python
 from shiny.express import ui
 
 ui.tags.style(
-
-".card-header { color:white; background:#2A2A2A !important; }"
-
+    ".card-header { color:white; background:#2A2A2A !important; }"
 )
 
 with ui.card():
-
-ui.card\_header("Card header")
-
-"Card body"
+    ui.card_header("Card header")
+    "Card body"
+```
 
 ### CSS file [Anchor](https://shiny.posit.co/py/docs/ui-customize.html\#css-file)
 
 If you have a lot of CSS, put it in an external file and import it with `ui.include_css()`.
 
-app.py×my-styles.css×+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-from pathlib import Path
-
+```python
 from shiny.express import ui
 
-ui.include\_css(
-
-Path(\_\_file\_\_).parent / "my-styles.css"
-
+ui.tags.style(
+    ".card-header { color:white; background:#2A2A2A !important; }"
 )
 
 with ui.card():
-
-ui.card\_header("Card header")
-
-"Card body"
+    ui.card_header("Card header")
+    "Card body"
+```
 
 ### Inline styles [Anchor](https://shiny.posit.co/py/docs/ui-customize.html\#inline-styles)
 
 Most UI components provide the opportunity to add an inline style (i.e., CSS that is applied directly to the element). This approach may be preferrable to an external CSS file if you only need to apply the style to one element, or if you want to apply style(s) programatically.
 
-app.py+
+app.py:
 
-9
-
-1
-
-2
-
-3
-
-4
-
-5
-
+```python
 from shiny.express import ui
 
 with ui.card():
-
-ui.card\_header("Card header", style="color:white; background:#2A2A2A !important;")
-
-"Card body"
+    ui.card_header("Card header", style="color:white; background:#2A2A2A !important;")
+    "Card body"
+```
 
 ### Utility classes [Anchor](https://shiny.posit.co/py/docs/ui-customize.html\#utility-classes)
 
@@ -162,59 +88,31 @@ Since Shiny provides Bootstrap by default, you can use [Bootstrap utility classe
 
 Note this approach is similar to inline styles (i.e., per element styling), but has the advantage of abstracting the actual styling away from the element itself, which is especially useful when used in conjunction with [CSS variables](https://shiny.posit.co/py/docs/ui-customize.html#css-variables).
 
-app.py+
+app.py:
 
-9
-
-1
-
-2
-
-3
-
-4
-
-5
-
+```python
 from shiny.express import ui
 
 with ui.card():
-
-ui.card\_header("Card header", class\_="bg-primary-subtle lead")
-
-"Card body"
+    ui.card_header("Card header", class_="bg-primary-subtle lead")
+    "Card body"
+```
 
 ### CSS Variables [Anchor](https://shiny.posit.co/py/docs/ui-customize.html\#css-variables)
 
 Bootstrap’s [CSS variables](https://getbootstrap.com/docs/5.3/customize/css-variables/) provide another nice entry point to customizing your app, especially if you want to make sweeping changes to Bootstrap’s default styles. For example, you can change the primary color by setting the `--bs-primary-rgb` variable.
 
-app.py+
+app.py:
 
-9
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
+```python
 from shiny.express import ui
 
 ui.tags.style(":root { --bs-primary-rgb: 113,46,246; }")
 
 with ui.card():
-
-ui.card\_header("Card header", class\_="bg-primary lead"),
-
-"Card body"
+    ui.card_header("Card header", class_="bg-primary lead"),
+    "Card body"
+```
 
 Bootstrap CSS variables
 
@@ -224,59 +122,24 @@ To learn more about Bootstrap’s CSS variables, check out the [Bootstrap docs](
 
 When using a custom font, its good practice to import the relevant font files into your app. This is because the font may not be available on the user’s computer, and importing the font files ensures that the font will be available to the user. One way to import font files is to import them from a service like [Google Fonts](https://fonts.google.com/).
 
-app.py+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
+```python
 from shiny.express import ui
 
 ui.tags.link(
-
-rel="stylesheet",
-
-href="https://fonts.googleapis.com/css?family=Roboto"
-
+    rel="stylesheet",
+    href="https://fonts.googleapis.com/css?family=Roboto"
 )
 
 ui.tags.style(
-
-"body { font-family: 'Roboto', sans-serif; }"
-
+    "body { font-family: 'Roboto', sans-serif; }"
 )
 
 with ui.card():
-
-ui.card\_header("Card header")
-
-"Card body"
+    ui.card_header("Card header")
+    "Card body"
+```
 
 That said, if you want your app to work properly offline, you’ll want to serve the font files with the app, which is covered next.
 
@@ -284,144 +147,34 @@ That said, if you want your app to work properly offline, you’ll want to serve
 
 When customizing UI with CSS (and/or JavaScript), it’s often useful to serve local files (e.g., fonts, images, CSS, etc) to the app. This can be done by providing a value for `static_assets`; the syntax for doing this is slightly different for Core and Express apps.
 
-- Express
-- Core
+Express - app.py
 
-In Shiny Express, if you have a subdirectory named `www`, the contents of that directory will automatically be available to the application’s UI at `/`.
-
-app.py×www/my-styles.css×+
-
-9
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
+```python
 from shiny.express import ui
 
 ui.tags.link(href="my-styles.css", rel="stylesheet")
 
 with ui.card():
+    ui.card_header("Card header")
+    "Card body"
+```
 
-ui.card\_header("Card header")
+Express - my-styles.css
 
-"Card body"
+```css
+.card-header {
+    color: white;
+    background: #2A2A2A !important;
+}
+```
 
-If you want to mount other directories, you can use the `app_opts()` function:
-
-app.py×css\_files/my-styles.css×+
-
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-from shiny.express import app\_opts, ui
-
-\# Mount the local directory css\_files at the web path /css
-
-app\_opts(static\_assets={ "/css" : "css\_files" })
-
-ui.tags.link(href="css/my-styles.css", rel="stylesheet")
-
-with ui.card():
-
-ui.card\_header("Card header")
-
-"Card body"
-
-To make static files available for the UI in Shiny Core, use the `static_assets` argument of `shiny.App()`. Unlike Shiny Express, the `www` subdirectory is not automatically mounted at `/` but you can add it manually like any other static asset directory.
-
-app.py×www/my-styles.css×+
-
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-from pathlib import Path
-
-from shiny import App, ui
-
-app\_ui = ui.page\_fixed(
-
-ui.tags.link(href="my-styles.css", rel="stylesheet"),
-
-ui.card(
-
-ui.card\_header("Card header"),
-
-"Card body"
-
-)
-
-)
-
-app\_dir = Path(\_\_file\_\_).parent
-
-app = App(app\_ui, None, static\_assets=app\_dir / "www")
+In Shiny Express, if you have a subdirectory named `www`, the contents of that directory will automatically be available to the application’s UI at `/`.
 
 ## Distribute styles [Anchor](https://shiny.posit.co/py/docs/ui-customize.html\#distribute-styles)
 
 The `HTMLDependency` class (from [htmltools](https://github.com/posit-dev/py-htmltools/)) provides a useful mechanism to distribute custom styles and other files, especially when the CSS/JS should be loaded only once. A useful pattern to make those assets more accessible to others is to export a function from your Python package which returns an `HTMLDependency` object (this is essentially what [shinyswatch](https://shiny.posit.co/py/docs/ui-customize.html#shinyswatch) does). This way, after a user installs your package, they will be able to call this function anywhere in their UI code to insert the theme.
 
-```sourceCode python
+```
 from htmltools import HTMLDependency
 
 def acme_theme():

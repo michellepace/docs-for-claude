@@ -4,7 +4,7 @@ from shiny import ui
 
 ui.input\_action\_button("btn", "Button")
 
-```output-content
+```
 
 ```
 
@@ -16,7 +16,7 @@ from shiny import ui
 
 ui.markdown("Hello \*\*world\*\*!")
 
-```output-content
+```
 
 ```
 
@@ -26,7 +26,7 @@ from shiny import ui
 
 ui.HTML("<p>Hello <strong>world</strong>!</p>")
 
-```output-content
+```
 
 ```
 
@@ -36,7 +36,7 @@ from shiny import ui
 
 ui.div("Hello", ui.span("world"), "!")
 
-```output-content
+```
 
 ```
 
@@ -46,7 +46,7 @@ from shiny import ui
 
 ui.tags.video(src="video.mp4")
 
-```output-content
+```
 
 ```
 
@@ -66,7 +66,7 @@ x.add\_style("color:red;")
 
 \# x.show()
 
-```output-content
+```
 
 ```
 
@@ -80,7 +80,7 @@ ui.a("Help", href="help.html")
 
 ui.a({"href": "help.html"}, "Help")
 
-```output-content
+```
 
 ```
 
@@ -98,7 +98,7 @@ ui.a("Help", href="help.html", class\_="help-link")
 
 <a href="help.html">Help</a>
 
-```output-content
+```
 
 ```
 
@@ -106,7 +106,7 @@ ui.a("Help", href="help.html", class\_="help-link")
 
 The `<head>` of an HTML document is a special place where you can load CSS, JavaScript, and add other “meta” content that should only be loaded once. `head_content()` provides an easy easy way to add to the `<head>`, and can be placed anywhere in the UI. For example, to add a [`robots` meta tag](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag):
 
-```sourceCode python
+```
 from shiny import ui
 
 ui.head_content(
@@ -118,9 +118,9 @@ If `head_content()` wants to import local files, see [here](https://shiny.posit.
 
 ## HTML Dependencies [Anchor](https://shiny.posit.co/py/docs/ui-html.html\#html-dependencies)
 
-`HTMLDependency()` provides a useful way to include CSS, JavaScript, other files which should _only ever be loaded once_. Most Shiny apps don’t need to worry about this problem, but if you’re creating UI components that you expect other people to use, then it’s important to be aware of `HTMLDependency()`. It’s typically used to load frameworks like Bootstrap or Svelte, and can also be included as a child of any `Tag`/ `TagList` object, so may see it used in the wild like this:
+`HTMLDependency()` provides a useful way to include CSS, JavaScript, other files which should _only ever be loaded once_. Most Shiny apps don’t need to worry about this problem, but if you’re creating UI components that you expect other people to use, then it’s important to be aware of `HTMLDependency()`. It’s typically used to load frameworks like Bootstrap or Svelte, and can also be included as a child of any `Tag`/`TagList` object, so may see it used in the wild like this:
 
-```sourceCode python
+```
 from shiny import ui
 
 def my_ui(x):
@@ -160,7 +160,7 @@ ui.span("World"),
 
 )
 
-```output-content
+```
 
 ```
 

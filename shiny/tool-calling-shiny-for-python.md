@@ -28,7 +28,7 @@ Although this article focuses on using tool calling in a chatbot, the same ideas
 
 LLMs are trained on data up until a certain cutoff date, and they don’t natively have access to the internet. This means that they can’t answer questions about current events, weather, etc. Most LLMs nowadays are at least aware of this limitation:
 
-```sourceCode python
+```python
 from chatlas import ChatAnthropic
 chat_client = ChatAnthropic()
 chat_client.chat("What's the current temperature in Duluth, MN?")
@@ -40,7 +40,7 @@ However, we can equip the LLM with a function to query current weather from a we
 
 Note also that the function **includes type hints and a docstring**. This is important because it helps the LLM understand what the function does and how to use it.
 
-```sourceCode python
+```python
 import requests
 
 def get_current_weather(latitude: float, longitude: float):
@@ -72,7 +72,7 @@ To embed our `chat_client` in a Shiny [chatbot](https://shiny.posit.co/py/docs/g
 
 client.py
 
-```sourceCode python
+```python
 import requests
 from chatlas import ChatAnthropic
 
@@ -92,7 +92,7 @@ chat_client.register_tool(get_current_weather)
 
 app.py
 
-```sourceCode python
+```python
 from client import chat_client
 from shiny.express import ui
 
@@ -142,7 +142,7 @@ The most basic way to hand over control to the LLM is to have it update reactive
 
 client.py
 
-```sourceCode python
+```python
 from chatlas import ChatAnthropic
 from shiny.express import ui
 
@@ -164,7 +164,7 @@ chat_client.register_tool(update_slider)
 
 app.py
 
-```sourceCode python
+```python
 from client import chat_client, SLIDER_ID
 from shiny.express import ui
 
@@ -201,9 +201,9 @@ The basic example above illustrates the idea using minimal code, but the app its
 
 In Shiny, a reactive value can derive from either an input [component](https://shiny.posit.co/py/components/) (e.g., `ui.input_select()`, etc.) or an entirely server-side `reactive.value()`. Generally speaking, the latter approach is useful for tracking state that may not exist in the UI (e.g., authentication, user activity, etc.). Similar to how we can equip the LLM to update an input component, we can also equip it to update a reactive value to have it drive the app’s state.
 
-The sidebot template ( [mentioned at the top](https://shiny.posit.co/py/docs/genai-tools.html#why-tool-calling) of this article) illustrates a particularly powerful application of managing state. In this case, the state is an SQL query. When that state changes, it triggers a reactive data frame ( `current_data`) to be updated, which in turn updates all the downstream views of the data.
+The sidebot template ( [mentioned at the top](https://shiny.posit.co/py/docs/genai-tools.html#why-tool-calling) of this article) illustrates a particularly powerful application of managing state. In this case, the state is an SQL query. When that state changes, it triggers a reactive data frame (`current_data`) to be updated, which in turn updates all the downstream views of the data.
 
-```sourceCode python
+```python
 import duckdb
 from shiny import reactive
 
@@ -219,9 +219,9 @@ def current_data():
     return duckdb.query(current_query()).df()
 ```
 
-The LLM is also provided a tool ( `update_dashboard()`) which takes an SQL query as input, and sets a new value for the `current_query` reactive value.
+The LLM is also provided a tool (`update_dashboard()`) which takes an SQL query as input, and sets a new value for the `current_query` reactive value.
 
-```sourceCode python
+```python
 from typing import Annotated
 
 async def update_dashboard(
@@ -253,7 +253,7 @@ To customize the result display, you can:
 
 The basic example below would just style the tool result differently than the default:
 
-```sourceCode python
+```python
 from chatlas import ContentToolResult
 
 class WeatherToolResult(ContentToolResult):
@@ -283,7 +283,7 @@ Keep in mind that [Shiny UI can be included in messages](https://shiny.posit.co/
 
 Show code
 
-```sourceCode python
+```python
 import ipywidgets
 from shinywidgets import register_widget, output_widget
 from ipyleaflet import Map, CircleMarker

@@ -16,31 +16,31 @@ Pick from the following LLM providers below to start your chatbot. Copy & paste 
 - Other
 - Help me choose!
 
-```sourceCode bash
+```
 shiny create --template chat-ai-ollama
 ```
 
-```sourceCode bash
+```
 shiny create --template chat-ai-anthropic
 ```
 
-```sourceCode bash
+```
 shiny create --template chat-ai-openai
 ```
 
-```sourceCode bash
+```
 shiny create --template chat-ai-gemini
 ```
 
-```sourceCode bash
+```
 shiny create --template chat-ai-anthropic-aws
 ```
 
-```sourceCode bash
+```
 shiny create --template chat-ai-azure-openai
 ```
 
-```sourceCode bash
+```
 shiny create --template chat-ai-langchain
 ```
 
@@ -62,10 +62,9 @@ Screenshot of a conversation with the `Chat` component.
 
 Go ahead and open the `app.py` file from your template, you’ll see something roughly like this:
 
-- Express
-- Core
+Express:
 
-```sourceCode python
+```python
 from chatlas import ChatOllama
 from shiny.express import ui
 
@@ -81,7 +80,9 @@ async def handle_user_input(user_input: str):
     await chat.append_message_stream(response)
 ```
 
-```sourceCode python
+Core:
+
+```python
 from chatlas import ChatOllama
 from shiny import ui, App
 
@@ -120,7 +121,7 @@ In this article, our primary focus is the UI portion of the chatbot (i.e., `chat
 
 With `chatlas`, it’s very easy to switch between the model and system prompt behind your `chat_client`. Just change the `model` and `system_prompt` parameters:
 
-```sourceCode python
+```python
 chat_client = ChatOllama(
   model="llama3.2",
   system_prompt="You are a helpful assistant",
@@ -135,7 +136,7 @@ Model playground template
 
 Interactively experiment with different models and prompts with the playground template. It’s also a great learning resource on how to leverage reactivity for dynamic prompts and model selection.
 
-```sourceCode bash
+```
 shiny create --template chat-ai-playground
 ```
 
@@ -150,13 +151,13 @@ Startup messages are a great place to introduce the chatbot with a brief descrip
 - Express
 - Core
 
-```sourceCode python
+```
 chat.ui(
   messages=["**Hello!** How can I help you today?"]
 )
 ```
 
-```sourceCode python
+```
 ui.chat_ui(
   id="chat",
   messages=["**Hello!** How can I help you today?"],
@@ -174,7 +175,7 @@ Every `chat` instance should have a `@chat.on_user_submit` callback. This is whe
 1. Use another framework for reponse generation (e.g., [LangChain](https://www.langchain.com/)).
 2. Transform the stream as it’s being generated (e.g., capitalize the response).
 
-```sourceCode python
+```
 @chat.on_user_submit
 async def _(user_input: str):
     stream = stream_generator(user_input)
@@ -193,10 +194,9 @@ When a Shiny app reloads, the app returns to it’s original state, unless the U
 
 Adding bookmark support to an app generally requires some extra effort. At the very least, Shiny needs to know where and when to save state, and in some cases, how to save/restore it as well. [2](https://shiny.posit.co/py/docs/genai-chatbots.html#fn2) The `.enable_bookmarking()` method makes this all a bit easier for bookmarking both the `chat` and `chat_client` instances.
 
-- Express
-- Core
+Express:
 
-```sourceCode python
+```python
 from chatlas import ChatOllama
 from shiny.express import ui
 
@@ -212,7 +212,9 @@ chat.enable_bookmarking(
 )
 ```
 
-```sourceCode python
+Core:
+
+```python
 from chatlas import ChatOllama
 from shiny import ui, App
 
@@ -234,11 +236,11 @@ app = App(app_ui, server, bookmark_store="url")
 
 Adding this `.enable_bookmarking()` call handles the where, when, and how of bookmarking chat state:
 
-1. Where ( `store`)
+1. Where (`store`)
 
    - `"url"` store the state in the URL.
    - `"server"` store the state on the server. Consider this over `"url"` if you want to support a large amount of state, or have other bookmark state that can’t be serialized to JSON.
-2. When ( `bookmark_on`)
+2. When (`bookmark_on`)
 
    - `"response"`: triggers a bookmark when an `"assistant"` response is appended.
    - `None`: don’t trigger a bookmark. This assumes you’ll be triggering bookmarks through other means (e.g., a button).
@@ -255,7 +257,7 @@ Fill the page on desktop (and mobile) with the `fillable=True` (and `fillable_mo
 - Express
 - Core
 
-```sourceCode python
+```
 from shiny.express import ui
 
 ui.page_opts(
@@ -267,7 +269,7 @@ chat = ui.Chat(id="chat")
 chat.ui(messages=["Welcome!"])
 ```
 
-```sourceCode python
+```
 from shiny import ui, App
 
 app_ui = ui.page_fillable(
@@ -289,10 +291,9 @@ Screenshot of a chatbot filling the page.
 
 Another useful UI pattern is to embed the chat component inside a `ui.card()`. If nothing else, this will help visually separate the chat from the rest of the app. It also provides a natural place to provide a header (with perhaps a [tooltip](https://shiny.posit.co/py/components/display-messages/tooltips/) with more info about your chatbot). [Cards](https://shiny.posit.co/py/layouts/panels-cards/#content-divided-by-cards) also come with other handy features like `full_screen=True` to make the chat full-screen when embedded inside a larger app.
 
-- Express
-- Core
+Express:
 
-```sourceCode python
+```python
 from shiny.express import ui
 from faicons import icon_svg
 
@@ -315,7 +316,9 @@ with ui.card():
     )
 ```
 
-```sourceCode python
+core:
+
+```python
 from shiny import ui, App
 
 app_ui = ui.page_fillable(
@@ -353,10 +356,9 @@ Screenshot of a chatbot embedded in a card with a header and tooltip.
 
 To customize main colors and fonts, provide a `ui.Theme()` to the `theme` page option. Theming customization may be done directly on `ui.Theme()` (e.g., `.add_defaults()`) and/or created from a [brand-yml](https://posit-dev.github.io/brand-yml/) file and applied with `ui.Theme().from_brand()`. Note you can also introduce a dark mode toggle with `ui.input_dark_mode()`.
 
-- Express
-- Core
+Express:
 
-```sourceCode python
+```python
 from shiny.express import ui
 
 ui.page_opts(
@@ -376,7 +378,9 @@ with ui.sidebar(width=300, style="height:100%"):
 "Main content region"
 ```
 
-```sourceCode python
+Core:
+
+```python
 from shiny import ui, App
 
 app_ui = ui.page_sidebar(
@@ -407,10 +411,9 @@ Screenshot of a chatbot with a custom theme and dark mode toggle.
 
 Customize the assistant icon by supplying HTML/SVG to `icon_assistant` when creating the UI element (or when appending a message). The `faicons` package makes it easy to do this for [font awesome](https://fontawesome.com/), but other icon libraries (e.g., [Bootstrap icons](https://shiny.posit.co/py/docs/(https://icons.getbootstrap.com/#usage)), [heroicons](https://heroicons.com/), etc.) or custom SVGs are also possible by providing inline SVGs as a string to `ui.HTML()`.
 
-- Express
-- Core
+Express:
 
-```sourceCode python
+```python
 from faicons import icon_svg
 
 chat.ui(
@@ -419,7 +422,9 @@ chat.ui(
 )
 ```
 
-```sourceCode python
+Core:
+
+```python
 from faicons import icon_svg
 
 ui.chat_ui(
@@ -437,10 +442,9 @@ Custom `<img>` icons
 
 HTML `<img>` tags also work. By default, they fill their container, and may get clipped by the container’s `border-radius`. To scale down the image, add a `icon` CSS class, or `border-0` to remove the `border` and `border-radius`.
 
-- Express
-- Core
+Express:
 
-```sourceCode python
+```python
 from faicons import icon_svg
 
 chat.ui(
@@ -451,7 +455,9 @@ chat.ui(
 )
 ```
 
-```sourceCode python
+Core:
+
+```python
 from faicons import icon_svg
 
 ui.chat_ui(
@@ -475,43 +481,25 @@ Help users start or continue a conversation by providing **input suggestions**. 
 
 app.py+
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
+```python
 from shiny.express import ui
+
+welcome = """
+**Hello!** How can I help you today?
+
+Here are a couple suggestions:
+
+* <span class="suggestion">Tell me a joke</span>
+* <span class="suggestion submit">Tell me a story</span>
+"""
+
+chat = ui.Chat(id="chat")
+chat.ui(messages=[welcome])
+
+@chat.on_user_submit
+async def _(user_input: str):
+    await chat.append_message(f"You said: {user_input}")
+```
 
 welcome = """
 
@@ -537,7 +525,7 @@ await chat.append\_message(f"You said: {user\_input}")
 
 Suggestions are a great way to help guide users throughout a multi-turn conversation (for real examples, see [here](https://shiny.posit.co/py/docs/genai-inspiration.html#guided-exploration-%F0%9F%A7%AD)). To accomplish this, you’ll need to instruct the AI how to generate suggestions itself. We’ve found that adding a section like the one below to your [`system_prompt`](https://shiny.posit.co/py/docs/genai-chatbots.html#models-prompts) to be effective for this:
 
-````sourceCode markdown
+<example>
 ## Showing prompt suggestions
 
 If you find it appropriate to suggest prompts the user might want to write, wrap the text of each prompt in `<span class="suggestion">` tags.
@@ -550,91 +538,71 @@ Suggested next steps:
 2. <span class="suggestion">Suggestion 2.</span>
 3. <span class="suggestion">Suggestion 3.</span>
 ```
-````
+
+</example>
 
 Card-based suggestions
 
 Input suggestions can also things other than text, like images or cards. To create one, supply a `data-suggestion` attribute with the suggestion text on the desired HTML element. As shown below, we highly recommend using a `ui.card()` in this scenario – it should be fairly obvious to the user that it’s clickable, and comes with a nice hover effect.
 
-app.py×suggestions.py×+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
+```python
 from shiny import reactive
-
 from shiny.express import expressify, ui
-
-from suggestions import card\_suggestions
+from suggestions import card_suggestions
 
 with ui.hold() as suggestions:
-
-card\_suggestions()
+    card_suggestions()
 
 welcome = f"""
-
-\*\*Hello!\*\* How can I help you today?
+**Hello!** How can I help you today?
 
 Here are a couple suggestions:
 
-{suggestions\[0\]}
-
+{suggestions[0]}
 """
 
 chat = ui.Chat(id="chat")
+chat.ui(messages=[welcome])
 
-chat.ui(messages=\[welcome\])
+@chat.on_user_submit
+async def _(user_input: str):
+    await chat.append_message(f"You said: {user_input}")
+```
 
-@chat.on\_user\_submit
+suggestions.py:
 
-asyncdef\_(user\_input: str):
+```python
+from shiny.express import expressify, ui
 
-await chat.append\_message(f"You said: {user\_input}")
+@expressify
+def card_suggestion(title: str, suggestion: str, img_src: str, img_alt: str):
+    with ui.card(data_suggestion=suggestion):
+        ui.card_header(title)
+        ui.fill.as_fill_item(
+            ui.img(
+                src=img_src,
+                alt=img_alt,
+            )
+        )
 
-Keyboard shortcuts
+@expressify
+def card_suggestions():
+    with ui.layout_column_wrap(height=200):
+        card_suggestion(
+            title="Learn Python",
+            suggestion="Teach me Python",
+            img_src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
+            img_alt="Python logo",
+        )
+        card_suggestion(
+            title="Learn R",
+            suggestion="Teach me R",
+            img_src="https://upload.wikimedia.org/wikipedia/commons/1/1b/R_logo.svg",
+            img_alt="R logo",
+        )
+```
 
 Any suggestion can be auto-submitted by holding `Ctrl/Cmd` when clicking on it. Morever, you can opt-out of auto-submitting any suggestion by holding `Alt/Option` when clicking on a suggestion.
 
@@ -652,7 +620,7 @@ Note
 
 The app above is available as a [template](https://shiny.posit.co/py/templates/):
 
-```sourceCode bash
+```
 shiny create --template data-sci-adventure \
     --github posit-dev/py-shiny-templates/gen-ai
 ```
@@ -671,44 +639,25 @@ Note
 
 The app above is available as a [template](https://shiny.posit.co/py/templates/):
 
-```sourceCode bash
+```
 shiny create --template dinner-recipe \
     --github posit-dev/py-shiny-templates/gen-ai
 ```
 
 For a more basic example, here’s a startup message with an input field:
 
-app.py+
+app.py:
 
-9
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
+```python
 from shiny.express import ui
 
 with ui.hold() as welcome:
-
-"\*\*Hello!\*\* What's your name?"
-
-ui.input\_text("name", None, placeholder="Enter name here")
+    "**Hello!** What's your name?"
+    ui.input_text("name", None, placeholder="Enter name here")
 
 chat = ui.Chat(id="chat")
-
-chat.ui(messages=\[welcome\])
+chat.ui(messages=[welcome])
+```
 
 Interactive tool displays
 
@@ -728,292 +677,72 @@ A few other benefits of an extended task is that they make it easy to:
 
 To grab the latest message stream, read the `.latest_message_stream` property on the `chat` object. This property always points to the most recent message stream, making it easy to work with it in a reactive context. Here’s an example of reactively reading the status and result of the latest message stream:
 
-app.py×app\_utils.py×+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-from app\_utils import stream\_generator
-
+```python
+from app_utils import stream_generator
 from shiny.express import render, ui
 
 chat = ui.Chat("chat")
 
 @render.code
-
-defstream\_status():
-
-returnf"Status: {chat.latest\_message\_stream.status()}"
+def stream_status():
+    return f"Status: {chat.latest_message_stream.status()}"
 
 chat.ui(placeholder="Type anything here and press Enter")
 
 @render.text
+async def stream_result():
+    return f"Result: {chat.latest_message_stream.result()}"
 
-asyncdefstream\_result():
+@chat.on_user_submit
+async def _(message: str):
+    await chat.append_message_stream(stream_generator())
+```
 
-returnf"Result: {chat.latest\_message\_stream.result()}"
+app\_utils.py:
 
-@chat.on\_user\_submit
+```python
+import asyncio
 
-asyncdef\_(message: str):
-
-await chat.append\_message\_stream(stream\_generator())
+async def stream_generator():
+    for i in range(5):
+        await asyncio.sleep(0.5)
+        yield f"Message {i} \n\n"
+```
 
 Providing good UI/UX for canceling a stream is a bit more involved, but it can be done with a button that cancels the stream and notifies the user. See the example below for an approach to this:
 
 Stream cancellation
 
-app.py×app\_utils.py×+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
-23
-
-24
-
-25
-
-26
-
-27
-
-28
-
-29
-
-30
-
-31
-
-32
-
-from app\_utils import stream\_generator
-
-from shiny import reactive
-
-from shiny.express import input, ui
-
-ui.input\_action\_button(
-
-"cancel",
-
-"Cancel stream",
-
-class\_="btn btn-danger",
-
-)
-
-chat = ui.Chat("chat")
-
-chat.ui(placeholder="Type anything here and press Enter")
-
-@chat.on\_user\_submit
-
-asyncdef\_(message: str):
-
-await chat.append\_message\_stream(stream\_generator())
-
-@reactive.effect
-
-@reactive.event(input.cancel)
-
-def\_():
-
-chat.latest\_message\_stream.cancel()
-
-ui.notification\_show("Stream cancelled", type="warning")
-
-@reactive.effect
-
-def\_():
-
-ui.update\_action\_button(
-
-"cancel",
-
-disabled=chat.latest\_message\_stream.status() != "running"
-
-)
-
-### Streaming context [Anchor](https://shiny.posit.co/py/docs/genai-chatbots.html\#message-stream-context)
-
-An alternative way to append a streaming messages is through the `.message_stream_context()` context manager. Compared to `.append_message_stream()`, it provides a bit more control over the stream’s lifecycle and content, but has the downside of not being non-blocking by default. You’ll find it useful when you want to:
-
-1. Overwrite/replace content that already exists in a message.
-2. Insert a new stream inside an existing stream.
-
-The example below demonstrates both of these use cases. Note how the inner stream is used to show progress, and the outer stream is used to provide context:
-
-app.py+
-
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
-23
-
-24
-
+```python
 import asyncio
 
 from shiny import reactive
-
 from shiny.express import input, ui
 
 welcome = f"""
+**Hello!** Press the button below to append a stream.
 
-\*\*Hello!\*\* Press the button below to append a stream.
-
-{ui.input\_task\_button("do\_stream", "Stream", class\_="btn btn-primary")}
-
+{ui.input_task_button("do_stream", "Stream", class_="btn btn-primary")}
 """
 
-chat = ui.Chat(id="my\_chat")
-
-chat.ui(messages=\[welcome\])
+chat = ui.Chat(id="my_chat")
+chat.ui(messages=[welcome])
 
 @reactive.effect
-
-@reactive.event(input.do\_stream)
-
-asyncdef\_():
-
-asyncwith chat.message\_stream\_context() as outer:
-
-await outer.append("Starting stream 🔄...\\n\\nProgress:")
-
-asyncwith chat.message\_stream\_context() as inner:
-
-for x in \[0, 50, 100\]:
-
-await inner.replace(f" {x}%")
-
-await asyncio.sleep(1)
-
-await outer.replace("Completed stream ✅")
+@reactive.event(input.do_stream)
+async def _():
+    async with chat.message_stream_context() as outer:
+        await outer.append("Starting stream 🔄...\n\nProgress:")
+        async with chat.message_stream_context() as inner:
+            for x in [0, 50, 100]:
+                await inner.replace(f" {x}%")
+                await asyncio.sleep(1)
+        await outer.replace("Completed stream ✅")
+```
 
 As you’ll learn in [tool calling](https://shiny.posit.co/py/docs/genai-tools.html), a `.message_stream()` can also be nested inside an non-blocking `.append_message_stream()`, which is primarily useful for showing tool progress/results.
 
@@ -1031,7 +760,7 @@ Custom error messages
 
 Another way to handle error is to catch them yourself and append a message to the chat. This way, you can might provide a better experience with “known” errors, like when the user enters an invalid/unexpected input:
 
-```sourceCode python
+```python
 def format_as_error(x: str):
     return f'<span class="text-danger">{x}</span>'
 
@@ -1063,63 +792,26 @@ Since `chatlas` builds on top of official Python SDKs like `openai` and `anthrop
 
 The `chat.messages()` method returns a tuple of all the messages appended after startup. Use this if you want to obtain a record of messages as they appear in the UI. This makes implementing something like download feature easy:
 
-app.py+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
+```python
 import json
-
 from shiny.express import render, ui
 
-ui.page\_opts(fillable=True, fillable\_mobile=True)
+ui.page_opts(fillable=True, fillable_mobile=True)
 
 chat = ui.Chat("chat")
 
-chat.ui(messages=\["Welcome!"\])
+chat.ui(messages=["Welcome!"])
 
 @render.download(filename="messages.json", label="Download messages")
+def download():
+    yield json.dumps(chat.messages())
 
-defdownload():
-
-yield json.dumps(chat.messages())
-
-@chat.on\_user\_submit
-
-asyncdef\_(user\_input: str):
-
-await chat.append\_message(f"You said: {user\_input}")
+@chat.on_user_submit
+async def _(user_input: str):
+    await chat.append_message(f"You said: {user_input}")
+```
 
 Front-end vs back-end
 
@@ -1127,207 +819,64 @@ Beware that `chat.messages()` only returns only the content sent to the UI, not 
 
 For a more advanced example of how you can combine reactivity with `chat.messages()` to add a “New chat” button with a dropdown to select previous chats, see the example below:
 
-app.py+
+app.py
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
-23
-
-24
-
-25
-
-26
-
-27
-
-28
-
-29
-
-30
-
-31
-
-32
-
-33
-
-34
-
-35
-
-36
-
-37
-
-38
-
-39
-
-40
-
-41
-
-42
-
-43
-
-44
-
-45
-
-46
-
-47
-
-48
-
-49
-
-50
-
-51
-
-52
-
-53
-
-54
-
+```python
 from datetime import datetime
-
-from faicons import icon\_svg
-
+from faicons import icon_svg
 from shiny import reactive
-
 from shiny.express import input, render, ui
 
-ui.page\_opts(fillable=True, fillable\_mobile=True)
+ui.page_opts(fillable=True, fillable_mobile=True)
 
 chat = ui.Chat(id="chat")
+chat.ui(messages=["**Hello!** How can I help you today?"])
 
-chat.ui(messages=\["\*\*Hello!\*\* How can I help you today?"\])
+with ui.layout_columns(fill=False):
+    ui.input_action_button("new", "New chat", icon=icon_svg("plus"))
 
-with ui.layout\_columns(fill=False):
+    @render.express
+    def history_ui():
+        if not history():
+            return
+        choices = list(history().keys())
+        choices_dict = dict(zip(choices, choices))
+        ui.input_select(
+            "previous_chat", None,
+            choices={"": "Choose a previous chat", **choices_dict}
+        )
 
-ui.input\_action\_button("new", "New chat", icon=icon\_svg("plus"))
 
-@render.express
+@chat.on_user_submit
+async def _(user_input: str):
+    await chat.append_message(f"You said: {user_input}")
 
-defhistory\_ui():
-
-ifnot history():
-
-return
-
-choices = list(history().keys())
-
-choices\_dict = dict(zip(choices, choices))
-
-ui.input\_select(
-
-"previous\_chat", None,
-
-choices={"": "Choose a previous chat", \*\*choices\_dict}
-
-)
-
-@chat.on\_user\_submit
-
-asyncdef\_(user\_input: str):
-
-await chat.append\_message(f"You said: {user\_input}")
-
-\# Track chat history
-
+# Track chat history
 history = reactive.value({})
 
-\# When a new chat is started, add the current chat messages
-
-\# to the history, clear the chat, and append a new start message
-
+# When a new chat is started, add the current chat messages
+# to the history, clear the chat, and append a new start message
 @reactive.effect
-
 @reactive.event(input.new)
+async def _():
+    stamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    hist = {**history(), stamp: chat.messages()}
+    history.set(hist)
+    await chat.clear_messages()
+    await chat.append_message(f"Chat started at {stamp}")
 
-asyncdef\_():
-
-stamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-hist = {\*\*history(), stamp: chat.messages()}
-
-history.set(hist)
-
-await chat.clear\_messages()
-
-await chat.append\_message(f"Chat started at {stamp}")
-
-\# When a previous chat is selected, clear the current chat,
-
-\# and append the messages from the selected chat
-
+# When a previous chat is selected, clear the current chat,
+# and append the messages from the selected chat
 @reactive.effect
-
-@reactive.event(input.previous\_chat)
-
-asyncdef\_():
-
-ifnot input.previous\_chat():
-
-return
-
-msgs = history()\[input.previous\_chat()\]
-
-await chat.clear\_messages()
-
-for msg in msgs:
-
-await chat.append\_message(msg)
+@reactive.event(input.previous_chat)
+async def _():
+    if not input.previous_chat():
+        return
+    msgs = history()[input.previous_chat()]
+    await chat.clear_messages()
+    for msg in msgs:
+        await chat.append_message(msg)
+```
 
 ## Next steps [Anchor](https://shiny.posit.co/py/docs/genai-chatbots.html\#next-steps)
 

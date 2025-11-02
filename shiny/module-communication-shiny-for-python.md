@@ -20,7 +20,7 @@ The easiest way to communicate with modules is to pass non-reactive arguments to
 
 To create the module, use the `@module` decorator on a function and give it two additional parameters, `label` and `starting value`.
 
-```sourceCode python
+```
 from shiny import reactive
 from shiny.express import module, ui, render
 
@@ -73,7 +73,7 @@ Note that in the example above we used the relative import `from .counter import
 
 To do this, you would first add an argument to the module UI function which sets the button label.
 
-```sourceCode python
+```
 from shiny import module, ui, render, reactive, event, App
 
 @module.ui
@@ -87,7 +87,7 @@ def counter_ui(custom_label = "Increment counter"):
 
 Next, you would add an argument to the server function which specifies the starting value for the counter.
 
-```sourceCode python
+```
 @module.server
 def counter_server(input, output, session, starting_value = 0):
     count =  reactive.value(starting_value)
@@ -187,7 +187,7 @@ If a module used from within a Shiny Express application, you can pass it UI ele
 
 Suppose you want to use a module called `table_cards_module()`. We’ll just provide the signature here (the implementation will be later). If you want it to accept multiple arguments, they can be passed in as a list:
 
-```sourceCode python
+```
 @module
 def my_module(input, output, session, elements):
     for el in elements:
@@ -201,7 +201,7 @@ Notice that in order to display the elements that the user passed in, we just us
 
 Another method is to have your module take non-keyword argument with `*args`. With this method, you don’t have two wrap the elements in a list when using the module:
 
-```sourceCode python
+```
 @module
 def my_module(input, output, session, *elements):
     for el in elements:
@@ -317,7 +317,7 @@ table\_cards("heading\_example", text\_tags),
 
 There are two main ways to pass multiple UI elements to a module. First, you can have the module take a list as one of the arguments and pass that list to another container function.
 
-```sourceCode python
+```
 @module.ui
 def mod_ui(elements):
     return ui.div(elements)
@@ -329,7 +329,7 @@ This is convenient because it lets the parent context pass in any number of elem
 
 The second method is to have your module take non keyword argument with `*args`. This is how Shiny’s container functions are designed, and using this pattern lets you to call the module UI just like you would any Shiny function.
 
-```sourceCode python
+```
 @module.ui
 def mod_ui(*args):
     return ui.div(*args)

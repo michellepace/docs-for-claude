@@ -18,31 +18,31 @@ Pick from the following LLM providers below to start your streaming markdown app
 - Other
 - Help me choose!
 
-```sourceCode bash
+```bash
 shiny create --template stream-ai-ollama
 ```
 
-```sourceCode bash
+```bash
 shiny create --template stream-ai-anthropic
 ```
 
-```sourceCode bash
+```bash
 shiny create --template stream-ai-openai
 ```
 
-```sourceCode bash
+```bash
 shiny create --template stream-ai-gemini
 ```
 
-```sourceCode bash
+```bash
 shiny create --template stream-ai-anthropic-aws
 ```
 
-```sourceCode bash
+```bash
 shiny create --template stream-ai-azure-openai
 ```
 
-```sourceCode bash
+```bash
 shiny create --template stream-ai-langchain
 ```
 
@@ -67,7 +67,7 @@ Go ahead and open the `app.py` file from your template, you’ll see something r
 - Express
 - Core
 
-```sourceCode python
+```python
 from chatlas import ChatOllama
 from shiny import reactive
 from shiny.express import input, ui
@@ -96,7 +96,7 @@ async def do_joke():
     await stream.stream(response)
 ```
 
-```sourceCode python
+```python
 from chatlas import ChatOllama
 from shiny import App, reactive, ui
 
@@ -145,7 +145,7 @@ In this article, our primary focus is the UI portion of the markdown stream (i.e
 
 With `chatlas`, it’s very easy to switch between the model and system prompt behind your `chat_client`. Just change the `model` and `system_prompt` parameters:
 
-```sourceCode python
+```python
 chat_client = ChatOllama(
   model="llama3.2",
   system_prompt="You are a helpful assistant",
@@ -167,13 +167,13 @@ This is typically most useful for providing a welcome message or instructions to
 - Express
 - Core
 
-```sourceCode python
+```python
 stream.ui(
   content="Press the button and I'll tell you a joke."
 )
 ```
 
-```sourceCode python
+```python
 ui.output_markdown_stream(
   content="Press the button and I'll tell you a joke."
 )
@@ -187,7 +187,7 @@ Screenshot of a starting content message.
 
 When you `.stream()` content, you have the choice of whether or not to clear the existing content. By default, existing content is cleared, but you can instead append to the existing content by passing `clear=False` to `stream.stream()`.
 
-```sourceCode python
+```python
 await stream.stream(response, clear=False)
 ```
 
@@ -331,7 +331,7 @@ In this case, it’s also useful to know that a sidebar layout can also placed w
 - Express
 - Core
 
-```sourceCode python
+```python
 from shiny.express import ui
 
 # Get the card to fill the page
@@ -361,7 +361,7 @@ with ui.card():
         stream.ui(content="Press the button and I'll tell you a joke.")
 ```
 
-```sourceCode python
+```python
 from shiny import ui, App
 from faicons import icon_svg
 
@@ -675,9 +675,9 @@ As it turns out, when an error occurs _inside_ a `.stream()`, the error is caugh
 
 Screenshot of a chatbot with an error message.
 
-This is should be good enough to catch most errors that occur during response generation. However, it’s also good to be aware though that other errors that might occur elsewhere in a `reactive.effect` will still crash the app. If you’d like to protect against this, you can wrap them in a `try`/ `except` block, and re-raise the error as a `NotifyException`, like this:
+This is should be good enough to catch most errors that occur during response generation. However, it’s also good to be aware though that other errors that might occur elsewhere in a `reactive.effect` will still crash the app. If you’d like to protect against this, you can wrap them in a `try`/`except` block, and re-raise the error as a `NotifyException`, like this:
 
-```sourceCode python
+```python
 from shiny.types import NotifyException
 from shiny import reactive
 

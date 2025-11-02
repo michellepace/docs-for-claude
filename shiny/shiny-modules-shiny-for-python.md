@@ -19,7 +19,7 @@ While many people are comfortable using functions in their day-to-day programmin
 - Express
 - Core
 
-```sourceCode python
+```python
 from shiny.express import ui
 
 ui.input_slider("n1", "N", 0, 100, 20)
@@ -30,7 +30,7 @@ ui.input_slider("n5", "N", 0, 100, 20)
 ui.input_slider("n6", "N", 0, 100, 20)
 ```
 
-```sourceCode python
+```python
 from shiny import App, ui
 
 app_ui = ui.page_fluid(
@@ -56,7 +56,7 @@ This code has a lot of repetition which makes it difficult to manage. For exampl
 
 A simple function cleans up your code, but still requires multiple calls to that function.
 
-```sourceCode python
+```python
 from shiny.express import ui
 
 def my_slider(id):
@@ -71,7 +71,7 @@ my_slider("n5")
 
 List comprehension allows you to apply a ui-generating function to a list of ids.
 
-```sourceCode python
+```python
 from shiny.express import ui
 
 def my_slider(id):
@@ -84,7 +84,7 @@ ids = ["n1", "n2", "n3", "n4", "n5"]
 
 For more complicated functions you can use the `zip` function to turn multiple lists into a list of tuples which allows you to use list comprehension to generate UI elements.
 
-```sourceCode python
+```python
 from shiny.express import ui
 
 def my_slider(id, label):
@@ -102,7 +102,7 @@ labels = ["First", "Second", "Third", "Fourth", "Fifth"]
 
 A simple function cleans up your code, but still requires multiple calls to that function.
 
-```sourceCode python
+```python
 from shiny import App, ui
 
 def my_slider(id):
@@ -121,7 +121,7 @@ app = App(app_ui, None)
 
 List comprehension allows you to apply a ui-generating function to a list of ids.
 
-```sourceCode python
+```python
 from shiny import App, ui
 
 def my_slider(id):
@@ -138,7 +138,7 @@ app = App(app_ui, None)
 
 For more complicated functions you can use the `zip` function to turn multiple lists into a list of tuples which allows you to use list comprehension to generate UI elements.
 
-```sourceCode python
+```python
 from shiny import App, ui
 
 def my_slider(id, label):
@@ -161,7 +161,7 @@ Using functions in this way is a great way to improve your application code, but
 - Express
 - Core
 
-```sourceCode python
+```python
 from shiny.express import expressify, input, render, module, ui
 
 @expressify
@@ -176,7 +176,7 @@ def io_row():
 io_row()
 ```
 
-```sourceCode python
+```python
 from shiny import App, render, ui
 
 def io_row():
@@ -218,7 +218,7 @@ The signature of this function, with `input`, `output`, and `session` is the sam
 
 To use the module, just call the decorated function with a first parameter which is the ID,
 
-```sourceCode python
+```python
 from shiny.express import module, render, ui
 
 # Define a module function, which takes input, output, and session
@@ -241,7 +241,7 @@ One thing you might have noticed is that when we call the decorated function, we
 
 For example if your function’s signature looks like this:
 
-```sourceCode python
+```python
 @module
 def my_module(input, output, session):
     ...
@@ -249,94 +249,43 @@ def my_module(input, output, session):
 
 Then after it’s wrapped by the decorator, it looks like this from the outside (but note that `id` is a positional-only parameter):
 
-```sourceCode python
+```python
 def my_module(id):
     ...
 ```
 
 If you want your module to take additional parameters, you can just add them on to the function. In the example below, we’ve add another parameter named `placeholder`.
 
-app.py+
+app.py:
 
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
+```python
 from shiny.express import module, render, ui
 
 @module
+def io_row(input, output, session, placeholder=""):
+    with ui.layout_columns():
+        with ui.card():
+            ui.input_text(f"text_input", "Enter text", placeholder=placeholder)
+        with ui.card():
+            @render.text
+            def text_out():
+                return f'You entered "{input.text_input()}"'
 
-defio\_row(input, output, session, placeholder=""):
 
-with ui.layout\_columns():
+extra_ids = ["row_3", "row_4", "row_5"]
 
-with ui.card():
-
-ui.input\_text(f"text\_input", "Enter text", placeholder=placeholder)
-
-with ui.card():
-
-@render.text
-
-deftext\_out():
-
-returnf'You entered "{input.text\_input()}"'
-
-extra\_ids = \["row\_3", "row\_4", "row\_5"\]
-
-io\_row("row\_1")
-
-\# Call with a different ID and pass in argument for placeholder
-
-io\_row("row\_2", placeholder="Enter second thing")
-
-\# We can add more instances programmatically
-
-\[io\_row(x) for x in extra\_ids\]
+io_row("row_1")
+# Call with a different ID and pass in argument for placeholder
+io_row("row_2", placeholder="Enter second thing")
+# We can add more instances programmatically
+[io_row(x) for x in extra_ids]
+```
 
 At their core, modules are just functions and so anything you can do with a function you can also do with a module. Modules can take any argument, and can return any value to the caller. Modules usually include both UI and server elements which work together to encapsulate a part of your application, and the module UI and server work exactly the same way they do in a regular Shiny application.
 
 The UI part of the module is a function which returns UI elements, and is decorated with the `@module.ui` decorator. This decorator sets a default module namespace, so each component created by the function has a prefix implicitly added to its ID.
 
-```sourceCode python
+```python
 @module.ui
 def row_ui():
     return ui.layout_columns(
@@ -347,7 +296,7 @@ def row_ui():
 
 The module server function looks just like a Shiny app server function, except it’s decorated with the `@module.server` decorator.
 
-```sourceCode python
+```python
 @module.server
 def row_server(input, output, session):
     @output
@@ -357,126 +306,6 @@ def row_server(input, output, session):
 ```
 
 To use this module in an application, you call the module UI and server functions inside of the application UI and server functions. Every module call includes an `id` argument which defines the module’s namespace. This id has two requirements. First, it must be unique in a single scope, and can’t be duplicated in a given application or module definition. If you need to generate many instances of a single module, it is often a good idea to store their ids in a list, and use list comprehension to generate the UI and server instances. Second, the UI and server ids must match. This ensures that the UI and server instances exist in the same namespace, and if the ids don’t match, the UI and server modules will not be able to interact.
-
-app.py+
-
-99
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
-23
-
-24
-
-25
-
-26
-
-27
-
-28
-
-29
-
-30
-
-31
-
-32
-
-33
-
-34
-
-from shiny import App, module, render, ui
-
-@module.ui
-
-defrow\_ui():
-
-return ui.layout\_columns(
-
-ui.card(ui.input\_text("text\_in", "Enter text")),
-
-ui.card(ui.output\_text("text\_out")),
-
-)
-
-@module.server
-
-defrow\_server(input, output, session):
-
-@output
-
-@render.text
-
-deftext\_out():
-
-returnf'You entered "{input.text\_in()}"'
-
-extra\_ids = \["row\_3", "row\_4", "row\_5"\]
-
-app\_ui = ui.page\_fluid(
-
-row\_ui("row\_1"),
-
-row\_ui("row\_2"),
-
-\[row\_ui(x) for x in extra\_ids\]
-
-)
-
-defserver(input, output, session):
-
-row\_server("row\_1")
-
-row\_server("row\_2")
-
-\[row\_server(x) for x in extra\_ids\]
-
-app = App(app\_ui, server)
 
 Since modules allow you to tie UI and Server code together in the same namespace, you can include arbitrarily complex interactions within your module. Anything that you can do in a Shiny app can also be done inside of a module, and modules can themselves call other modules. This allows you to break your app up into building blocks of various sizes, compose those blocks to build different applications, and share them with others.
 

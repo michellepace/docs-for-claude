@@ -16,13 +16,9 @@ To use shinyapps.io, follow these steps:
 
 1. Install the [rsconnect-python](https://github.com/rstudio/rsconnect-python) package.
 
-
-
-```sourceCode bash
+```bash
 pip install rsconnect-python
 ```
-
-
 
 Deploying [Shiny Express](https://shiny.posit.co/blog/posts/shiny-express/) applications requires version 1.22.0 or later of the [rsconnect-python package](https://github.com/rstudio/rsconnect-python).
 
@@ -30,20 +26,15 @@ Deploying [Shiny Express](https://shiny.posit.co/blog/posts/shiny-express/) appl
 
 3. When you log in for the first time, you will be shown a command to run that will [configure rsconnect-python](https://docs.posit.co/shinyapps.io/getting-started.html#configure-rsconnect-python) with a shinyapps.io API token. The command will look something like:
 
-
-
-```sourceCode bash
+```bash
 rsconnect add --account <ACCOUNT> --name <NAME> --token <TOKEN> --secret <SECRET>
 ```
 
 4. Deploy your application by calling `rsconnect deploy`.
 
-
-
-```sourceCode bash
+```bash
 rsconnect deploy shiny /path/to/app --name <NAME> --title my-app
 ```
-
 
 After following these steps you will be able to manage and share the application on the cloud. Please see the [full documentation](https://docs.posit.co/shinyapps.io/getting-started.html#configure-rsconnect-python) for more information on how to deploy content to shinyapps.io.
 

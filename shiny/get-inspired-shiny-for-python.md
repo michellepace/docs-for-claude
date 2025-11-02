@@ -96,7 +96,7 @@ Screenshot of the “querychat” app, which leverages LLMs to generate SQL quer
 
 The app above is available as a [template](https://shiny.posit.co/py/templates/querychat/):
 
-```sourceCode bash
+```bash
 shiny create --template querychat \
     --github posit-dev/py-shiny-templates/gen-ai
 ```
@@ -111,7 +111,7 @@ Screenshot of the “sidebot” app, which leverages LLMs to translate natural l
 
 The app above is available as a [template](https://shiny.posit.co/py/templates/sidebot/):
 
-```sourceCode bash
+```bash
 shiny create --template querychat \
     --github posit-dev/py-shiny-templates/gen-ai
 ```
@@ -134,7 +134,7 @@ Screenshot of the “Choose your own Data Science Adventure” app.
 
 The app above is available as a [template](https://shiny.posit.co/py/templates/data-sci-adventure/):
 
-```sourceCode bash
+```bash
 shiny create --template data-sci-adventure \
     --github posit-dev/py-shiny-templates/gen-ai
 ```
@@ -154,7 +154,7 @@ A recipe extracted from the “What’s for Dinner?” app.
 
 The app above is available as a [template](https://shiny.posit.co/py/templates/dinner-recipe/):
 
-```sourceCode bash
+```bash
 shiny create --template dinner-recipe \
     --github posit-dev/py-shiny-templates/gen-ai
 ```
@@ -173,7 +173,7 @@ Screenshot of the app with a generated workout plan.
 
 When the user clicks ‘Get Workout’, the app fills a prompt template that looks roughly like this, and passes the result as input to the LLM:
 
-```sourceCode python
+```bash
 prompt = f"""
 Generate a brief {input.duration()}-minute workout plan for a {input.goal()} fitness goal.
 On a scale of 1-10, I have a level  {input.experience()} experience,
@@ -186,7 +186,7 @@ From this prompt, the LLM responds with a workout plan, which is streamed into t
 
 The app above is available as a [template](https://shiny.posit.co/py/templates/workout-plan/):
 
-```sourceCode bash
+```bash
 shiny create --template workout-plan \
     --github posit-dev/py-shiny-templates/gen-ai
 ```
@@ -209,6 +209,6 @@ Screenshot of the image description app with the offcanvas chat made visible.
 
 The app above is available as a [template](https://shiny.posit.co/py/templates/):
 
-```sourceCode bash
+```bash
 shiny create --github jonkeane/shinyImages
 ```

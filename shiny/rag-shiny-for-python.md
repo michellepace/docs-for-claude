@@ -12,7 +12,7 @@ If RAG sounds right for your use case, the next section gives a basic example of
 
 The core concept of RAG is fairly simple, yet general: given a set of documents and a user query, find the document(s) that are the most similar to the query and supply those documents as additional context to the LLM. This requires choosing a numerical technique to compute similarity, of which there are many, each with its own strengths and weaknesses. The often tricky part of doing RAG well is finding the similarity measure that is both performant and effective for your use case.
 
-To demonstrate, let’s use a basic example derived from `chatlas`’s article on [RAG](https://posit-dev.github.io/chatlas/rag.html). The main idea is to implement a function ( `get_top_k_similar_documents`) that finds the top-k most similar documents to a user query. Note that similarity depends on two main factors:
+To demonstrate, let’s use a basic example derived from `chatlas`’s article on [RAG](https://posit-dev.github.io/chatlas/rag.html). The main idea is to implement a function (`get_top_k_similar_documents`) that finds the top-k most similar documents to a user query. Note that similarity depends on two main factors:
 
 1. The embedding model (for embedding text into a numerical vector space).
 
@@ -24,7 +24,7 @@ To demonstrate, let’s use a basic example derived from `chatlas`’s article o
 
 rag.py
 
-```sourceCode python
+```
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
@@ -58,7 +58,7 @@ def get_top_k_similar_documents(user_query, top_k=3):
 
 app.py
 
-```sourceCode python
+```
 from chatlas import ChatAnthropic
 from rag import get_top_k_similar_documents
 

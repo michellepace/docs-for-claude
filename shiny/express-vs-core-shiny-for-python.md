@@ -25,13 +25,13 @@ Let’s examine each of these in more detail.
 
 A Shiny Core app file usually contains an import statement like:
 
-```sourceCode python
+```python
 from shiny import App, reactive, render, ui
 ```
 
 In Shiny Express, you’ll instead see:
 
-```sourceCode python
+```python
 from shiny import reactive
 from shiny.express import input, render, ui
 ```

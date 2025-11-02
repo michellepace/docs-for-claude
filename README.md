@@ -9,7 +9,7 @@ Curate documentation collections using slash commands and FireCrawl. Reference i
 | Tool | Description | Source | Scraped | Path | Index |
 |:-----|:------------|:-------|:--------|:-----|:------|
 | **Next.js** | React framework | [Official](https://nextjs.org) | 2025-10-18 | 📁 [`nextjs/`](nextjs/) | 📄 [`nextjs/INDEX.xml`](nextjs/INDEX.xml) |
-| **Shiny** | Python web apps | [Official](https://shiny.posit.co/py/) | 2025-10-16 | 📁 [`shiny/`](shiny/) | 📄 [`shiny/INDEX.xml`](shiny/INDEX.xml) |
+| **Shiny** | Python web apps | [Official](https://shiny.posit.co/py/) | 2025-11-02 | 📁 [`shiny/`](shiny/) | 📄 [`shiny/INDEX.xml`](shiny/INDEX.xml) |
 | **Tailwind** | CSS framework | [Official](https://tailwindcss.com/docs/) | 2025-10-15 | 📁 [`tailwind/`](tailwind/) | 📄 [`tailwind/INDEX.xml`](tailwind/INDEX.xml) |
 | **UV** | Python projects | [Official](https://docs.astral.sh/uv/) | 2025-10-15 | 📁 [`uv/`](uv/) | 📄 [`uv/INDEX.xml`](uv/INDEX.xml) |
 | **Vercel** | Deployment platform | [Official](https://vercel.com) | 2025-10-20 | 📁 [`vercel/`](vercel/) | 📄 [`vercel/INDEX.xml`](vercel/INDEX.xml) |

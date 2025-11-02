@@ -22,7 +22,23 @@ For example, suppose we have an output that depends on the value of a slider, bu
 
 The `@reactive.event()` decorator restricts re-execution to only changes in one (or more) reactive dependency. Any other reactive dependencies inside the function being decorated are ignored.
 
-Loading...
+app.py:
+
+```python
+import asyncio
+from shiny import reactive
+from shiny.express import input, render, ui
+
+ui.input_slider("n", "N", min=1, max=100, value=1)
+ui.input_action_button("compute", "Compute!")
+
+@render.text
+@reactive.event(input.compute) # Take a dependency on the button
+async def result():
+    # Any reactive dependencies inside this function are ignored.
+    await asyncio.sleep(2) # Simulate a long computation
+    return f"Result: {input.n()}"
+```
 
 Note
 
@@ -30,13 +46,11 @@ In the `@reactive.event()` example above, the function does _not_ execute the fi
 
 Using `with isolate()`, a block of code is run inside a reactive function, but without taking a reactive dependency on the code inside the block. This means that any reactive inputs in that block will not cause the function to re-execute. In the example below, the `result` takes a dependency on `input.button()`, but not `input.n()`:
 
-Loading...
-
 ## Requiring input [Anchor](https://shiny.posit.co/py/docs/reactive-patterns.html\#req)
 
 When input must be provided or a certain condition must be met before displaying output, you can use `req()` to effectively stop execution for the current reactive cycle. For example, the app below allows a user to upload a csv file, which is then used to render a table. Notice how the reactive calculation, `df`, uses `req()` to stop execution until the user has uploaded a file.
 
-```sourceCode python
+```python
 import pandas as pd
 from shiny import reactive, req
 from shiny.express import input, render, ui
@@ -52,7 +66,7 @@ def df():
 @render.data_frame
 def table():
     # Output won't render until input.file() is truthy
-    return render.DataGrid(df()) [Edit in Shinylive](https://shinylive.io/py/editor/#code=NobwRAdghgtgpmAXGKAHVA6VBPMAaMAYwHsIAXOcpMASxlWICcyACVKCAEygGcXe2nADoQAZo2IwWPABY0I2FnQbMWjOFEJkaANzh41cAI4jxk6XIUY4AD1TqefZU1bzUAVzIH1XOIwPuNCIigRhungD6ojQANnAAFEJg0XFJBkkAqqgxxFCc-CyEPDosKXBp-ISEcKhkALxJGEU6SQCUwRAAAuqa2npNUDGEIpxwoiycovGtiCIs8ywAxIZG09JkxKh8tnCEnjSkLO7ksUoQHmQYZWs0fGSMnjLYcwvjdSvx4ZfXre0QC4YyO5GP9UJwMD1OBFmvFRMAAAwAXWAAHJuGQ0FAyDIUYi-iJupRRowMOioFFGLByr5xhiAEZxaazf4LZYAeU8FxYAHdSCjWD5iUcTjEzhcrrEEq0lHcHtjniz5uogSDDL4SQARLFQADijBonHik2mrTAAF9EUA)
+    return render.DataGrid(df())Edit in Shinylive
 ```
 
 [Video](https://shiny.posit.co/py/docs/assets/file-upload.mp4)
@@ -63,13 +77,56 @@ A gif of uploading a csv file and seeing the text and table outputs update
 
 To repeatedly invalidate a reactive function on a schedule, use `reactive.invalidate_later()`. This is useful for implementing things like streaming data, or updating a clock. For example, to implement a clock that updates every second, you can use `reactive.invalidate_later(1)`:
 
-Loading...
+app.py:
+
+```python
+from datetime import datetime
+from shiny import reactive
+from shiny.express import render
+
+# Get the current time every second
+@reactive.calc
+def cur_time():
+    reactive.invalidate_later(1)
+    return datetime.now().strftime('%H:%M:%S')
+
+@render.ui
+def clock():
+    return f"Current time: {cur_time()}"
+```
 
 ## Reactive file reading [Anchor](https://shiny.posit.co/py/docs/reactive-patterns.html\#file)
 
 If your app reads input files, you can use `@reactive.file_reader()` to invalidate the result when the file changes. For example, lets extend the example from above to write the current time to a file every second, and then read and display the contents of that file:
 
-Loading...
+app.py:
+
+```python
+from datetime import datetime
+from shiny import reactive
+from shiny.express import render
+
+# Get the current time every second
+@reactive.calc
+def cur_time():
+    reactive.invalidate_later(1)
+    return datetime.now().strftime('%H:%M:%S')
+
+# Write cur_time() to a file (every second)
+@reactive.effect
+def _():
+    with open("time.txt", "w") as f:
+        f.write(cur_time())
+
+f = open("time.txt", "w")  # Create the file if it doesn't exist
+
+# Read and display whenever the file changes
+@render.ui
+@reactive.file_reader("time.txt")
+def time():
+    with open("time.txt") as f:
+        return f"Current time {f.read()}"
+```
 
 More compelling example
 
@@ -81,7 +138,38 @@ Sometimes it’s useful to invalidate a reactive function on a schedule, but onl
 
 For example, lets extend the example from above to write the current time to a file every 0.5 seconds, but only read and display the contents every 2 seconds:
 
-Loading...
+app.py:
+
+```python
+import os
+from datetime import datetime
+from shiny import reactive
+from shiny.express import input, render, ui
+
+# Get the current time every 0.5 seconds
+@reactive.calc
+def cur_time():
+    reactive.invalidate_later(0.5)
+    return datetime.now().strftime('%H:%M:%S')
+
+# Write cur_time() to a file (every 0.5 seconds)
+@reactive.effect
+def _():
+    with open("time2.txt", "w") as f:
+        f.write(cur_time())
+
+f = open("time2.txt", "w")  # Create the file if it doesn't exist
+
+# Every 2 seconds, check if the file has changed.
+# If it has, re-read it, and display the contents.
+# Note: checking for the modified time of a file is cheap
+# compared to reading the file contents
+@render.ui
+@reactive.poll(lambda: os.path.getmtime("time2.txt"), 2)
+def time():
+    with open("time2.txt") as f:
+        return f"Current time {f.read()}"
+```
 
 Monitoring a database / folder
 
