@@ -2,9 +2,9 @@
 # Project Metadata & Configuration
 # =================================
 [project]
-name = "docs-for-claude-new"
+name = "docs-for-ai"
 version = "0.1.0"
-description = "Curate and index clean docs for Claude Code context and keep it fresh"
+description = "Curate and index clean docs for AI context and keep it fresh (with Claude Code)"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [

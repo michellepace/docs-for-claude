@@ -1,1 +1,1 @@
-"""Tests for docs-for-claude project."""
+"""Tests for docs-for-ai project."""

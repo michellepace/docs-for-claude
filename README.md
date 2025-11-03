@@ -1,4 +1,4 @@
-# Curate Docs For Claude Code
+# Curate Docs For AI (with Claude Code)
 
 Curate documentation collections using slash commands and FireCrawl. Reference indexes to get answers efficiently e.g. `@tailwind/INDEX.xml what's a utility?`.
 
@@ -24,8 +24,8 @@ Curate documentation collections using slash commands and FireCrawl. Reference i
 # 👉 https://docs.astral.sh/uv/getting-started/installation/
 
 # 2. Clone repository
-git clone https://github.com/michellepace/docs-for-claude.git
-cd docs-for-claude
+git clone https://github.com/michellepace/docs-for-ai.git
+cd docs-for-ai
 
 # 3. Get free FireCrawl API key
 # Visit: https://www.firecrawl.dev/app/api-keys
@@ -72,10 +72,10 @@ To use the docs (from other projects):
 # From a different project
 
 # 1. Give Claude Code access to the repo
-/add-dir /home/mp/projects/docs-for-claude
+/add-dir /home/mp/projects/docs-for-ai
 
 # 2. Then reference as normal to ask your question
-@/home/mp/projects/docs-for-claude/tailwind/INDEX.xml what's a utility?
+@/home/mp/projects/docs-for-ai/tailwind/INDEX.xml what's a utility?
 ```
 
 ## 🏗️ How This Repo Works
