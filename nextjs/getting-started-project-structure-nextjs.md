@@ -1,47 +1,3 @@
-Your Privacy
-
-This site uses tracking technologies. You may opt in or opt out of the use of these technologies.
-
-Essential
-On
-
-Essential cookies and services are used to enable core website features, such as ensuring the security of the website.
-
-* * *
-
-Marketing
-Off
-
-Marketing cookies and services are used to deliver personalized advertisements, promotions, and offers. These technologies enable targeted advertising and marketing campaigns by collecting information about users' interests, preferences, and online activities.
-
-* * *
-
-Analytics
-Off
-
-Analytics cookies and services are used for collecting statistical information about how visitors interact with a website. These technologies provide insights into website usage, visitor behavior, and site performance to understand and improve the site and enhance user experience.
-
-* * *
-
-Functional
-Off
-
-Functional cookies and services are used to offer enhanced and personalized functionalities. These technologies provide additional features and improved user experiences, such as remembering your language preferences, font sizes, region selections, and customized layouts. Opting out of these cookies may render certain services or functionality of the website unavailable.
-
-SaveDenyAccept all
-
-[Privacy Policy](https://vercel.com/legal/privacy-policy)
-
-Your Privacy
-
-This site uses tracking technologies. You may opt in or opt out of the use of these technologies.
-
-DenyAccept all
-
-Consent Settings
-
-[Privacy Policy](https://vercel.com/legal/privacy-policy)
-
 Menu
 
 Using App Router
@@ -50,7 +6,7 @@ Features available in /app
 
 Latest Version
 
-15.5.6
+16.0.1
 
 Using App Router
 
@@ -58,7 +14,7 @@ Features available in /app
 
 Latest Version
 
-15.5.6
+16.0.1
 
 [App Router](https://nextjs.org/docs/app) [Getting Started](https://nextjs.org/docs/app/getting-started) Project Structure
 
@@ -85,7 +41,7 @@ Top-level folders are used to organize your application's code and static assets
 
 ### [Top-level files](https://nextjs.org/docs/app/getting-started/project-structure\#top-level-files)
 
-Top-level files are used to configure your application, manage dependencies, run middleware, integrate monitoring tools, and define environment variables.
+Top-level files are used to configure your application, manage dependencies, run proxy, integrate monitoring tools, and define environment variables.
 
 |  |  |
 | --- | --- |
@@ -93,12 +49,12 @@ Top-level files are used to configure your application, manage dependencies, run
 | [`next.config.js`](https://nextjs.org/docs/app/api-reference/config/next-config-js) | Configuration file for Next.js |
 | [`package.json`](https://nextjs.org/docs/app/getting-started/installation#manual-installation) | Project dependencies and scripts |
 | [`instrumentation.ts`](https://nextjs.org/docs/app/guides/instrumentation) | OpenTelemetry and Instrumentation file |
-| [`middleware.ts`](https://nextjs.org/docs/app/api-reference/file-conventions/middleware) | Next.js request middleware |
+| [`proxy.ts`](https://nextjs.org/docs/app/api-reference/file-conventions/proxy) | Next.js request proxy |
 | [`.env`](https://nextjs.org/docs/app/guides/environment-variables) | Environment variables |
 | [`.env.local`](https://nextjs.org/docs/app/guides/environment-variables) | Local environment variables |
 | [`.env.production`](https://nextjs.org/docs/app/guides/environment-variables) | Production environment variables |
 | [`.env.development`](https://nextjs.org/docs/app/guides/environment-variables) | Development environment variables |
-| [`.eslintrc.json`](https://nextjs.org/docs/app/api-reference/config/eslint) | Configuration file for ESLint |
+| [`eslint.config.mjs`](https://nextjs.org/docs/app/api-reference/config/eslint) | Configuration file for ESLint |
 | `.gitignore` | Git files and folders to ignore |
 | `next-env.d.ts` | TypeScript declaration file for Next.js |
 | `tsconfig.json` | Configuration file for TypeScript |
@@ -106,19 +62,19 @@ Top-level files are used to configure your application, manage dependencies, run
 
 ### [Routing Files](https://nextjs.org/docs/app/getting-started/project-structure\#routing-files)
 
-Add `page` to expose a route, `layout` for shared UI such as header, nav, or footer, `loading` for skeletons, `error` for error boundaries and `route` for APIs.
+Add `page` to expose a route, `layout` for shared UI such as header, nav, or footer, `loading` for skeletons, `error` for error boundaries, and `route` for APIs.
 
 |  |  |  |
 | --- | --- | --- |
-| [`layout`](https://nextjs.org/docs/app/api-reference/file-conventions/layout) | `.js` `.jsx` `.tsx` | Layout |
-| [`page`](https://nextjs.org/docs/app/api-reference/file-conventions/page) | `.js` `.jsx` `.tsx` | Page |
-| [`loading`](https://nextjs.org/docs/app/api-reference/file-conventions/loading) | `.js` `.jsx` `.tsx` | Loading UI |
-| [`not-found`](https://nextjs.org/docs/app/api-reference/file-conventions/not-found) | `.js` `.jsx` `.tsx` | Not found UI |
-| [`error`](https://nextjs.org/docs/app/api-reference/file-conventions/error) | `.js` `.jsx` `.tsx` | Error UI |
-| [`global-error`](https://nextjs.org/docs/app/api-reference/file-conventions/error#global-error) | `.js` `.jsx` `.tsx` | Global error UI |
-| [`route`](https://nextjs.org/docs/app/api-reference/file-conventions/route) | `.js` `.ts` | API endpoint |
-| [`template`](https://nextjs.org/docs/app/api-reference/file-conventions/template) | `.js` `.jsx` `.tsx` | Re-rendered layout |
-| [`default`](https://nextjs.org/docs/app/api-reference/file-conventions/default) | `.js` `.jsx` `.tsx` | Parallel route fallback page |
+| [`layout`](https://nextjs.org/docs/app/api-reference/file-conventions/layout) | `.js``.jsx``.tsx` | Layout |
+| [`page`](https://nextjs.org/docs/app/api-reference/file-conventions/page) | `.js``.jsx``.tsx` | Page |
+| [`loading`](https://nextjs.org/docs/app/api-reference/file-conventions/loading) | `.js``.jsx``.tsx` | Loading UI |
+| [`not-found`](https://nextjs.org/docs/app/api-reference/file-conventions/not-found) | `.js``.jsx``.tsx` | Not found UI |
+| [`error`](https://nextjs.org/docs/app/api-reference/file-conventions/error) | `.js``.jsx``.tsx` | Error UI |
+| [`global-error`](https://nextjs.org/docs/app/api-reference/file-conventions/error#global-error) | `.js``.jsx``.tsx` | Global error UI |
+| [`route`](https://nextjs.org/docs/app/api-reference/file-conventions/route) | `.js``.ts` | API endpoint |
+| [`template`](https://nextjs.org/docs/app/api-reference/file-conventions/template) | `.js``.jsx``.tsx` | Re-rendered layout |
+| [`default`](https://nextjs.org/docs/app/api-reference/file-conventions/default) | `.js``.jsx``.tsx` | Parallel route fallback page |
 
 ### [Nested routes](https://nextjs.org/docs/app/getting-started/project-structure\#nested-routes)
 
@@ -142,7 +98,7 @@ Parameterize segments with square brackets. Use `[segment]` for a single param, 
 | `app/shop/[...slug]/page.tsx` | `/shop/clothing`, `/shop/clothing/shirts` |
 | `app/docs/[[...slug]]/page.tsx` | `/docs`, `/docs/layouts-and-pages`, `/docs/api-reference/use-router` |
 
-### [Route Groups and private folders](https://nextjs.org/docs/app/getting-started/project-structure\#route-groups-and-private-folders)
+### [Route groups and private folders](https://nextjs.org/docs/app/getting-started/project-structure\#route-groups-and-private-folders)
 
 Organize code without changing URLs with route groups [`(group)`](https://nextjs.org/docs/app/api-reference/file-conventions/route-groups#convention), and colocate non-routable files with private folders [`_folder`](https://nextjs.org/docs/app/getting-started/project-structure#private-folders).
 
@@ -163,7 +119,7 @@ Use `@slot` for named slots rendered by a parent layout. Use intercept patterns 
 | --- | --- | --- |
 | [`@folder`](https://nextjs.org/docs/app/api-reference/file-conventions/parallel-routes#slots) | Named slot | Sidebar + main content |
 | [`(.)folder`](https://nextjs.org/docs/app/api-reference/file-conventions/intercepting-routes#convention) | Intercept same level | Preview sibling route in a modal |
-| [`(..)folder`](https://nextjs.org/docs/app/api-reference/file-conventions/intercepting-routes#convention) | Intercept parent | Open parent child as overlay |
+| [`(..)folder`](https://nextjs.org/docs/app/api-reference/file-conventions/intercepting-routes#convention) | Intercept parent | Open a child of the parent as an overlay |
 | [`(..)(..)folder`](https://nextjs.org/docs/app/api-reference/file-conventions/intercepting-routes#convention) | Intercept two levels | Deeply nested overlay |
 | [`(...)folder`](https://nextjs.org/docs/app/api-reference/file-conventions/intercepting-routes#convention) | Intercept from root | Show arbitrary route in current view |
 
@@ -174,28 +130,28 @@ Use `@slot` for named slots rendered by a parent layout. Use intercept patterns 
 |  |  |  |
 | --- | --- | --- |
 | [`favicon`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons#favicon) | `.ico` | Favicon file |
-| [`icon`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons#icon) | `.ico` `.jpg` `.jpeg` `.png` `.svg` | App Icon file |
-| [`icon`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons#generate-icons-using-code-js-ts-tsx) | `.js` `.ts` `.tsx` | Generated App Icon |
-| [`apple-icon`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons#apple-icon) | `.jpg` `.jpeg`, `.png` | Apple App Icon file |
-| [`apple-icon`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons#generate-icons-using-code-js-ts-tsx) | `.js` `.ts` `.tsx` | Generated Apple App Icon |
+| [`icon`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons#icon) | `.ico``.jpg``.jpeg``.png``.svg` | App Icon file |
+| [`icon`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons#generate-icons-using-code-js-ts-tsx) | `.js``.ts``.tsx` | Generated App Icon |
+| [`apple-icon`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons#apple-icon) | `.jpg``.jpeg`, `.png` | Apple App Icon file |
+| [`apple-icon`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons#generate-icons-using-code-js-ts-tsx) | `.js``.ts``.tsx` | Generated Apple App Icon |
 
 #### [Open Graph and Twitter images](https://nextjs.org/docs/app/getting-started/project-structure\#open-graph-and-twitter-images)
 
 |  |  |  |
 | --- | --- | --- |
-| [`opengraph-image`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image#opengraph-image) | `.jpg` `.jpeg` `.png` `.gif` | Open Graph image file |
-| [`opengraph-image`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image#generate-images-using-code-js-ts-tsx) | `.js` `.ts` `.tsx` | Generated Open Graph image |
-| [`twitter-image`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image#twitter-image) | `.jpg` `.jpeg` `.png` `.gif` | Twitter image file |
-| [`twitter-image`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image#generate-images-using-code-js-ts-tsx) | `.js` `.ts` `.tsx` | Generated Twitter image |
+| [`opengraph-image`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image#opengraph-image) | `.jpg``.jpeg``.png``.gif` | Open Graph image file |
+| [`opengraph-image`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image#generate-images-using-code-js-ts-tsx) | `.js``.ts``.tsx` | Generated Open Graph image |
+| [`twitter-image`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image#twitter-image) | `.jpg``.jpeg``.png``.gif` | Twitter image file |
+| [`twitter-image`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image#generate-images-using-code-js-ts-tsx) | `.js``.ts``.tsx` | Generated Twitter image |
 
 #### [SEO](https://nextjs.org/docs/app/getting-started/project-structure\#seo)
 
 |  |  |  |
 | --- | --- | --- |
 | [`sitemap`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap#sitemap-files-xml) | `.xml` | Sitemap file |
-| [`sitemap`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap#generating-a-sitemap-using-code-js-ts) | `.js` `.ts` | Generated Sitemap |
+| [`sitemap`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap#generating-a-sitemap-using-code-js-ts) | `.js``.ts` | Generated Sitemap |
 | [`robots`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots#static-robotstxt) | `.txt` | Robots file |
-| [`robots`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots#generate-a-robots-file) | `.js` `.ts` | Generated Robots file |
+| [`robots`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots#generate-a-robots-file) | `.js``.ts` | Generated Robots file |
 
 ## [Organizing your project](https://nextjs.org/docs/app/getting-started/project-structure\#organizing-your-project)
 
@@ -209,7 +165,7 @@ The components defined in special files are rendered in a specific hierarchy:
 - `template.js`
 - `error.js` (React error boundary)
 - `loading.js` (React suspense boundary)
-- `not-found.js` (React error boundary)
+- `not-found.js` (React error boundary for "not found" UI)
 - `page.js` or nested `layout.js`
 
 ![Component Hierarchy for File Conventions](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Flight%2Ffile-conventions-component-hierarchy.png&w=3840&q=75)![Component Hierarchy for File Conventions](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Ffile-conventions-component-hierarchy.png&w=3840&q=75)

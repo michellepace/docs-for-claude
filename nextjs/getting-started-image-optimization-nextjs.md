@@ -6,7 +6,7 @@ Features available in /app
 
 Latest Version
 
-15.5.6
+16.0.1
 
 Using App Router
 
@@ -14,7 +14,7 @@ Features available in /app
 
 Latest Version
 
-15.5.6
+16.0.1
 
 [App Router](https://nextjs.org/docs/app) [Getting Started](https://nextjs.org/docs/app/getting-started) Image Optimization
 
@@ -37,7 +37,7 @@ TypeScript
 
 JavaScriptTypeScript
 
-```code-block-module__NOThwW__code
+```
 import Image from 'next/image'
 
 export default function Page() {
@@ -51,7 +51,7 @@ The `src` property can be a [local](https://nextjs.org/docs/app/getting-started/
 
 ## [Local images](https://nextjs.org/docs/app/getting-started/images\#local-images)
 
-You can store static files, like images and fonts, under a folder called [`public`](https://nextjs.org/docs/app/api-reference/file-conventions/public-folder) in the root directory. Files inside `public` can then be referenced by your code starting from the base URL ( `/`).
+You can store static files, like images and fonts, under a folder called [`public`](https://nextjs.org/docs/app/api-reference/file-conventions/public-folder) in the root directory. Files inside `public` can then be referenced by your code starting from the base URL (`/`).
 
 ![Folder structure showing app and public folders](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Flight%2Fpublic-folder.png&w=3840&q=75)![Folder structure showing app and public folders](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Fpublic-folder.png&w=3840&q=75)
 
@@ -61,7 +61,7 @@ TypeScript
 
 JavaScriptTypeScript
 
-```code-block-module__NOThwW__code
+```
 import Image from 'next/image'
 
 export default function Page() {
@@ -84,7 +84,7 @@ TypeScript
 
 JavaScriptTypeScript
 
-```code-block-module__NOThwW__code
+```
 import Image from 'next/image'
 import ProfileImage from './profile.png'
 
@@ -112,7 +112,7 @@ TypeScript
 
 JavaScriptTypeScript
 
-```code-block-module__NOThwW__code
+```
 import Image from 'next/image'
 
 export default function Page() {
@@ -137,7 +137,7 @@ TypeScript
 
 JavaScriptTypeScript
 
-```code-block-module__NOThwW__code
+```
 import type { NextConfig } from 'next'
 
 const config: NextConfig = {

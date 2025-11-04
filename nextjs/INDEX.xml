@@ -1,23 +1,23 @@
 <docs_index>
   <source>
     <title>Getting Started: Installation | Next.js</title>
-    <description>Covers Next.js project creation via CLI or manual installation, including TypeScript, ESLint, Turbopack setup, and absolute import configuration.</description>
+    <description>Installation methods using create-next-app CLI or manual setup, system requirements, configuration prompts for TypeScript, linting, Tailwind, App Router, creating app directory with layout and page files, development server, and absolute imports.</description>
     <source_url>https://nextjs.org/docs/app/getting-started/installation</source_url>
     <local_file>getting-started-installation-nextjs.md</local_file>
-    <scraped_at>2025-10-18</scraped_at>
+    <scraped_at>2025-11-04</scraped_at>
   </source>
   <source>
     <title>Getting Started: Image Optimization | Next.js</title>
-    <description>Details Next.js Image component features including automatic optimisation, lazy loading, local and remote image handling, and remotePatterns configuration for secure image sources.</description>
+    <description>Image component for automatic size optimisation, WebP format, lazy loading, blur placeholders, local images from public folder with automatic dimensions, remote images requiring width/height props, and remotePatterns security configuration.</description>
     <source_url>https://nextjs.org/docs/app/getting-started/images</source_url>
     <local_file>getting-started-image-optimization-nextjs.md</local_file>
-    <scraped_at>2025-10-18</scraped_at>
+    <scraped_at>2025-11-04</scraped_at>
   </source>
   <source>
     <title>Getting Started: Project Structure | Next.js</title>
-    <description>Comprehensive guide to Next.js folder conventions, file naming patterns, routing files, dynamic routes, route groups, private folders, metadata files, and project organisation strategies.</description>
+    <description>Complete folder and file conventions including top-level folders, routing files (layout, page, loading, error, route), dynamic routes with brackets, route groups with parentheses, private folders with underscores, parallel and intercepted routes, metadata conventions, and colocation patterns.</description>
     <source_url>https://nextjs.org/docs/app/getting-started/project-structure</source_url>
     <local_file>getting-started-project-structure-nextjs.md</local_file>
-    <scraped_at>2025-10-18</scraped_at>
+    <scraped_at>2025-11-04</scraped_at>
   </source>
 </docs_index>

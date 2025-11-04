@@ -6,7 +6,7 @@ Features available in /app
 
 Latest Version
 
-15.5.6
+16.0.1
 
 Using App Router
 
@@ -14,7 +14,7 @@ Features available in /app
 
 Latest Version
 
-15.5.6
+16.0.1
 
 [App Router](https://nextjs.org/docs/app) [Getting Started](https://nextjs.org/docs/app/getting-started) Installation
 
@@ -34,19 +34,19 @@ pnpmnpmyarnbun
 
 Terminal
 
-```code-block-module__NOThwW__code
+```
 pnpm create next-app@latest my-app --yes
 cd my-app
 pnpm dev
 ```
 
-- `--yes` skips prompts using saved preferences or defaults. The default setup enables TypeScript, Tailwind, App Router, and Turbopack, with import alias `@/*`.
+- `--yes` skips prompts using saved preferences or defaults. The default setup enables TypeScript, Tailwind, ESLint, App Router, and Turbopack, with import alias `@/*`.
 
 ## [System requirements](https://nextjs.org/docs/app/getting-started/installation\#system-requirements)
 
 Before you begin, make sure your system meets the following requirements:
 
-- [Node.js 18.18](https://nodejs.org/) or later.
+- [Node.js 20.9](https://nodejs.org/) or later.
 - macOS, Windows (including WSL), or Linux.
 
 ## [Create with the CLI](https://nextjs.org/docs/app/getting-started/installation\#create-with-the-cli)
@@ -55,7 +55,7 @@ The quickest way to create a new Next.js app is using [`create-next-app`](https:
 
 Terminal
 
-```code-block-module__NOThwW__code
+```
 npx create-next-app@latest
 ```
 
@@ -63,14 +63,25 @@ On installation, you'll see the following prompts:
 
 Terminal
 
-```code-block-module__NOThwW__code
+```
 What is your project named? my-app
+Would you like to use the recommended Next.js defaults?
+    Yes, use recommended defaults - TypeScript, ESLint, Tailwind CSS, App Router, Turbopack
+    No, reuse previous settings
+    No, customize settings - Choose your own preferences
+```
+
+If you choose to `customize settings`, you'll see the following prompts:
+
+Terminal
+
+```
 Would you like to use TypeScript? No / Yes
-Would you like to use ESLint? No / Yes
+Which linter would you like to use? ESLint / Biome / None
+Would you like to use React Compiler? No / Yes
 Would you like to use Tailwind CSS? No / Yes
 Would you like your code inside a `src/` directory? No / Yes
 Would you like to use App Router? (recommended) No / Yes
-Would you like to use Turbopack? (recommended) No / Yes
 Would you like to customize the import alias (`@/*` by default)? No / Yes
 What import alias would you like configured? @/*
 ```
@@ -85,7 +96,7 @@ pnpmnpmyarnbun
 
 Terminal
 
-```code-block-module__NOThwW__code
+```
 pnpm i next@latest react@latest react-dom@latest
 ```
 
@@ -95,25 +106,26 @@ Then, add the following scripts to your `package.json` file:
 
 package.json
 
-```code-block-module__NOThwW__code
+```
 {
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   }
 }
 ```
 
 These scripts refer to the different stages of developing an application:
 
-- `next dev --turbopack`: Starts the development server using Turbopack.
+- `next dev`: Starts the development server using Turbopack (default bundler).
 - `next build`: Builds the application for production.
 - `next start`: Starts the production server.
 - `eslint`: Runs ESLint.
 
-Turbopack is stable for `dev`. For production builds, Turbopack is in beta. To try it, run `next build --turbopack`. See the [Turbopack docs](https://nextjs.org/docs/app/api-reference/turbopack) for status and caveats.
+Turbopack is now the default bundler. To use Webpack run `next dev --webpack` or `next build --webpack`. See the [Turbopack docs](https://nextjs.org/docs/app/api-reference/turbopack) for configuration details.
 
 ### [Create the `app` directory](https://nextjs.org/docs/app/getting-started/installation\#create-the-app-directory)
 
@@ -127,7 +139,7 @@ TypeScript
 
 JavaScriptTypeScript
 
-```code-block-module__NOThwW__code
+```
 export default function RootLayout({
   children,
 }: {
@@ -149,13 +161,13 @@ TypeScript
 
 JavaScriptTypeScript
 
-```code-block-module__NOThwW__code
+```
 export default function Page() {
   return <h1>Hello, Next.js!</h1>
 }
 ```
 
-Both `layout.tsx` and `page.tsx` will be rendered when the user visits the root of your application ( `/`).
+Both `layout.tsx` and `page.tsx` will be rendered when the user visits the root of your application (`/`).
 
 ![App Folder Structure](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Flight%2Fapp-getting-started.png&w=3840&q=75)![App Folder Structure](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Fapp-getting-started.png&w=3840&q=75)
 
@@ -166,9 +178,9 @@ Both `layout.tsx` and `page.tsx` will be rendered when the user visits the root 
 
 ### [Create the `public` folder (optional)](https://nextjs.org/docs/app/getting-started/installation\#create-the-public-folder-optional)
 
-Create a [`public` folder](https://nextjs.org/docs/app/api-reference/file-conventions/public-folder) at the root of your project to store static assets such as images, fonts, etc. Files inside `public` can then be referenced by your code starting from the base URL ( `/`).
+Create a [`public` folder](https://nextjs.org/docs/app/api-reference/file-conventions/public-folder) at the root of your project to store static assets such as images, fonts, etc. Files inside `public` can then be referenced by your code starting from the base URL (`/`).
 
-You can then reference these assets using the root path ( `/`). For example, `public/profile.png` can be referenced as `/profile.png`:
+You can then reference these assets using the root path (`/`). For example, `public/profile.png` can be referenced as `/profile.png`:
 
 app/page.tsx
 
@@ -176,7 +188,7 @@ TypeScript
 
 JavaScriptTypeScript
 
-```code-block-module__NOThwW__code
+```
 import Image from 'next/image'
 
 export default function Page() {
@@ -192,7 +204,7 @@ export default function Page() {
 
 ## [Set up TypeScript](https://nextjs.org/docs/app/getting-started/installation\#set-up-typescript)
 
-> Minimum TypeScript version: `v4.5.2`
+> Minimum TypeScript version: `v5.1.0`
 
 Next.js comes with built-in TypeScript support. To add TypeScript to your project, rename a file to `.ts` / `.tsx` and run `next dev`. Next.js will automatically install the necessary dependencies and add a `tsconfig.json` file with the recommended config options.
 
@@ -202,7 +214,7 @@ Next.js includes a custom TypeScript plugin and type checker, which VSCode and o
 
 You can enable the plugin in VS Code by:
 
-1. Opening the command palette ( `Ctrl/⌘` \+ `Shift` \+ `P`)
+1. Opening the command palette (`Ctrl/⌘` \+ `Shift` \+ `P`)
 2. Searching for "TypeScript: Select TypeScript Version"
 3. Selecting "Use Workspace Version"
 
@@ -210,51 +222,49 @@ You can enable the plugin in VS Code by:
 
 See the [TypeScript reference](https://nextjs.org/docs/app/api-reference/config/next-config-js/typescript) page for more information.
 
-## [Set up ESLint](https://nextjs.org/docs/app/getting-started/installation\#set-up-eslint)
+## [Set up linting](https://nextjs.org/docs/app/getting-started/installation\#set-up-linting)
 
-Next.js comes with built-in ESLint. It automatically installs the necessary packages and configures the proper settings when you create a new project with `create-next-app`.
+Next.js supports linting with either ESLint or Biome. Choose a linter and run it directly via `package.json` scripts.
 
-To manually add ESLint to an existing project, add `next lint` as a script to `package.json`:
+- Use **ESLint** (comprehensive rules):
 
 package.json
 
-```code-block-module__NOThwW__code
+```
 {
   "scripts": {
-    "lint": "next lint"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   }
 }
 ```
 
-Then, run `npm run lint` and you will be guided through the installation and configuration process.
+- Or use **Biome** (fast linter + formatter):
+
+package.json
+
+```
+{
+  "scripts": {
+    "lint": "biome check",
+    "format": "biome format --write"
+  }
+}
+```
+
+If your project previously used `next lint`, migrate your scripts to the ESLint CLI with the codemod:
 
 Terminal
 
-```code-block-module__NOThwW__code
-npm run lint
+```
+npx @next/codemod@canary next-lint-to-eslint-cli .
 ```
 
-You'll see a prompt like this:
+If you use ESLint, create an explicit config (recommended `eslint.config.mjs`). ESLint supports both [the legacy `.eslintrc.*` and the newer `eslint.config.mjs` formats](https://eslint.org/docs/latest/use/configure/configuration-files#configuring-eslint). See the [ESLint API reference](https://nextjs.org/docs/app/api-reference/config/eslint#with-core-web-vitals) for a recommended setup.
 
-> ? How would you like to configure ESLint?
->
-> ❯ Strict (recommended)
-> Base
-> Cancel
+> **Good to know**: Starting with Next.js 16, `next build` no longer runs the linter automatically. Instead, you can run your linter through NPM scripts.
 
-- **Strict**: Includes Next.js' base ESLint configuration along with a stricter Core Web Vitals rule-set. This is the recommended configuration for developers setting up ESLint for the first time.
-- **Base**: Includes Next.js' base ESLint configuration.
-- **Cancel**: Skip configuration. Select this option if you plan on setting up your own custom ESLint configuration.
-
-If `Strict` or `Base` are selected, Next.js will automatically install `eslint` and `eslint-config-next` as dependencies in your application and create a configuration file in the root of your project.
-
-The ESLint config generated by `next lint` uses the older `.eslintrc.json` format. ESLint supports both [the legacy `.eslintrc.json` and the newer `eslint.config.mjs` format](https://eslint.org/docs/latest/use/configure/configuration-files#configuring-eslint).
-
-You can manually replace `.eslintrc.json` with an `eslint.config.mjs` file using the setup recommended in our [ESLint API reference](https://nextjs.org/docs/app/api-reference/config/eslint#with-core-web-vitals), and installing the [`@eslint/eslintrc`](https://www.npmjs.com/package/@eslint/eslintrc) package. This more closely matches the ESLint setup used by `create-next-app`.
-
-You can now run `next lint` every time you want to run ESLint to catch errors. Once ESLint has been set up, it will also automatically run during every build ( `next build`). Errors will fail the build, while warnings will not.
-
-See the [ESLint Plugin](https://nextjs.org/docs/app/api-reference/config/next-config-js/eslint) page for more information.
+See the [ESLint Plugin](https://nextjs.org/docs/app/api-reference/config/eslint) page for more information.
 
 ## [Set up Absolute Imports and Module Path Aliases](https://nextjs.org/docs/app/getting-started/installation\#set-up-absolute-imports-and-module-path-aliases)
 
@@ -262,7 +272,7 @@ Next.js has in-built support for the `"paths"` and `"baseUrl"` options of `tscon
 
 These options allow you to alias project directories to absolute paths, making it easier and cleaner to import modules. For example:
 
-```code-block-module__NOThwW__code
+```
 // Before
 import { Button } from '../../../components/button'
 
@@ -274,7 +284,7 @@ To configure absolute imports, add the `baseUrl` configuration option to your `t
 
 tsconfig.json or jsconfig.json
 
-```code-block-module__NOThwW__code
+```
 {
   "compilerOptions": {
     "baseUrl": "src/"
@@ -288,7 +298,7 @@ For example, the following configuration maps `@/components/*` to `components/*`
 
 tsconfig.json or jsconfig.json
 
-```code-block-module__NOThwW__code
+```
 {
   "compilerOptions": {
     "baseUrl": "src/",
