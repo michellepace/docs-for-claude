@@ -43,7 +43,10 @@ source ~/.zshrc
 | `/curate-doc <directory> <url>` | Add / re-scrape doc | ✅ Write | ✅ Add/replace |
 | `/rescrape-docs <directory>` | Re-scrape all docs | ✅ Write all | ✅ Selective update |
 
-*Note: `/rescrape-docs` only regenerates descriptions for files with non-whitespace changes, reducing token usage.*
+<div align="center">
+  <img src="x_docs/images/example_usage.jpg" alt="Terminal showing three-step workflow: (1) Running /curate-doc biome command, (2) Curation success output showing scraped documentation and generated INDEX.xml entry, (3) Reference command @biome/INDEX.xml to ask questions. Handwritten annotations highlight each step." width="900">
+  <p><em>Complete workflow: curate → scrape → reference</em></p>
+</div>
 
 ## 💡 Usage Examples
 
