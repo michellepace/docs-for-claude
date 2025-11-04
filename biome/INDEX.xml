@@ -1,0 +1,65 @@
+<docs_index>
+  <source>
+    <title>Getting Started | Biome</title>
+    <description>Installation instructions for npm/pnpm/bun/deno/yarn, `biome.json` configuration initialisation, CLI commands (`format`, `lint`, `check` with `--write`), editor integrations (VS Code, IntelliJ, Zed), continuous integration setup (`biome ci`), and migration paths from ESLint/Prettier.</description>
+    <source_url>https://biomejs.dev/guides/getting-started/</source_url>
+    <local_file>getting-started-biome.md</local_file>
+    <scraped_at>2025-11-04</scraped_at>
+  </source>
+  <source>
+    <title>Configure Biome | Biome</title>
+    <description>Configuration structure (`biome.json`, `biome.jsonc`), tool enablement (formatter, linter, assist), language-specific overrides, auto-discovery resolution, file inclusion/exclusion via glob patterns and negated globs (`!`, `!!`), VCS integration, and well-known JSON files with parsing options.</description>
+    <source_url>https://biomejs.dev/guides/configure-biome/</source_url>
+    <local_file>configure-biome-biome.md</local_file>
+    <scraped_at>2025-11-04</scraped_at>
+  </source>
+  <source>
+    <title>First-party extensions | Biome</title>
+    <description>Official editor integrations for VS Code (marketplace extension with format-on-save and linting), IntelliJ (plugin installation via marketplace or disk), and Zed (extension installation via command palette), including setup instructions and configuration steps for each editor.</description>
+    <source_url>https://biomejs.dev/guides/editors/first-party-extensions/</source_url>
+    <local_file>first-party-extensions-biome.md</local_file>
+    <scraped_at>2025-11-04</scraped_at>
+  </source>
+  <source>
+    <title>VS Code extension | Biome</title>
+    <description>VS Code extension installation, workspace configuration (single-root, multi-root), formatting features (document, selection, on-save), code fixing (quick fixes, fix-on-save for safe/unsafe fixes), import sorting, settings reference (`biome.enabled`, `biome.configurationPath`, `biome.requireConfiguration`, `biome.lsp.bin`, trace levels), troubleshooting LSP traces, and migration from 2.x extension.</description>
+    <source_url>https://biomejs.dev/reference/vscode/</source_url>
+    <local_file>vs-code-extension-biome.md</local_file>
+    <scraped_at>2025-11-04</scraped_at>
+  </source>
+  <source>
+    <title>Integrate Biome with your VCS | Biome</title>
+    <description>Git integration configuration (`vcs.enabled`, `vcs.clientKind`), using VCS ignore files (`.gitignore`, `.ignore`) with `useIgnoreFile`, processing only changed files via `--changed` option with `defaultBranch` or `--since` for custom branches, and processing staged files with `--staged` option before commits.</description>
+    <source_url>https://biomejs.dev/guides/integrate-in-vcs/</source_url>
+    <local_file>integrate-biome-with-your-vcs-biome.md</local_file>
+    <scraped_at>2025-11-04</scraped_at>
+  </source>
+  <source>
+    <title>Continuous Integration | Biome</title>
+    <description>CI setup guidance comparing `biome check` vs `biome ci` commands (no `--write`, GitHub annotations, thread control), GitHub Actions workflows with `biomejs/setup-biome` action, handling external config dependencies, third-party reviewdog integration, and GitLab CI configuration with Docker image and code quality reporting.</description>
+    <source_url>https://biomejs.dev/recipes/continuous-integration/</source_url>
+    <local_file>continuous-integration-biome.md</local_file>
+    <scraped_at>2025-11-04</scraped_at>
+  </source>
+  <source>
+    <title>Git Hooks | Biome</title>
+    <description>Git hook integration using Lefthook (pre-commit, pre-push configurations), Husky with lint-staged and git-format-staged, pre-commit framework hooks (`biome-ci`, `biome-check`, `biome-format`, `biome-lint`), and custom shell scripts for formatting, linting, and applying fixes to staged files with `--staged`, `--write`, and `--no-errors-on-unmatched` options.</description>
+    <source_url>https://biomejs.dev/recipes/git-hooks/</source_url>
+    <local_file>git-hooks-biome.md</local_file>
+    <scraped_at>2025-11-04</scraped_at>
+  </source>
+  <source>
+    <title>Philosophy | Biome</title>
+    <description>Project ethos covering management principles (clear expectations, public decision communication), technical guidelines (helpful error messages with fixes, specific errors, API optimisation, code documentation, reduced jargon, verbose naming, inclusive terminology, generic client support, unambiguous terminal output without relying solely on colour).</description>
+    <source_url>https://biomejs.dev/internals/philosophy/</source_url>
+    <local_file>philosophy-biome.md</local_file>
+    <scraped_at>2025-11-04</scraped_at>
+  </source>
+  <source>
+    <title>Language support | Biome</title>
+    <description>Language support matrix for JavaScript (ES2024), TypeScript (5.6), JSX, TSX, JSON, JSONC (with comments/trailing commas configuration), HTML, Vue/Svelte/Astro (experimental with linting caveats), CSS, GraphQL, GritQL, covering parsing, formatting, linting, and plugin support status with YAML/Markdown in progress.</description>
+    <source_url>https://biomejs.dev/internals/language-support/</source_url>
+    <local_file>language-support-biome.md</local_file>
+    <scraped_at>2025-11-04</scraped_at>
+  </source>
+</docs_index>
