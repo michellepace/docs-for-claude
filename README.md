@@ -9,7 +9,7 @@ Curate documentation collections using slash commands and FireCrawl. Reference i
 | Tool | Description | Source | Scraped | Path | Index |
 |:-----|:------------|:-------|:--------|:-----|:------|
 | **Biome** | Fast linter/formatter | [Official](https://biomejs.dev) | 2025-11-04 | 📁 [`biome/`](biome/) | 📄 [`biome/INDEX.xml`](biome/INDEX.xml) |
-| **Next.js** | React framework | [Official](https://nextjs.org) | 2025-11-04 | 📁 [`nextjs/`](nextjs/) | 📄 [`nextjs/INDEX.xml`](nextjs/INDEX.xml) |
+| **Next.js** | React framework | [Official](https://nextjs.org) | 2025-11-05 | 📁 [`nextjs/`](nextjs/) | 📄 [`nextjs/INDEX.xml`](nextjs/INDEX.xml) |
 | **Shiny** | Python web apps | [Official](https://shiny.posit.co/py/) | 2025-11-02 | 📁 [`shiny/`](shiny/) | 📄 [`shiny/INDEX.xml`](shiny/INDEX.xml) |
 | **Tailwind** | CSS framework | [Official](https://tailwindcss.com/docs/) | 2025-10-15 | 📁 [`tailwind/`](tailwind/) | 📄 [`tailwind/INDEX.xml`](tailwind/INDEX.xml) |
 | **UV** | Python projects | [Official](https://docs.astral.sh/uv/) | 2025-10-15 | 📁 [`uv/`](uv/) | 📄 [`uv/INDEX.xml`](uv/INDEX.xml) |
