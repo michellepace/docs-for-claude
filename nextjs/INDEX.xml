@@ -34,4 +34,32 @@
     <local_file>getting-started-layouts-and-pages-nextjs.md</local_file>
     <scraped_at>2025-11-05</scraped_at>
   </source>
+  <source>
+    <title>Testing: Vitest | Next.js</title>
+    <description>Setting up Vitest with Next.js: quickstart example, manual installation, configuration with jsdom and React Testing Library, creating unit tests for components, running tests, and limitations with async Server Components.</description>
+    <source_url>https://nextjs.org/docs/app/guides/testing/vitest</source_url>
+    <local_file>testing-vitest-nextjs.md</local_file>
+    <scraped_at>2025-11-05</scraped_at>
+  </source>
+  <source>
+    <title>Testing: Playwright | Next.js</title>
+    <description>Setting up Playwright with Next.js for E2E testing: quickstart example, manual installation, creating navigation tests, running tests against production build, using webServer feature, and CI configuration with headless mode.</description>
+    <source_url>https://nextjs.org/docs/app/guides/testing/playwright</source_url>
+    <local_file>testing-playwright-nextjs.md</local_file>
+    <scraped_at>2025-11-05</scraped_at>
+  </source>
+  <source>
+    <title>Guides: Testing | Next.js</title>
+    <description>Testing overview covering unit testing, component testing, integration testing, end-to-end testing, snapshot testing, async Server Components recommendations, and setup guides for Cypress, Jest, Playwright, and Vitest.</description>
+    <source_url>https://nextjs.org/docs/app/guides/testing</source_url>
+    <local_file>guides-testing-nextjs.md</local_file>
+    <scraped_at>2025-11-05</scraped_at>
+  </source>
+  <source>
+    <title>Testing: Jest | Next.js</title>
+    <description>Setting up Jest with Next.js for unit and snapshot testing including installation, configuration with next/jest transformer, handling module path aliases, custom matchers setup, creating test scripts, and example component tests.</description>
+    <source_url>https://nextjs.org/docs/app/guides/testing/jest</source_url>
+    <local_file>testing-jest-nextjs.md</local_file>
+    <scraped_at>2025-11-05</scraped_at>
+  </source>
 </docs_index>
