@@ -56,7 +56,7 @@ This script:
 
 ### 3. Generate descriptions for PLACEHOLDER entries only
 
-Parse `$1/INDEX.xml` to get all `<source>` entries where `<description>PLACEHOLDER</description>`.
+Extract the list of filenames from the script output section `## Index Descriptions Status` where it shows files with PLACEHOLDER needing descriptions.
 
 Review example description patterns:
 
@@ -83,8 +83,8 @@ Now, for each PLACEHOLDER source:
 4. Append the validated description to `$1/descriptions.txt` in this format:
 
    ```text
-   https://example.com/url1
-   Description for url1 here
+   getting-started-installation.md
+   Description for this file here
    ```
 
 ### 4. Update INDEX.xml

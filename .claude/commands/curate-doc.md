@@ -124,11 +124,11 @@ Now, write a description:
 4. Write the validated description to `$1/description.txt` in this format:
 
       ```text
-      https://example.com/url1
-      Description for url1 here
+      overview-shiny-for-python.md
+      Description for this file here
       ```
 
-5. Run the update script to apply all descriptions:
+5. Run the update script to apply the description:
 
    ```bash
    uv run scripts/update_index_descriptions.py "$1" "$1/description.txt"
