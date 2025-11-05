@@ -7,6 +7,7 @@ from pathlib import Path
 
 # Import functions directly for unit testing
 from scripts.sync_index import (
+    _get_changed_markdown_files,
     _restore_unchanged_descriptions,
     _sync_index_to_filesystem,
     get_markdown_files,
@@ -397,15 +398,106 @@ class TestIntegration:
             if md_files_changed:
                 # Content changed → description is PLACEHOLDER
                 assert descriptions[actual_filename] == "PLACEHOLDER"
+                # Verify restoration message in output
+                assert "✅ Restored (.md whitespace-only changes)|0" in result.stdout
             else:
                 # Content unchanged (cache returned same) → description restored
                 assert (
                     descriptions[actual_filename]
                     == "Original description for updating state"
                 )
+                # Verify restoration message in output
+                assert "✅ Restored (.md whitespace-only changes)|1" in result.stdout
 
-            # Verify restoration message in output
-            assert "📝 Restored" in result.stdout
+    def test_whitespace_only_changes_restore_description(self) -> None:
+        """Files with only whitespace changes should have descriptions restored."""
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            collection_dir = tmp_path / "test_collection"
+            collection_dir.mkdir()
+
+            # Initialize git repo
+            for cmd in [
+                ["git", "init"],
+                ["git", "config", "user.email", "test@example.com"],
+                ["git", "config", "user.name", "Test User"],
+            ]:
+                subprocess.run(cmd, cwd=tmp_path, check=True, capture_output=True)
+
+            # Create INDEX.xml with a source
+            sources = [
+                {
+                    "title": "Test Document",
+                    "description": "Original description that should be restored",
+                    "source_url": "https://example.com/test-doc",
+                    "local_file": "test-doc.md",
+                },
+            ]
+            index_path = collection_dir / "INDEX.xml"
+            create_index_xml(index_path, sources)
+
+            # Create markdown file with specific content
+            md_file = collection_dir / "test-doc.md"
+            md_file.write_text("# Test Document\n\nSome content here.\n")
+
+            # Commit initial state
+            subprocess.run(
+                ["git", "add", "."], cwd=tmp_path, check=True, capture_output=True
+            )
+            subprocess.run(
+                ["git", "commit", "-m", "Initial commit"],
+                cwd=tmp_path,
+                check=True,
+                capture_output=True,
+            )
+
+            # Modify file with ONLY whitespace changes (add trailing spaces)
+            md_file.write_text("# Test Document\n\nSome content here.   \n")
+
+            # Verify git sees a change
+            git_diff_all = subprocess.run(
+                ["git", "diff", "--name-only"],
+                cwd=tmp_path,
+                capture_output=True,
+                text=True,
+                check=True,
+            )
+            assert "test-doc.md" in git_diff_all.stdout
+
+            # Verify git with -w sees NO content change
+            git_diff_w = subprocess.run(
+                ["git", "diff", "-w"],
+                cwd=tmp_path,
+                capture_output=True,
+                text=True,
+                check=True,
+            )
+            assert git_diff_w.stdout.strip() == ""
+
+            # Mock the scraping by manually setting description to PLACEHOLDER
+            # (simulating what curate_doc.py does)
+            sources[0]["description"] = "PLACEHOLDER"
+            create_index_xml(index_path, sources)
+
+            # Create a backup (simulating what sync_index does)
+            backup_path = index_path.parent / "INDEX.xml.backup"
+            sources[0]["description"] = "Original description that should be restored"
+            create_index_xml(backup_path, sources)
+
+            # Run the restoration function directly
+            changed_files = _get_changed_markdown_files(collection_dir)
+            restored_count = _restore_unchanged_descriptions(
+                index_path, backup_path, changed_files
+            )
+
+            # Verify description was RESTORED (not left as PLACEHOLDER)
+            descriptions = get_descriptions_from_index(index_path)
+            expected_desc = "Original description that should be restored"
+            assert descriptions["test-doc.md"] == expected_desc, (
+                f"Expected description to be restored, "
+                f"but got: {descriptions['test-doc.md']}"
+            )
+            assert restored_count == 1, f"Expected 1 restoration, got {restored_count}"
 
 
 class TestErrorHandling:

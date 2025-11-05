@@ -1,8 +1,7 @@
 ---
 argument-hint: <collection-dir>
 description: Re-scrape all docs in collection and regenerate descriptions
-allowed-tools: Read, Write, Bash(find:*), Bash(uv run:*)
-model: claude-sonnet-4-5-20250929
+allowed-tools: Read, Write, Bash(find:*), Bash(uv run:*), Bash(uv run:scripts/sync_index.py:*), Bash(uv run:scripts/update_index_descriptions.py:*)
 ---
 
 Re-scrape all documents in $1 collection directory and batch-regenerate descriptions.
@@ -51,48 +50,52 @@ This script:
 
 - Syncs INDEX.xml to filesystem (removes stale entries)
 - Re-scrapes all docs via curate_doc.py
-- Outputs structured results
-- Script errors print actionable information
+- Preserves existing index descriptions for unchanged/whitespace-only content
+- Sets PLACEHOLDER index descriptions only for new or content changed docs
+- Specifies pending documents with PLACEHOLDER needing generated description
 
 ### 3. Generate descriptions for PLACEHOLDER entries only
 
 Parse `$1/INDEX.xml` to get all `<source>` entries where `<description>PLACEHOLDER</description>`.
 
-For each PLACEHOLDER source, read the corresponding markdown file and write a 20-30 word dense description (single line, no line breaks) following the example patterns in between `<example_description>`.
-
-Write all descriptions to `descriptions.txt` in this format:
-
-```
-https://example.com/url1
-Description for url1 here
-https://example.com/url2
-Description for url2 here
-```
+Review example description patterns:
 
 <example_description>
 
 ```xml
-<!-- Example 1 (single line, no line breaks) -->
-<description>Folder structure covering top-level folders (`app`, `pages`, `public`, `src`), routing files (`page.js`, `layout.js`, `loading.js`, `error.js`), dynamic routes, route groups, private folders, parallel/intercepted routes, colocation patterns, component hierarchy, and metadata file conventions.</description>
+<!-- Example 1 (30 words, single line, no line breaks) -->
+<description>Folder and file conventions including top-level folders, routing files (layout, page, loading, error, route), dynamic routes, route groups, private folders, parallel and intercepted routes, metadata conventions, colocation patterns, component hierarchy.</description>
 
-<!-- Example 2 (single line, no line breaks) -->
+<!-- Example 2 (23 words, single line, no line breaks) -->
 <description>Dependency fields, uv add/remove commands, dependency sources (Git, URL, path, workspace), optional dependencies, development groups, build dependencies, editable installations, and dependency specifiers syntax.</description>
 
-<!-- Example 3 (single line, no line breaks) -->
+<!-- Example 3 (27 words, single line, no line breaks) -->
 <description>Advanced reactive patterns including `@reactive.event` and `isolate` for event-driven execution, `req` for conditional execution, `invalidate_later` for scheduled updates, `@reactive.file_reader` for monitoring files, and `@reactive.poll` for conditional polling.</description>
 ```
 
 </example_description>
 
-**Critical:** Only generate for PLACEHOLDER entries. Unchanged files already have descriptions restored by sync_index.py.
+Now, for each PLACEHOLDER source:
+
+1. Analyse the corresponding markdown file
+2. Draft a description (20-30 words) following the example patterns above
+3. **COUNT THE WORDS** using `echo "description text" | wc -w` to verify it's 20-30 words - if not, rewrite until it is
+4. Append the validated description to `$1/descriptions.txt` in this format:
+
+   ```text
+   https://example.com/url1
+   Description for url1 here
+   ```
 
 ### 4. Update INDEX.xml
 
 Run the update script to apply all descriptions:
 
 ```bash
-uv run scripts/update_index_descriptions.py "$1" descriptions.txt
+uv run scripts/update_index_descriptions.py "$1" "$1/descriptions.txt"
 ```
+
+Verify `PLACEHOLDER` no longer appears in `$1/INDEX.xml`, otherwise suggest self-healing action and await user confirmation.
 
 ### 5. Report completion
 
@@ -112,9 +115,9 @@ Parse structured output from the script and report completion following the `<ex
 - Descriptions updated:  [X]
 
 💡 Collection Content Changes for `$1`:
-- [List files from GIT_CHANGES block]
+- [Analyse script output section "## Git Content Changes" and list files here]
 
-*NB: excludes files with whitespace changes*
+*NB: excludes files with only whitespace changes*
 ```
 
 </example_summary_message>
