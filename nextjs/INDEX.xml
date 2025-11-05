@@ -15,9 +15,16 @@
   </source>
   <source>
     <title>Getting Started: Project Structure | Next.js</title>
-    <description>Complete folder and file conventions including top-level folders, routing files (layout, page, loading, error, route), dynamic routes with brackets, route groups with parentheses, private folders with underscores, parallel and intercepted routes, metadata conventions, and colocation patterns.</description>
+    <description>Folder and file conventions including top-level folders, routing files (layout, page, loading, error, route), dynamic routes, route groups, private folders, parallel and intercepted routes, metadata conventions, colocation patterns, component hierarchy.</description>
     <source_url>https://nextjs.org/docs/app/getting-started/project-structure</source_url>
     <local_file>getting-started-project-structure-nextjs.md</local_file>
     <scraped_at>2025-11-04</scraped_at>
+  </source>
+  <source>
+    <title>Configuration: TypeScript | Next.js</title>
+    <description>Next.js TypeScript configuration including IDE plugin, statically typed links, environment variable IntelliSense, custom tsconfig paths, build error handling, end-to-end type safety, and route-aware type helpers.</description>
+    <source_url>https://nextjs.org/docs/app/api-reference/config/typescript</source_url>
+    <local_file>configuration-typescript-nextjs.md</local_file>
+    <scraped_at>2025-11-05</scraped_at>
   </source>
 </docs_index>
