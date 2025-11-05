@@ -27,4 +27,11 @@
     <local_file>configuration-typescript-nextjs.md</local_file>
     <scraped_at>2025-11-05</scraped_at>
   </source>
+  <source>
+    <title>Getting Started: Layouts and Pages | Next.js</title>
+    <description>File-system routing with page and layout files, nested routes, dynamic segments using square brackets, nested layouts wrapping children, search parameters handling, Link component for navigation, and PageProps LayoutProps type helpers.</description>
+    <source_url>https://nextjs.org/docs/app/getting-started/layouts-and-pages</source_url>
+    <local_file>getting-started-layouts-and-pages-nextjs.md</local_file>
+    <scraped_at>2025-11-05</scraped_at>
+  </source>
 </docs_index>
