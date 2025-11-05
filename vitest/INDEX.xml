@@ -1,0 +1,30 @@
+<docs_index>
+  <source>
+    <title>Why Vitest | Guide | Vitest</title>
+    <description>Rationale for Vitest as a Vite-native test runner: unified configuration pipeline, instant HMR, Jest-compatible API, parallel execution via Worker threads, lightweight dependencies, performance improvements, and watch mode enabled by default.</description>
+    <source_url>https://vitest.dev/guide/why</source_url>
+    <local_file>why-vitest-guide-vitest.md</local_file>
+    <scraped_at>2025-11-05</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started | Guide | Vitest</title>
+    <description>Installation, basic test writing with expect API, configuration via vite.config or vitest.config, projects support, CLI usage, IDE integrations, dependency management, examples, and community resources.</description>
+    <source_url>https://vitest.dev/guide/</source_url>
+    <local_file>getting-started-guide-vitest.md</local_file>
+    <scraped_at>2025-11-05</scraped_at>
+  </source>
+  <source>
+    <title>Features | Guide | Vitest</title>
+    <description>Feature overview: Vite config integration, smart watch mode, component testing, concurrent execution, snapshots, mocking with Tinyspy, coverage via v8 or istanbul, in-source testing, benchmarking, type testing, and sharding.</description>
+    <source_url>https://vitest.dev/guide/features.html</source_url>
+    <local_file>features-guide-vitest.md</local_file>
+    <scraped_at>2025-11-05</scraped_at>
+  </source>
+  <source>
+    <title>Configuring Vitest | Vitest</title>
+    <description>Configuration reference: test property options, file patterns, server settings, execution modes, environments, reporters, coverage, mocking, benchmarking, browser mode, workspace projects, and all parameters with types and defaults.</description>
+    <source_url>https://vitest.dev/config/</source_url>
+    <local_file>configuring-vitest-vitest.md</local_file>
+    <scraped_at>2025-11-05</scraped_at>
+  </source>
+</docs_index>
