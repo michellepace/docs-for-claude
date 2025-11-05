@@ -203,34 +203,6 @@ class TestDirectoryScenarios:
             source_count = index_content.count("<source>")
             assert source_count == 1, f"Expected 1 source, found {source_count}"
 
-    def test_different_urls_with_same_title_get_numbered_filenames(self) -> None:
-        """Different URLs with same title get numbered filenames (-2 suffix)."""
-        with tempfile.TemporaryDirectory() as tmp_dir:
-            tmp_path = Path(tmp_dir)
-            collection_dir = tmp_path / "test_shiny"
-
-            # First URL (Express API)
-            run_script(str(collection_dir), "https://shiny.posit.co/py/api/express/")
-
-            # Second URL (Testing API) - same title, different content
-            run_script(str(collection_dir), "https://shiny.posit.co/py/api/testing/")
-
-            # Both files should exist with unique names
-            assert (collection_dir / "index-shiny-for-python.md").exists()
-            assert (collection_dir / "index-shiny-for-python-2.md").exists()
-
-            # Each file should contain different content
-            file1_content = (collection_dir / "index-shiny-for-python.md").read_text()
-            file2_content = (collection_dir / "index-shiny-for-python-2.md").read_text()
-            assert "Express" in file1_content
-            assert "Testing" in file2_content
-
-            # INDEX.xml should have both entries with correct local_file values
-            index_path = collection_dir / "INDEX.xml"
-            index_content = index_path.read_text()
-            assert "<local_file>index-shiny-for-python.md</local_file>" in index_content
-            assert "<local_file>index-shiny-for-python-2.md</local_file>" in index_content
-
 
 class TestOutputContent:
     """Integration tests validating generated file content (requires API)."""

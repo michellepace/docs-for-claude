@@ -97,7 +97,7 @@ def _scrape_doc(collection_dir: Path, source_url: str) -> bool:
     return result.returncode == 0
 
 
-def _print_git_changes_summary(collection_dir: Path) -> None:
+def _print_git_content_changes(collection_dir: Path) -> None:
     """Print git diff stats for the collection directory.
 
     Args:
@@ -119,62 +119,33 @@ def _print_git_changes_summary(collection_dir: Path) -> None:
         cwd=collection_dir,
     )
 
+    print("\n### Git Content Changes (git diff --stat -w)")
+    print("<GIT_CONTENT_CHANGES>")
     if result.stdout.strip():
-        print("GIT_CHANGES_START")
         print(result.stdout.rstrip())
-        print("GIT_CHANGES_END")
     else:
-        print("GIT_CHANGES_START")
         print("No content changes detected")
-        print("GIT_CHANGES_END")
+    print("</GIT_CONTENT_CHANGES>")
 
 
-def _print_structured_output(
+def _print_scrape_summary(
     valid_pairs: list[tuple[str, str]],
     failed_urls: list[str],
     orphans: list[str],
-    collection_dir: Path,
 ) -> None:
-    """Print structured output for Claude Code to parse.
+    """Print scrape summary."""
+    print("\n### Scrape Summary")
+    print(f"- Successful|{len(valid_pairs) - len(failed_urls)}")
+    print(f"- Failed|{len(failed_urls)}")
 
-    Output format:
-        === SCRAPE SUMMARY ===
-        SUCCESSFUL: <count>
-        FAILED: <count>
-
-        FAILED_URLS_START
-        <url1>
-        <url2>
-        FAILED_URLS_END
-
-        ORPHANS_START
-        <collection_dir>/<file1.md>
-        <collection_dir>/<file2.md>
-        ORPHANS_END
-
-    This format is parsed by .claude/commands/rescrape-docs.md workflow.
-    """
-    # Scrape summary
-    print("=== SCRAPE SUMMARY ===")
-    print(f"SUCCESSFUL: {len(valid_pairs) - len(failed_urls)}")
-    print(f"FAILED: {len(failed_urls)}")
-    print()
-
-    # Failed URLs
-    if failed_urls:
-        print("FAILED_URLS_START")
-        for url in failed_urls:
-            print(url)
-        print("FAILED_URLS_END")
-        print()
-
-    # Orphans
     if orphans:
-        print("ORPHANS_START")
-        for orphan in orphans:
-            print(f"{collection_dir}/{orphan}")
-        print("ORPHANS_END")
-        print()
+        print(f"- Orphaned files|{len(orphans)} (ignored - not in INDEX.xml)")
+
+    # Show failed URLs for debugging
+    if failed_urls:
+        print("\n### Failed URLs")
+        for url in failed_urls:
+            print(f"- {url}")
 
 
 def _backup_index_xml(index_path: Path) -> Path:
@@ -191,23 +162,40 @@ def _backup_index_xml(index_path: Path) -> Path:
 
 
 def _get_changed_markdown_files(collection_dir: Path) -> set[str]:
-    """Get set of changed .md filenames from git diff (excludes README.md)."""
+    """Get set of changed .md filenames with non-whitespace changes.
+
+    Uses git diff --numstat -w which only shows files with actual content changes,
+    ignoring whitespace-only changes.
+    """
     git_path = shutil.which("git")
     if not git_path:
         return set()
 
+    # Use --numstat with -w: only returns files with non-whitespace changes
+    # Output format: "additions deletions filename"
     result = subprocess.run(
-        [git_path, "diff", "--name-only", "-w", "."],
+        [git_path, "diff", "--numstat", "-w", "--", f"{collection_dir}/"],
         capture_output=True,
         text=True,
         check=False,
-        cwd=collection_dir,
     )
+
+    # numstat format has 3 tab-separated fields: additions, deletions, filepath
+    numstat_field_count = 3
 
     changed_files = set()
     for line in result.stdout.strip().split("\n"):
-        if line.endswith(".md") and not line.endswith("README.md"):
-            changed_files.add(Path(line).name)
+        if not line:
+            continue
+
+        parts = line.split("\t")
+        if len(parts) < numstat_field_count:
+            continue
+
+        filepath = parts[2]
+        if filepath.endswith(".md") and not filepath.endswith("README.md"):
+            filename = Path(filepath).name
+            changed_files.add(filename)
 
     return changed_files
 
@@ -290,39 +278,45 @@ def main() -> None:
     md_files = get_markdown_files(collection_dir)
     valid_pairs, orphans, removed_count = _sync_index_to_filesystem(index_path, md_files)
 
-    print("=== SYNC COMPLETE ===")
-    print(f"REMOVED_SOURCES: {removed_count}")
-    print(f"VALID_DOCS: {len(valid_pairs)}")
-    print()
+    print("\n## SYNC INDEX.xml (source of truth)")
+    print(f"- Index sources ready to scrape|{len(valid_pairs)}")
+    print(f"- Stale sources removed (missing .md)|{removed_count}")
+    print(f"- Orphaned .md files (not in INDEX)|{len(orphans)}")
+    sys.stdout.flush()
 
     # Step 2: Scrape all docs
-    print("=== SCRAPING ALL DOCS ===")
+    print(f"\n## SCRAPING INDEX SOURCES ({len(valid_pairs)} total)")
+    sys.stdout.flush()
     failed_urls = []
 
     for idx, (local_file, source_url) in enumerate(valid_pairs, 1):
-        print(f"## 🔄 Doc {idx} of {len(valid_pairs)}: {local_file}")
+        print(f"### 🔄 Doc {idx} of {len(valid_pairs)}: {local_file}")
+        sys.stdout.flush()
         success = _scrape_doc(collection_dir, source_url)
 
-        if success:
-            print("✅ Success")
-        else:
-            print("❌ Failed")
+        if not success:
             failed_urls.append(source_url)
-        print()
+        sys.stdout.flush()
 
-    # Step 3: Output structured results
-    _print_structured_output(valid_pairs, failed_urls, orphans, collection_dir)
+    # Step 3: Output scrape results
+    _print_scrape_summary(valid_pairs, failed_urls, orphans)
 
     # Step 4: Show git changes summary
-    print()
-    _print_git_changes_summary(collection_dir)
+    _print_git_content_changes(collection_dir)
 
     # Restore unchanged descriptions
     changed_files = _get_changed_markdown_files(collection_dir)
     restored_count = _restore_unchanged_descriptions(
         index_path, backup_path, changed_files
     )
-    print(f"📝 Restored {restored_count} unchanged description(s)")
+
+    # Show descriptions status
+    print("\n## Index Descriptions Status")
+    print(f"- ✅ Restored (.md whitespace-only changes)|{restored_count} files")
+    print(f"- ⚠️ PLACEHOLDER in INDEX.xml (needs description)|{len(changed_files)} files")
+    if changed_files:
+        for filename in sorted(changed_files):
+            print(f"  - {collection_dir.name}/{filename}")
 
     # Cleanup backup file
     _cleanup_backup(backup_path)

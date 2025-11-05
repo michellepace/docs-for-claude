@@ -7,19 +7,19 @@ from pathlib import Path
 
 
 def parse_descriptions_file(descriptions_path: Path) -> dict[str, str]:
-    """Parse descriptions file into URL -> description mapping.
+    """Parse descriptions file into filename -> description mapping.
 
     Expected format:
-    https://example.com/url1
-    Description text for url1
-    https://example.com/url2
-    Description text for url2
+    getting-started-installation.md
+    Description text for this file
+    configuration-typescript.md
+    Description text for this file
 
     Args:
         descriptions_path: Path to descriptions file
 
     Returns:
-        Dictionary mapping source_url to description text
+        Dictionary mapping local_file to description text
     """
     descriptions = {}
     lines = descriptions_path.read_text().strip().split("\n")
@@ -45,7 +45,10 @@ def parse_descriptions_file(descriptions_path: Path) -> dict[str, str]:
             descriptions[url] = description
             i += 1
         else:
-            print(f"Warning: URL '{url}' has no description, skipping", file=sys.stderr)
+            print(
+                f"Warning: filename '{url}' has no description, skipping",
+                file=sys.stderr,
+            )
 
     return descriptions
 
@@ -98,7 +101,7 @@ def update_descriptions(index_path: Path, descriptions: dict[str, str]) -> int:
 
     Args:
         index_path: Path to INDEX.xml file
-        descriptions: Dictionary mapping source_url to new description
+        descriptions: Dictionary mapping local_file to new description
 
     Returns:
         Number of descriptions updated
@@ -109,23 +112,23 @@ def update_descriptions(index_path: Path, descriptions: dict[str, str]) -> int:
     updated_count = 0
 
     for source in root.findall("source"):
-        url_elem = source.find("source_url")
+        file_elem = source.find("local_file")
         desc_elem = source.find("description")
 
         if (
-            url_elem is not None
-            and url_elem.text in descriptions
+            file_elem is not None
+            and file_elem.text in descriptions
             and desc_elem is not None
         ):
             old_desc = desc_elem.text
-            new_desc = descriptions[url_elem.text]
+            new_desc = descriptions[file_elem.text]
 
             if old_desc != new_desc:
                 desc_elem.text = new_desc
                 updated_count += 1
-                print(f"✅ Updated: {url_elem.text}")
+                print(f"✅ Updated: {file_elem.text}")
             else:
-                print(f"ℹ️  Unchanged: {url_elem.text}")  # noqa: RUF001
+                print(f"ℹ️  Unchanged: {file_elem.text}")  # noqa: RUF001
 
     # Write back to INDEX.xml
     if updated_count > 0:
