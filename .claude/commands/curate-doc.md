@@ -1,8 +1,7 @@
 ---
 argument-hint: <collection-dir> <source_url>
 description: Scrape source URL and save to collection directory
-allowed-tools: Bash(find:*), Bash(uv run:scripts/curate_doc.py:*), Read, Edit
-model: claude-sonnet-4-5-20250929
+allowed-tools: Read, Write, Bash(find:*), Bash(uv run:scripts/curate_doc.py:*), Bash(uv run:scripts/update_index_descriptions.py:*)
 ---
 
 Scrape $2 and add to $1 collection directory with INDEX.xml entry.
@@ -98,26 +97,42 @@ uv run scripts/curate_doc.py "$1" "$2"
 
 Script errors print actionable information. If recovery is possible, propose specific fixes but wait for explicit user approval. Proceed ONLY when script outputs `🎉 Curation Success!` - don't waste effort if the script failed.
 
-### 4. Generate and update description
+### 4. Generate descriptions for PLACEHOLDER entries only
 
-Read the scraped markdown file and write a 20-30 word dense description following the example patterns in between `<example_description>`. In `$1/INDEX.xml`, find the `<source>` entry where `<source_url>` matches $2.
-
-⚠️ **CRITICAL**: Replace ONLY the text `PLACEHOLDER` - do NOT replace the entire `<description>` tag or you will break the XML structure. After replacement, ensure description tags are matched on a single line.
+Review example description patterns:
 
 <example_description>
 
 ```xml
-<!-- Example 1 (single line, no line breaks) -->
-<description>Next.js folder structure covering top-level folders (`app`, `pages`, `public`, `src`), routing files (`page.js`, `layout.js`, `loading.js`, `error.js`), dynamic routes, route groups, private folders, parallel/intercepted routes, colocation patterns, component hierarchy, and metadata file conventions.</description>
+<!-- Example 1 (30 words, single line, no line breaks) -->
+<description>Folder and file conventions including top-level folders, routing files (layout, page, loading, error, route), dynamic routes, route groups, private folders, parallel and intercepted routes, metadata conventions, colocation patterns, component hierarchy.</description>
 
-<!-- Example 2 (single line, no line breaks) -->
+<!-- Example 2 (23 words, single line, no line breaks) -->
 <description>Dependency fields, uv add/remove commands, dependency sources (Git, URL, path, workspace), optional dependencies, development groups, build dependencies, editable installations, and dependency specifiers syntax.</description>
 
-<!-- Example 3 (single line, no line breaks) -->
+<!-- Example 3 (27 words, single line, no line breaks) -->
 <description>Advanced reactive patterns including `@reactive.event` and `isolate` for event-driven execution, `req` for conditional execution, `invalidate_later` for scheduled updates, `@reactive.file_reader` for monitoring files, and `@reactive.poll` for conditional polling.</description>
 ```
 
 </example_description>
+
+Now, write a description:
+
+1. Analyse the scraped markdown file
+2. Draft a description (20-30 words) following the example patterns above
+3. **COUNT THE WORDS** using `echo "description text" | wc -w` to verify it's 20-30 words - if not, rewrite until it is
+4. Write the validated description to `$1/description.txt` in this format:
+
+      ```text
+      https://example.com/url1
+      Description for url1 here
+      ```
+
+5. Run the update script to apply all descriptions:
+
+   ```bash
+   uv run scripts/update_index_descriptions.py "$1" "$1/description.txt"
+   ```
 
 ### 5. Report success
 
@@ -134,7 +149,7 @@ Output the final success message following the `<example_success_message>` forma
 - Generated description: (see below!)
 - [Added/Updated] index: `shiny/INDEX.xml`
 
-_[your generated description]_
+"_[your generated description]_" = [actual word count] words ✓
 ```
 
 </example_success_message>
