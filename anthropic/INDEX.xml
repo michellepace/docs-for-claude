@@ -97,4 +97,25 @@
     <local_file>plugins-in-the-sdk-claude-docs.md</local_file>
     <scraped_at>2025-11-06</scraped_at>
   </source>
+  <source>
+    <title>Building agents with the Claude Agent SDK \ Anthropic</title>
+    <description>Building agents with Claude Agent SDK covering design principles, agent feedback loop (gather context, take action, verify work), agentic search, subagents, tools, bash, code generation, MCP integrations, and testing practices.</description>
+    <source_url>https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk</source_url>
+    <local_file>building-agents-with-the-claude-agent-sdk-anthropic.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+  <source>
+    <title>Equipping agents for the real world with Agent Skills \ Anthropic</title>
+    <description>Agent Skills architecture, SKILL.md structure with YAML frontmatter, progressive disclosure across three context levels, bundling additional files, code execution capabilities, development best practices, security considerations for installing skills.</description>
+    <source_url>https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills</source_url>
+    <local_file>equipping-agents-for-the-real-world-with-agent-skills-anthropic.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+  <source>
+    <title>Enabling Claude Code to work more autonomously \ Anthropic</title>
+    <description>Claude Code autonomous features including VS Code extension, enhanced terminal interface, Claude Agent SDK, checkpoints for state management, subagents for parallel tasks, hooks for automation, and background task execution.</description>
+    <source_url>https://www.anthropic.com/news/enabling-claude-code-to-work-more-autonomously</source_url>
+    <local_file>enabling-claude-code-to-work-more-autonomously-anthropic.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
 </docs_index>
