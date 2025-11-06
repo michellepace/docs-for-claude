@@ -1,69 +1,3 @@
-Your Privacy
-
-This site uses tracking technologies. You may opt in or opt out of the use of these technologies.
-
-Essential
-On
-
-Essential cookies and services are used to enable core website features, such as ensuring the security of the website.
-
-* * *
-
-Marketing
-Off
-
-Marketing cookies and services are used to deliver personalized advertisements, promotions, and offers. These technologies enable targeted advertising and marketing campaigns by collecting information about users' interests, preferences, and online activities.
-
-* * *
-
-Analytics
-Off
-
-Analytics cookies and services are used for collecting statistical information about how visitors interact with a website. These technologies provide insights into website usage, visitor behavior, and site performance to understand and improve the site and enhance user experience.
-
-* * *
-
-Functional
-Off
-
-Functional cookies and services are used to offer enhanced and personalized functionalities. These technologies provide additional features and improved user experiences, such as remembering your language preferences, font sizes, region selections, and customized layouts. Opting out of these cookies may render certain services or functionality of the website unavailable.
-
-SaveDenyAccept all
-
-[Privacy Policy](https://vercel.com/legal/privacy-policy)
-
-Your Privacy
-
-This site uses tracking technologies. You may opt in or opt out of the use of these technologies.
-
-DenyAccept all
-
-Consent Settings
-
-[Privacy Policy](https://vercel.com/legal/privacy-policy)
-
-Menu
-
-Using App Router
-
-Features available in /app
-
-Latest Version
-
-16.0.1
-
-Using App Router
-
-Features available in /app
-
-Latest Version
-
-16.0.1
-
-[Guides](https://nextjs.org/docs/app/guides) [Testing](https://nextjs.org/docs/app/guides/testing) Playwright
-
-Copy page
-
 # How to set up Playwright with Next.js
 
 Playwright is a testing framework that lets you automate Chromium, Firefox, and WebKit with a single API. You can use it to write **End-to-End (E2E)** testing. This guide will show you how to set up Playwright with Next.js and write your first tests.
@@ -74,7 +8,7 @@ The fastest way to get started is to use `create-next-app` with the [with-playwr
 
 Terminal
 
-```
+```bash
 npx create-next-app@latest --example with-playwright with-playwright-app
 ```
 
@@ -84,7 +18,7 @@ To install Playwright, run the following command:
 
 Terminal
 
-```
+```bash
 npm init playwright
 # or
 yarn create playwright
@@ -100,7 +34,7 @@ Create two new Next.js pages:
 
 app/page.tsx
 
-```
+```tsx
 import Link from 'next/link'
 
 export default function Page() {
@@ -115,7 +49,7 @@ export default function Page() {
 
 app/about/page.tsx
 
-```
+```tsx
 import Link from 'next/link'
 
 export default function Page() {
@@ -132,7 +66,7 @@ Then, add a test to verify that your navigation is working correctly:
 
 tests/example.spec.ts
 
-```
+```ts
 import { test, expect } from '@playwright/test'
 
 test('should navigate to the about page', async ({ page }) => {
@@ -166,9 +100,3 @@ You can learn more about Playwright and Continuous Integration from these resour
 - [Next.js with Playwright example](https://github.com/vercel/next.js/tree/canary/examples/with-playwright)
 - [Playwright on your CI provider](https://playwright.dev/docs/ci)
 - [Playwright Discord](https://discord.com/invite/playwright-807756831384403968)
-
-Was this helpful?
-
-supported.
-
-Send
