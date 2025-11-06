@@ -8,6 +8,7 @@ Curate documentation collections using slash commands and FireCrawl. Reference i
 
 | Tool | Description | Source | Scraped | Path | Index |
 |:-----|:------------|:-------|:--------|:-----|:------|
+| **Anthropic** | Claude Agent SDK | [Official](https://docs.claude.com) | 2025-11-06 | 📁 [`anthropic/`](anthropic/) | 📄 [`anthropic/INDEX.xml`](anthropic/INDEX.xml) |
 | **Biome** | Fast linter/formatter | [Official](https://biomejs.dev) | 2025-11-04 | 📁 [`biome/`](biome/) | 📄 [`biome/INDEX.xml`](biome/INDEX.xml) |
 | **Next.js** | React framework | [Official](https://nextjs.org) | 2025-11-05 | 📁 [`nextjs/`](nextjs/) | 📄 [`nextjs/INDEX.xml`](nextjs/INDEX.xml) |
 | **Shiny** | Python web apps | [Official](https://shiny.posit.co/py/) | 2025-11-02 | 📁 [`shiny/`](shiny/) | 📄 [`shiny/INDEX.xml`](shiny/INDEX.xml) |
@@ -17,7 +18,7 @@ Curate documentation collections using slash commands and FireCrawl. Reference i
 | **Vitest** | Testing framework | [Official](https://vitest.dev) | 2025-11-05 | 📁 [`vitest/`](vitest/) | 📄 [`vitest/INDEX.xml`](vitest/INDEX.xml) |
 | **Anything** | Add your own | ~ | ~ | 📁 | 📄 |
 
-*Examples in this repo, but curate your own. For fresh Anthropic docs use [this tool](https://github.com/ericbuess/claude-code-docs).*
+*Examples in this repo, but curate your own. For most Anthropic docs use [this tool](https://github.com/ericbuess/claude-code-docs).*
 
 ## 🚀 Setup
 

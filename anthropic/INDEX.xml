@@ -1,0 +1,121 @@
+<docs_index>
+  <source>
+    <title>Agent SDK overview - Claude Docs</title>
+    <description>Introduction to building production-ready agents with TypeScript or Python SDKs, covering authentication, Claude Code features (context management, tools, permissions), MCP extensibility, subagents, hooks, skills, plugins, and partner branding.</description>
+    <source_url>https://docs.claude.com/en/api/agent-sdk/overview</source_url>
+    <local_file>agent-sdk-overview-claude-docs.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+  <source>
+    <title>Agent SDK reference - Python - Claude Docs</title>
+    <description>Complete Python Agent SDK API reference documenting query(), ClaudeSDKClient, tool decorator, create_sdk_mcp_server(), configuration types, ClaudeAgentOptions, hooks, message types, content blocks, error classes, and built-in tool schemas.</description>
+    <source_url>https://docs.claude.com/en/api/agent-sdk/python</source_url>
+    <local_file>agent-sdk-reference-python-claude-docs.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+  <source>
+    <title>Handling Permissions - Claude Docs</title>
+    <description>Permission control via modes (default, acceptEdits, bypassPermissions), canUseTool callback for runtime approval, hooks for programmatic control, permission rules, flow evaluation order, mode-specific behaviours, best practices.</description>
+    <source_url>https://docs.claude.com/en/api/agent-sdk/permissions</source_url>
+    <local_file>handling-permissions-claude-docs.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+  <source>
+    <title>Session Management - Claude Docs</title>
+    <description>Session management including capturing session IDs from init messages, resuming conversations with preserved context, forking sessions to create branches versus continuing linearly, and comparison of forking behaviours.</description>
+    <source_url>https://docs.claude.com/en/api/agent-sdk/sessions</source_url>
+    <local_file>session-management-claude-docs.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+  <source>
+    <title>Hosting the Agent SDK - Claude Docs</title>
+    <description>Production deployment architecture for Agent SDK with four deployment patterns (ephemeral, long-running, hybrid, single-container sessions), sandbox provider comparisons (Cloudflare, Modal, E2B, Fly, Vercel), container requirements, communication, costs, and monitoring.</description>
+    <source_url>https://docs.claude.com/en/api/agent-sdk/hosting</source_url>
+    <local_file>hosting-the-agent-sdk-claude-docs.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+  <source>
+    <title>Modifying system prompts - Claude Docs</title>
+    <description>Four system prompt modification methods: CLAUDE.md project files, output styles, claude_code preset with append option, custom prompts; settingSources configuration requirements, persistence and reusability comparison, use cases and best practices.</description>
+    <source_url>https://docs.claude.com/en/api/agent-sdk/modifying-system-prompts</source_url>
+    <local_file>modifying-system-prompts-claude-docs.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+  <source>
+    <title>Streaming Input - Claude Docs</title>
+    <description>Two input modes: streaming input (recommended) with AsyncGenerator, image uploads, queued messages, hooks, interruptions, context persistence; single message input for one-shot queries with session resuming, benefits, limitations, use cases.</description>
+    <source_url>https://docs.claude.com/en/api/agent-sdk/streaming-vs-single-mode</source_url>
+    <local_file>streaming-input-claude-docs.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+  <source>
+    <title>Custom Tools - Claude Docs</title>
+    <description>Building custom tools with createSdkMcpServer and tool decorator, type-safe schemas using Zod or JSON Schema, tool naming format, allowedTools configuration, streaming input requirements, error handling patterns, and example implementations.</description>
+    <source_url>https://docs.claude.com/en/api/agent-sdk/custom-tools</source_url>
+    <local_file>custom-tools-claude-docs.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+  <source>
+    <title>Subagents in the SDK - Claude Docs</title>
+    <description>Programmatic and filesystem-based subagent definition using agents parameter, AgentDefinition configuration including description, prompt, tools, and model fields, context isolation, parallelization benefits, tool restrictions, automatic and explicit invocation patterns.</description>
+    <source_url>https://docs.claude.com/en/api/agent-sdk/subagents</source_url>
+    <local_file>subagents-in-the-sdk-claude-docs.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+  <source>
+    <title>Slash Commands in the SDK - Claude Docs</title>
+    <description>Slash commands in Claude Agent SDK including built-in commands (/compact, /clear), discovering available commands, sending commands, creating custom commands with frontmatter, arguments, bash execution, file references, and namespacing.</description>
+    <source_url>https://docs.claude.com/en/api/agent-sdk/slash-commands</source_url>
+    <local_file>slash-commands-in-the-sdk-claude-docs.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+  <source>
+    <title>Agent Skills in the SDK - Claude Docs</title>
+    <description>Agent Skills in Claude Agent SDK including filesystem-based Skill definitions, settingSources configuration, allowed_tools setup, Skill locations (project, user, plugin), creating SKILL.md files, tool restrictions, discovery, testing, and troubleshooting.</description>
+    <source_url>https://docs.claude.com/en/api/agent-sdk/skills</source_url>
+    <local_file>agent-skills-in-the-sdk-claude-docs.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+  <source>
+    <title>Tracking Costs and Usage - Claude Docs</title>
+    <description>Token usage tracking in Claude Agent SDK including steps, message IDs, usage reporting, deduplication rules, cost calculation, cache tracking, parallel tool handling, cumulative usage, and billing implementation examples.</description>
+    <source_url>https://docs.claude.com/en/api/agent-sdk/cost-tracking</source_url>
+    <local_file>tracking-costs-and-usage-claude-docs.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+  <source>
+    <title>Todo Lists - Claude Docs</title>
+    <description>Todo lifecycle states (pending, in_progress, completed, removed), automatic creation triggers, monitoring todo changes via message streams, real-time progress tracking, TodoWrite tool usage patterns, TypeScript and Python SDK implementation examples.</description>
+    <source_url>https://docs.claude.com/en/api/agent-sdk/todo-tracking</source_url>
+    <local_file>todo-lists-claude-docs.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+  <source>
+    <title>Plugins in the SDK - Claude Docs</title>
+    <description>Plugin loading from local paths, plugin structure (commands, agents, skills, hooks, MCP servers), path specifications, verifying installation via init messages, namespaced command usage, complete TypeScript and Python examples, troubleshooting.</description>
+    <source_url>https://docs.claude.com/en/api/agent-sdk/plugins</source_url>
+    <local_file>plugins-in-the-sdk-claude-docs.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+  <source>
+    <title>Building agents with the Claude Agent SDK \ Anthropic</title>
+    <description>Building agents with Claude Agent SDK covering design principles, agent feedback loop (gather context, take action, verify work), agentic search, subagents, tools, bash, code generation, MCP integrations, and testing practices.</description>
+    <source_url>https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk</source_url>
+    <local_file>building-agents-with-the-claude-agent-sdk-anthropic.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+  <source>
+    <title>Equipping agents for the real world with Agent Skills \ Anthropic</title>
+    <description>Agent Skills architecture, SKILL.md structure with YAML frontmatter, progressive disclosure across three context levels, bundling additional files, code execution capabilities, development best practices, security considerations for installing skills.</description>
+    <source_url>https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills</source_url>
+    <local_file>equipping-agents-for-the-real-world-with-agent-skills-anthropic.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+  <source>
+    <title>Enabling Claude Code to work more autonomously \ Anthropic</title>
+    <description>Claude Code autonomous features including VS Code extension, enhanced terminal interface, Claude Agent SDK, checkpoints for state management, subagents for parallel tasks, hooks for automation, and background task execution.</description>
+    <source_url>https://www.anthropic.com/news/enabling-claude-code-to-work-more-autonomously</source_url>
+    <local_file>enabling-claude-code-to-work-more-autonomously-anthropic.md</local_file>
+    <scraped_at>2025-11-06</scraped_at>
+  </source>
+</docs_index>
