@@ -48,4 +48,18 @@
     <local_file>best-practices-playwright.md</local_file>
     <scraped_at>2025-11-07</scraped_at>
   </source>
+  <source>
+    <title>Continuous Integration | Playwright</title>
+    <description>CI configurations for GitHub Actions, Azure Pipelines, CircleCI, Jenkins, GitLab, Bitbucket, Docker images, worker settings, sharding strategies, deployment triggers, fail-fast optimization, and debugging browser launches.</description>
+    <source_url>https://playwright.dev/docs/ci</source_url>
+    <local_file>continuous-integration-playwright.md</local_file>
+    <scraped_at>2025-11-07</scraped_at>
+  </source>
+  <source>
+    <title>Fixtures | Playwright</title>
+    <description>Test fixtures for isolated environment setup, built-in fixtures (page, context, browser, request), creating custom fixtures with test.extend(), overriding fixtures, worker-scoped and automatic fixtures, timeout configuration, execution order, and combining fixtures.</description>
+    <source_url>https://playwright.dev/docs/test-fixtures</source_url>
+    <local_file>fixtures-playwright.md</local_file>
+    <scraped_at>2025-11-07</scraped_at>
+  </source>
 </docs_index>
