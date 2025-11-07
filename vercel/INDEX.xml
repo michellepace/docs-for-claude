@@ -41,4 +41,46 @@
     <local_file>spend-management.md</local_file>
     <scraped_at>2025-10-20</scraped_at>
   </source>
+  <source>
+    <title>Deploying to Vercel</title>
+    <description>Deployment methods via Git providers, Vercel CLI, Deploy Hooks, and REST API, accessing Local, Preview, and Production environments, dashboard resources tab, deployment summary, managing deployments, redeploying, and promoting to production.</description>
+    <source_url>https://vercel.com/docs/deployments</source_url>
+    <local_file>deploying-to-vercel.md</local_file>
+    <scraped_at>2025-11-07</scraped_at>
+  </source>
+  <source>
+    <title>Environments</title>
+    <description>Three environments (Local, Preview, Production) with CLI commands, environment variables, preview URLs, production workflows, and custom environments for Pro/Enterprise with branch tracking and domain configuration.</description>
+    <source_url>https://vercel.com/docs/deployments/environments</source_url>
+    <local_file>environments.md</local_file>
+    <scraped_at>2025-11-07</scraped_at>
+  </source>
+  <source>
+    <title>Next.js on Vercel</title>
+    <description>Next.js deployment on Vercel covering ISR, SSR, streaming, partial prerendering, image and font optimisation, OG images, middleware, Draft Mode, Web Analytics, Speed Insights, and service integrations with zero-configuration benefits.</description>
+    <source_url>https://vercel.com/docs/frameworks/full-stack/nextjs</source_url>
+    <local_file>nextjs-on-vercel.md</local_file>
+    <scraped_at>2025-11-07</scraped_at>
+  </source>
+  <source>
+    <title>Production checklist for launch</title>
+    <description>Pre-launch checklist covering operational excellence, security configuration including CSP and WAF, reliability through observability and failover, performance optimization, and cost management with Fluid compute and usage controls.</description>
+    <source_url>https://vercel.com/docs/production-checklist</source_url>
+    <local_file>production-checklist-for-launch.md</local_file>
+    <scraped_at>2025-11-07</scraped_at>
+  </source>
+  <source>
+    <title>How to Build a Fullstack App with Next.js, Prisma, and Postgres</title>
+    <description>Step-by-step tutorial for building a fullstack blogging application with Next.js, Prisma ORM, Vercel Postgres, NextAuth.js GitHub OAuth, implementing CRUD operations for post creation, publishing, deletion, and deploying to Vercel.</description>
+    <source_url>https://vercel.com/guides/nextjs-prisma-postgres</source_url>
+    <local_file>how-to-build-a-fullstack-app-with-nextjs-prisma-and-postgres.md</local_file>
+    <scraped_at>2025-11-07</scraped_at>
+  </source>
+  <source>
+    <title>How do I generate a “sitemap.xml” for my Next.js app on Vercel?</title>
+    <description>Generating sitemap.xml for Next.js App Router using the sitemap file convention, including URL configuration with lastModified, changeFrequency, and priority fields for build-time generation.</description>
+    <source_url>https://vercel.com/guides/how-do-i-generate-a-sitemap-for-my-nextjs-app-on-vercel</source_url>
+    <local_file>how-do-i-generate-a-sitemapxml-for-my-nextjs-app-on-vercel.md</local_file>
+    <scraped_at>2025-11-07</scraped_at>
+  </source>
 </docs_index>
