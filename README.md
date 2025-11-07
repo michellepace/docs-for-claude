@@ -1,8 +1,6 @@
 # Curate Docs For AI (with Claude Code)
 
-Curate documentation collections using slash commands and FireCrawl. Reference indexes to get answers efficiently e.g. `@tailwind/INDEX.xml what's a utility?`.
-
-**Why?** Cleaner than web-fetch, focussed context, curated persistence.
+Curate and index documentation from any website into a collection like `biome/`, `nextjs/`, etc. Reference in AI chats e.g. `@tailwind/INDEX.xml what's a utility?` to get quality answers. This is cleaner and more targeted than an AI web-fetch or web-search. In short - keep your context clean and targeted for AI effectiveness.
 
 ## 📦 Repo Collections
 
@@ -11,6 +9,7 @@ Curate documentation collections using slash commands and FireCrawl. Reference i
 | **Anthropic** | Claude Agent SDK | [Official](https://docs.claude.com) | 2025-11-06 | 📁 [`anthropic/`](anthropic/) | 📄 [`anthropic/INDEX.xml`](anthropic/INDEX.xml) |
 | **Biome** | Fast linter/formatter | [Official](https://biomejs.dev) | 2025-11-04 | 📁 [`biome/`](biome/) | 📄 [`biome/INDEX.xml`](biome/INDEX.xml) |
 | **Next.js** | React framework | [Official](https://nextjs.org) | 2025-11-05 | 📁 [`nextjs/`](nextjs/) | 📄 [`nextjs/INDEX.xml`](nextjs/INDEX.xml) |
+| **Playwright** | Browser testing | [Official](https://playwright.dev) | 2025-11-07 | 📁 [`playwright/`](playwright/) | 📄 [`playwright/INDEX.xml`](playwright/INDEX.xml) |
 | **Shiny** | Python web apps | [Official](https://shiny.posit.co/py/) | 2025-11-02 | 📁 [`shiny/`](shiny/) | 📄 [`shiny/INDEX.xml`](shiny/INDEX.xml) |
 | **Tailwind** | CSS framework | [Official](https://tailwindcss.com/docs/) | 2025-10-15 | 📁 [`tailwind/`](tailwind/) | 📄 [`tailwind/INDEX.xml`](tailwind/INDEX.xml) |
 | **UV** | Python projects | [Official](https://docs.astral.sh/uv/) | 2025-10-15 | 📁 [`uv/`](uv/) | 📄 [`uv/INDEX.xml`](uv/INDEX.xml) |

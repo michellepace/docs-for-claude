@@ -1,0 +1,51 @@
+<docs_index>
+  <source>
+    <title>Configuration | Playwright</title>
+    <description>Configuration options including testDir, fullyParallel, forbidOnly, retries, workers, reporter, projects for multiple browsers, webServer, test filtering patterns, globalSetup, globalTeardown, timeout, outputDir, and expect assertion timeouts.</description>
+    <source_url>https://playwright.dev/docs/test-configuration</source_url>
+    <local_file>configuration-playwright.md</local_file>
+    <scraped_at>2025-11-07</scraped_at>
+  </source>
+  <source>
+    <title>Writing tests | Playwright</title>
+    <description>Writing tests with test() function, page navigation, locator interactions, basic actions (click, fill, hover, check, press), expect assertions with async matchers (toBeVisible, toHaveTitle), test isolation, and test hooks (beforeEach, describe).</description>
+    <source_url>https://playwright.dev/docs/writing-tests</source_url>
+    <local_file>writing-tests-playwright.md</local_file>
+    <scraped_at>2025-11-07</scraped_at>
+  </source>
+  <source>
+    <title>Generating tests | Playwright</title>
+    <description>Test generator (codegen) for automatic test generation by recording actions and assertions (visibility, text, value), generating locators with Pick Locator tool, and emulation options for viewports, devices, and color schemes.</description>
+    <source_url>https://playwright.dev/docs/codegen-intro</source_url>
+    <local_file>generating-tests-playwright.md</local_file>
+    <scraped_at>2025-11-07</scraped_at>
+  </source>
+  <source>
+    <title>Setting up CI | Playwright</title>
+    <description>GitHub Actions workflow setup, test execution, viewing logs and HTML reports, trace inspection, publishing reports to Azure Storage, and handling sensitive artifacts securely in CI.</description>
+    <source_url>https://playwright.dev/docs/ci-intro</source_url>
+    <local_file>setting-up-ci-playwright.md</local_file>
+    <scraped_at>2025-11-07</scraped_at>
+  </source>
+  <source>
+    <title>TypeScript | Playwright</title>
+    <description>TypeScript support with automatic transformation, running tsc for type checking, tsconfig.json options (allowJs, baseUrl, paths, references), path mapping, tsconfig resolution (automatic and --tsconfig flag), and manual compilation setup.</description>
+    <source_url>https://playwright.dev/docs/test-typescript</source_url>
+    <local_file>typescript-playwright.md</local_file>
+    <scraped_at>2025-11-07</scraped_at>
+  </source>
+  <source>
+    <title>Global setup and teardown | Playwright</title>
+    <description>Project dependencies and globalSetup config approaches for global setup/teardown, configuration with testMatch and dependencies, teardown property, test filtering, authentication state reuse, environment variables, and capturing traces during setup failures.</description>
+    <source_url>https://playwright.dev/docs/test-global-setup-teardown</source_url>
+    <local_file>global-setup-and-teardown-playwright.md</local_file>
+    <scraped_at>2025-11-07</scraped_at>
+  </source>
+  <source>
+    <title>Best Practices | Playwright</title>
+    <description>Testing philosophy (user-visible behavior, test isolation), best practices including locators, web first assertions, debugging (VS Code, trace viewer), cross-browser testing, CI setup, linting, parallelism, sharding, and soft assertions.</description>
+    <source_url>https://playwright.dev/docs/best-practices</source_url>
+    <local_file>best-practices-playwright.md</local_file>
+    <scraped_at>2025-11-07</scraped_at>
+  </source>
+</docs_index>
