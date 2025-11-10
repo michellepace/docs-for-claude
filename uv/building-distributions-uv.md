@@ -24,12 +24,11 @@ configuration can be found in the respective tool's documentation.
 By default, `uv build` will build the project in the current directory, and place the built
 artifacts in a `dist/` subdirectory:
 
-```
+```console
 $ uv build
 $ ls dist/
 example-0.1.0-py3-none-any.whl
 example-0.1.0.tar.gz
-
 ```
 
 You can build the project in a different directory by providing a path to `uv build`, e.g.,
@@ -50,17 +49,15 @@ the requirement used to build the project match specific, known hashes, for repr
 
 For example, given the following `constraints.txt`:
 
-```
+```text
 setuptools==68.2.2 --hash=sha256:b454a35605876da60632df1a60f736524eb73cc47bbc9f3f1ef1b644de74fd2a
-
 ```
 
 Running the following would build the project with the specified version of `setuptools`, and verify
 that the downloaded `setuptools` distribution matches the specified hash:
 
-```
+```bash
 $ uv build --build-constraint constraints.txt --require-hashes
-
 ```
 
 Back to top

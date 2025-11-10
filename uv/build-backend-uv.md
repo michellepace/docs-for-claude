@@ -5,7 +5,7 @@
 A build backend transforms a source tree (i.e., a directory) into a source distribution or a wheel.
 
 uv supports all build backends (as specified by [PEP 517](https://peps.python.org/pep-0517/)), but
-also provides a native build backend ( `uv_build`) that integrates tightly with uv to improve
+also provides a native build backend (`uv_build`) that integrates tightly with uv to improve
 performance and user experience.
 
 ## [Choosing a build backend](https://docs.astral.sh/uv/concepts/build-backend/\#choosing-a-build-backend)
@@ -33,11 +33,10 @@ To use uv as a build backend in an existing project, add `uv_build` to the
 
 pyproject.toml
 
-```
+```toml
 [build-system]
-requires = ["uv_build>=0.9.3,<0.10.0"]
+requires = ["uv_build>=0.9.8,<0.10.0"]
 build-backend = "uv_build"
-
 ```
 
 Note
@@ -48,9 +47,8 @@ build correctly as new versions are released.
 
 To create a new project that uses the uv build backend, use `uv init`:
 
-```
-$ uv init
-
+```bash
+uv init
 ```
 
 When the project is built, e.g., with [`uv build`](https://docs.astral.sh/uv/guides/package/), the uv build backend will
@@ -58,7 +56,7 @@ be used to create the source distribution and wheel.
 
 ## [Bundled build backend](https://docs.astral.sh/uv/concepts/build-backend/\#bundled-build-backend)
 
-The build backend is published as a separate package ( `uv_build`) that is optimized for portability
+The build backend is published as a separate package (`uv_build`) that is optimized for portability
 and small binary size. However, the `uv` executable also includes a copy of the build backend, which
 will be used during builds performed by uv, e.g., during `uv build`, if its version is compatible
 with the `uv_build` requirement. If it's not compatible, a compatible version of the `uv_build`
@@ -72,12 +70,11 @@ an `__init__.py`. By default, a single root module is expected at `src/<package_
 
 For example, the structure for a project named `foo` would be:
 
-```
+```text
 pyproject.toml
 src
 └── foo
     └── __init__.py
-
 ```
 
 uv normalizes the package name to determine the default module name: the package name is lowercased
@@ -88,22 +85,20 @@ The `src/` directory is the default directory for module discovery.
 These defaults can be changed with the `module-name` and `module-root` settings. For example, to use
 a `FOO` module in the root directory, as in the project structure:
 
-```
+```text
 pyproject.toml
 FOO
 └── __init__.py
-
 ```
 
 The correct build configuration would be:
 
 pyproject.toml
 
-```
+```toml
 [tool.uv.build-backend]
 module-name = "FOO"
 module-root = ""
-
 ```
 
 ## [Namespace packages](https://docs.astral.sh/uv/concepts/build-backend/\#namespace-packages)
@@ -114,23 +109,21 @@ namespace.
 Namespace package modules are identified by a `.` in the `module-name`. For example, to package the
 module `bar` in the shared namespace `foo`, the project structure would be:
 
-```
+```text
 pyproject.toml
 src
 └── foo
     └── bar
         └── __init__.py
-
 ```
 
 And the `module-name` configuration would be:
 
 pyproject.toml
 
-```
+```toml
 [tool.uv.build-backend]
 module-name = "foo.bar"
-
 ```
 
 Important
@@ -140,14 +133,13 @@ The `__init__.py` file is not included in `foo`, since it's the shared namespace
 It's also possible to have a complex namespace package with more than one root module, e.g., with
 the project structure:
 
-```
+```text
 pyproject.toml
 src
 ├── foo
 │   └── __init__.py
 └── bar
     └── __init__.py
-
 ```
 
 While we do not recommend this structure (i.e., you should use a workspace with multiple packages
@@ -155,10 +147,9 @@ instead), it is supported by setting `module-name` to a list of names:
 
 pyproject.toml
 
-```
+```toml
 [tool.uv.build-backend]
 module-name = ["foo", "bar"]
-
 ```
 
 For packages with many modules or complex namespaces, the `namespace = true` option can be used to
@@ -166,10 +157,9 @@ avoid explicitly declaring each module name, e.g.:
 
 pyproject.toml
 
-```
+```toml
 [tool.uv.build-backend]
 namespace = true
-
 ```
 
 Warning
@@ -180,7 +170,7 @@ strongly recommended outside of legacy projects.
 The `namespace` option can also be used with `module-name` to explicitly declare the root, e.g., for
 the project structure:
 
-```
+```text
 pyproject.toml
 src
 └── foo
@@ -188,18 +178,16 @@ src
     │   └── __init__.py
     └── baz
         └── __init__.py
-
 ```
 
 The recommended configuration would be:
 
 pyproject.toml
 
-```
+```toml
 [tool.uv.build-backend]
 module-name = "foo"
 namespace = true
-
 ```
 
 ## [Stub packages](https://docs.astral.sh/uv/concepts/build-backend/\#stub-packages)
@@ -209,12 +197,11 @@ suffix on the package or module name, e.g., `foo-stubs`. The module name for typ
 end in `-stubs`, so uv will not normalize the `-` to an underscore. Additionally, uv will search for
 a `__init__.pyi` file. For example, the project structure would be:
 
-```
+```text
 pyproject.toml
 src
 └── foo-stubs
     └── __init__.pyi
-
 ```
 
 Type stub modules are also supported for [namespace packages](https://docs.astral.sh/uv/concepts/build-backend/#namespace-packages).

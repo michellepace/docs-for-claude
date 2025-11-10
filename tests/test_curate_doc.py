@@ -172,7 +172,10 @@ class TestDirectoryScenarios:
             ) in output
 
     def test_curating_same_url_twice_updates_existing_source(self) -> None:
-        """Curating the same URL twice should update existing source, not fail."""
+        """Curating the same URL twice should update existing source, not fail.
+
+        Also tests that URLs with/without trailing slashes are treated as the same URL.
+        """
         with tempfile.TemporaryDirectory() as tmp_dir:
             tmp_path = Path(tmp_dir)
             collection_dir = tmp_path / "test_collection"
@@ -202,6 +205,21 @@ class TestDirectoryScenarios:
             index_content = index_path.read_text()
             source_count = index_content.count("<source>")
             assert source_count == 1, f"Expected 1 source, found {source_count}"
+
+            # Third add with trailing slash variant - should ALSO UPDATE
+            url_variant = (
+                TEST_URL + "/" if not TEST_URL.endswith("/") else TEST_URL.rstrip("/")
+            )
+            exit_code3, output3 = run_script(str(collection_dir), url_variant)
+            assert exit_code3 == 0
+            assert "✅ Updated index source|" in output3
+
+            # Verify STILL only ONE source entry (trailing slash normalized)
+            index_content = index_path.read_text()
+            source_count = index_content.count("<source>")
+            assert source_count == 1, (
+                f"Expected 1 source after slash variant, found {source_count}"
+            )
 
 
 class TestOutputContent:

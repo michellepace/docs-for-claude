@@ -159,7 +159,11 @@ def _add_or_update_source_in_index(
     # Check for existing source with same URL
     for existing_source in root.findall("source"):
         existing_url_elem = existing_source.find("source_url")
-        if existing_url_elem is not None and existing_url_elem.text == source_url:
+        if (
+            existing_url_elem is not None
+            and existing_url_elem.text is not None
+            and existing_url_elem.text.rstrip("/") == source_url
+        ):
             # Found duplicate - capture old filename for cleanup
             old_file_elem = existing_source.find("local_file")
             if old_file_elem is not None:
@@ -353,7 +357,7 @@ def main() -> None:
 
     args = parser.parse_args()
 
-    source_url = args.source_url
+    source_url = args.source_url.rstrip("/")  # Normalize: always without trailing slash
     dir_path = _normalise_directory_path(args.directory)
     index_path = dir_path / "INDEX.xml"
 
