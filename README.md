@@ -1,23 +1,24 @@
 # Curate Docs For AI (with Claude Code)
 
-Curate and index documentation from any website into a collection like `biome/`, `nextjs/`, etc. Reference in AI chats e.g. `@tailwind/INDEX.xml what's a utility?` to get quality answers. This is cleaner and more targeted than an AI web-fetch or web-search. In short - keep your context clean and targeted for AI effectiveness.
+Curate and index documentation from any website into collections like `tailwind/`, `horses/`, etc. Reference collection indexes in your AI chats (e.g. `@tailwind/INDEX.xml what's a utility?`) so that only relevant docs are analysed. Much cleaner than a web-fetch and more focussed than a web-search. Keep your AI context sharp.
 
 ## 📦 Repo Collections
 
-| Tool | Description | Source | Scraped | Path | Index |
-|:-----|:------------|:-------|:--------|:-----|:------|
-| **Anthropic** | Claude Agent SDK | [Official](https://docs.claude.com) | 2025-11-06 | 📁 [`anthropic/`](anthropic/) | 📄 [`anthropic/INDEX.xml`](anthropic/INDEX.xml) |
-| **Biome** | Fast linter/formatter | [Official](https://biomejs.dev) | 2025-11-04 | 📁 [`biome/`](biome/) | 📄 [`biome/INDEX.xml`](biome/INDEX.xml) |
-| **Next.js** | React framework | [Official](https://nextjs.org) | 2025-11-05 | 📁 [`nextjs/`](nextjs/) | 📄 [`nextjs/INDEX.xml`](nextjs/INDEX.xml) |
-| **Playwright** | Browser testing | [Official](https://playwright.dev) | 2025-11-07 | 📁 [`playwright/`](playwright/) | 📄 [`playwright/INDEX.xml`](playwright/INDEX.xml) |
-| **Shiny** | Python web apps | [Official](https://shiny.posit.co/py/) | 2025-11-02 | 📁 [`shiny/`](shiny/) | 📄 [`shiny/INDEX.xml`](shiny/INDEX.xml) |
-| **Tailwind** | CSS framework | [Official](https://tailwindcss.com/docs/) | 2025-10-15 | 📁 [`tailwind/`](tailwind/) | 📄 [`tailwind/INDEX.xml`](tailwind/INDEX.xml) |
-| **UV** | Python projects | [Official](https://docs.astral.sh/uv/) | 2025-10-15 | 📁 [`uv/`](uv/) | 📄 [`uv/INDEX.xml`](uv/INDEX.xml) |
-| **Vercel** | Deployment platform | [Official](https://vercel.com) | 2025-10-20 | 📁 [`vercel/`](vercel/) | 📄 [`vercel/INDEX.xml`](vercel/INDEX.xml) |
-| **Vitest** | Testing framework | [Official](https://vitest.dev) | 2025-11-05 | 📁 [`vitest/`](vitest/) | 📄 [`vitest/INDEX.xml`](vitest/INDEX.xml) |
-| **Anything** | Add your own | ~ | ~ | 📁 | 📄 |
+| Collection | Collection Index | Description | Scraped | Source |
+|:-----------|:-----------------|:------------|:--------|:-------|
+| 📦 [`anthropic/`](anthropic/) | 📄 [`anthropic/INDEX.xml`](anthropic/INDEX.xml) | Claude Agent SDK | 2025-11-06 | [Official](https://docs.claude.com) |
+| 📦 [`biome/`](biome/) | 📄 [`biome/INDEX.xml`](biome/INDEX.xml) | Fast linter/formatter | 2025-11-04 | [Official](https://biomejs.dev) |
+| 📦 [`nextjs/`](nextjs/) | 📄 [`nextjs/INDEX.xml`](nextjs/INDEX.xml) | React framework | 2025-11-05 | [Official](https://nextjs.org) |
+| 📦 [`playwright/`](playwright/) | 📄 [`playwright/INDEX.xml`](playwright/INDEX.xml) | Browser testing | 2025-11-07 | [Official](https://playwright.dev) |
+| 📦 [`shiny/`](shiny/) | 📄 [`shiny/INDEX.xml`](shiny/INDEX.xml) | Python web apps | 2025-11-02 | [Official](https://shiny.posit.co/py/) |
+| 📦 [`tailwind/`](tailwind/) | 📄 [`tailwind/INDEX.xml`](tailwind/INDEX.xml) | CSS framework | 2025-10-15 | [Official](https://tailwindcss.com/docs/) |
+| 📦 [`uv/`](uv/) | 📄 [`uv/INDEX.xml`](uv/INDEX.xml) | Python projects | 2025-10-15 | [Official](https://docs.astral.sh/uv/) |
+| 📦 [`vercel/`](vercel/) | 📄 [`vercel/INDEX.xml`](vercel/INDEX.xml) | Deployment platform | 2025-10-20 | [Official](https://vercel.com) |
+| 📦 [`vitest/`](vitest/) | 📄 [`vitest/INDEX.xml`](vitest/INDEX.xml) | Testing framework | 2025-11-05 | [Official](https://vitest.dev) |
 
-*Examples in this repo, but curate your own. For most Anthropic docs use [this tool](https://github.com/ericbuess/claude-code-docs).*
+*Curate your own collections. For most Anthropic docs use [this tool](https://github.com/ericbuess/claude-code-docs).*
+
+---
 
 ## 🚀 Setup
 
