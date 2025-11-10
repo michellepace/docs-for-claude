@@ -2,140 +2,140 @@
   <source>
     <title>Features | uv</title>
     <description>Overview of uv's command-line interface covering Python version management, script execution, project workflows, tool installation, pip-compatible operations, and cache utilities.</description>
-    <source_url>https://docs.astral.sh/uv/getting-started/features/</source_url>
+    <source_url>https://docs.astral.sh/uv/getting-started/features</source_url>
     <local_file>features-uv.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Working on projects | uv</title>
     <description>Covers project initialisation with uv init, structure including pyproject.toml and uv.lock, dependency management with uv add/remove, running commands with uv run, and building distributions.</description>
-    <source_url>https://docs.astral.sh/uv/guides/projects/</source_url>
+    <source_url>https://docs.astral.sh/uv/guides/projects</source_url>
     <local_file>working-on-projects-uv.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Index | uv</title>
     <description>Hub page linking to detailed concepts: project structure, initialisation, dependencies, running commands, lockfiles, syncing, configuration, building distributions, and workspaces.</description>
-    <source_url>https://docs.astral.sh/uv/concepts/projects/</source_url>
+    <source_url>https://docs.astral.sh/uv/concepts/projects</source_url>
     <local_file>index-uv.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Managing dependencies | uv</title>
     <description>Comprehensive guide to dependency fields, uv add/remove commands, dependency sources (Git, URL, path, workspace), optional dependencies, development groups, build dependencies, editable installations, and dependency specifiers syntax.</description>
-    <source_url>https://docs.astral.sh/uv/concepts/projects/dependencies/</source_url>
+    <source_url>https://docs.astral.sh/uv/concepts/projects/dependencies</source_url>
     <local_file>managing-dependencies-uv.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Running commands | uv</title>
     <description>Explains uv run for executing commands in project environments, requesting additional dependencies with --with, running scripts with inline metadata, legacy Windows script support, and signal handling behaviour.</description>
-    <source_url>https://docs.astral.sh/uv/concepts/projects/run/</source_url>
+    <source_url>https://docs.astral.sh/uv/concepts/projects/run</source_url>
     <local_file>running-commands-uv.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Configuration files | uv</title>
     <description>Explains project-level pyproject.toml and uv.toml files, user and system configuration hierarchy, settings precedence rules, --no-config and --config-file options, dotenv file loading with UV_ENV_FILE, and uv.pip section for pip-interface configuration.</description>
-    <source_url>https://docs.astral.sh/uv/concepts/configuration-files/</source_url>
+    <source_url>https://docs.astral.sh/uv/concepts/configuration-files</source_url>
     <local_file>configuration-files-uv.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Python versions | uv</title>
     <description>Comprehensive guide to requesting, installing, upgrading, discovering, and managing Python versions including version formats, .python-version files, automatic downloads, managed vs system installations, CPython/PyPy/GraalPy support, free-threaded variants, and python-preference settings.</description>
-    <source_url>https://docs.astral.sh/uv/concepts/python-versions/</source_url>
+    <source_url>https://docs.astral.sh/uv/concepts/python-versions</source_url>
     <local_file>python-versions-uv.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Building and publishing a package | uv</title>
     <description>Guide to preparing projects for packaging, building distributions with uv build, updating versions with uv version --bump options, publishing to PyPI with uv publish including token authentication and custom indices.</description>
-    <source_url>https://docs.astral.sh/uv/guides/package/</source_url>
+    <source_url>https://docs.astral.sh/uv/guides/package</source_url>
     <local_file>building-and-publishing-a-package-uv.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Using uv with pre-commit | uv</title>
     <description>Demonstrates configuring astral-sh/uv-pre-commit hooks for automatic lockfile updates with uv-lock, exporting requirements with uv-export, and compiling requirements files with pip-compile including multi-file configurations and customisation options.</description>
-    <source_url>https://docs.astral.sh/uv/guides/integration/pre-commit/</source_url>
+    <source_url>https://docs.astral.sh/uv/guides/integration/pre-commit</source_url>
     <local_file>using-uv-with-pre-commit-uv.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Using uv in GitHub Actions | uv</title>
     <description>Guide to installing uv with astral-sh/setup-uv action, setting up Python versions including matrix testing, syncing projects, caching strategies with UV_CACHE_DIR, using uv pip with UV_SYSTEM_PYTHON, private repository authentication, and publishing to PyPI with trusted publishing.</description>
-    <source_url>https://docs.astral.sh/uv/guides/integration/github/</source_url>
+    <source_url>https://docs.astral.sh/uv/guides/integration/github</source_url>
     <local_file>using-uv-in-github-actions-uv.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Using uv with Jupyter | uv</title>
     <description>Jupyter integration with uv including running notebooks within projects, creating kernels with ipykernel, package installation methods, standalone tool usage, non-project environments, and VS Code setup.</description>
-    <source_url>https://docs.astral.sh/uv/guides/integration/jupyter/</source_url>
+    <source_url>https://docs.astral.sh/uv/guides/integration/jupyter</source_url>
     <local_file>using-uv-with-jupyter-uv.md</local_file>
     <scraped_at>2025-11-10</scraped_at>
   </source>
   <source>
     <title>Installing and managing Python | uv</title>
     <description>Installing Python with uv including specific versions, PyPy, automatic downloads, system Python usage, viewing installations, reinstalling, upgrading patch versions, and managing Python executables.</description>
-    <source_url>https://docs.astral.sh/uv/guides/install-python/</source_url>
+    <source_url>https://docs.astral.sh/uv/guides/install-python</source_url>
     <local_file>installing-and-managing-python-uv.md</local_file>
     <scraped_at>2025-11-10</scraped_at>
   </source>
   <source>
     <title>Structure and files | uv</title>
     <description>Project structure including pyproject.toml configuration, .venv project environment management with uv run and uv sync, uv.lock universal lockfile for reproducible installations, and pylock.toml export format support.</description>
-    <source_url>https://docs.astral.sh/uv/concepts/projects/layout/</source_url>
+    <source_url>https://docs.astral.sh/uv/concepts/projects/layout</source_url>
     <local_file>structure-and-files-uv.md</local_file>
     <scraped_at>2025-11-10</scraped_at>
   </source>
   <source>
     <title>Creating projects | uv</title>
     <description>Creating projects with uv init including applications, packaged applications, libraries, extension modules with maturin or scikit-build-core, build backend selection, minimal bare projects, and project structure layouts.</description>
-    <source_url>https://docs.astral.sh/uv/concepts/projects/init/</source_url>
+    <source_url>https://docs.astral.sh/uv/concepts/projects/init</source_url>
     <local_file>creating-projects-uv.md</local_file>
     <scraped_at>2025-11-10</scraped_at>
   </source>
   <source>
     <title>Locking and syncing | uv</title>
     <description>Lockfile creation and environment syncing with uv lock and uv sync, automatic locking, frozen and locked modes, upgrading packages, syncing extras and development groups, editable installations, and requirements.txt export.</description>
-    <source_url>https://docs.astral.sh/uv/concepts/projects/sync/</source_url>
+    <source_url>https://docs.astral.sh/uv/concepts/projects/sync</source_url>
     <local_file>locking-and-syncing-uv.md</local_file>
     <scraped_at>2025-11-10</scraped_at>
   </source>
   <source>
     <title>Configuring projects | uv</title>
     <description>Python version requirements, entry points for CLI and GUI scripts, build systems and packaging, build isolation with extra-build-dependencies, project environment paths, editable mode installation, conflicting dependencies, and platform resolution environments.</description>
-    <source_url>https://docs.astral.sh/uv/concepts/projects/config/</source_url>
+    <source_url>https://docs.astral.sh/uv/concepts/projects/config</source_url>
     <local_file>configuring-projects-uv.md</local_file>
     <scraped_at>2025-11-10</scraped_at>
   </source>
   <source>
     <title>Building distributions | uv</title>
     <description>Building distributions with uv build command for sdists and wheels, build frontend role, output directory options, selective building flags, build constraints, and hash verification for reproducibility.</description>
-    <source_url>https://docs.astral.sh/uv/concepts/projects/build/</source_url>
+    <source_url>https://docs.astral.sh/uv/concepts/projects/build</source_url>
     <local_file>building-distributions-uv.md</local_file>
     <scraped_at>2025-11-10</scraped_at>
   </source>
   <source>
     <title>Settings | uv</title>
     <description>Complete reference for all uv configuration settings organised into project metadata and configuration categories, documenting dependency management, indexes, caching, Python installation, resolution strategies, build settings, and package installation options.</description>
-    <source_url>https://docs.astral.sh/uv/reference/settings/</source_url>
+    <source_url>https://docs.astral.sh/uv/reference/settings</source_url>
     <local_file>settings-uv.md</local_file>
     <scraped_at>2025-11-10</scraped_at>
   </source>
   <source>
     <title>Commands | uv</title>
     <description>Comprehensive CLI reference covering all uv commands including run, init, add, remove, sync, lock, export, tree, tool, python, pip, venv, build, publish, with complete syntax, options, and environment variables.</description>
-    <source_url>https://docs.astral.sh/uv/reference/cli/</source_url>
+    <source_url>https://docs.astral.sh/uv/reference/cli</source_url>
     <local_file>commands-uv.md</local_file>
     <scraped_at>2025-11-10</scraped_at>
   </source>
   <source>
     <title>Build backend | uv</title>
     <description>uv's native build backend for transforming source trees into distributions, covering configuration, module discovery, namespace packages, stub packages, and file inclusion/exclusion patterns for source distributions and wheels.</description>
-    <source_url>https://docs.astral.sh/uv/concepts/build-backend/</source_url>
+    <source_url>https://docs.astral.sh/uv/concepts/build-backend</source_url>
     <local_file>build-backend-uv.md</local_file>
     <scraped_at>2025-11-10</scraped_at>
   </source>

@@ -9,7 +9,7 @@
   <source>
     <title>Getting Started | Guide | Vitest</title>
     <description>Installation, basic test writing with expect API, configuration via vite.config or vitest.config, projects support, CLI usage, IDE integrations, dependency management, examples, and community resources.</description>
-    <source_url>https://vitest.dev/guide/</source_url>
+    <source_url>https://vitest.dev/guide</source_url>
     <local_file>getting-started-guide-vitest.md</local_file>
     <scraped_at>2025-11-05</scraped_at>
   </source>
@@ -23,7 +23,7 @@
   <source>
     <title>Configuring Vitest | Vitest</title>
     <description>Configuration reference: test property options, file patterns, server settings, execution modes, environments, reporters, coverage, mocking, benchmarking, browser mode, workspace projects, and all parameters with types and defaults.</description>
-    <source_url>https://vitest.dev/config/</source_url>
+    <source_url>https://vitest.dev/config</source_url>
     <local_file>configuring-vitest-vitest.md</local_file>
     <scraped_at>2025-11-05</scraped_at>
   </source>

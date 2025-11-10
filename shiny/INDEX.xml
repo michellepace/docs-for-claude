@@ -170,28 +170,28 @@
   <source>
     <title>Shiny Components – Shiny for Python</title>
     <description>Component reference covering input widgets (buttons, sliders, selects, dates, files), output displays (plots, tables, grids, images, maps), and user feedback (chat, modals, notifications, progress bars, tooltips).</description>
-    <source_url>https://shiny.posit.co/py/components/</source_url>
+    <source_url>https://shiny.posit.co/py/components</source_url>
     <local_file>shiny-components-shiny-for-python.md</local_file>
     <scraped_at>2025-11-02</scraped_at>
   </source>
   <source>
     <title>Shiny Layouts – Shiny for Python</title>
     <description>Overview of layout options including navbars for navigation, sidebars for inputs/outputs, tabs and accordions, panels and cards for content areas, and grid/column arrangements for responsive layouts.</description>
-    <source_url>https://shiny.posit.co/py/layouts/</source_url>
+    <source_url>https://shiny.posit.co/py/layouts</source_url>
     <local_file>shiny-layouts-shiny-for-python.md</local_file>
     <scraped_at>2025-11-02</scraped_at>
   </source>
   <source>
     <title>Shiny for Python – Shiny Templates</title>
     <description>Collection of starter templates including basic apps, generative AI chatbots, dashboards with sidebars and value boxes, streaming updates with reactive file reading, and data entry forms.</description>
-    <source_url>https://shiny.posit.co/py/templates/</source_url>
+    <source_url>https://shiny.posit.co/py/templates</source_url>
     <local_file>shiny-for-python-shiny-templates.md</local_file>
     <scraped_at>2025-11-02</scraped_at>
   </source>
   <source>
     <title>Welcome – Shiny for Python</title>
     <description>Introduction to Shiny for Python emphasising pure Python development, reactive framework, AI integration capabilities, extensibility, deployment options, open source community, templates and gallery examples.</description>
-    <source_url>https://shiny.posit.co/py/get-started/</source_url>
+    <source_url>https://shiny.posit.co/py/get-started</source_url>
     <local_file>welcome-shiny-for-python.md</local_file>
     <scraped_at>2025-11-02</scraped_at>
   </source>
@@ -240,14 +240,14 @@
   <source>
     <title>index – Shiny for Python</title>
     <description>Shiny Express API reference covering input components, output renderers, layout tools, navigation panels, Chat and MarkdownStream interfaces, reactive programming decorators, reusable code utilities, update functions, display messages, modules, and UI panels.</description>
-    <source_url>https://shiny.posit.co/py/api/express/</source_url>
+    <source_url>https://shiny.posit.co/py/api/express</source_url>
     <local_file>express-api-shiny-for-python.md</local_file>
     <scraped_at>2025-11-02</scraped_at>
   </source>
   <source>
     <title>index – Shiny for Python</title>
     <description>Playwright-based testing API with controllers for UI components, inputs, outputs, navigation, chat interfaces, file operations, expect assertions, pytest fixtures, and ShinyAppProc for running test apps.</description>
-    <source_url>https://shiny.posit.co/py/api/testing/</source_url>
+    <source_url>https://shiny.posit.co/py/api/testing</source_url>
     <local_file>testing-api-shiny-for-python.md</local_file>
     <scraped_at>2025-11-02</scraped_at>
   </source>
