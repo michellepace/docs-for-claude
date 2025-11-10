@@ -15,26 +15,23 @@ update it before running.
 
 To disable automatic locking, use the `--locked` option:
 
-```
-$ uv run --locked ...
-
+```bash
+uv run --locked ...
 ```
 
 If the lockfile is not up-to-date, uv will raise an error instead of updating the lockfile.
 
 To use the lockfile without checking if it is up-to-date, use the `--frozen` option:
 
-```
-$ uv run --frozen ...
-
+```bash
+uv run --frozen ...
 ```
 
 Similarly, to run a command without checking if the environment is up-to-date, use the `--no-sync`
 option:
 
-```
-$ uv run --no-sync ...
-
+```bash
+uv run --no-sync ...
 ```
 
 ## [Checking the lockfile](https://docs.astral.sh/uv/concepts/projects/sync/\#checking-the-lockfile)
@@ -48,9 +45,8 @@ considered up-to-date.
 
 You can check if the lockfile is up-to-date by passing the `--check` flag to `uv lock`:
 
-```
-$ uv lock --check
-
+```bash
+uv lock --check
 ```
 
 This is equivalent to the `--locked` flag for other commands.
@@ -66,9 +62,8 @@ needs to be explicitly updated if you want to upgrade dependencies. See the docu
 While the lockfile is created [automatically](https://docs.astral.sh/uv/concepts/projects/sync/#automatic-lock-and-sync), the lockfile may also be
 explicitly created or updated using `uv lock`:
 
-```
-$ uv lock
-
+```bash
+uv lock
 ```
 
 ## [Syncing the environment](https://docs.astral.sh/uv/concepts/projects/sync/\#syncing-the-environment)
@@ -76,9 +71,8 @@ $ uv lock
 While the environment is synced [automatically](https://docs.astral.sh/uv/concepts/projects/sync/#automatic-lock-and-sync), it may also be explicitly
 synced using `uv sync`:
 
-```
-$ uv sync
-
+```bash
+uv sync
 ```
 
 Syncing the environment manually is especially useful for ensuring your editor has the correct
@@ -104,9 +98,8 @@ lockfile.
 
 To retain extraneous packages, use the `--inexact` option:
 
-```
-$ uv sync --inexact
-
+```bash
+uv sync --inexact
 ```
 
 ### [Syncing optional dependencies](https://docs.astral.sh/uv/concepts/projects/sync/\#syncing-optional-dependencies)
@@ -116,9 +109,8 @@ frequently referred to as "extras".
 
 uv does not sync extras by default. Use the `--extra` option to include an extra.
 
-```
-$ uv sync --extra foo
-
+```bash
+uv sync --extra foo
 ```
 
 To quickly enable all extras, use the `--all-extras` option.
@@ -147,9 +139,8 @@ Additional groups can be included or excluded with the `--all-groups`, `--no-def
 
 Group exclusions always take precedence over inclusions, so given the command:
 
-```
-$ uv sync --no-group foo --group foo
-
+```bash
+uv sync --no-group foo --group foo
 ```
 
 The `foo` group would not be installed.
@@ -165,24 +156,21 @@ constraints exclude the previous, locked version.
 
 To upgrade all packages:
 
-```
-$ uv lock --upgrade
-
+```bash
+uv lock --upgrade
 ```
 
 To upgrade a single package to the latest version, while retaining the locked versions of all other
 packages:
 
-```
-$ uv lock --upgrade-package <package>
-
+```bash
+uv lock --upgrade-package <package>
 ```
 
 To upgrade a single package to a specific version:
 
-```
-$ uv lock --upgrade-package <package>==<version>
-
+```bash
+uv lock --upgrade-package <package>==<version>
 ```
 
 In all cases, upgrades are limited to the project's dependency constraints. For example, if the

@@ -11,12 +11,11 @@ It is recommended to set a `requires-python` value:
 
 pyproject.toml
 
-```
+```toml
 [project]
 name = "example"
 version = "0.1.0"
 requires-python = ">=3.12"
-
 ```
 
 The Python version requirement determines the Python syntax that is allowed in the project and
@@ -45,17 +44,15 @@ module:
 
 pyproject.toml
 
-```
+```toml
 [project.scripts]
 hello = "example:hello"
-
 ```
 
 Then, the command can be run from a console:
 
-```
-$ uv run hello
-
+```bash
+uv run hello
 ```
 
 ### [Graphical user interfaces](https://docs.astral.sh/uv/concepts/projects/config/\#graphical-user-interfaces)
@@ -74,10 +71,9 @@ module:
 
 pyproject.toml
 
-```
+```toml
 [project.gui-scripts]
 hello = "example:app"
-
 ```
 
 ### [Plugin entry points](https://docs.astral.sh/uv/concepts/projects/config/\#plugin-entry-points)
@@ -90,22 +86,20 @@ For example, to register the `example-plugin-a` package as a plugin for `example
 
 pyproject.toml
 
-```
+```toml
 [project.entry-points.'example.plugins']
 a = "example_plugin_a"
-
 ```
 
 Then, in `example`, plugins would be loaded with:
 
 example/\_\_init\_\_.py
 
-```
+```python
 from importlib.metadata import entry_points
 
 for plugin in entry_points(group='example.plugins'):
     plugin.load()
-
 ```
 
 Note
@@ -180,7 +174,7 @@ however, uv will still respect explicit attempts to build the project such as in
 ## [Project environment path](https://docs.astral.sh/uv/concepts/projects/config/\#project-environment-path)
 
 The `UV_PROJECT_ENVIRONMENT` environment variable can be used to configure the project virtual
-environment path ( `.venv` by default).
+environment path (`.venv` by default).
 
 If a relative path is provided, it will be resolved relative to the workspace root. If an absolute
 path is provided, it will be used as-is, i.e., a child directory will not be created for the
@@ -193,10 +187,9 @@ the system in a broken state.
 To target the system environment, set `UV_PROJECT_ENVIRONMENT` to the prefix of the Python
 installation. For example, on Debian-based systems, this is usually `/usr/local`:
 
-```
+```console
 $ python -c "import sysconfig; print(sysconfig.get_config_var('prefix'))"
 /usr/local
-
 ```
 
 To target this environment, you'd export `UV_PROJECT_ENVIRONMENT=/usr/local`.
@@ -245,7 +238,6 @@ behavior:
 2. **Disabling build isolation for specific packages**: This allows you to install a package without
     building it in an isolated environment.
 
-
 When possible, we recommend augmenting the build dependencies rather than disabling build isolation
 entirely, as the latter approach requires that the build dependencies are installed in the project
 environment _prior_ to installing the package itself, which can lead to more complex installation
@@ -263,7 +255,7 @@ following in your `pyproject.toml`:
 
 pyproject.toml
 
-```
+```toml
 [project]
 name = "project"
 version = "0.1.0"
@@ -274,7 +266,6 @@ dependencies = ["cchardet"]
 
 [tool.uv.extra-build-dependencies]
 cchardet = ["cython"]
-
 ```
 
 To ensure that a build dependency matches the version of the package that is or will be installed in
@@ -284,7 +275,7 @@ in your `pyproject.toml`:
 
 pyproject.toml
 
-```
+```toml
 [project]
 name = "project"
 version = "0.1.0"
@@ -295,7 +286,6 @@ dependencies = ["deepspeed", "torch"]
 
 [tool.uv.extra-build-dependencies]
 deepspeed = [{ requirement = "torch", match-runtime = true }]
-
 ```
 
 This will ensure that `deepspeed` is built with the same version of `torch` that is installed in the
@@ -306,7 +296,7 @@ following in your `pyproject.toml`:
 
 pyproject.toml
 
-```
+```toml
 [project]
 name = "project"
 version = "0.1.0"
@@ -320,7 +310,6 @@ flash-attn = [{ requirement = "torch", match-runtime = true }]
 
 [tool.uv.extra-build-variables]
 flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" }
-
 ```
 
 Note
@@ -335,7 +324,7 @@ Similarly, [`deep_gemm`](https://github.com/deepseek-ai/DeepGEMM) follows the sa
 
 pyproject.toml
 
-```
+```toml
 [project]
 name = "project"
 version = "0.1.0"
@@ -349,7 +338,6 @@ deep_gemm = { git = "https://github.com/deepseek-ai/DeepGEMM" }
 
 [tool.uv.extra-build-dependencies]
 deep_gemm = [{ requirement = "torch", match-runtime = true }]
-
 ```
 
 The use of `extra-build-dependencies` and `extra-build-variables` are tracked in the uv cache, such
@@ -379,7 +367,7 @@ For example, to build `axolotl` against `torch==2.6.0`, include the following in
 
 pyproject.toml
 
-```
+```toml
 [project]
 name = "project"
 version = "0.1.0"
@@ -392,7 +380,6 @@ dependencies = ["axolotl[deepspeed, flash-attn]", "torch==2.6.0"]
 axolotl = ["torch==2.6.0"]
 deepspeed = ["torch==2.6.0"]
 flash-attn = ["torch==2.6.0"]
-
 ```
 
 Similarly, older versions of `flash-attn` did not declare static metadata, and thus would not have
@@ -405,12 +392,11 @@ the need to build the package during the dependency resolution phase. For exampl
 
 pyproject.toml
 
-```
+```toml
 [[tool.uv.dependency-metadata]]
 name = "flash-attn"
 version = "2.6.3"
 requires-dist = ["torch", "einops"]
-
 ```
 
 Tip
@@ -436,11 +422,10 @@ For example, historically, to install `cchardet` without build isolation, you wo
 install the `cython` and `setuptools` packages in the project environment, followed by a separate
 invocation to install `cchardet` without build isolation:
 
-```
-$ uv venv
-$ uv pip install cython setuptools
-$ uv pip install cchardet --no-build-isolation
-
+```bash
+uv venv
+uv pip install cython setuptools
+uv pip install cchardet --no-build-isolation
 ```
 
 uv simplifies this process by allowing you to specify packages that should not be built in isolation
@@ -456,7 +441,7 @@ For example, to install `cchardet` without build isolation, include the followin
 
 pyproject.toml
 
-```
+```toml
 [project]
 name = "project"
 version = "0.1.0"
@@ -467,18 +452,16 @@ dependencies = ["cchardet", "cython", "setuptools"]
 
 [tool.uv]
 no-build-isolation-package = ["cchardet"]
-
 ```
 
 When running `uv sync`, uv will first install `cython` and `setuptools` in the project environment,
 followed by `cchardet` (without build isolation):
 
-```
+```console
 $ uv sync --extra build
  + cchardet==2.1.7
  + cython==3.1.3
  + setuptools==80.9.0
-
 ```
 
 Similarly, to install `flash-attn` without build isolation, include the following in your
@@ -486,7 +469,7 @@ Similarly, to install `flash-attn` without build isolation, include the followin
 
 pyproject.toml
 
-```
+```toml
 [project]
 name = "project"
 version = "0.1.0"
@@ -497,7 +480,6 @@ dependencies = ["flash-attn", "torch"]
 
 [tool.uv]
 no-build-isolation-package = ["flash-attn"]
-
 ```
 
 When running `uv sync`, uv will first install `torch` in the project environment, followed by
@@ -518,7 +500,7 @@ in:
 
 pyproject.toml
 
-```
+```toml
 [project]
 name = "project"
 version = "0.1.0"
@@ -532,13 +514,12 @@ build = ["setuptools", "cython"]
 
 [tool.uv]
 no-build-isolation-package = ["cchardet"]
-
 ```
 
 Given the above, a user would first sync with the `build` optional group, and then without it to
 remove the build dependencies:
 
-```
+```console
 $ uv sync --extra build
  + cchardet==2.1.7
  + cython==3.1.3
@@ -546,7 +527,6 @@ $ uv sync --extra build
 $ uv sync
  - cython==3.1.3
  - setuptools==80.9.0
-
 ```
 
 Some packages, like `cchardet`, only require build dependencies for the _installation_ phase of
@@ -558,7 +538,7 @@ commands, using the lower lower-level `uv pip` API. For example, given:
 
 pyproject.toml
 
-```
+```toml
 [project]
 name = "project"
 version = "0.1.0"
@@ -569,16 +549,14 @@ dependencies = ["flash-attn"]
 
 [tool.uv]
 no-build-isolation-package = ["flash-attn"]
-
 ```
 
 You could run the following sequence of commands to sync `flash-attn`:
 
-```
-$ uv venv
-$ uv pip install torch setuptools
-$ uv sync
-
+```bash
+uv venv
+uv pip install torch setuptools
+uv sync
 ```
 
 Alternatively, users can instead provide the `flash-attn` metadata upfront via the
@@ -588,12 +566,11 @@ the need to build the package during the dependency resolution phase. For exampl
 
 pyproject.toml
 
-```
+```toml
 [[tool.uv.dependency-metadata]]
 name = "flash-attn"
 version = "2.6.3"
 requires-dist = ["torch", "einops"]
-
 ```
 
 ## [Editable mode](https://docs.astral.sh/uv/concepts/projects/config/\#editable-mode)
@@ -615,7 +592,7 @@ uv supports explicit declaration of conflicting dependency groups. For example, 
 
 pyproject.toml
 
-```
+```toml
 [tool.uv]
 conflicts = [\
     [\
@@ -623,14 +600,13 @@ conflicts = [\
       { extra = "extra2" },\
     ],\
 ]
-
 ```
 
 Or, to declare the development dependency groups `group1` and `group2` incompatible:
 
 pyproject.toml
 
-```
+```toml
 [tool.uv]
 conflicts = [\
     [\
@@ -638,7 +614,6 @@ conflicts = [\
       { group = "group2" },\
     ],\
 ]
-
 ```
 
 See the [resolution documentation](https://docs.astral.sh/uv/concepts/resolution/#conflicting-dependencies) for more.
@@ -651,13 +626,12 @@ markers. For example, to constrain the lockfile to macOS and Linux, and exclude 
 
 pyproject.toml
 
-```
+```toml
 [tool.uv]
 environments = [\
     "sys_platform == 'darwin'",\
     "sys_platform == 'linux'",\
 ]
-
 ```
 
 See the [resolution documentation](https://docs.astral.sh/uv/concepts/resolution/#limited-resolution-environments) for more.
@@ -670,12 +644,11 @@ Intel macOS:
 
 pyproject.toml
 
-```
+```toml
 [tool.uv]
 required-environments = [\
     "sys_platform == 'darwin' and platform_machine == 'x86_64'",\
 ]
-
 ```
 
 The `required-environments` setting is only relevant for packages that do not publish a source

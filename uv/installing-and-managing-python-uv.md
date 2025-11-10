@@ -11,9 +11,8 @@ Python versions as needed — you don't need to install Python to get started.
 
 To install the latest Python version:
 
-```
-$ uv python install
-
+```bash
+uv python install
 ```
 
 Note
@@ -23,17 +22,15 @@ Python does not publish official distributable binaries. As such, uv uses distri
 Once Python is installed, it will be used by `uv` commands automatically. uv also adds the installed
 version to your `PATH`:
 
-```
-$ python3.13
-
+```bash
+python3.13
 ```
 
 uv only installs a _versioned_ executable by default. To install `python` and `python3` executables,
 include the experimental `--default` option:
 
-```
-$ uv python install --default
-
+```bash
+uv python install --default
 ```
 
 Tip
@@ -45,23 +42,20 @@ for more details.
 
 To install a specific Python version:
 
-```
-$ uv python install 3.12
-
+```bash
+uv python install 3.12
 ```
 
 To install multiple Python versions:
 
-```
-$ uv python install 3.11 3.12
-
+```bash
+uv python install 3.11 3.12
 ```
 
 To install an alternative Python implementation, e.g., PyPy:
 
-```
-$ uv python install pypy@3.10
-
+```bash
+uv python install pypy@3.10
 ```
 
 See the [`python install`](https://docs.astral.sh/uv/concepts/python-versions/#installing-a-python-version) documentation
@@ -71,9 +65,8 @@ for more details.
 
 To reinstall uv-managed Python versions, use `--reinstall`, e.g.:
 
-```
-$ uv python install --reinstall
-
+```bash
+uv python install --reinstall
 ```
 
 This will reinstall all previously installed Python versions. Improvements are constantly being
@@ -84,9 +77,8 @@ not change.
 
 To view available and installed Python versions:
 
-```
-$ uv python list
-
+```bash
+uv python list
 ```
 
 See the [`python list`](https://docs.astral.sh/uv/concepts/python-versions/#viewing-available-python-versions)
@@ -98,18 +90,16 @@ Python does not need to be explicitly installed to use uv. By default, uv will a
 download Python versions when they are required. For example, the following would download Python
 3.12 if it was not installed:
 
-```
-$ uvx python@3.12 -c "print('hello world')"
-
+```bash
+uvx python@3.12 -c "print('hello world')"
 ```
 
 Even if a specific Python version is not requested, uv will download the latest version on demand.
 For example, if there are no Python versions on your system, the following will install Python
 before creating a new virtual environment:
 
-```
-$ uv venv
-
+```bash
+uv venv
 ```
 
 Tip
@@ -137,16 +127,14 @@ experimental and subject to change.
 
 To upgrade a Python version to the latest supported patch release:
 
-```
-$ uv python upgrade 3.12
-
+```bash
+uv python upgrade 3.12
 ```
 
 To upgrade all uv-managed Python versions:
 
-```
-$ uv python upgrade
-
+```bash
+uv python upgrade
 ```
 
 See the [`python upgrade`](https://docs.astral.sh/uv/concepts/python-versions/#upgrading-python-versions) documentation

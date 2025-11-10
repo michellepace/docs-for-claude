@@ -17,11 +17,10 @@ A minimal project definition includes a name and version:
 
 pyproject.toml
 
-```
+```toml
 [project]
 name = "example"
 version = "0.1.0"
-
 ```
 
 Additional project metadata and configuration includes:
@@ -60,10 +59,9 @@ to disable automatic locking and syncing of the project. For example:
 
 pyproject.toml
 
-```
+```toml
 [tool.uv]
 managed = false
-
 ```
 
 ## [The lockfile](https://docs.astral.sh/uv/concepts/projects/layout/\#the-lockfile)
