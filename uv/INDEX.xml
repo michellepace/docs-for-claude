@@ -63,13 +63,6 @@
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
-    <title>Using uv in GitHub Actions | uv</title>
-    <description>Guide to installing uv with astral-sh/setup-uv action, setting up Python versions including matrix testing, syncing projects, caching strategies with UV_CACHE_DIR, using uv pip with UV_SYSTEM_PYTHON, private repository authentication, and publishing to PyPI with trusted publishing.</description>
-    <source_url>https://docs.astral.sh/uv/guides/integration/github</source_url>
-    <local_file>using-uv-in-github-actions-uv.md</local_file>
-    <scraped_at>2025-10-15</scraped_at>
-  </source>
-  <source>
     <title>Using uv with Jupyter | uv</title>
     <description>Jupyter integration with uv including running notebooks within projects, creating kernels with ipykernel, package installation methods, standalone tool usage, non-project environments, and VS Code setup.</description>
     <source_url>https://docs.astral.sh/uv/guides/integration/jupyter</source_url>
@@ -138,5 +131,19 @@
     <source_url>https://docs.astral.sh/uv/concepts/build-backend</source_url>
     <local_file>build-backend-uv.md</local_file>
     <scraped_at>2025-11-10</scraped_at>
+  </source>
+  <source>
+    <title>Using uv with marimo | uv</title>
+    <description>Integrating uv with marimo notebooks as standalone tool, self-contained scripts with inline metadata, within projects, and non-project environments, including dependency management and running notebooks as scripts.</description>
+    <source_url>https://docs.astral.sh/uv/guides/integration/marimo</source_url>
+    <local_file>using-uv-with-marimo-uv.md</local_file>
+    <scraped_at>2025-11-11</scraped_at>
+  </source>
+  <source>
+    <title>Using uv in GitHub Actions | uv</title>
+    <description>GitHub Actions integration via astral-sh/setup-uv action, Python version setup, matrix testing, dependency syncing with uv sync, cache strategies using enable-cache or actions/cache, private repository authentication, PyPI trusted publishing workflows.</description>
+    <source_url>https://docs.astral.sh/uv/guides/integration/github</source_url>
+    <local_file>using-uv-in-github-actions-uv.md</local_file>
+    <scraped_at>2025-11-11</scraped_at>
   </source>
 </docs_index>
