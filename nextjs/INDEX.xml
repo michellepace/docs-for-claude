@@ -62,4 +62,25 @@
     <local_file>testing-jest-nextjs.md</local_file>
     <scraped_at>2025-11-05</scraped_at>
   </source>
+  <source>
+    <title>API Reference: Turbopack | Next.js</title>
+    <description>Turbopack Rust-based incremental bundler for Next.js, unified graph architecture, lazy bundling, language support (JavaScript, TypeScript, JSX, CSS, Sass, PostCSS), Fast Refresh, React Server Components, webpack gaps, configuration options, trace generation.</description>
+    <source_url>https://nextjs.org/docs/app/api-reference/turbopack</source_url>
+    <local_file>api-reference-turbopack-nextjs.md</local_file>
+    <scraped_at>2025-11-14</scraped_at>
+  </source>
+  <source>
+    <title>Configuration: next.config.js | Next.js</title>
+    <description>Next.js configuration reference covering ECMAScript modules, TypeScript support, async functions, phase-based configuration, unit testing utilities, and comprehensive options including headers, redirects, rewrites, images, caching, and routing.</description>
+    <source_url>https://nextjs.org/docs/app/api-reference/config/next-config-js</source_url>
+    <local_file>configuration-nextconfigjs-nextjs.md</local_file>
+    <scraped_at>2025-11-15</scraped_at>
+  </source>
+  <source>
+    <title>next.config.js: serverComponentsHmrCache | Next.js</title>
+    <description>Experimental configuration option to cache fetch responses in Server Components across HMR refreshes during development, reducing API costs and improving response times, with default behaviour and opt-out instructions.</description>
+    <source_url>https://nextjs.org/docs/app/api-reference/config/next-config-js/serverComponentsHmrCache</source_url>
+    <local_file>nextconfigjs-servercomponentshmrcache-nextjs.md</local_file>
+    <scraped_at>2025-11-15</scraped_at>
+  </source>
 </docs_index>
