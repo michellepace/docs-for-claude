@@ -83,4 +83,32 @@
     <local_file>nextconfigjs-servercomponentshmrcache-nextjs.md</local_file>
     <scraped_at>2025-11-15</scraped_at>
   </source>
+  <source>
+    <title>Getting Started: Fetching Data | Next.js</title>
+    <description>Data fetching in Server and Client Components using fetch API, ORMs, React use hook, SWR, request memoization, Data Cache, streaming with loading.js and Suspense, sequential and parallel patterns.</description>
+    <source_url>https://nextjs.org/docs/app/getting-started/fetching-data</source_url>
+    <local_file>getting-started-fetching-data-nextjs.md</local_file>
+    <scraped_at>2025-11-15</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started: Updating Data | Next.js</title>
+    <description>Server Functions and Server Actions with use server directive, creating and invoking from components, forms with FormData, event handlers, useActionState, revalidatePath, revalidateTag, redirect, refresh, cookies API, useEffect patterns.</description>
+    <source_url>https://nextjs.org/docs/app/getting-started/updating-data</source_url>
+    <local_file>getting-started-updating-data-nextjs.md</local_file>
+    <scraped_at>2025-11-15</scraped_at>
+  </source>
+  <source>
+    <title>Functions: generateMetadata | Next.js</title>
+    <description>Static metadata object and generateMetadata function for dynamic metadata, including title templates, description, openGraph, Twitter cards, robots, icons, viewport, verification, alternates, metadataBase, and streaming metadata support.</description>
+    <source_url>https://nextjs.org/docs/app/api-reference/functions/generate-metadata</source_url>
+    <local_file>functions-generatemetadata-nextjs.md</local_file>
+    <scraped_at>2025-11-15</scraped_at>
+  </source>
+  <source>
+    <title>File-system conventions: Metadata Files | Next.js</title>
+    <description>Metadata file conventions including favicon, icon, apple-icon, manifest.json, Open Graph and Twitter images, robots.txt, and sitemap.xml. Covers static and dynamic variants, automatic serving with caching, and head element updates.</description>
+    <source_url>https://nextjs.org/docs/app/api-reference/file-conventions/metadata</source_url>
+    <local_file>file-system-conventions-metadata-files-nextjs.md</local_file>
+    <scraped_at>2025-11-15</scraped_at>
+  </source>
 </docs_index>
