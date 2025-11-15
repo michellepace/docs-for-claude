@@ -1,94 +1,26 @@
-Your Privacy
-
-This site uses tracking technologies. You may opt in or opt out of the use of these technologies.
-
-Essential
-On
-
-Essential cookies and services are used to enable core website features, such as ensuring the security of the website.
-
-* * *
-
-Marketing
-Off
-
-Marketing cookies and services are used to deliver personalized advertisements, promotions, and offers. These technologies enable targeted advertising and marketing campaigns by collecting information about users' interests, preferences, and online activities.
-
-* * *
-
-Analytics
-Off
-
-Analytics cookies and services are used for collecting statistical information about how visitors interact with a website. These technologies provide insights into website usage, visitor behavior, and site performance to understand and improve the site and enhance user experience.
-
-* * *
-
-Functional
-Off
-
-Functional cookies and services are used to offer enhanced and personalized functionalities. These technologies provide additional features and improved user experiences, such as remembering your language preferences, font sizes, region selections, and customized layouts. Opting out of these cookies may render certain services or functionality of the website unavailable.
-
-SaveDenyAccept all
-
-[Privacy Policy](https://vercel.com/legal/privacy-policy)
-
-Your Privacy
-
-This site uses tracking technologies. You may opt in or opt out of the use of these technologies.
-
-DenyAccept all
-
-Consent Settings
-
-[Privacy Policy](https://vercel.com/legal/privacy-policy)
-
-Menu
-
-Using App Router
-
-Features available in /app
-
-Latest Version
-
-16.0.1
-
-Using App Router
-
-Features available in /app
-
-Latest Version
-
-16.0.1
-
-[Guides](https://nextjs.org/docs/app/guides) [Testing](https://nextjs.org/docs/app/guides/testing) Jest
-
-Copy page
-
 # How to set up Jest with Next.js
+@doc-version: 16.0.3
+
 
 Jest and React Testing Library are frequently used together for **Unit Testing** and **Snapshot Testing**. This guide will show you how to set up Jest with Next.js and write your first tests.
 
 > **Good to know:** Since `async` Server Components are new to the React ecosystem, Jest currently does not support them. While you can still run **unit tests** for synchronous Server and Client Components, we recommend using an **E2E tests** for `async` components.
 
-## [Quickstart](https://nextjs.org/docs/app/guides/testing/jest\#quickstart)
+## Quickstart
 
 You can use `create-next-app` with the Next.js [with-jest](https://github.com/vercel/next.js/tree/canary/examples/with-jest) example to quickly get started:
 
-Terminal
-
-```
+```bash filename="Terminal"
 npx create-next-app@latest --example with-jest with-jest-app
 ```
 
-## [Manual setup](https://nextjs.org/docs/app/guides/testing/jest\#manual-setup)
+## Manual setup
 
 Since the release of [Next.js 12](https://nextjs.org/blog/next-12), Next.js now has built-in configuration for Jest.
 
 To set up Jest, install `jest` and the following packages as dev dependencies:
 
-Terminal
-
-```
+```bash filename="Terminal"
 npm install -D jest jest-environment-jsdom @testing-library/react @testing-library/dom @testing-library/jest-dom ts-node @types/jest
 # or
 yarn add -D jest jest-environment-jsdom @testing-library/react @testing-library/dom @testing-library/jest-dom ts-node @types/jest
@@ -98,9 +30,7 @@ pnpm install -D jest jest-environment-jsdom @testing-library/react @testing-libr
 
 Generate a basic Jest configuration file by running the following command:
 
-Terminal
-
-```
+```bash filename="Terminal"
 npm init jest@latest
 # or
 yarn create jest@latest
@@ -112,13 +42,7 @@ This will take you through a series of prompts to setup Jest for your project, i
 
 Update your config file to use `next/jest`. This transformer has all the necessary configuration options for Jest to work with Next.js:
 
-jest.config.ts
-
-TypeScript
-
-JavaScriptTypeScript
-
-```
+```ts filename="jest.config.ts" switcher
 import type { Config } from 'jest'
 import nextJest from 'next/jest.js'
 
@@ -139,24 +63,43 @@ const config: Config = {
 export default createJestConfig(config)
 ```
 
+```js filename="jest.config.js" switcher
+const nextJest = require('next/jest')
+
+/** @type {import('jest').Config} */
+const createJestConfig = nextJest({
+  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
+  dir: './',
+})
+
+// Add any custom config to be passed to Jest
+const config = {
+  coverageProvider: 'v8',
+  testEnvironment: 'jsdom',
+  // Add more setup options before each test is run
+  // setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+}
+
+// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
+module.exports = createJestConfig(config)
+```
+
 Under the hood, `next/jest` is automatically configuring Jest for you, including:
 
-- Setting up `transform` using the [Next.js Compiler](https://nextjs.org/docs/architecture/nextjs-compiler).
-- Auto mocking stylesheets (`.css`, `.module.css`, and their scss variants), image imports and [`next/font`](https://nextjs.org/docs/app/api-reference/components/font).
-- Loading `.env` (and all variants) into `process.env`.
-- Ignoring `node_modules` from test resolving and transforms.
-- Ignoring `.next` from test resolving.
-- Loading `next.config.js` for flags that enable SWC transforms.
+* Setting up `transform` using the [Next.js Compiler](/docs/architecture/nextjs-compiler.md).
+* Auto mocking stylesheets (`.css`, `.module.css`, and their scss variants), image imports and [`next/font`](/docs/app/api-reference/components/font.md).
+* Loading `.env` (and all variants) into `process.env`.
+* Ignoring `node_modules` from test resolving and transforms.
+* Ignoring `.next` from test resolving.
+* Loading `next.config.js` for flags that enable SWC transforms.
 
-> **Good to know**: To test environment variables directly, load them manually in a separate setup script or in your `jest.config.ts` file. For more information, please see [Test Environment Variables](https://nextjs.org/docs/app/guides/environment-variables#test-environment-variables).
+> **Good to know**: To test environment variables directly, load them manually in a separate setup script or in your `jest.config.ts` file. For more information, please see [Test Environment Variables](/docs/app/guides/environment-variables.md#test-environment-variables).
 
-## [Optional: Handling Absolute Imports and Module Path Aliases](https://nextjs.org/docs/app/guides/testing/jest\#optional-handling-absolute-imports-and-module-path-aliases)
+## Optional: Handling Absolute Imports and Module Path Aliases
 
-If your project is using [Module Path Aliases](https://nextjs.org/docs/app/getting-started/installation#set-up-absolute-imports-and-module-path-aliases), you will need to configure Jest to resolve the imports by matching the paths option in the `jsconfig.json` file with the `moduleNameMapper` option in the `jest.config.js` file. For example:
+If your project is using [Module Path Aliases](/docs/app/getting-started/installation.md#set-up-absolute-imports-and-module-path-aliases), you will need to configure Jest to resolve the imports by matching the paths option in the `jsconfig.json` file with the `moduleNameMapper` option in the `jest.config.js` file. For example:
 
-tsconfig.json or jsconfig.json
-
-```
+```json filename="tsconfig.json or jsconfig.json"
 {
   "compilerOptions": {
     "module": "esnext",
@@ -169,38 +112,32 @@ tsconfig.json or jsconfig.json
 }
 ```
 
-jest.config.js
-
-```
+```js filename="jest.config.js"
 moduleNameMapper: {
   // ...
   '^@/components/(.*)$': '<rootDir>/components/$1',
 }
 ```
 
-## [Optional: Extend Jest with custom matchers](https://nextjs.org/docs/app/guides/testing/jest\#optional-extend-jest-with-custom-matchers)
+## Optional: Extend Jest with custom matchers
 
 `@testing-library/jest-dom` includes a set of convenient [custom matchers](https://github.com/testing-library/jest-dom#custom-matchers) such as `.toBeInTheDocument()` making it easier to write tests. You can import the custom matchers for every test by adding the following option to the Jest configuration file:
 
-jest.config.ts
-
-TypeScript
-
-JavaScriptTypeScript
-
-```
+```ts filename="jest.config.ts" switcher
 setupFilesAfterEnv: ['<rootDir>/jest.setup.ts']
+```
+
+```js filename="jest.config.js" switcher
+setupFilesAfterEnv: ['<rootDir>/jest.setup.js']
 ```
 
 Then, inside `jest.setup`, add the following import:
 
-jest.setup.ts
-
-TypeScript
-
-JavaScriptTypeScript
-
+```ts filename="jest.setup.ts" switcher
+import '@testing-library/jest-dom'
 ```
+
+```js filename="jest.setup.js" switcher
 import '@testing-library/jest-dom'
 ```
 
@@ -208,13 +145,11 @@ import '@testing-library/jest-dom'
 
 If you need to add more setup options before each test, you can add them to the `jest.setup` file above.
 
-## [Add a test script to `package.json`](https://nextjs.org/docs/app/guides/testing/jest\#add-a-test-script-to-packagejson)
+## Add a test script to `package.json`
 
 Finally, add a Jest `test` script to your `package.json` file:
 
-package.json
-
-```
+```json filename="package.json" highlight={6-7}
 {
   "scripts": {
     "dev": "next dev",
@@ -228,15 +163,13 @@ package.json
 
 `jest --watch` will re-run tests when a file is changed. For more Jest CLI options, please refer to the [Jest Docs](https://jestjs.io/docs/cli#reference).
 
-### [Creating your first test](https://nextjs.org/docs/app/guides/testing/jest\#creating-your-first-test)
+### Creating your first test
 
 Your project is now ready to run tests. Create a folder called `__tests__` in your project's root directory.
 
 For example, we can add a test to check if the `<Page />` component successfully renders a heading:
 
-app/page.js
-
-```
+```jsx filename="app/page.js"
 import Link from 'next/link'
 
 export default function Page() {
@@ -249,9 +182,7 @@ export default function Page() {
 }
 ```
 
-\_\_tests\_\_/page.test.jsx
-
-```
+```jsx filename="__tests__/page.test.jsx"
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import Page from '../app/page'
@@ -269,9 +200,7 @@ describe('Page', () => {
 
 Optionally, add a [snapshot test](https://jestjs.io/docs/snapshot-testing) to keep track of any unexpected changes in your component:
 
-\_\_tests\_\_/snapshot.js
-
-```
+```jsx filename="__tests__/snapshot.js"
 import { render } from '@testing-library/react'
 import Page from '../app/page'
 
@@ -281,13 +210,11 @@ it('renders homepage unchanged', () => {
 })
 ```
 
-## [Running your tests](https://nextjs.org/docs/app/guides/testing/jest\#running-your-tests)
+## Running your tests
 
 Then, run the following command to run your tests:
 
-Terminal
-
-```
+```bash filename="Terminal"
 npm run test
 # or
 yarn test
@@ -295,17 +222,11 @@ yarn test
 pnpm test
 ```
 
-## [Additional Resources](https://nextjs.org/docs/app/guides/testing/jest\#additional-resources)
+## Additional Resources
 
 For further reading, you may find these resources helpful:
 
-- [Next.js with Jest example](https://github.com/vercel/next.js/tree/canary/examples/with-jest)
-- [Jest Docs](https://jestjs.io/docs/getting-started)
-- [React Testing Library Docs](https://testing-library.com/docs/react-testing-library/intro/)
-- [Testing Playground](https://testing-playground.com/) \- use good testing practices to match elements.
-
-Was this helpful?
-
-supported.
-
-Send
+* [Next.js with Jest example](https://github.com/vercel/next.js/tree/canary/examples/with-jest)
+* [Jest Docs](https://jestjs.io/docs/getting-started)
+* [React Testing Library Docs](https://testing-library.com/docs/react-testing-library/intro/)
+* [Testing Playground](https://testing-playground.com/) - use good testing practices to match elements.

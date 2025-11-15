@@ -1,48 +1,24 @@
-Menu
-
-Using App Router
-
-Features available in /app
-
-Latest Version
-
-16.0.1
-
-Using App Router
-
-Features available in /app
-
-Latest Version
-
-16.0.1
-
-[Guides](https://nextjs.org/docs/app/guides) [Testing](https://nextjs.org/docs/app/guides/testing) Vitest
-
-Copy page
-
 # How to set up Vitest with Next.js
+
+@doc-version: 16.0.3
 
 Vitest and React Testing Library are frequently used together for **Unit Testing**. This guide will show you how to setup Vitest with Next.js and write your first tests.
 
 > **Good to know:** Since `async` Server Components are new to the React ecosystem, Vitest currently does not support them. While you can still run **unit tests** for synchronous Server and Client Components, we recommend using **E2E tests** for `async` components.
 
-## [Quickstart](https://nextjs.org/docs/app/guides/testing/vitest\#quickstart)
+## Quickstart
 
 You can use `create-next-app` with the Next.js [with-vitest](https://github.com/vercel/next.js/tree/canary/examples/with-vitest) example to quickly get started:
 
-Terminal
-
-```
+```bash filename="Terminal"
 npx create-next-app@latest --example with-vitest with-vitest-app
 ```
 
-## [Manual Setup](https://nextjs.org/docs/app/guides/testing/vitest\#manual-setup)
+## Manual Setup
 
 To manually set up Vitest, install `vitest` and the following packages as dev dependencies:
 
-Terminal
-
-```
+```bash filename="Terminal"
 # Using TypeScript
 npm install -D vitest @vitejs/plugin-react jsdom @testing-library/react @testing-library/dom vite-tsconfig-paths
 # Using JavaScript
@@ -51,13 +27,7 @@ npm install -D vitest @vitejs/plugin-react jsdom @testing-library/react @testing
 
 Create a `vitest.config.mts|js` file in the root of your project, and add the following options:
 
-vitest.config.mts
-
-TypeScript
-
-JavaScriptTypeScript
-
-```
+```ts filename="vitest.config.mts" switcher
 import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 import tsconfigPaths from 'vite-tsconfig-paths'
@@ -70,13 +40,23 @@ export default defineConfig({
 })
 ```
 
+```js filename="vitest.config.js" switcher
+import { defineConfig } from 'vitest/config'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: 'jsdom',
+  },
+})
+```
+
 For more information on configuring Vitest, please refer to the [Vitest Configuration](https://vitest.dev/config/#configuration) docs.
 
 Then, add a `test` script to your `package.json`:
 
-package.json
-
-```
+```json filename="package.json"
 {
   "scripts": {
     "dev": "next dev",
@@ -89,17 +69,11 @@ package.json
 
 When you run `npm run test`, Vitest will **watch** for changes in your project by default.
 
-## [Creating your first Vitest Unit Test](https://nextjs.org/docs/app/guides/testing/vitest\#creating-your-first-vitest-unit-test)
+## Creating your first Vitest Unit Test
 
 Check that everything is working by creating a test to check if the `<Page />` component successfully renders a heading:
 
-app/page.tsx
-
-TypeScript
-
-JavaScriptTypeScript
-
-```
+```tsx filename="app/page.tsx" switcher
 import Link from 'next/link'
 
 export default function Page() {
@@ -112,13 +86,31 @@ export default function Page() {
 }
 ```
 
-\_\_tests\_\_/page.test.tsx
+```jsx filename="app/page.jsx" switcher
+import Link from 'next/link'
 
-TypeScript
-
-JavaScriptTypeScript
-
+export default function Page() {
+  return (
+    <div>
+      <h1>Home</h1>
+      <Link href="/about">About</Link>
+    </div>
+  )
+}
 ```
+
+```tsx filename="__tests__/page.test.tsx" switcher
+import { expect, test } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import Page from '../app/page'
+
+test('Page', () => {
+  render(<Page />)
+  expect(screen.getByRole('heading', { level: 1, name: 'Home' })).toBeDefined()
+})
+```
+
+```jsx filename="__tests__/page.test.jsx" switcher
 import { expect, test } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import Page from '../app/page'
@@ -131,13 +123,11 @@ test('Page', () => {
 
 > **Good to know**: The example above uses the common `__tests__` convention, but test files can also be colocated inside the `app` router.
 
-## [Running your tests](https://nextjs.org/docs/app/guides/testing/vitest\#running-your-tests)
+## Running your tests
 
 Then, run the following command to run your tests:
 
-Terminal
-
-```
+```bash filename="Terminal"
 npm run test
 # or
 yarn test
@@ -147,16 +137,10 @@ pnpm test
 bun test
 ```
 
-## [Additional Resources](https://nextjs.org/docs/app/guides/testing/vitest\#additional-resources)
+## Additional Resources
 
 You may find these resources helpful:
 
-- [Next.js with Vitest example](https://github.com/vercel/next.js/tree/canary/examples/with-vitest)
-- [Vitest Docs](https://vitest.dev/guide/)
-- [React Testing Library Docs](https://testing-library.com/docs/react-testing-library/intro/)
-
-Was this helpful?
-
-supported.
-
-Send
+* [Next.js with Vitest example](https://github.com/vercel/next.js/tree/canary/examples/with-vitest)
+* [Vitest Docs](https://vitest.dev/guide/)
+* [React Testing Library Docs](https://testing-library.com/docs/react-testing-library/intro/)
