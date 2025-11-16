@@ -1,0 +1,93 @@
+<docs_index>
+  <source>
+    <title>Tailwind Plus Overview: UI Components, Blocks and Templates</title>
+    <description>Tailwind Plus has three core offerings: Catalyst UI kit for React component systems, 500+ UI Blocks in React/Vue/HTML formats, and Next.js templates. including framework compatibility FAQs.</description>
+    <source_url>https://tailwindcss.com/plus</source_url>
+    <local_file>tailwind-plus-overview.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Tailwind Plus - Official Tailwind UI Components &amp; Templates</title>
+    <description>Setup guide for Tailwind Plus components including Tailwind CSS v4.1 requirements, Inter font integration, dark mode configuration, and navigation to framework implementations (HTML, React, Vue) and interactive elements.</description>
+    <source_url>https://tailwindcss.com/plus/ui-blocks/documentation</source_url>
+    <local_file>tailwind-plus-official-tailwind-ui-components-templates.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Tailwind Plus - Official Tailwind UI Components &amp; Templates</title>
+    <description>React implementation guide covering Headless UI and Heroicons dependencies, React 18+ requirements, component creation patterns, code adaptation strategies, and refactoring examples for creating reusable component structures.</description>
+    <source_url>https://tailwindcss.com/plus/ui-blocks/documentation/using-react</source_url>
+    <local_file>tailwind-plus-official-tailwind-ui-components-templates-2.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Getting started - Catalyst UI Kit for Tailwind CSS</title>
+    <description>Catalyst UI kit setup covering Tailwind CSS v4.0 requirements, component installation, dependencies (Headless UI, Motion, clsx), client-side router integration for Next.js, Remix, Inertia, Inter font, and Heroicons.</description>
+    <source_url>https://catalyst.tailwindui.com/docs</source_url>
+    <local_file>getting-started-catalyst-ui-kit-for-tailwind-css.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Sidebar layout - Catalyst UI Kit for Tailwind CSS</title>
+    <description>Catalyst SidebarLayout component covering sidebar and navbar props, component composition with Header, Body, Footer sections, responsive patterns, Dropdown menus, Avatar components, Heroicons integration, and overscroll background configuration.</description>
+    <source_url>https://catalyst.tailwindui.com/docs/sidebar-layout</source_url>
+    <local_file>sidebar-layout-catalyst-ui-kit-for-tailwind-css.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Stacked layout - Catalyst UI Kit for Tailwind CSS</title>
+    <description>Catalyst StackedLayout component covering navbar and sidebar props, desktop navigation with NavbarSection and NavbarDivider, mobile sidebar menu, responsive patterns using max-lg:hidden classes, Dropdown menus, Avatar components, and overscroll background configuration.</description>
+    <source_url>https://catalyst.tailwindui.com/docs/stacked-layout</source_url>
+    <local_file>stacked-layout-catalyst-ui-kit-for-tailwind-css.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Auth layout - Catalyst UI Kit for Tailwind CSS</title>
+    <description>Catalyst AuthLayout component for centered authentication pages covering login, registration, and password reset forms with Field, Input, Button, Checkbox, Select components, grid layout patterns, and form composition examples.</description>
+    <source_url>https://catalyst.tailwindui.com/docs/auth-layout</source_url>
+    <local_file>auth-layout-catalyst-ui-kit-for-tailwind-css.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Alert - Catalyst UI Kit for Tailwind CSS</title>
+    <description>Alert component built on Headless UI Dialog with subcomponents AlertTitle, AlertDescription, AlertBody, AlertActions, configurable size prop, open state management, onClose handler, auto-focus support, and examples for confirmations and forms.</description>
+    <source_url>https://catalyst.tailwindui.com/docs/alert</source_url>
+    <local_file>alert-catalyst-ui-kit-for-tailwind-css.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Avatar - Catalyst UI Kit for Tailwind CSS</title>
+    <description>Avatar component API with sizing utilities, initials prop for fallbacks, square prop, avatar groups with overlapping styles, AvatarButton component for interactive elements, and href prop for link integration.</description>
+    <source_url>https://catalyst.tailwindui.com/docs/avatar</source_url>
+    <local_file>avatar-catalyst-ui-kit-for-tailwind-css.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Badge - Catalyst UI Kit for Tailwind CSS</title>
+    <description>Catalyst Badge and BadgeButton components covering color prop with 18 variants, using badges as interactive buttons, link functionality with href prop, and comprehensive color reference for light and dark modes.</description>
+    <source_url>https://catalyst.tailwindui.com/docs/badge</source_url>
+    <local_file>badge-catalyst-ui-kit-for-tailwind-css.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Button - Catalyst UI Kit for Tailwind CSS</title>
+    <description>Button component API covering props (type, color, outline, plain, disabled, href), style variants (solid, outline, plain), color options (adaptive and 20 solid colours), disabled states, icon integration, and link usage.</description>
+    <source_url>https://catalyst.tailwindui.com/docs/button</source_url>
+    <local_file>button-catalyst-ui-kit-for-tailwind-css.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Checkbox - Catalyst UI Kit for Tailwind CSS</title>
+    <description>Checkbox component API including props (color, disabled, name, value, checked, onChange), CheckboxField and CheckboxGroup wrappers, usage with labels and descriptions, indeterminate state, controlled/uncontrolled patterns, fieldsets, and colour variants.</description>
+    <source_url>https://catalyst.tailwindui.com/docs/checkbox</source_url>
+    <local_file>checkbox-catalyst-ui-kit-for-tailwind-css.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Combobox - Catalyst UI Kit for Tailwind CSS</title>
+    <description>Combobox component API with props for disabled state, validation, positioning, filtering, controlled/uncontrolled values, examples including labels, descriptions, placeholders, avatars, flags, secondary text, and custom filtering.</description>
+    <source_url>https://catalyst.tailwindui.com/docs/combobox</source_url>
+    <local_file>combobox-catalyst-ui-kit-for-tailwind-css.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+</docs_index>
