@@ -83,4 +83,18 @@
     <local_file>responsive-design-core-concepts-tailwind-css.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
+  <source>
+    <title>Theme variables - Core concepts - Tailwind CSS</title>
+    <description>Theme variables via @theme directive defining design tokens mapped to utilities, namespaces (color, font, spacing), default theme, customisation through extending/overriding, animation keyframes, inline/static options, CSS/JavaScript referencing.</description>
+    <source_url>https://tailwindcss.com/docs/theme</source_url>
+    <local_file>theme-variables-core-concepts-tailwind-css.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>font-family - Typography - Tailwind CSS</title>
+    <description>Utilities for controlling font-family including font-sans, font-serif, font-mono classes, custom values with arbitrary syntax, CSS variable integration, responsive variants, theme customisation with --font-* variables, font-feature-settings and @font-face integration.</description>
+    <source_url>https://tailwindcss.com/docs/font-family</source_url>
+    <local_file>font-family-typography-tailwind-css.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
 </docs_index>
