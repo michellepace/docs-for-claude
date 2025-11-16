@@ -111,4 +111,25 @@
     <local_file>file-system-conventions-metadata-files-nextjs.md</local_file>
     <scraped_at>2025-11-15</scraped_at>
   </source>
+  <source>
+    <title>Getting Started: Font Optimization | Next.js</title>
+    <description>Using next/font module for automatic font optimisation with built-in self-hosting, Google fonts via next/font/google, local fonts via next/font/local, variable fonts, weight specification, className application, and preventing layout shift.</description>
+    <source_url>https://nextjs.org/docs/app/getting-started/fonts</source_url>
+    <local_file>getting-started-font-optimization-nextjs.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Components: Font | Next.js</title>
+    <description>Font optimization with automatic self-hosting for Google and local fonts, configuration options (weight, style, subsets, display, preload, fallback, variable), Tailwind integration, className/style/CSS variable application methods.</description>
+    <source_url>https://nextjs.org/docs/app/api-reference/components/font</source_url>
+    <local_file>components-font-nextjs.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started: Fonts | Next.js</title>
+    <description>Automatic font optimization via next/font with self-hosting, zero layout shift, Google Font integration supporting variable fonts, local font imports from single or multiple files, className application, eliminating external requests.</description>
+    <source_url>https://nextjs.org/docs/pages/getting-started/fonts</source_url>
+    <local_file>getting-started-fonts-nextjs.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
 </docs_index>
