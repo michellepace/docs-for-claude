@@ -7,20 +7,6 @@
     <scraped_at>2025-11-16</scraped_at>
   </source>
   <source>
-    <title>Tailwind Plus - Official Tailwind UI Components &amp; Templates</title>
-    <description>Setup guide for Tailwind Plus components including Tailwind CSS v4.1 requirements, Inter font integration, dark mode configuration, and navigation to framework implementations (HTML, React, Vue) and interactive elements.</description>
-    <source_url>https://tailwindcss.com/plus/ui-blocks/documentation</source_url>
-    <local_file>tailwind-plus-official-tailwind-ui-components-templates.md</local_file>
-    <scraped_at>2025-11-16</scraped_at>
-  </source>
-  <source>
-    <title>Tailwind Plus - Official Tailwind UI Components &amp; Templates</title>
-    <description>React implementation guide covering Headless UI and Heroicons dependencies, React 18+ requirements, component creation patterns, code adaptation strategies, and refactoring examples for creating reusable component structures.</description>
-    <source_url>https://tailwindcss.com/plus/ui-blocks/documentation/using-react</source_url>
-    <local_file>tailwind-plus-official-tailwind-ui-components-templates-2.md</local_file>
-    <scraped_at>2025-11-16</scraped_at>
-  </source>
-  <source>
     <title>Getting started - Catalyst UI Kit for Tailwind CSS</title>
     <description>Catalyst UI kit setup covering Tailwind CSS v4.0 requirements, component installation, dependencies (Headless UI, Motion, clsx), client-side router integration for Next.js, Remix, Inertia, Inter font, and Heroicons.</description>
     <source_url>https://catalyst.tailwindui.com/docs</source_url>
@@ -207,6 +193,34 @@
     <description>Listbox component API with props, examples including placeholders, avatars, icons, flags, secondary text, labels, descriptions, disabled and validation states, custom layouts, width constraints, controlled usage.</description>
     <source_url>https://catalyst.tailwindui.com/docs/listbox</source_url>
     <local_file>listbox-catalyst-ui-kit-for-tailwind-css.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Tailwind Plus - Official Tailwind UI Components &amp; Templates</title>
+    <description>Setup guide for Tailwind Plus components including Tailwind CSS v4.1 requirements, Inter font integration, dark mode configuration, and navigation to framework implementations (HTML, React, Vue) and interactive elements.</description>
+    <source_url>https://tailwindcss.com/plus/ui-blocks/documentation</source_url>
+    <local_file>tailwind-plus-official-tailwind-ui-components-templates.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Tailwind Plus - Official Tailwind UI Components &amp; Templates</title>
+    <description>React implementation guide covering Headless UI and Heroicons dependencies, React 18+ requirements, component creation patterns, code adaptation strategies, and refactoring examples for creating reusable component structures.</description>
+    <source_url>https://tailwindcss.com/plus/ui-blocks/documentation/using-react</source_url>
+    <local_file>tailwind-plus-official-tailwind-ui-components-templates-2.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Tailwind CSS Tabs - Official Tailwind UI Components</title>
+    <description>Tab navigation UI components including underline tabs, pill tabs, full-width tabs, bar tabs with badges, icons, brand colours, gray backgrounds, and dark mode variants for tabbed content.</description>
+    <source_url>https://tailwindcss.com/plus/ui-blocks/application-ui/navigation/tabs</source_url>
+    <local_file>tailwind-css-tabs-official-tailwind-ui-components.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Tailwind CSS Navbars - Official Tailwind UI Components</title>
+    <description>Navbar components featuring simple designs, dark variants, menu buttons, search bars, quick action buttons, centered search layouts, secondary navigation links, column layouts, and responsive mobile patterns.</description>
+    <source_url>https://tailwindcss.com/plus/ui-blocks/application-ui/navigation/navbars</source_url>
+    <local_file>tailwind-css-navbars-official-tailwind-ui-components.md</local_file>
     <scraped_at>2025-11-16</scraped_at>
   </source>
 </docs_index>

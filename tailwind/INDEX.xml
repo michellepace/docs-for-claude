@@ -63,13 +63,6 @@
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
-    <title>Preflight - Base styles - Tailwind CSS</title>
-    <description>Modern-normalize CSS reset removing margins, resetting borders, unstyling headings and lists, making images block-level and constrained, with extension and disabling options.</description>
-    <source_url>https://tailwindcss.com/docs/preflight</source_url>
-    <local_file>preflight-base-styles-tailwind-css.md</local_file>
-    <scraped_at>2025-10-15</scraped_at>
-  </source>
-  <source>
     <title>Dark mode - Core concepts - Tailwind CSS</title>
     <description>Dark mode implementation using the dark: variant with prefers-color-scheme media query, manual class-based toggling, data attributes, and system theme synchronisation via localStorage.</description>
     <source_url>https://tailwindcss.com/docs/dark-mode</source_url>
@@ -96,5 +89,12 @@
     <source_url>https://tailwindcss.com/docs/font-family</source_url>
     <local_file>font-family-typography-tailwind-css.md</local_file>
     <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Preflight - Base styles - Tailwind CSS</title>
+    <description>Opinionated base styles built on modern-normalize with complete CSS source covering margin/border/padding resets, unstyled headings and lists, block-level images, form input normalisation, extending Preflight, and disabling options.</description>
+    <source_url>https://tailwindcss.com/docs/preflight</source_url>
+    <local_file>preflight-base-styles-tailwind-css.md</local_file>
+    <scraped_at>2025-11-17</scraped_at>
   </source>
 </docs_index>
