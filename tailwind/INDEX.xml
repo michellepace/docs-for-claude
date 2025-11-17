@@ -97,4 +97,18 @@
     <local_file>preflight-base-styles-tailwind-css.md</local_file>
     <scraped_at>2025-11-17</scraped_at>
   </source>
+  <source>
+    <title>Upgrade guide - Getting started - Tailwind CSS</title>
+    <description>Upgrading Tailwind CSS v3 to v4 with automatic upgrade tool, manual migration for PostCSS, Vite, CLI, breaking changes including renamed utilities, preflight updates, browser requirements, configuration changes, and compatibility notes.</description>
+    <source_url>https://tailwindcss.com/docs/upgrade-guide</source_url>
+    <local_file>upgrade-guide-getting-started-tailwind-css.md</local_file>
+    <scraped_at>2025-11-17</scraped_at>
+  </source>
+  <source>
+    <title>background-image - Backgrounds - Tailwind CSS</title>
+    <description>Background image utilities including linear, radial, and conic gradients with directional variants, gradient color stops and positions, interpolation modes, custom values with arbitrary syntax, and responsive design variants.</description>
+    <source_url>https://tailwindcss.com/docs/background-image</source_url>
+    <local_file>background-image-backgrounds-tailwind-css.md</local_file>
+    <scraped_at>2025-11-17</scraped_at>
+  </source>
 </docs_index>
