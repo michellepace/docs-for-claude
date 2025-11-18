@@ -1,4 +1,14 @@
-![Logo Zustand](https://github.com/pmndrs/zustand/raw/main/docs/bear.jpg)
+---
+title: Introduction
+description: How to use Zustand
+nav: 0
+---
+
+# Introduction
+
+<div class="flex justify-center mb-4">
+  <img src="../bear.jpg" alt="Logo Zustand" />
+</div>
 
 A small, fast, and scalable bearbones state management solution.
 Zustand has a comfy API based on hooks.
@@ -7,14 +17,18 @@ but has enough convention to be explicit and flux-like.
 
 Don't disregard it because it's cute, it has claws!
 Lots of time was spent to deal with common pitfalls,
-like the dreaded [zombie child problem](https://react-redux.js.org/api/hooks#stale-props-and-zombie-children),
-[React concurrency](https://github.com/bvaughn/rfcs/blob/useMutableSource/text/0000-use-mutable-source.md), and [context loss](https://github.com/facebook/react/issues/13332)
+like the dreaded [zombie child problem],
+[React concurrency], and [context loss]
 between mixed renderers.
 It may be the one state manager in the React space that gets all of these right.
 
-You can try a live demo [here](https://codesandbox.io/s/dazzling-moon-itop4).
+You can try a [live demo on CodeSandbox](https://codesandbox.io/s/dazzling-moon-itop4).
 
-[**Installation**](https://zustand.docs.pmnd.rs/getting-started/introduction#installation)
+[zombie child problem]: https://react-redux.js.org/api/hooks#stale-props-and-zombie-children
+[react concurrency]: https://github.com/bvaughn/rfcs/blob/useMutableSource/text/0000-use-mutable-source.md
+[context loss]: https://github.com/facebook/react/issues/13332
+
+## Installation
 
 Zustand is available as a package on NPM for use:
 
@@ -24,7 +38,7 @@ npm install zustand
 # Or, use any package manager of your choice.
 ```
 
-[**First create a store**](https://zustand.docs.pmnd.rs/getting-started/introduction#first-create-a-store)
+## First create a store
 
 Your store is a hook!
 You can put anything in it: primitives, objects, functions.
@@ -41,7 +55,7 @@ const useBear = create((set) => ({
 }))
 ```
 
-[**Then bind your components, and that's it!**](https://zustand.docs.pmnd.rs/getting-started/introduction#then-bind-your-components,-and-that's-it!)
+## Then bind your components, and that's it
 
 You can use the hook anywhere, without the need of providers.
 Select your state and the consuming component
@@ -58,5 +72,3 @@ function Controls() {
   return <button onClick={increasePopulation}>one up</button>
 }
 ```
-
-[Edit this page](https://github.com/pmndrs/zustand/edit/main/docs/getting-started/introduction.md)

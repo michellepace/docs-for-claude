@@ -1,9 +1,276 @@
+<?xml version='1.0' encoding='utf-8'?>
 <docs_index>
   <source>
-    <title>Introduction - Zustand</title>
-    <description>Introduction to Zustand state management library covering installation via npm, creating stores with the create hook, binding components, hook-based API without providers, and handling React concurrency issues.</description>
-    <source_url>https://zustand.docs.pmnd.rs/getting-started/introduction</source_url>
-    <local_file>introduction-zustand.md</local_file>
+    <title>Getting Started - Introduction</title>
+    <description>Introduction to Zustand state management with hook-based API, installation instructions, creating stores using create function, binding components with selectors, avoiding context providers, and handling zombie child problems.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/getting-started/introduction.md</source_url>
+    <local_file>getting-started-introduction.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>APIs - createStore</title>
+    <description>Vanilla store creation using createStore API with setState, getState, getInitialState, subscribe utilities, state updates for primitives, objects, arrays, immutable patterns, and troubleshooting mutation issues.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/apis/create-store.md</source_url>
+    <local_file>apis-create-store.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>APIs - createWithEqualityFn ⚛️</title>
+    <description>React Hook creation with custom equality functions using createWithEqualityFn, enabling granular re-render control, state updates, shallow comparison patterns, external actions, subscriptions, and immutability best practices.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/apis/create-with-equality-fn.md</source_url>
+    <local_file>apis-create-with-equality-fn.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>APIs - create ⚛️</title>
+    <description>React Hook creation using create API with state, actions, selector functions, updating primitives, objects, arrays, external actions pattern, subscribing to state updates, and troubleshooting immutability issues.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/apis/create.md</source_url>
+    <local_file>apis-create.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>APIs - shallow</title>
+    <description>Shallow comparison utility for efficient equality checks on primitives, objects, sets, maps, top-level properties, limitations with nested structures, prototype differences, and performance optimisation patterns for state comparisons.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/apis/shallow.md</source_url>
+    <local_file>apis-shallow.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started - Comparison</title>
+    <description>Comparison of Zustand versus Redux, Valtio, Jotai, and Recoil, covering state models including immutable versus mutable approaches, render optimisation strategies, context providers, selectors, atom-based patterns, and architectural differences.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/getting-started/comparison.md</source_url>
+    <local_file>getting-started-comparison.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Guides - Advanced TypeScript Guide</title>
+    <description>Advanced TypeScript patterns including curried create syntax, type inference challenges, middleware composition with devtools and persist, StateCreator typing, higher-kinded mutators, slices pattern, dynamic replace flags, and authoring custom middlewares.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/guides/advanced-typescript.md</source_url>
+    <local_file>guides-advanced-typescript.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Guides - Auto Generating Selectors</title>
+    <description>Auto-generating selectors using createSelectors helper function for React and vanilla stores, reducing boilerplate, accessing state properties and actions directly, type-safe selector generation, and third-party selector libraries.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/guides/auto-generating-selectors.md</source_url>
+    <local_file>guides-auto-generating-selectors.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Guides - Beginner TypeScript Guide</title>
+    <description>Beginner TypeScript guide covering typed store creation, component integration, store resetting, type extraction with ExtractState, multiple selectors using useShallow, derived state, combine, devtools, persist middlewares, async actions, and multiple stores.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/guides/beginner-typescript.md</source_url>
+    <local_file>guides-beginner-typescript.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Guides - Connect to state with URL</title>
+    <description>Connecting Zustand state to URL hash and query parameters using custom StateStorage implementations, synchronising with localStorage, conditional URL population, building shareable URLs, and maintaining state persistence across page refreshes.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/guides/connect-to-state-with-url-hash.md</source_url>
+    <local_file>guides-connect-to-state-with-url-hash.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Guides - Calling actions outside a React event handler in pre React 18</title>
+    <description>Handling synchronous setState in pre-React 18 outside event handlers using unstable_batchedUpdates to prevent zombie-child effects when updating Zustand stores non-reactively.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/guides/event-handler-in-pre-react-18.md</source_url>
+    <local_file>guides-event-handler-in-pre-react-18.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Guides - Flux inspired practice</title>
+    <description>Flux and Redux-inspired patterns including single store architecture, immutable updates with set/setState, colocated store actions, slice patterns, redux middleware, and dispatched action reducers.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/guides/flux-inspired-practice.md</source_url>
+    <local_file>guides-flux-inspired-practice.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Guides - How to reset state</title>
+    <description>Resetting store state to initial values using getInitialState, single store reset patterns, multiple store reset with custom create wrapper, storeResetFns management.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/guides/how-to-reset-state.md</source_url>
+    <local_file>guides-how-to-reset-state.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Guides - Immutable state and merging</title>
+    <description>Immutable state updates with automatic shallow merging via set, nested object handling with spread operators, replace flag for disabling merge behavior, avoiding state mutation.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/guides/immutable-state-and-merging.md</source_url>
+    <local_file>guides-immutable-state-and-merging.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Guides - Initialize state with props</title>
+    <description>Dependency injection with createStore and React Context, provider implementation with useRef, custom hooks for store access, context wrapper patterns, equality function support.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/guides/initialize-state-with-props.md</source_url>
+    <local_file>guides-initialize-state-with-props.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Guides - Map and Set Usage</title>
+    <description>Using Map and Set immutably by creating new instances for updates, reading patterns, add/delete/clear operations, reference-based change detection, TypeScript type hints for empty collections.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/guides/maps-and-sets-usage.md</source_url>
+    <local_file>guides-maps-and-sets-usage.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Guides - Setup with Next.js</title>
+    <description>Next.js integration with per-request stores using createStore, context providers, SSR-friendly initialization, Pages Router and App Router architectures, avoiding global stores, hydration compatibility.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/guides/nextjs.md</source_url>
+    <local_file>guides-nextjs.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Guides - Practice with no store actions</title>
+    <description>Alternative pattern defining actions external to store at module level using setState, enabling code splitting and hook-free action calls versus colocated actions approach.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/guides/practice-with-no-store-actions.md</source_url>
+    <local_file>guides-practice-with-no-store-actions.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Guides - Prevent rerenders with useShallow</title>
+    <description>Preventing unnecessary rerenders using useShallow for shallow-equal computed state, comparing Object.is versus shallow equality checks, optimizing subscriptions when output structure remains consistent.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/guides/prevent-rerenders-with-use-shallow.md</source_url>
+    <local_file>guides-prevent-rerenders-with-use-shallow.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Guides - Slices Pattern</title>
+    <description>Modular store architecture by dividing large stores into individual slices, combining slices into bounded stores, cross-slice updates, middleware application, TypeScript usage patterns.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/guides/slices-pattern.md</source_url>
+    <local_file>guides-slices-pattern.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Guides - SSR and Hydration</title>
+    <description>Server-side rendering and hydration techniques with React, covering SSR implementation using Express and ReactDOMServer, hydration process with hydrateRoot, stateless and stateful rendering, common hydration errors, and best practices.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/guides/ssr-and-hydration.md</source_url>
+    <local_file>guides-ssr-and-hydration.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Guides - Testing</title>
+    <description>Testing setup with Jest and Vitest including Zustand store mocking, React Testing Library integration, component and store testing patterns, automatic state reset after tests, and comprehensive counter store examples.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/guides/testing.md</source_url>
+    <local_file>guides-testing.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Guides - Tutorial: Tic-Tac-Toe</title>
+    <description>Tic-tac-toe tutorial demonstrating React fundamentals with Zustand including state lifting, component composition, time travel implementation using history arrays, game logic with winner calculation, and immutability patterns with combine middleware.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/guides/tutorial-tic-tac-toe.md</source_url>
+    <local_file>guides-tutorial-tic-tac-toe.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Guides - Updating state</title>
+    <description>Updating state patterns covering flat shallow merging, deeply nested object handling with spread operators, Immer for convenient mutations, optics-ts for functional transformations, and Ramda for path-based state modifications.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/guides/updating-state.md</source_url>
+    <local_file>guides-updating-state.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Hooks - useShallow ⚛️</title>
+    <description>useShallow hook for optimising re-renders through shallow comparison memoisation, preventing unnecessary updates when derived state unchanged, demonstrated with bear family store example showing selector wrapping and performance improvements.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/hooks/use-shallow.md</source_url>
+    <local_file>hooks-use-shallow.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Hooks - useStoreWithEqualityFn ⚛️</title>
+    <description>useStoreWithEqualityFn hook for using vanilla stores in React with custom equality functions, supporting global and scoped stores, dynamic store creation, context-based patterns, and shallow comparison for granular re-render control.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/hooks/use-store-with-equality-fn.md</source_url>
+    <local_file>hooks-use-store-with-equality-fn.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Hooks - useStore ⚛️</title>
+    <description>useStore hook for integrating vanilla Zustand stores in React components, supporting global stores, dynamic store factories, scoped context-based stores, selector functions, and independent state management per component instance.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/hooks/use-store.md</source_url>
+    <local_file>hooks-use-store.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Integrations - Immer middleware</title>
+    <description>Immer middleware enabling convenient immutable state updates through mutation syntax, simplifying deeply nested object handling, requiring Immer as dependency, with gotchas regarding class objects and immerable symbol for proper subscriptions.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/integrations/immer-middleware.md</source_url>
+    <local_file>integrations-immer-middleware.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Integrations - Persisting store data</title>
+    <description>Persist middleware for storing Zustand state in localStorage, sessionStorage, AsyncStorage, or custom storage engines, supporting synchronous and asynchronous hydration, partialisation, version migration, custom merge functions, and Next.js SSR handling.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/integrations/persisting-store-data.md</source_url>
+    <local_file>integrations-persisting-store-data.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Integrations - Third-party Libraries</title>
+    <description>Third-party library ecosystem for Zustand including devtools, middleware for multiplayer collaboration, persistence, state synchronisation across tabs, framework adapters for Angular and Vue, time-travel debugging, computed states, and form management utilities.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/integrations/third-party-libraries.md</source_url>
+    <local_file>integrations-third-party-libraries.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Middlewares - combine</title>
+    <description>Combine middleware merges initial state with state creator function for automatic type inference, eliminates need for curried create, returns combined state creator function.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/middlewares/combine.md</source_url>
+    <local_file>middlewares-combine.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Middlewares - devtools</title>
+    <description>Redux DevTools Extension integration for time-travel debugging, action filtering with actionsDenylist, custom naming, Slices pattern support, cleanup methods, and action type labelling for enhanced debugging.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/middlewares/devtools.md</source_url>
+    <local_file>middlewares-devtools.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Middlewares - immer</title>
+    <description>Immer middleware enables immutable state updates without manual object copying, simplifies nested object mutations, eliminates boilerplate spreading syntax, and maintains immutability through Immer library integration.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/middlewares/immer.md</source_url>
+    <local_file>middlewares-immer.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Middlewares - persist</title>
+    <description>State persistence across page reloads using localStorage, sessionStorage, or custom storage, with partial state persistence, versioning, migration functions, deep merging, manual hydration control, and skipHydration option.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/middlewares/persist.md</source_url>
+    <local_file>middlewares-persist.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Middlewares - redux</title>
+    <description>Redux-style state updates using actions and reducers, dispatch method for action handling, reducer functions for state transformations, and Redux patterns without Redux library dependency.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/middlewares/redux.md</source_url>
+    <local_file>middlewares-redux.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Middlewares - subscribeWithSelector</title>
+    <description>Subscribe to granular state updates based on selector functions, enables partial state subscriptions, reduces unnecessary re-renders, and provides fine-grained control over state change notifications.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/middlewares/subscribe-with-selector.md</source_url>
+    <local_file>middlewares-subscribe-with-selector.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Migrations - Migrating to v4</title>
+    <description>Migration from v3 to v4 covering type changes in create, StateCreator, PartialState, useStore, UseBoundStore, UseContextStore, createContext, middleware type parameters, and persist partialize behavior updates.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/migrations/migrating-to-v4.md</source_url>
+    <local_file>migrations-migrating-to-v4.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Migrations - How to Migrate to v5 from v4</title>
+    <description>Migration from v4 to v5 covering dropped default exports, createWithEqualityFn for custom equality, useShallow hook, stable selector requirements, stricter setState types, persist middleware changes, and React 18 requirements.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/migrations/migrating-to-v5.md</source_url>
+    <local_file>migrations-migrating-to-v5.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+  <source>
+    <title>Previous Versions - createContext from zustand/context</title>
+    <description>Deprecated createContext from zustand/context for store wrapping in React context, avoids store hook misuse, supports prop-based initialization, replaced by manual context pattern in v4.</description>
+    <source_url>https://github.com/pmndrs/zustand/blob/main/docs/previous-versions/zustand-v3-create-context.md</source_url>
+    <local_file>previous-versions-zustand-v3-create-context.md</local_file>
     <scraped_at>2025-11-18</scraped_at>
   </source>
 </docs_index>
