@@ -22,7 +22,7 @@
   </source>
   <source>
     <title>Styling with utility classes - Core concepts - Tailwind CSS</title>
-    <description>Core utility-first methodology covering variants, responsive design, dark mode, arbitrary values, class composition, complex selectors, managing duplication, and resolving style conflicts in Tailwind.</description>
+    <description>Utility-first methodology: variants (`hover:`, `dark:`, `group-*`), responsive design, arbitrary values, class composition, complex selectors, `!important` modifier, managing duplication via components/loops, resolving conflicts, and import `prefix`/`important` flags.</description>
     <source_url>https://tailwindcss.com/docs/styling-with-utility-classes</source_url>
     <local_file>styling-with-utility-classes-core-concepts-tailwind-css.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
@@ -43,7 +43,7 @@
   </source>
   <source>
     <title>Adding custom styles - Core concepts - Tailwind CSS</title>
-    <description>Customising Tailwind via @theme directive, arbitrary values/properties/variants, custom CSS layers (base, components, utilities), @utility directive for functional utilities, and @custom-variant for custom selectors.</description>
+    <description>Tailwind theme customisation via `@theme` directive, arbitrary values/properties/variants with whitespace handling, custom CSS layers, functional utilities with `--value()`, `@variant` and `@custom-variant` directives.</description>
     <source_url>https://tailwindcss.com/docs/adding-custom-styles</source_url>
     <local_file>adding-custom-styles-core-concepts-tailwind-css.md</local_file>
     <scraped_at>2025-10-15</scraped_at>

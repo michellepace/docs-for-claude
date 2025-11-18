@@ -1,10 +1,3 @@
-[Home](https://tailwindcss.com/) v4.1
-
-`⌘K`  `Ctrl K` [Docs](https://tailwindcss.com/docs) [Blog](https://tailwindcss.com/blog) [Showcase](https://tailwindcss.com/showcase) [Sponsor](https://tailwindcss.com/sponsor) [Plus](https://tailwindcss.com/plus?ref=top) [GitHub repository](https://github.com/tailwindlabs/tailwindcss)
-
-1. Core concepts
-2. Styling with utility classes
-
 Core concepts
 
 # Styling with utility classes
