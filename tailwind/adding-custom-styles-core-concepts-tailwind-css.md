@@ -1,10 +1,3 @@
-[Home](https://tailwindcss.com/) v4.1
-
-`⌘K`  `Ctrl K` [Docs](https://tailwindcss.com/docs) [Blog](https://tailwindcss.com/blog) [Showcase](https://tailwindcss.com/showcase) [Sponsor](https://tailwindcss.com/sponsor) [Plus](https://tailwindcss.com/plus?ref=top) [GitHub repository](https://github.com/tailwindlabs/tailwindcss)
-
-1. Core concepts
-2. Adding custom styles
-
 Core concepts
 
 # Adding custom styles
@@ -21,9 +14,7 @@ This guide covers topics like customizing your design tokens, how to break out o
 
 If you want to change things like your color palette, spacing scale, typography scale, or breakpoints, add your customizations using the `@theme` directive in your CSS:
 
-CSS
-
-```
+```css
 @theme {  --font-display: "Satoshi", "sans-serif";  --breakpoint-3xl: 120rem;  --color-avocado-100: oklch(0.99 0 0);  --color-avocado-200: oklch(0.98 0.04 113.22);  --color-avocado-300: oklch(0.94 0.11 115.03);  --color-avocado-400: oklch(0.92 0.19 114.08);  --color-avocado-500: oklch(0.84 0.18 117.33);  --color-avocado-600: oklch(0.53 0.12 118.34);  --ease-fluid: cubic-bezier(0.3, 0, 0, 1);  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);  /* ... */}
 ```
 
@@ -35,33 +26,25 @@ While you can usually build the bulk of a well-crafted design using a constraine
 
 When you find yourself really needing something like `top: 117px` to get a background image in just the right spot, use Tailwind's square bracket notation to generate a class on the fly with any arbitrary value:
 
-HTML
-
-```
+```html
 <div class="top-[117px]">  <!-- ... --></div>
 ```
 
 This is basically like inline styles, with the major benefit that you can combine it with interactive modifiers like `hover` and responsive modifiers like `lg`:
 
-HTML
-
-```
+```html
 <div class="top-[117px] lg:top-[344px]">  <!-- ... --></div>
 ```
 
 This works for everything in the framework, including things like background colors, font sizes, pseudo-element content, and more:
 
-HTML
-
-```
+```html
 <div class="bg-[#bada55] text-[22px] before:content-['Festivus']">  <!-- ... --></div>
 ```
 
 If you're referencing a CSS variable as an arbitrary value, you can use the custom property syntax:
 
-HTML
-
-```
+```html
 <div class="fill-(--my-brand-color) ...">  <!-- ... --></div>
 ```
 
@@ -71,25 +54,19 @@ This is just a shorthand for `fill-[var(--my-brand-color)]` that adds the `var()
 
 If you ever need to use a CSS property that Tailwind doesn't include a utility for out of the box, you can also use square bracket notation to write completely arbitrary CSS:
 
-HTML
-
-```
+```html
 <div class="[mask-type:luminance]">  <!-- ... --></div>
 ```
 
 This is _really_ like inline styles, but again with the benefit that you can use modifiers:
 
-HTML
-
-```
+```html
 <div class="[mask-type:luminance] hover:[mask-type:alpha]">  <!-- ... --></div>
 ```
 
 This can be useful for things like CSS variables as well, especially when they need to change under different conditions:
 
-HTML
-
-```
+```html
 <div class="[--scroll-offset:56px] lg:[--scroll-offset:44px]">  <!-- ... --></div>
 ```
 
@@ -97,9 +74,7 @@ HTML
 
 Arbitrary _variants_ are like arbitrary values but for doing on-the-fly selector modification, like you can with built-in pseudo-class variants like `hover:{utility}` or responsive variants like `md:{utility}` but using square bracket notation directly in your HTML.
 
-HTML
-
-```
+```html
 <ul role="list">  {#each items as item}  <li class="lg:[&:nth-child(-n+3)]:hover:underline">{item}</li>  {/each}</ul>
 ```
 
@@ -109,31 +84,25 @@ Learn more in the [arbitrary variants](https://tailwindcss.com/docs/hover-focus-
 
 When an arbitrary value needs to contain a space, use an underscore ( `_`) instead and Tailwind will automatically convert it to a space at build-time:
 
-HTML
-
-```
+```html
 <div class="grid grid-cols-[1fr_500px_2fr]">  <!-- ... --></div>
 ```
 
 In situations where underscores are common but spaces are invalid, Tailwind will preserve the underscore instead of converting it to a space, for example in URLs:
 
-HTML
-
-```
+```html
 <div class="bg-[url('/what_a_rush.png')]">  <!-- ... --></div>
 ```
 
 In the rare case that you actually need to use an underscore but it's ambiguous because a space is valid as well, escape the underscore with a backslash and Tailwind won't convert it to a space:
 
-HTML
-
-```
+```html
 <div class="before:content-['hello\_world']">  <!-- ... --></div>
 ```
 
 If you're using something like JSX where the backslash is stripped from the rendered HTML, use [String.raw()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/raw) so the backslash isn't treated as a JavaScript escape character:
 
-```
+```jsx
 <div className={String.raw`before:content-['hello\_world']`}>  <!-- ... --></div>
 ```
 
@@ -143,25 +112,19 @@ Many utilities in Tailwind share a common namespace but map to different CSS pro
 
 When using arbitrary values, Tailwind can generally handle this ambiguity automatically based on the value you pass in:
 
-HTML
-
-```
+```html
 <!-- Will generate a font-size utility --><div class="text-[22px]">...</div><!-- Will generate a color utility --><div class="text-[#bada55]">...</div>
 ```
 
 Sometimes it really is ambiguous though, for example when using CSS variables:
 
-HTML
-
-```
+```html
 <div class="text-(--my-var)">...</div>
 ```
 
 In these situations, you can "hint" the underlying type to Tailwind by adding a [CSS data type](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Types) before the value:
 
-HTML
-
-```
+```html
 <!-- Will generate a font-size utility --><div class="text-(length:--my-var)">...</div><!-- Will generate a color utility --><div class="text-(color:--my-var)">...</div>
 ```
 
@@ -169,9 +132,7 @@ HTML
 
 While Tailwind is designed to handle the bulk of your styling needs, there is nothing stopping you from just writing plain CSS when you need to:
 
-CSS
-
-```
+```css
 @import "tailwindcss";.my-custom-style {  /* ... */}
 ```
 
@@ -179,9 +140,7 @@ CSS
 
 If you just want to set some defaults for the page (like the text color, background color, or font family), the easiest option is just adding some classes to the `html` or `body` elements:
 
-HTML
-
-```
+```html
 <!doctype html><html lang="en" class="bg-gray-100 font-serif text-gray-900">  <!-- ... --></html>
 ```
 
@@ -189,9 +148,7 @@ This keeps your base styling decisions in your markup alongside all of your othe
 
 If you want to add your own default base styles for specific HTML elements, use the `@layer` directive to add those styles to Tailwind's `base` layer:
 
-CSS
-
-```
+```css
 @layer base {  h1 {    font-size: var(--text-2xl);  }  h2 {    font-size: var(--text-xl);  }}
 ```
 
@@ -201,17 +158,13 @@ Use the `components` layer for any more complicated classes you want to add to y
 
 Traditionally these would be classes like `card`, `btn`, `badge` — that kind of thing.
 
-CSS
-
-```
+```css
 @layer components {  .card {    background-color: var(--color-white);    border-radius: var(--radius-lg);    padding: --spacing(6);    box-shadow: var(--shadow-xl);  }}
 ```
 
 By defining component classes in the `components` layer, you can still use utility classes to override them when necessary:
 
-HTML
-
-```
+```html
 <!-- Will look like a card, but with square corners --><div class="card rounded-none">  <!-- ... --></div>
 ```
 
@@ -219,9 +172,7 @@ Using Tailwind you probably don't need these types of classes as often as you th
 
 The `components` layer is also a good place to put custom styles for any third-party components you're using:
 
-CSS
-
-```
+```css
 @layer components {  .select2-dropdown {    /* ... */  }}
 ```
 
@@ -231,13 +182,13 @@ Use the `@variant` directive to apply a Tailwind variant within custom CSS:
 
 app.css
 
-```
+```css
 .my-element {  background: white;  @variant dark {    background: black;  }}
 ```
 
 Compiled CSS
 
-```
+```css
 .my-element {  background: white;  @media (prefers-color-scheme: dark) {    background: black;  }}
 ```
 
@@ -245,13 +196,13 @@ If you need to apply multiple variants at the same time, use nesting:
 
 app.css
 
-```
+```css
 .my-element {  background: white;  @variant dark {    @variant hover {      background: black;    }  }}
 ```
 
 Compiled CSS
 
-```
+```css
 .my-element {  background: white;  @media (prefers-color-scheme: dark) {    &:hover {      @media (hover: hover) {        background: black;      }    }  }}
 ```
 
@@ -263,25 +214,19 @@ In addition to using the utilities that ship with Tailwind, you can also add you
 
 Use the `@utility` directive to add a custom utility to your project:
 
-CSS
-
-```
+```css
 @utility content-auto {  content-visibility: auto;}
 ```
 
 You can now use this utility in your HTML:
 
-HTML
-
-```
+```html
 <div class="content-auto">  <!-- ... --></div>
 ```
 
 It will also work with variants like `hover`, `focus` and `lg`:
 
-HTML
-
-```
+```html
 <div class="hover:content-auto">  <!-- ... --></div>
 ```
 
@@ -291,9 +236,7 @@ Custom utilities are automatically inserted into the `utilities` layer along wit
 
 If your custom utility is more complex than a single class name, use nesting to define the utility:
 
-CSS
-
-```
+```css
 @utility scrollbar-hidden {  &::-webkit-scrollbar {    display: none;  }}
 ```
 
@@ -301,9 +244,7 @@ CSS
 
 In addition to registering simple utilities with the `@utility` directive, you can also register functional utilities that accept an argument:
 
-CSS
-
-```
+```css
 @utility tab-* {  tab-size: --value(--tab-size-*);}
 ```
 
@@ -313,9 +254,7 @@ The special `--value()` function is used to resolve the utility value.
 
 Use the `--value(--theme-key-*)` syntax to resolve the utility value against a set of theme keys:
 
-CSS
-
-```
+```css
 @theme {  --tab-size-2: 2;  --tab-size-4: 4;  --tab-size-github: 8;}@utility tab-* {  tab-size: --value(--tab-size-*);}
 ```
 
@@ -325,9 +264,7 @@ This will match utilities like `tab-2`, `tab-4`, and `tab-github`.
 
 To resolve the value as a bare value, use the `--value({type})` syntax, where `{type}` is the data type you want to validate the bare value as:
 
-CSS
-
-```
+```css
 @utility tab-* {  tab-size: --value(integer);}
 ```
 
@@ -339,9 +276,7 @@ Available bare value data types are: `number`, `integer`, `ratio`, and `percenta
 
 To support literal values, use the `--value('literal')` syntax (notice the quotes):
 
-CSS
-
-```
+```css
 @utility tab-* {  tab-size: --value("inherit", "initial", "unset");}
 ```
 
@@ -351,9 +286,7 @@ This will match utilities like `tab-inherit`, `tab-initial`, and `tab-unset`.
 
 To support arbitrary values, use the `--value([{type}])` syntax (notice the square brackets) to tell Tailwind which types are supported as an arbitrary value:
 
-CSS
-
-```
+```css
 @utility tab-* {  tab-size: --value([integer]);}
 ```
 
@@ -365,25 +298,19 @@ Available arbitrary value data types are: `absolute-size`, `angle`, `bg-size`, `
 
 All three forms of the `--value()` function can be used within a rule as multiple declarations, and any declarations that fail to resolve will be omitted in the output:
 
-CSS
-
-```
+```css
 @theme {  --tab-size-github: 8;}@utility tab-* {  tab-size: --value([integer]);  tab-size: --value(integer);  tab-size: --value(--tab-size-*);}
 ```
 
 This makes it possible to treat the value differently in each case if necessary, for example translating a bare integer to a percentage:
 
-CSS
-
-```
+```css
 @utility opacity-* {  opacity: --value([percentage]);  opacity: calc(--value(integer) * 1%);  opacity: --value(--opacity-*);}
 ```
 
 The `--value()` function can also take multiple arguments and resolve them left to right if you don't need to treat the return value differently in different cases:
 
-CSS
-
-```
+```css
 @theme {  --tab-size-github: 8;}@utility tab-* {  tab-size: --value(--tab-size-*, integer, [integer]);}@utility opacity-* {  opacity: calc(--value(integer) * 1%);  opacity: --value(--opacity-*, [percentage]);}
 ```
 
@@ -391,9 +318,7 @@ CSS
 
 To support negative values, register separate positive and negative utilities into separate declarations:
 
-CSS
-
-```
+```css
 @utility inset-* {  inset: --spacing(--value(integer));  inset: --value([percentage], [length]);}@utility -inset-* {  inset: --spacing(--value(integer) * -1);  inset: calc(--value([percentage], [length]) * -1);}
 ```
 
@@ -401,9 +326,7 @@ CSS
 
 Modifiers are handled using the `--modifier()` function which works exactly like the `--value()` function but operates on a modifier if present:
 
-CSS
-
-```
+```css
 @utility text-* {  font-size: --value(--text-*, [length]);  line-height: --modifier(--leading-*, [length], [*]);}
 ```
 
@@ -413,9 +336,7 @@ If a modifier isn't present, any declaration depending on a modifier is just not
 
 To handle fractions, we rely on the CSS `ratio` data type. If this is used with `--value()`, it's a signal to Tailwind to treat the value and modifier as a single value:
 
-CSS
-
-```
+```css
 @utility aspect-* {  aspect-ratio: --value(--aspect-ratio-*, ratio, [ratio]);}
 ```
 
@@ -425,54 +346,24 @@ This will match utilities like `aspect-square`, `aspect-3/4`, and `aspect-[7/9]`
 
 In addition to using the variants that ship with Tailwind, you can also add your own custom variants using the `@custom-variant` directive:
 
-```
+```css
 @custom-variant theme-midnight {  &:where([data-theme="midnight"] *) {    @slot;  }}
 ```
 
 Now you can use the `theme-midnight:<utility>` variant in your HTML:
 
-```
+```html
 <html data-theme="midnight">  <button class="theme-midnight:bg-black ..."></button></html>
 ```
 
 You can create variants using the shorthand syntax when nesting isn't required:
 
-```
+```css
 @custom-variant theme-midnight (&:where([data-theme="midnight"] *));
 ```
 
 When a custom variant has multiple rules, they can be nested within each other:
 
-```
+```css
 @custom-variant any-hover {  @media (any-hover: hover) {    &:hover {      @slot;    }  }}
 ```
-
-### On this page
-
-- [Customizing your theme](https://tailwindcss.com/docs/adding-custom-styles#customizing-your-theme)
-- [Using arbitrary values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values)
-  - [Arbitrary properties](https://tailwindcss.com/docs/adding-custom-styles#arbitrary-properties)
-  - [Arbitrary variants](https://tailwindcss.com/docs/adding-custom-styles#arbitrary-variants)
-  - [Handling whitespace](https://tailwindcss.com/docs/adding-custom-styles#handling-whitespace)
-  - [Resolving ambiguities](https://tailwindcss.com/docs/adding-custom-styles#resolving-ambiguities)
-- [Using custom CSS](https://tailwindcss.com/docs/adding-custom-styles#using-custom-css)
-  - [Adding base styles](https://tailwindcss.com/docs/adding-custom-styles#adding-base-styles)
-  - [Adding component classes](https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes)
-  - [Using variants](https://tailwindcss.com/docs/adding-custom-styles#using-variants)
-- [Adding custom utilities](https://tailwindcss.com/docs/adding-custom-styles#adding-custom-utilities)
-  - [Simple utilities](https://tailwindcss.com/docs/adding-custom-styles#simple-utilities)
-  - [Complex utilities](https://tailwindcss.com/docs/adding-custom-styles#complex-utilities)
-  - [Functional utilities](https://tailwindcss.com/docs/adding-custom-styles#functional-utilities)
-- [Adding custom variants](https://tailwindcss.com/docs/adding-custom-styles#adding-custom-variants)
-
-[![Refactoring UI](https://tailwindcss.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbook-promo.27d91093.png&w=256&q=75)\\
-\\
-From the creators of Tailwind CSS\\
-\\
-Make your ideas look awesome, without relying on a designer.\\
-\\
-> “This is the survival kit I wish I had when I started building apps.”\\
-> \\
-> Derrick Reimer, SavvyCal](https://www.refactoringui.com/?ref=sidebar)
-
-Copyright © 2025 Tailwind Labs Inc.· [Trademark Policy](https://tailwindcss.com/brand)

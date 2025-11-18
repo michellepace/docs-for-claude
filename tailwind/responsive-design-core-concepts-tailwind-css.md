@@ -1,10 +1,3 @@
-[Home](https://tailwindcss.com/) v4.1
-
-`⌘K`  `Ctrl K` [Docs](https://tailwindcss.com/docs) [Blog](https://tailwindcss.com/blog) [Showcase](https://tailwindcss.com/showcase) [Sponsor](https://tailwindcss.com/sponsor) [Plus](https://tailwindcss.com/plus?ref=top) [GitHub repository](https://github.com/tailwindlabs/tailwindcss)
-
-1. Core concepts
-2. Responsive design
-
 Core concepts
 
 # Responsive design
@@ -19,15 +12,13 @@ First, make sure you've added the [viewport meta tag](https://developer.mozilla.
 
 index.html
 
-```
+```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 ```
 
 Then to add a utility but only have it take effect at a certain breakpoint, all you need to do is prefix the utility with the breakpoint name, followed by the `:` character:
 
-HTML
-
-```
+```html
 <!-- Width of 16 by default, 32 on medium screens, and 48 on large screens --><img class="w-16 md:w-32 lg:w-48" src="..." />
 ```
 
@@ -45,7 +36,7 @@ This works for **every utility class in the framework**, which means you can cha
 
 Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens:
 
-```
+```html
 <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">  <div class="md:flex">    <div class="md:shrink-0">      <img        class="h-48 w-full object-cover md:h-full md:w-48"        src="/img/building.jpg"        alt="Modern building architecture"      />    </div>    <div class="p-8">      <div class="text-sm font-semibold tracking-wide text-indigo-500 uppercase">Company retreats</div>      <a href="#" class="mt-1 block text-lg leading-tight font-medium text-black hover:underline">        Incredible accommodation for your team      </a>      <p class="mt-2 text-gray-500">        Looking to take your team away on a retreat to enjoy awesome food and take in some sunshine? We have a list of        places to do just that.      </p>    </div>  </div></div>
 ```
 
@@ -69,17 +60,13 @@ Where this approach surprises people most often is that to style something for m
 
 Don't use `sm:` to target mobile devices
 
-HTML
-
-```
+```html
 <!-- This will only center text on screens 640px and wider, not on small screens --><div class="sm:text-center"></div>
 ```
 
 Use unprefixed utilities to target mobile, and override them at larger breakpoints
 
-HTML
-
-```
+```html
 <!-- This will center text on mobile, and left align it on screens 640px and wider --><div class="text-center sm:text-left"></div>
 ```
 
@@ -91,9 +78,7 @@ By default, styles applied by rules like `md:flex` will apply at that breakpoint
 
 If you'd like to apply a utility _only_ when a specific breakpoint range is active, stack a responsive variant like `md` with a `max-*` variant to limit that style to a specific range:
 
-HTML
-
-```
+```html
 <div class="md:max-xl:flex">  <!-- ... --></div>
 ```
 
@@ -111,9 +96,7 @@ Tailwind generates a corresponding `max-*` variant for each breakpoint, so out o
 
 To target a single breakpoint, target the range for that breakpoint by stacking a responsive variant like `md` with the `max-*` variant for the next breakpoint:
 
-HTML
-
-```
+```html
 <div class="md:max-lg:flex">  <!-- ... --></div>
 ```
 
@@ -127,15 +110,13 @@ Use the `--breakpoint-*` theme variables to customize your breakpoints:
 
 app.css
 
-```
+```css
 @import "tailwindcss";@theme {  --breakpoint-xs: 30rem;  --breakpoint-2xl: 100rem;  --breakpoint-3xl: 120rem;}
 ```
 
 This updates the `2xl` breakpoint to use `100rem` instead of the default `96rem`, and creates new `xs` and `3xl` breakpoints that can be used in your markup:
 
-HTML
-
-```
+```html
 <div class="grid xs:grid-cols-2 3xl:grid-cols-6">  <!-- ... --></div>
 ```
 
@@ -151,7 +132,7 @@ To remove a default breakpoint, reset its value to the `initial` keyword:
 
 app.css
 
-```
+```css
 @import "tailwindcss";@theme {  --breakpoint-2xl: initial;}
 ```
 
@@ -159,7 +140,7 @@ You can also reset all of the default breakpoints using `--breakpoint-*: initial
 
 app.css
 
-```
+```css
 @import "tailwindcss";@theme {  --breakpoint-*: initial;  --breakpoint-tablet: 40rem;  --breakpoint-laptop: 64rem;  --breakpoint-desktop: 80rem;}
 ```
 
@@ -167,9 +148,9 @@ Learn more removing default theme values in the [theme documentation](https://ta
 
 ### [Using arbitrary values](https://tailwindcss.com/docs/responsive-design\#using-arbitrary-values)
 
-If you need to use a one-off breakpoint that doesn’t make sense to include in your theme, use the `min` or `max` variants to generate a custom breakpoint on the fly using any arbitrary value.
+If you need to use a one-off breakpoint that doesn't make sense to include in your theme, use the `min` or `max` variants to generate a custom breakpoint on the fly using any arbitrary value.
 
-```
+```html
 <div class="max-[600px]:bg-sky-300 min-[320px]:text-center">  <!-- ... --></div>
 ```
 
@@ -185,9 +166,7 @@ Learn more about arbitrary value support in the [arbitrary values](https://tailw
 
 Use the `@container` class to mark an element as a container, then use variants like `@sm` and `@md` to style child elements based on the size of the container:
 
-HTML
-
-```
+```html
 <div class="@container">  <div class="flex flex-col @md:flex-row">    <!-- ... -->  </div></div>
 ```
 
@@ -197,9 +176,7 @@ Just like breakpoint variants, container queries are mobile-first in Tailwind CS
 
 Use variants like `@max-sm` and `@max-md` to apply a style below a specific container size:
 
-HTML
-
-```
+```html
 <div class="@container">  <div class="flex flex-row @max-md:flex-col">    <!-- ... -->  </div></div>
 ```
 
@@ -207,9 +184,7 @@ HTML
 
 Stack a regular container query variant with a max-width container query variant to target a specific range:
 
-HTML
-
-```
+```html
 <div class="@container">  <div class="flex flex-row @sm:@max-md:flex-col">    <!-- ... -->  </div></div>
 ```
 
@@ -217,9 +192,7 @@ HTML
 
 For complex designs that use multiple nested containers, you can name containers using `@container/{name}` and target specific containers with variants like `@sm/{name}` and `@md/{name}`:
 
-HTML
-
-```
+```html
 <div class="@container/main">  <!-- ... -->  <div class="flex flex-row @sm/main:flex-col">    <!-- ... -->  </div></div>
 ```
 
@@ -231,15 +204,13 @@ Use the `--container-*` theme variables to customize your container sizes:
 
 app.css
 
-```
+```css
 @import "tailwindcss";@theme {  --container-8xl: 96rem;}
 ```
 
 This adds a new `8xl` container query variant that can be used in your markup:
 
-HTML
-
-```
+```html
 <div class="@container">  <div class="flex flex-col @8xl:flex-row">    <!-- ... -->  </div></div>
 ```
 
@@ -249,9 +220,7 @@ Learn more about customizing your theme in the [theme documentation](https://tai
 
 Use variants like `@min-[475px]` and `@max-[960px]` for one-off container query sizes you don't want to add to your theme:
 
-HTML
-
-```
+```html
 <div class="@container">  <div class="flex flex-col @min-[475px]:flex-row">    <!-- ... -->  </div></div>
 ```
 
@@ -259,9 +228,7 @@ HTML
 
 Use [container query length units](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries#container_query_length_units) like `cqw` as arbitrary values in other utility classes to reference the container size:
 
-HTML
-
-```
+```html
 <div class="@container">  <div class="w-[50cqw]">    <!-- ... -->  </div></div>
 ```
 
@@ -284,36 +251,3 @@ By default, Tailwind includes container sizes ranging from 16rem _(256px)_ to 80
 | `@5xl` | 64rem _(1024px)_ | `@container (width >= 64rem) { … }` |
 | `@6xl` | 72rem _(1152px)_ | `@container (width >= 72rem) { … }` |
 | `@7xl` | 80rem _(1280px)_ | `@container (width >= 80rem) { … }` |
-
-### On this page
-
-- [Overview](https://tailwindcss.com/docs/responsive-design#overview)
-- [Working mobile-first](https://tailwindcss.com/docs/responsive-design#working-mobile-first)
-  - [Targeting mobile screens](https://tailwindcss.com/docs/responsive-design#targeting-mobile-screens)
-  - [Targeting a breakpoint range](https://tailwindcss.com/docs/responsive-design#targeting-a-breakpoint-range)
-  - [Targeting a single breakpoint](https://tailwindcss.com/docs/responsive-design#targeting-a-single-breakpoint)
-- [Using custom breakpoints](https://tailwindcss.com/docs/responsive-design#using-custom-breakpoints)
-  - [Customizing your theme](https://tailwindcss.com/docs/responsive-design#customizing-your-theme)
-  - [Removing default breakpoints](https://tailwindcss.com/docs/responsive-design#removing-default-breakpoints)
-  - [Using arbitrary values](https://tailwindcss.com/docs/responsive-design#using-arbitrary-values)
-- [Container queries](https://tailwindcss.com/docs/responsive-design#container-queries)
-  - [What are container queries?](https://tailwindcss.com/docs/responsive-design#what-are-container-queries)
-  - [Basic example](https://tailwindcss.com/docs/responsive-design#basic-example)
-  - [Max-width container queries](https://tailwindcss.com/docs/responsive-design#max-width-container-queries)
-  - [Container query ranges](https://tailwindcss.com/docs/responsive-design#container-query-ranges)
-  - [Named containers](https://tailwindcss.com/docs/responsive-design#named-containers)
-  - [Using custom container sizes](https://tailwindcss.com/docs/responsive-design#using-custom-container-sizes)
-  - [Using container query units](https://tailwindcss.com/docs/responsive-design#using-container-query-units)
-  - [Container size reference](https://tailwindcss.com/docs/responsive-design#container-size-reference)
-
-[![Refactoring UI](https://tailwindcss.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbook-promo.27d91093.png&w=256&q=75)\\
-\\
-From the creators of Tailwind CSS\\
-\\
-Make your ideas look awesome, without relying on a designer.\\
-\\
-> “This is the survival kit I wish I had when I started building apps.”\\
-> \\
-> Derrick Reimer, SavvyCal](https://www.refactoringui.com/?ref=sidebar)
-
-Copyright © 2025 Tailwind Labs Inc.· [Trademark Policy](https://tailwindcss.com/brand)

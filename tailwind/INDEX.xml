@@ -22,7 +22,7 @@
   </source>
   <source>
     <title>Styling with utility classes - Core concepts - Tailwind CSS</title>
-    <description>Core utility-first methodology covering variants, responsive design, dark mode, arbitrary values, class composition, complex selectors, managing duplication, and resolving style conflicts in Tailwind.</description>
+    <description>Utility-first methodology: variants (`hover:`, `dark:`, `group-*`), responsive design, arbitrary values, class composition, complex selectors, `!important` modifier, managing duplication via components/loops, resolving conflicts, and import `prefix`/`important` flags.</description>
     <source_url>https://tailwindcss.com/docs/styling-with-utility-classes</source_url>
     <local_file>styling-with-utility-classes-core-concepts-tailwind-css.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
@@ -43,7 +43,7 @@
   </source>
   <source>
     <title>Adding custom styles - Core concepts - Tailwind CSS</title>
-    <description>Customising Tailwind via @theme directive, arbitrary values/properties/variants, custom CSS layers (base, components, utilities), @utility directive for functional utilities, and @custom-variant for custom selectors.</description>
+    <description>Tailwind theme customisation via `@theme` directive, arbitrary values/properties/variants with whitespace handling, custom CSS layers, functional utilities with `--value()`, `@variant` and `@custom-variant` directives.</description>
     <source_url>https://tailwindcss.com/docs/adding-custom-styles</source_url>
     <local_file>adding-custom-styles-core-concepts-tailwind-css.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
@@ -63,13 +63,6 @@
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
-    <title>Preflight - Base styles - Tailwind CSS</title>
-    <description>Modern-normalize CSS reset removing margins, resetting borders, unstyling headings and lists, making images block-level and constrained, with extension and disabling options.</description>
-    <source_url>https://tailwindcss.com/docs/preflight</source_url>
-    <local_file>preflight-base-styles-tailwind-css.md</local_file>
-    <scraped_at>2025-10-15</scraped_at>
-  </source>
-  <source>
     <title>Dark mode - Core concepts - Tailwind CSS</title>
     <description>Dark mode implementation using the dark: variant with prefers-color-scheme media query, manual class-based toggling, data attributes, and system theme synchronisation via localStorage.</description>
     <source_url>https://tailwindcss.com/docs/dark-mode</source_url>
@@ -82,5 +75,40 @@
     <source_url>https://tailwindcss.com/docs/responsive-design</source_url>
     <local_file>responsive-design-core-concepts-tailwind-css.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
+  </source>
+  <source>
+    <title>Theme variables - Core concepts - Tailwind CSS</title>
+    <description>Theme variables via @theme directive defining design tokens mapped to utilities, namespaces (color, font, spacing), default theme, customisation through extending/overriding, animation keyframes, inline/static options, CSS/JavaScript referencing.</description>
+    <source_url>https://tailwindcss.com/docs/theme</source_url>
+    <local_file>theme-variables-core-concepts-tailwind-css.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>font-family - Typography - Tailwind CSS</title>
+    <description>Utilities for controlling font-family including font-sans, font-serif, font-mono classes, custom values with arbitrary syntax, CSS variable integration, responsive variants, theme customisation with --font-* variables, font-feature-settings and @font-face integration.</description>
+    <source_url>https://tailwindcss.com/docs/font-family</source_url>
+    <local_file>font-family-typography-tailwind-css.md</local_file>
+    <scraped_at>2025-11-16</scraped_at>
+  </source>
+  <source>
+    <title>Preflight - Base styles - Tailwind CSS</title>
+    <description>Opinionated base styles built on modern-normalize with complete CSS source covering margin/border/padding resets, unstyled headings and lists, block-level images, form input normalisation, extending Preflight, and disabling options.</description>
+    <source_url>https://tailwindcss.com/docs/preflight</source_url>
+    <local_file>preflight-base-styles-tailwind-css.md</local_file>
+    <scraped_at>2025-11-17</scraped_at>
+  </source>
+  <source>
+    <title>Upgrade guide - Getting started - Tailwind CSS</title>
+    <description>Upgrading Tailwind CSS v3 to v4 with automatic upgrade tool, manual migration for PostCSS, Vite, CLI, breaking changes including renamed utilities, preflight updates, browser requirements, configuration changes, and compatibility notes.</description>
+    <source_url>https://tailwindcss.com/docs/upgrade-guide</source_url>
+    <local_file>upgrade-guide-getting-started-tailwind-css.md</local_file>
+    <scraped_at>2025-11-17</scraped_at>
+  </source>
+  <source>
+    <title>background-image - Backgrounds - Tailwind CSS</title>
+    <description>Background image utilities including linear, radial, and conic gradients with directional variants, gradient color stops and positions, interpolation modes, custom values with arbitrary syntax, and responsive design variants.</description>
+    <source_url>https://tailwindcss.com/docs/background-image</source_url>
+    <local_file>background-image-backgrounds-tailwind-css.md</local_file>
+    <scraped_at>2025-11-17</scraped_at>
   </source>
 </docs_index>
