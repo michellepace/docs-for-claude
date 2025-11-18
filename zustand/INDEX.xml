@@ -1,0 +1,9 @@
+<docs_index>
+  <source>
+    <title>Introduction - Zustand</title>
+    <description>Introduction to Zustand state management library covering installation via npm, creating stores with the create hook, binding components, hook-based API without providers, and handling React concurrency issues.</description>
+    <source_url>https://zustand.docs.pmnd.rs/getting-started/introduction</source_url>
+    <local_file>introduction-zustand.md</local_file>
+    <scraped_at>2025-11-18</scraped_at>
+  </source>
+</docs_index>
