@@ -4,6 +4,7 @@
 # Disable only the rules that interfere with practical markdown writing
 MD013: false  # Line length (inappropriate for markdown)
 MD024: false  # Allow duplicate headings (helpful for consistent section patterns)
+MD025: false  # Allow multiple H1 headings (front matter title + body H1 for LLM comprehension)
 MD033: false  # Allow inline HTML (<details>, <tags>, etc.)
 MD036: false  # Allow emphasis (bold/italic) without treating it as heading
 MD040: false  # Fenced code blocks don't need language specified
