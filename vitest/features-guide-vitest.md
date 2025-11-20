@@ -1,62 +1,25 @@
-[Skip to content](https://vitest.dev/guide/features.html#VPContent)
+---
+title: Features | Guide
+outline: deep
+---
 
-On this page
+# Features
 
-# Features [​](https://vitest.dev/guide/features.html\#features)
+<FeaturesList class="!gap-1 text-lg" />
 
-- [Vite](https://vitejs.dev/)'s config, transformers, resolvers, and plugins
+<div h-2 />
+<CourseLink href="https://vueschool.io/lessons/your-first-test?friend=vueuse">Learn how to write your first test by Video</CourseLink>
 
-- Use the same setup from your app to run the tests!
-
-- Smart & instant watch mode, like HMR for tests!
-
-- Component testing for Vue, React, Svelte, Lit, Marko and more
-
-- Out-of-the-box TypeScript / JSX support
-
-- ESM first, top level await
-
-- Benchmarking support with [Tinybench](https://github.com/tinylibs/tinybench)
-
-- Filtering, timeouts, concurrent for suite and tests
-
-- [Projects](https://vitest.dev/guide/projects) support
-
-- [Jest-compatible Snapshot](https://vitest.dev/guide/snapshot)
-
-- [Chai](https://www.chaijs.com/) built-in for assertions + [Jest expect](https://jestjs.io/docs/expect) compatible APIs
-
-- [Tinyspy](https://github.com/tinylibs/tinyspy) built-in for mocking
-
-- [happy-dom](https://github.com/capricorn86/happy-dom) or [jsdom](https://github.com/jsdom/jsdom) for DOM mocking
-
-- [Browser Mode](https://vitest.dev/guide/browser/) for running component tests in the browser
-
-- Code coverage via [v8](https://v8.dev/blog/javascript-code-coverage) or [istanbul](https://istanbul.js.org/)
-
-- Rust-like [in-source testing](https://vitest.dev/guide/in-source)
-
-- Type Testing via [expect-type](https://github.com/mmkal/expect-type)
-
-- Sharding Support
-
-- Reporting Uncaught Errors
-
-
-[Learn how to write your first test by Video](https://vueschool.io/lessons/your-first-test?friend=vueuse)
-
-## Shared Config between Test, Dev and Build [​](https://vitest.dev/guide/features.html\#shared-config-between-test-dev-and-build)
+## Shared Config between Test, Dev and Build
 
 Vite's config, transformers, resolvers, and plugins. Use the same setup from your app to run the tests.
 
-Learn more at [Configuring Vitest](https://vitest.dev/guide/#configuring-vitest).
+Learn more at [Configuring Vitest](/guide/#configuring-vitest).
 
-## Watch Mode [​](https://vitest.dev/guide/features.html\#watch-mode)
+## Watch Mode
 
-bash
-
-```
-$ vitest
+```bash
+vitest
 ```
 
 When you modify your source code or the test files, Vitest smartly searches the module graph and only reruns the related tests, just like how HMR works in Vite!
@@ -65,29 +28,28 @@ When you modify your source code or the test files, Vitest smartly searches the 
 
 Start Vitest with the `--standalone` flag to keep it running in the background. It won't run any tests until they change. Vitest will not run tests if the source code is changed until the test that imports the source has been run
 
-## Common Web Idioms Out-Of-The-Box [​](https://vitest.dev/guide/features.html\#common-web-idioms-out-of-the-box)
+## Common Web Idioms Out-Of-The-Box
 
 Out-of-the-box ES Module / TypeScript / JSX support / PostCSS
 
-## Threads [​](https://vitest.dev/guide/features.html\#threads)
+## Threads
 
-By default Vitest runs test files in [multiple processes](https://vitest.dev/guide/parallelism) using [`node:child_process`](https://nodejs.org/api/child_process.html), allowing tests to run simultaneously. If you want to speed up your test suite even further, consider enabling `--pool=threads` to run tests using [`node:worker_threads`](https://nodejs.org/api/worker_threads.html) (beware that some packages might not work with this setup). To run tests in a single thread or process, see [`fileParallelism`](https://vitest.dev/config/#fileparallelism).
+By default Vitest runs test files in [multiple processes](/guide/parallelism) using [`node:child_process`](https://nodejs.org/api/child_process.html), allowing tests to run simultaneously. If you want to speed up your test suite even further, consider enabling `--pool=threads` to run tests using [`node:worker_threads`](https://nodejs.org/api/worker_threads.html) (beware that some packages might not work with this setup).
+To run tests in a single thread or process, see [`fileParallelism`](/config/#fileParallelism).
 
 Vitest also isolates each file's environment so env mutations in one file don't affect others. Isolation can be disabled by passing `--no-isolate` to the CLI (trading correctness for run performance).
 
-## Test Filtering [​](https://vitest.dev/guide/features.html\#test-filtering)
+## Test Filtering
 
 Vitest provides many ways to narrow down the tests to run in order to speed up testing so you can focus on development.
 
-Learn more about [Test Filtering](https://vitest.dev/guide/filtering).
+Learn more about [Test Filtering](/guide/filtering).
 
-## Running Tests Concurrently [​](https://vitest.dev/guide/features.html\#running-tests-concurrently)
+## Running Tests Concurrently
 
 Use `.concurrent` in consecutive tests to start them in parallel.
 
-ts
-
-```
+```ts
 import { describe, it } from 'vitest'
 
 // The two tests marked with concurrent will be started in parallel
@@ -100,9 +62,7 @@ describe('suite', () => {
 
 If you use `.concurrent` on a suite, every test in it will be started in parallel.
 
-ts
-
-```
+```ts
 import { describe, it } from 'vitest'
 
 // All tests within this suite will be started in parallel
@@ -113,19 +73,17 @@ describe.concurrent('suite', () => {
 })
 ```
 
-You can also use `.skip`, `.only`, and `.todo` with concurrent suites and tests. Read more in the [API Reference](https://vitest.dev/api/#test-concurrent).
+You can also use `.skip`, `.only`, and `.todo` with concurrent suites and tests. Read more in the [API Reference](/api/#test-concurrent).
 
-WARNING
+::: warning
+When running concurrent tests, Snapshots and Assertions must use `expect` from the local [Test Context](/guide/test-context) to ensure the right test is detected.
+:::
 
-When running concurrent tests, Snapshots and Assertions must use `expect` from the local [Test Context](https://vitest.dev/guide/test-context) to ensure the right test is detected.
-
-## Snapshot [​](https://vitest.dev/guide/features.html\#snapshot)
+## Snapshot
 
 [Jest-compatible](https://jestjs.io/docs/snapshot-testing) snapshot support.
 
-ts
-
-```
+```ts
 import { expect, it } from 'vitest'
 
 it('renders correctly', () => {
@@ -134,21 +92,19 @@ it('renders correctly', () => {
 })
 ```
 
-Learn more at [Snapshot](https://vitest.dev/guide/snapshot).
+Learn more at [Snapshot](/guide/snapshot).
 
-## Chai and Jest `expect` Compatibility [​](https://vitest.dev/guide/features.html\#chai-and-jest-expect-compatibility)
+## Chai and Jest `expect` Compatibility
 
 [Chai](https://www.chaijs.com/) is built-in for assertions with [Jest `expect`](https://jestjs.io/docs/expect)-compatible APIs.
 
-Notice that if you are using third-party libraries that add matchers, setting [`test.globals`](https://vitest.dev/config/#globals) to `true` will provide better compatibility.
+Notice that if you are using third-party libraries that add matchers, setting [`test.globals`](/config/#globals) to `true` will provide better compatibility.
 
-## Mocking [​](https://vitest.dev/guide/features.html\#mocking)
+## Mocking
 
 [Tinyspy](https://github.com/tinylibs/tinyspy) is built-in for mocking with `jest`-compatible APIs on `vi` object.
 
-ts
-
-```
+```ts
 import { expect, vi } from 'vitest'
 
 const fn = vi.fn()
@@ -167,27 +123,21 @@ expect(fn.mock.results[1].value).toBe('world')
 
 Vitest supports both [happy-dom](https://github.com/capricorn86/happy-dom) or [jsdom](https://github.com/jsdom/jsdom) for mocking DOM and browser APIs. They don't come with Vitest, you will need to install them separately:
 
-happy-domjsdom
+::: code-group
 
-bash
-
-```
-$ npm i -D happy-dom
+```bash [happy-dom]
+npm i -D happy-dom
 ```
 
-bash
+```bash [jsdom]
+npm i -D jsdom
+```
 
-```
-$ npm i -D jsdom
-```
+:::
 
 After that, change the `environment` option in your config file:
 
-vitest.config.ts
-
-ts
-
-```
+```ts [vitest.config.ts]
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
@@ -197,17 +147,13 @@ export default defineConfig({
 })
 ```
 
-Learn more at [Mocking](https://vitest.dev/guide/mocking).
+Learn more at [Mocking](/guide/mocking).
 
-## Coverage [​](https://vitest.dev/guide/features.html\#coverage)
+## Coverage
 
 Vitest supports Native code coverage via [`v8`](https://v8.dev/blog/javascript-code-coverage) and instrumented code coverage via [`istanbul`](https://istanbul.js.org/).
 
-package.json
-
-json
-
-```
+```json [package.json]
 {
   "scripts": {
     "test": "vitest",
@@ -216,19 +162,15 @@ json
 }
 ```
 
-Learn more at [Coverage](https://vitest.dev/guide/coverage).
+Learn more at [Coverage](/guide/coverage).
 
-## In-Source Testing [​](https://vitest.dev/guide/features.html\#in-source-testing)
+## In-Source Testing
 
 Vitest also provides a way to run tests within your source code along with the implementation, similar to [Rust's module tests](https://doc.rust-lang.org/book/ch11-03-test-organization.html#the-tests-module-and-cfgtest).
 
 This makes the tests share the same closure as the implementations and able to test against private states without exporting. Meanwhile, it also brings the feedback loop closer for development.
 
-src/index.ts
-
-ts
-
-```
+```ts [src/index.ts]
 // the implementation
 export function add(...args: number[]): number {
   return args.reduce((a, b) => a + b, 0)
@@ -245,17 +187,13 @@ if (import.meta.vitest) {
 }
 ```
 
-Learn more at [In-source testing](https://vitest.dev/guide/in-source).
+Learn more at [In-source testing](/guide/in-source).
 
-## Benchmarking Experimental [​](https://vitest.dev/guide/features.html\#benchmarking)
+## Benchmarking <Badge type="warning">Experimental</Badge> {#benchmarking}
 
-You can run benchmark tests with [`bench`](https://vitest.dev/api/#bench) function via [Tinybench](https://github.com/tinylibs/tinybench) to compare performance results.
+You can run benchmark tests with [`bench`](/api/#bench) function via [Tinybench](https://github.com/tinylibs/tinybench) to compare performance results.
 
-sort.bench.ts
-
-ts
-
-```
+```ts [sort.bench.ts]
 import { bench, describe } from 'vitest'
 
 describe('sort', () => {
@@ -275,17 +213,14 @@ describe('sort', () => {
 })
 ```
 
-![Benchmark report](https://github.com/vitest-dev/vitest/assets/4232207/6f0383ea-38ba-4f14-8a05-ab243afea01d)![Benchmark report](https://github.com/vitest-dev/vitest/assets/4232207/efbcb427-ecf1-4882-88de-210cd73415f6)
+<img alt="Benchmark report" img-dark src="https://github.com/vitest-dev/vitest/assets/4232207/6f0383ea-38ba-4f14-8a05-ab243afea01d">
+<img alt="Benchmark report" img-light src="https://github.com/vitest-dev/vitest/assets/4232207/efbcb427-ecf1-4882-88de-210cd73415f6">
 
-## Type Testing Experimental [​](https://vitest.dev/guide/features.html\#type-testing)
+## Type Testing <Badge type="warning">Experimental</Badge> {#type-testing}
 
-You can [write tests](https://vitest.dev/guide/testing-types) to catch type regressions. Vitest comes with [`expect-type`](https://github.com/mmkal/expect-type) package to provide you with a similar and easy to understand API.
+You can [write tests](/guide/testing-types) to catch type regressions. Vitest comes with [`expect-type`](https://github.com/mmkal/expect-type) package to provide you with a similar and easy to understand API.
 
-types.test-d.ts
-
-ts
-
-```
+```ts [types.test-d.ts]
 import { assertType, expectTypeOf, test } from 'vitest'
 import { mount } from './mount.js'
 
@@ -298,29 +233,24 @@ test('my types work properly', () => {
 })
 ```
 
-## Sharding [​](https://vitest.dev/guide/features.html\#sharding)
+## Sharding
 
-Run tests on different machines using [`--shard`](https://vitest.dev/guide/cli#shard) and [`--reporter=blob`](https://vitest.dev/guide/reporters#blob-reporter) flags. All test and coverage results can be merged at the end of your CI pipeline using `--merge-reports` command:
+Run tests on different machines using [`--shard`](/guide/cli#shard) and [`--reporter=blob`](/guide/reporters#blob-reporter) flags.
+All test and coverage results can be merged at the end of your CI pipeline using `--merge-reports` command:
 
-bash
-
-```
+```bash
 vitest --shard=1/2 --reporter=blob --coverage
 vitest --shard=2/2 --reporter=blob --coverage
 vitest --merge-reports --reporter=junit --coverage
 ```
 
-See [`Improving Performance | Sharding`](https://vitest.dev/guide/improving-performance#sharding) for more information.
+See [`Improving Performance | Sharding`](/guide/improving-performance#sharding) for more information.
 
-## Environment Variables [​](https://vitest.dev/guide/features.html\#environment-variables)
+## Environment Variables
 
 Vitest exclusively autoloads environment variables prefixed with `VITE_` from `.env` files to maintain compatibility with frontend-related tests, adhering to [Vite's established convention](https://vitejs.dev/guide/env-and-mode.html#env-files). To load every environmental variable from `.env` files anyway, you can use `loadEnv` method imported from `vite`:
 
-vitest.config.ts
-
-ts
-
-```
+```ts [vitest.config.ts]
 import { loadEnv } from 'vite'
 import { defineConfig } from 'vitest/config'
 
@@ -332,17 +262,15 @@ export default defineConfig(({ mode }) => ({
 }))
 ```
 
-## Unhandled Errors [​](https://vitest.dev/guide/features.html\#unhandled-errors)
+## Unhandled Errors
 
-By default, Vitest catches and reports all [unhandled rejections](https://developer.mozilla.org/en-US/docs/Web/API/Window/unhandledrejection_event), [uncaught exceptions](https://nodejs.org/api/process.html#event-uncaughtexception) (in Node.js) and [error](https://developer.mozilla.org/en-US/docs/Web/API/Window/error_event) events (in the [browser](https://vitest.dev/guide/browser/)).
+By default, Vitest catches and reports all [unhandled rejections](https://developer.mozilla.org/en-US/docs/Web/API/Window/unhandledrejection_event), [uncaught exceptions](https://nodejs.org/api/process.html#event-uncaughtexception) (in Node.js) and [error](https://developer.mozilla.org/en-US/docs/Web/API/Window/error_event) events (in the [browser](/guide/browser/)).
 
 You can disable this behaviour by catching them manually. Vitest assumes the callback is handled by you and won't report the error.
 
-setup.node.jssetup.browser.js
+::: code-group
 
-ts
-
-```
+```ts [setup.node.js]
 // in Node.js
 process.on('unhandledRejection', () => {
   // your own handler
@@ -353,9 +281,7 @@ process.on('uncaughtException', () => {
 })
 ```
 
-ts
-
-```
+```ts [setup.browser.js]
 // in the browser
 window.addEventListener('error', () => {
   // your own handler
@@ -366,13 +292,13 @@ window.addEventListener('unhandledrejection', () => {
 })
 ```
 
-Alternatively, you can also ignore reported errors with a [`dangerouslyIgnoreUnhandledErrors`](https://vitest.dev/config/#dangerouslyignoreunhandlederrors) option. Vitest will still report them, but they won't affect the test result (exit code won't be changed).
+:::
+
+Alternatively, you can also ignore reported errors with a [`dangerouslyIgnoreUnhandledErrors`](/config/#dangerouslyignoreunhandlederrors) option. Vitest will still report them, but they won't affect the test result (exit code won't be changed).
 
 If you need to test that error was not caught, you can create a test that looks like this:
 
-ts
-
-```
+```ts
 test('my function throws uncaught error', async ({ onTestFinished }) => {
   const unhandledRejectionListener = vi.fn()
   process.on('unhandledRejection', unhandledRejectionListener)
