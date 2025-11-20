@@ -62,4 +62,11 @@
     <local_file>language-support-biome.md</local_file>
     <scraped_at>2025-11-04</scraped_at>
   </source>
+  <source>
+    <title>Configuration | Biome</title>
+    <description>Biome configuration reference including schema, file patterns, VCS integration, linter and formatter settings, language-specific options for JavaScript, JSON, CSS, HTML, GraphQL, indentation, quotes, and override patterns.</description>
+    <source_url>https://github.com/biomejs/website/blob/main/src/content/docs/reference/configuration.mdx</source_url>
+    <local_file>configuration-biome.mdx</local_file>
+    <scraped_at>2025-11-20</scraped_at>
+  </source>
 </docs_index>

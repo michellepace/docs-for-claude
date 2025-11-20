@@ -123,3 +123,22 @@ uv/
 ```
 
 Scripts use FireCrawl Python SDK for scraping. MCP server configured ([.mcp.json](.mcp.json), [.claude/settings.json](.claude/settings.json)) for Claude Code self-healing beyond scripts.
+
+---
+
+## 🎯🎯🎯 Improve Later
+
+Instead of crawling, rather go GitHub to find docs there because its cleaner. If in .mdx format then keep it like so (don't convert it breaks)
+
+```markdown
+Your instinct is correct:
+- FireCrawl scraped HTML → configuration-biome.md = good but has scraper artefacts
+- GitHub source .mdx → keep as .mdx = best (canonical, clean)
+- GitHub source .mdx → converted to .md = worst (broken, lossy conversion)
+
+For future collections, you should:
+1. Check if docs are on GitHub
+2. If yes, grab the .mdx or .md files directly
+3. Keep them in their original format
+4. Only use FireCrawl as a fallback when source files aren't available
+```
