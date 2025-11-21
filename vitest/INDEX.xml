@@ -90,4 +90,32 @@
     <local_file>extending-matchers-guide-vitest.md</local_file>
     <scraped_at>2025-11-20</scraped_at>
   </source>
+  <source>
+    <title>Reporters | Guide | Vitest</title>
+    <description>Built-in reporters (default, verbose, tree, dot, junit, json, html, tap, tap-flat, hanging-process, github-actions, blob) with configuration options, outputFile setup, combining multiple reporters, custom reporter implementation via Reporter interface.</description>
+    <source_url>https://vitest.dev/guide/reporters.html</source_url>
+    <local_file>reporters-guide-vitest.md</local_file>
+    <scraped_at>2025-11-20</scraped_at>
+  </source>
+  <source>
+    <title>Command Line Interface | Guide | Vitest</title>
+    <description>CLI commands (vitest, run, watch, related, bench, init, list) and comprehensive options including coverage configuration, browser settings, test filtering, watch mode, sharding, reporters, changed file detection, and merge-reports functionality.</description>
+    <source_url>https://vitest.dev/guide/cli</source_url>
+    <local_file>command-line-interface-guide-vitest.md</local_file>
+    <scraped_at>2025-11-20</scraped_at>
+  </source>
+  <source>
+    <title>Improving Performance | Vitest</title>
+    <description>Test isolation settings with isolate and fileParallelism options, pool configurations (threads, forks, vmThreads), directory search limiting, and test sharding for parallel execution across multiple machines using shard and merge-reports commands.</description>
+    <source_url>https://vitest.dev/guide/improving-performance</source_url>
+    <local_file>improving-performance-vitest.md</local_file>
+    <scraped_at>2025-11-20</scraped_at>
+  </source>
+  <source>
+    <title>allowOnly | Config | Vitest</title>
+    <description>Configuration option controlling whether tests marked with only flag are permitted, with default behaviour blocking them in CI environments but allowing them locally, configurable via allowOnly setting or CLI flag.</description>
+    <source_url>https://vitest.dev/config/allowonly</source_url>
+    <local_file>allowonly-config-vitest.md</local_file>
+    <scraped_at>2025-11-20</scraped_at>
+  </source>
 </docs_index>
