@@ -1,28 +1,26 @@
-[Skip to main content](https://playwright.dev/docs/writing-tests#__docusaurus_skipToContent_fallback)
-
-On this page
-
-## Introduction [​](https://playwright.dev/docs/writing-tests\#introduction "Direct link to Introduction")
+---
+id: writing-tests
+title: "Writing tests"
+---
+## Introduction
 
 Playwright tests are simple: they **perform actions** and **assert the state** against expectations.
 
-Playwright automatically waits for [actionability](https://playwright.dev/docs/actionability) checks to pass before performing each action. You don't need to add manual waits or deal with race conditions. Playwright assertions are designed to describe expectations that will eventually be met, eliminating flaky timeouts and racy checks.
+Playwright automatically waits for [actionability](./actionability.md) checks to pass before performing each action. You don't need to add manual waits or deal with race conditions. Playwright assertions are designed to describe expectations that will eventually be met, eliminating flaky timeouts and racy checks.
 
 **You will learn**
 
-- [How to write the first test](https://playwright.dev/docs/writing-tests#first-test)
-- [How to perform actions](https://playwright.dev/docs/writing-tests#actions)
-- [How to use assertions](https://playwright.dev/docs/writing-tests#assertions)
-- [How tests run in isolation](https://playwright.dev/docs/writing-tests#test-isolation)
-- [How to use test hooks](https://playwright.dev/docs/writing-tests#using-test-hooks)
+- [How to write the first test](/writing-tests.md#first-test)
+- [How to perform actions](/writing-tests.md#actions)
+- [How to use assertions](/writing-tests.md#assertions)
+- [How tests run in isolation](/writing-tests.md#test-isolation)
+- [How to use test hooks](/writing-tests.md#using-test-hooks)
 
-## First test [​](https://playwright.dev/docs/writing-tests\#first-test "Direct link to First test")
+## First test
 
 Take a look at the following example to see how to write a test.
 
-tests/example.spec.ts
-
-```js
+```js title="tests/example.spec.ts"
 import { test, expect } from '@playwright/test';
 
 test('has title', async ({ page }) => {
@@ -43,13 +41,13 @@ test('get started link', async ({ page }) => {
 });
 ```
 
-note
-
+:::note
 Add `// @ts-check` at the start of each test file when using JavaScript in VS Code to get automatic type checking.
+:::
 
-## Actions [​](https://playwright.dev/docs/writing-tests\#actions "Direct link to Actions")
+## Actions
 
-### Navigation [​](https://playwright.dev/docs/writing-tests\#navigation "Direct link to Navigation")
+### Navigation
 
 Most tests start by navigating to a URL. After that, the test interacts with page elements.
 
@@ -57,13 +55,17 @@ Most tests start by navigating to a URL. After that, the test interacts with pag
 await page.goto('https://playwright.dev/');
 ```
 
-Playwright waits for the page to reach the load state before continuing. Learn more about [page.goto()](https://playwright.dev/docs/api/class-page#page-goto) options.
+```python
+page.goto("https://playwright.dev/")
+```
 
-### Interactions [​](https://playwright.dev/docs/writing-tests\#interactions "Direct link to Interactions")
+Playwright waits for the page to reach the load state before continuing. Learn more about [`method: Page.goto`] options.
 
-Performing actions starts with locating elements. Playwright uses [Locators API](https://playwright.dev/docs/locators) for that. Locators represent a way to find element(s) on the page at any moment. Learn more about the [different types](https://playwright.dev/docs/locators) of locators available.
+### Interactions
 
-Playwright waits for the element to be [actionable](https://playwright.dev/docs/actionability) before performing the action, so you don't need to wait for it to become available.
+Performing actions starts with locating elements. Playwright uses [Locators API](./locators.md) for that. Locators represent a way to find element(s) on the page at any moment. Learn more about the [different types](./locators.md) of locators available.
+
+Playwright waits for the element to be [actionable](./actionability.md) before performing the action, so you don't need to wait for it to become available.
 
 ```js
 // Create a locator.
@@ -79,25 +81,25 @@ In most cases, it'll be written in one line:
 await page.getByRole('link', { name: 'Get started' }).click();
 ```
 
-### Basic actions [​](https://playwright.dev/docs/writing-tests\#basic-actions "Direct link to Basic actions")
+### Basic actions
 
-Here are the most popular Playwright actions. For the complete list, check the [Locator API](https://playwright.dev/docs/api/class-locator) section.
+Here are the most popular Playwright actions. For the complete list, check the [Locator API](./api/class-locator.md) section.
 
 | Action | Description |
-| --- | --- |
-| [locator.check()](https://playwright.dev/docs/api/class-locator#locator-check) | Check the input checkbox |
-| [locator.click()](https://playwright.dev/docs/api/class-locator#locator-click) | Click the element |
-| [locator.uncheck()](https://playwright.dev/docs/api/class-locator#locator-uncheck) | Uncheck the input checkbox |
-| [locator.hover()](https://playwright.dev/docs/api/class-locator#locator-hover) | Hover mouse over the element |
-| [locator.fill()](https://playwright.dev/docs/api/class-locator#locator-fill) | Fill the form field, input text |
-| [locator.focus()](https://playwright.dev/docs/api/class-locator#locator-focus) | Focus the element |
-| [locator.press()](https://playwright.dev/docs/api/class-locator#locator-press) | Press single key |
-| [locator.setInputFiles()](https://playwright.dev/docs/api/class-locator#locator-set-input-files) | Pick files to upload |
-| [locator.selectOption()](https://playwright.dev/docs/api/class-locator#locator-select-option) | Select option in the drop down |
+| :- | :- |
+| [`method: Locator.check`] | Check the input checkbox |
+| [`method: Locator.click`] | Click the element |
+| [`method: Locator.uncheck`] | Uncheck the input checkbox |
+| [`method: Locator.hover`] | Hover mouse over the element |
+| [`method: Locator.fill`] | Fill the form field, input text |
+| [`method: Locator.focus`] | Focus the element |
+| [`method: Locator.press`] | Press single key |
+| [`method: Locator.setInputFiles`] | Pick files to upload |
+| [`method: Locator.selectOption`] | Select option in the drop down |
 
-## Assertions [​](https://playwright.dev/docs/writing-tests\#assertions "Direct link to Assertions")
+## Assertions
 
-Playwright includes [test assertions](https://playwright.dev/docs/test-assertions) in the form of `expect` function. To make an assertion, call `expect(value)` and choose a matcher that reflects the expectation.
+Playwright includes [test assertions](./test-assertions.md) in the form of `expect` function. To make an assertion, call `expect(value)` and choose a matcher that reflects the expectation.
 
 Playwright includes async matchers that wait until the expected condition is met. Using these matchers makes tests non-flaky and resilient. For example, this code waits until the page gets the title containing "Playwright":
 
@@ -105,20 +107,20 @@ Playwright includes async matchers that wait until the expected condition is met
 await expect(page).toHaveTitle(/Playwright/);
 ```
 
-Here are the most popular async assertions. For the complete list, see [assertions guide](https://playwright.dev/docs/test-assertions):
+Here are the most popular async assertions. For the complete list, see [assertions guide](./test-assertions.md):
 
 | Assertion | Description |
-| --- | --- |
-| [expect(locator).toBeChecked()](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-be-checked) | Checkbox is checked |
-| [expect(locator).toBeEnabled()](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-be-enabled) | Control is enabled |
-| [expect(locator).toBeVisible()](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-be-visible) | Element is visible |
-| [expect(locator).toContainText()](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-contain-text) | Element contains text |
-| [expect(locator).toHaveAttribute()](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-have-attribute) | Element has attribute |
-| [expect(locator).toHaveCount()](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-have-count) | List of elements has given length |
-| [expect(locator).toHaveText()](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-have-text) | Element matches text |
-| [expect(locator).toHaveValue()](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-have-value) | Input element has value |
-| [expect(page).toHaveTitle()](https://playwright.dev/docs/api/class-pageassertions#page-assertions-to-have-title) | Page has title |
-| [expect(page).toHaveURL()](https://playwright.dev/docs/api/class-pageassertions#page-assertions-to-have-url) | Page has URL |
+| :- | :- |
+| [`method: LocatorAssertions.toBeChecked`] | Checkbox is checked |
+| [`method: LocatorAssertions.toBeEnabled`] | Control is enabled |
+| [`method: LocatorAssertions.toBeVisible`] | Element is visible |
+| [`method: LocatorAssertions.toContainText`] | Element contains text |
+| [`method: LocatorAssertions.toHaveAttribute`] | Element has attribute |
+| [`method: LocatorAssertions.toHaveCount`] | List of elements has given length |
+| [`method: LocatorAssertions.toHaveText`] | Element matches text |
+| [`method: LocatorAssertions.toHaveValue`] | Input element has value |
+| [`method: PageAssertions.toHaveTitle`] | Page has title |
+| [`method: PageAssertions.toHaveURL`] | Page has URL |
 
 Playwright also includes generic matchers like `toEqual`, `toContain`, `toBeTruthy` that can be used to assert any conditions. These assertions do not use the `await` keyword as they perform immediate synchronous checks on already available values.
 
@@ -126,13 +128,11 @@ Playwright also includes generic matchers like `toEqual`, `toContain`, `toBeTrut
 expect(success).toBeTruthy();
 ```
 
-### Test Isolation [​](https://playwright.dev/docs/writing-tests\#test-isolation "Direct link to Test Isolation")
+### Test Isolation
 
-Playwright Test is based on the concept of [test fixtures](https://playwright.dev/docs/test-fixtures) such as the [built in page fixture](https://playwright.dev/docs/test-fixtures#built-in-fixtures), which is passed into your test. Pages are [isolated between tests due to the Browser Context](https://playwright.dev/docs/browser-contexts), which is equivalent to a brand new browser profile. Every test gets a fresh environment, even when multiple tests run in a single browser.
+Playwright Test is based on the concept of [test fixtures](./test-fixtures.md) such as the [built in page fixture](./test-fixtures#built-in-fixtures), which is passed into your test. Pages are [isolated between tests due to the Browser Context](./browser-contexts), which is equivalent to a brand new browser profile. Every test gets a fresh environment, even when multiple tests run in a single browser.
 
-tests/example.spec.ts
-
-```js
+```js title="tests/example.spec.ts"
 import { test } from '@playwright/test';
 
 test('example test', async ({ page }) => {
@@ -144,13 +144,11 @@ test('another test', async ({ page }) => {
 });
 ```
 
-### Using Test Hooks [​](https://playwright.dev/docs/writing-tests\#using-test-hooks "Direct link to Using Test Hooks")
+### Using Test Hooks
 
-You can use various [test hooks](https://playwright.dev/docs/api/class-test) such as `test.describe` to declare a group of tests and `test.beforeEach` and `test.afterEach` which are executed before/after each test. Other hooks include the `test.beforeAll` and `test.afterAll` which are executed once per worker before/after all tests.
+You can use various [test hooks](./api/class-test.md) such as `test.describe` to declare a group of tests and `test.beforeEach` and `test.afterEach` which are executed before/after each test. Other hooks include the `test.beforeAll` and `test.afterAll` which are executed once per worker before/after all tests.
 
-tests/example.spec.ts
-
-```js
+```js title="tests/example.spec.ts"
 import { test, expect } from '@playwright/test';
 
 test.describe('navigation', () => {
@@ -166,21 +164,10 @@ test.describe('navigation', () => {
 });
 ```
 
-## What's Next [​](https://playwright.dev/docs/writing-tests\#whats-next "Direct link to What's Next")
+## What's Next
 
-- [Run single test, multiple tests, headed mode](https://playwright.dev/docs/running-tests)
-- [Generate tests with Codegen](https://playwright.dev/docs/codegen-intro)
-- [See a trace of your tests](https://playwright.dev/docs/trace-viewer-intro)
-- [Explore UI Mode](https://playwright.dev/docs/test-ui-mode)
-- [Run tests on CI with GitHub Actions](https://playwright.dev/docs/ci-intro)
-
-- [Introduction](https://playwright.dev/docs/writing-tests#introduction)
-- [First test](https://playwright.dev/docs/writing-tests#first-test)
-- [Actions](https://playwright.dev/docs/writing-tests#actions)
-  - [Navigation](https://playwright.dev/docs/writing-tests#navigation)
-  - [Interactions](https://playwright.dev/docs/writing-tests#interactions)
-  - [Basic actions](https://playwright.dev/docs/writing-tests#basic-actions)
-- [Assertions](https://playwright.dev/docs/writing-tests#assertions)
-  - [Test Isolation](https://playwright.dev/docs/writing-tests#test-isolation)
-  - [Using Test Hooks](https://playwright.dev/docs/writing-tests#using-test-hooks)
-- [What's Next](https://playwright.dev/docs/writing-tests#whats-next)
+- [Run single test, multiple tests, headed mode](./running-tests.md)
+- [Generate tests with Codegen](./codegen-intro.md)
+- [See a trace of your tests](./trace-viewer-intro.md)
+- [Explore UI Mode](./test-ui-mode.md)
+- [Run tests on CI with GitHub Actions](./ci-intro.md)

@@ -1,12 +1,13 @@
-[Skip to main content](https://playwright.dev/docs/test-fixtures#__docusaurus_skipToContent_fallback)
+---
+id: test-fixtures
+title: "Fixtures"
+---
 
-On this page
-
-## Introduction [​](https://playwright.dev/docs/test-fixtures\#introduction "Direct link to Introduction")
+## Introduction
 
 Playwright Test is based on the concept of test fixtures. Test fixtures are used to establish the environment for each test, giving the test everything it needs and nothing else. Test fixtures are isolated between tests. With fixtures, you can group tests based on their meaning, instead of their common setup.
 
-### Built-in fixtures [​](https://playwright.dev/docs/test-fixtures\#built-in-fixtures "Direct link to Built-in fixtures")
+### Built-in fixtures
 
 You have already used test fixtures in your first test.
 
@@ -25,24 +26,24 @@ The `{ page }` argument tells Playwright Test to set up the `page` fixture and p
 Here is a list of the pre-defined fixtures that you are likely to use most of the time:
 
 | Fixture | Type | Description |
-| --- | --- | --- |
-| page | [Page](https://playwright.dev/docs/api/class-page "Page") | Isolated page for this test run. |
-| context | [BrowserContext](https://playwright.dev/docs/api/class-browsercontext "BrowserContext") | Isolated context for this test run. The `page` fixture belongs to this context as well. Learn how to [configure context](https://playwright.dev/docs/test-configuration). |
-| browser | [Browser](https://playwright.dev/docs/api/class-browser "Browser") | Browsers are shared across tests to optimize resources. Learn how to [configure browsers](https://playwright.dev/docs/test-configuration). |
-| browserName | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type "string") | The name of the browser currently running the test. Either `chromium`, `firefox` or `webkit`. |
-| request | [APIRequestContext](https://playwright.dev/docs/api/class-apirequestcontext "APIRequestContext") | Isolated [APIRequestContext](https://playwright.dev/docs/api/class-apirequestcontext) instance for this test run. |
+| :------- | :---- | :----------- |
+| page | [Page] | Isolated page for this test run. |
+| context | [BrowserContext] | Isolated context for this test run. The `page` fixture belongs to this context as well. Learn how to [configure context](./test-configuration.md). |
+| browser | [Browser] | Browsers are shared across tests to optimise resources. Learn how to [configure browsers](./test-configuration.md). |
+| browserName | [string] | The name of the browser currently running the test. Either `chromium`, `firefox` or `webkit`. |
+| request | [APIRequestContext] | Isolated [APIRequestContext](./api/class-apirequestcontext.md) instance for this test run. |
 
-### Without fixtures [​](https://playwright.dev/docs/test-fixtures\#without-fixtures "Direct link to Without fixtures")
+### Without fixtures
 
 Here is how a typical test environment setup differs between the traditional test style and the fixture-based one.
 
-`TodoPage` is a class that helps us interact with a "todo list" page of the web app, following the [Page Object Model](https://playwright.dev/docs/pom) pattern. It uses Playwright's `page` internally.
+`TodoPage` is a class that helps us interact with a "todo list" page of the web app, following the [Page Object Model](./pom.md) pattern. It uses Playwright's `page` internally.
 
-Click to expand the code for the `TodoPage`
+<details>
+  <summary>Click to expand the code for the <code>TodoPage</code></summary>
+  <div>
 
-todo-page.ts
-
-```js
+```js title="todo-page.ts"
 import type { Page, Locator } from '@playwright/test';
 
 export class TodoPage {
@@ -78,9 +79,10 @@ export class TodoPage {
 }
 ```
 
-todo.spec.ts
+  </div>
+</details>
 
-```js
+```js title="todo.spec.ts"
 const { test } = require('@playwright/test');
 const { TodoPage } = require('./todo-page');
 
@@ -110,22 +112,22 @@ test.describe('todo tests', () => {
 });
 ```
 
-### With fixtures [​](https://playwright.dev/docs/test-fixtures\#with-fixtures "Direct link to With fixtures")
+### With fixtures
 
 Fixtures have a number of advantages over before/after hooks:
 
 - Fixtures **encapsulate** setup and teardown in the same place so it is easier to write. So if you have an after hook that tears down what was created in a before hook, consider turning them into a fixture.
 - Fixtures are **reusable** between test files - you can define them once and use them in all your tests. That's how Playwright's built-in `page` fixture works. So if you have a helper function that is used in multiple tests, consider turning it into a fixture.
-- Fixtures are **on-demand** \- you can define as many fixtures as you'd like, and Playwright Test will setup only the ones needed by your test and nothing else.
-- Fixtures are **composable** \- they can depend on each other to provide complex behaviors.
+- Fixtures are **on-demand** - you can define as many fixtures as you'd like, and Playwright Test will setup only the ones needed by your test and nothing else.
+- Fixtures are **composable** - they can depend on each other to provide complex behaviors.
 - Fixtures are **flexible**. Tests can use any combination of fixtures to precisely tailor the environment to their needs, without affecting other tests.
 - Fixtures simplify **grouping**. You no longer need to wrap tests in `describe`s that set up their environment, and are free to group your tests by their meaning instead.
 
-Click to expand the code for the `TodoPage`
+<details>
+  <summary>Click to expand the code for the <code>TodoPage</code></summary>
+  <div>
 
-todo-page.ts
-
-```js
+```js title="todo-page.ts"
 import type { Page, Locator } from '@playwright/test';
 
 export class TodoPage {
@@ -161,9 +163,10 @@ export class TodoPage {
 }
 ```
 
-example.spec.ts
+  </div>
+</details>
 
-```js
+```js title="example.spec.ts"
 import { test as base } from '@playwright/test';
 import { TodoPage } from './todo-page';
 
@@ -190,17 +193,17 @@ test('should remove an item', async ({ todoPage }) => {
 });
 ```
 
-## Creating a fixture [​](https://playwright.dev/docs/test-fixtures\#creating-a-fixture "Direct link to Creating a fixture")
+## Creating a fixture
 
-To create your own fixture, use [test.extend()](https://playwright.dev/docs/api/class-test#test-extend) to create a new `test` object that will include it.
+To create your own fixture, use [`method: Test.extend`] to create a new `test` object that will include it.
 
-Below we create two fixtures `todoPage` and `settingsPage` that follow the [Page Object Model](https://playwright.dev/docs/pom) pattern.
+Below we create two fixtures `todoPage` and `settingsPage` that follow the [Page Object Model](./pom.md) pattern.
 
-Click to expand the code for the `TodoPage` and `SettingsPage`
+<details>
+  <summary>Click to expand the code for the <code>TodoPage</code> and <code>SettingsPage</code></summary>
+  <div>
 
-todo-page.ts
-
-```js
+```js title="todo-page.ts"
 import type { Page, Locator } from '@playwright/test';
 
 export class TodoPage {
@@ -238,9 +241,7 @@ export class TodoPage {
 
 SettingsPage is similar:
 
-settings-page.ts
-
-```js
+```js title="settings-page.ts"
 import type { Page } from '@playwright/test';
 
 export class SettingsPage {
@@ -253,9 +254,10 @@ export class SettingsPage {
 }
 ```
 
-my-test.ts
+  </div>
+</details>
 
-```js
+```js title="my-test.ts"
 import { test as base } from '@playwright/test';
 import { TodoPage } from './todo-page';
 import { SettingsPage } from './settings-page';
@@ -290,11 +292,11 @@ export const test = base.extend<MyFixtures>({
 export { expect } from '@playwright/test';
 ```
 
-note
-
+:::note
 Custom fixture names should start with a letter or underscore, and can contain only letters, numbers, and underscores.
+:::
 
-## Using a fixture [​](https://playwright.dev/docs/test-fixtures\#using-a-fixture "Direct link to Using a fixture")
+## Using a fixture
 
 Just mention a fixture in your test function argument, and the test runner will take care of it. Fixtures are also available in hooks and other fixtures. If you use TypeScript, fixtures will be type safe.
 
@@ -313,7 +315,7 @@ test('basic test', async ({ todoPage, page }) => {
 });
 ```
 
-## Overriding fixtures [​](https://playwright.dev/docs/test-fixtures\#overriding-fixtures "Direct link to Overriding fixtures")
+## Overriding fixtures
 
 In addition to creating your own fixtures, you can also override existing fixtures to fit your needs. Consider the following example which overrides the `page` fixture by automatically navigating to the `baseURL`:
 
@@ -328,16 +330,14 @@ export const test = base.extend({
 });
 ```
 
-Notice that in this example, the `page` fixture is able to depend on other built-in fixtures such as [testOptions.baseURL](https://playwright.dev/docs/api/class-testoptions#test-options-base-url). We can now configure `baseURL` in the configuration file, or locally in the test file with [test.use()](https://playwright.dev/docs/api/class-test#test-use).
+Notice that in this example, the `page` fixture is able to depend on other built-in fixtures such as [`property: TestOptions.baseURL`]. We can now configure `baseURL` in the configuration file, or locally in the test file with [`method: Test.use`].
 
-example.spec.ts
-
-```js
+```js title="example.spec.ts"
 
 test.use({ baseURL: 'https://playwright.dev' });
 ```
 
-Fixtures can also be overridden, causing the base fixture to be completely replaced with something different. For example, we could override the [testOptions.storageState](https://playwright.dev/docs/api/class-testoptions#test-options-storage-state) fixture to provide our own data.
+Fixtures can also be overridden, causing the base fixture to be completely replaced with something different. For example, we could override the [`property: TestOptions.storageState`] fixture to provide our own data.
 
 ```js
 import { test as base } from '@playwright/test';
@@ -350,15 +350,13 @@ export const test = base.extend({
 });
 ```
 
-## Worker-scoped fixtures [​](https://playwright.dev/docs/test-fixtures\#worker-scoped-fixtures "Direct link to Worker-scoped fixtures")
+## Worker-scoped fixtures
 
-Playwright Test uses [worker processes](https://playwright.dev/docs/test-parallel) to run test files. Similar to how test fixtures are set up for individual test runs, worker fixtures are set up for each worker process. That's where you can set up services, run servers, etc. Playwright Test will reuse the worker process for as many test files as it can, provided their worker fixtures match and hence environments are identical.
+Playwright Test uses [worker processes](./test-parallel.md) to run test files. Similar to how test fixtures are set up for individual test runs, worker fixtures are set up for each worker process. That's where you can set up services, run servers, etc. Playwright Test will reuse the worker process for as many test files as it can, provided their worker fixtures match and hence environments are identical.
 
-Below we'll create an `account` fixture that will be shared by all tests in the same worker, and override the `page` fixture to log in to this account for each test. To generate unique accounts, we'll use the [workerInfo.workerIndex](https://playwright.dev/docs/api/class-workerinfo#worker-info-worker-index) that is available to any test or fixture. Note the tuple-like syntax for the worker fixture - we have to pass `{scope: 'worker'}` so that test runner sets this fixture up once per worker.
+Below we'll create an `account` fixture that will be shared by all tests in the same worker, and override the `page` fixture to log in to this account for each test. To generate unique accounts, we'll use the [`property: WorkerInfo.workerIndex`] that is available to any test or fixture. Note the tuple-like syntax for the worker fixture - we have to pass `{scope: 'worker'}` so that test runner sets this fixture up once per worker.
 
-my-test.ts
-
-```js
+```js title="my-test.ts"
 import { test as base } from '@playwright/test';
 
 type Account = {
@@ -368,24 +366,24 @@ type Account = {
 
 // Note that we pass worker fixture types as a second template parameter.
 export const test = base.extend<{}, { account: Account }>({
-  account: [async ({ browser }, use, workerInfo) => {\
-    // Unique username.\
-    const username = 'user' + workerInfo.workerIndex;\
-    const password = 'verysecure';\
-\
-    // Create the account with Playwright.\
-    const page = await browser.newPage();\
-    await page.goto('/signup');\
-    await page.getByLabel('User Name').fill(username);\
-    await page.getByLabel('Password').fill(password);\
-    await page.getByText('Sign up').click();\
-    // Make sure everything is ok.\
-    await expect(page.getByTestId('result')).toHaveText('Success');\
-    // Do not forget to cleanup.\
-    await page.close();\
-\
-    // Use the account value.\
-    await use({ username, password });\
+  account: [async ({ browser }, use, workerInfo) => {
+    // Unique username.
+    const username = 'user' + workerInfo.workerIndex;
+    const password = 'verysecure';
+
+    // Create the account with Playwright.
+    const page = await browser.newPage();
+    await page.goto('/signup');
+    await page.getByLabel('User Name').fill(username);
+    await page.getByLabel('Password').fill(password);
+    await page.getByText('Sign up').click();
+    // Make sure everything is ok.
+    await expect(page.getByTestId('result')).toHaveText('Success');
+    // Do not forget to cleanup.
+    await page.close();
+
+    // Use the account value.
+    await use({ username, password });
   }, { scope: 'worker' }],
 
   page: async ({ page, account }, use) => {
@@ -404,51 +402,49 @@ export const test = base.extend<{}, { account: Account }>({
 export { expect } from '@playwright/test';
 ```
 
-## Automatic fixtures [​](https://playwright.dev/docs/test-fixtures\#automatic-fixtures "Direct link to Automatic fixtures")
+## Automatic fixtures
 
 Automatic fixtures are set up for each test/worker, even when the test does not list them directly. To create an automatic fixture, use the tuple syntax and pass `{ auto: true }`.
 
-Here is an example fixture that automatically attaches debug logs when the test fails, so we can later review the logs in the reporter. Note how it uses the [TestInfo](https://playwright.dev/docs/api/class-testinfo "TestInfo") object that is available in each test/fixture to retrieve metadata about the test being run.
+Here is an example fixture that automatically attaches debug logs when the test fails, so we can later review the logs in the reporter. Note how it uses the [TestInfo] object that is available in each test/fixture to retrieve metadata about the test being run.
 
-my-test.ts
-
-```js
+```js title="my-test.ts"
 import debug from 'debug';
 import fs from 'fs';
 import { test as base } from '@playwright/test';
 
 export const test = base.extend<{ saveLogs: void }>({
-  saveLogs: [async ({}, use, testInfo) => {\
-    // Collecting logs during the test.\
-    const logs = [];\
-    debug.log = (...args) => logs.push(args.map(String).join(''));\
-    debug.enable('myserver');\
-\
-    await use();\
-\
-    // After the test we can check whether the test passed or failed.\
-    if (testInfo.status !== testInfo.expectedStatus) {\
-      // outputPath() API guarantees a unique file name.\
-      const logFile = testInfo.outputPath('logs.txt');\
-      await fs.promises.writeFile(logFile, logs.join('\n'), 'utf8');\
-      testInfo.attachments.push({ name: 'logs', contentType: 'text/plain', path: logFile });\
-    }\
+  saveLogs: [async ({}, use, testInfo) => {
+    // Collecting logs during the test.
+    const logs = [];
+    debug.log = (...args) => logs.push(args.map(String).join(''));
+    debug.enable('myserver');
+
+    await use();
+
+    // After the test we can check whether the test passed or failed.
+    if (testInfo.status !== testInfo.expectedStatus) {
+      // outputPath() API guarantees a unique file name.
+      const logFile = testInfo.outputPath('logs.txt');
+      await fs.promises.writeFile(logFile, logs.join('\n'), 'utf8');
+      testInfo.attachments.push({ name: 'logs', contentType: 'text/plain', path: logFile });
+    }
   }, { auto: true }],
 });
 export { expect } from '@playwright/test';
 ```
 
-## Fixture timeout [​](https://playwright.dev/docs/test-fixtures\#fixture-timeout "Direct link to Fixture timeout")
+## Fixture timeout
 
-By default, the fixture inherits the timeout value of the test. However, for slow fixtures, especially [worker-scoped](https://playwright.dev/docs/test-fixtures#worker-scoped-fixtures) ones, it is convenient to have a separate timeout. This way you can keep the overall test timeout small, and give the slow fixture more time.
+By default, the fixture inherits the timeout value of the test. However, for slow fixtures, especially [worker-scoped](#worker-scoped-fixtures) ones, it is convenient to have a separate timeout. This way you can keep the overall test timeout small, and give the slow fixture more time.
 
 ```js
 import { test as base, expect } from '@playwright/test';
 
 const test = base.extend<{ slowFixture: string }>({
-  slowFixture: [async ({}, use) => {\
-    // ... perform a slow operation ...\
-    await use('hello');\
+  slowFixture: [async ({}, use) => {
+    // ... perform a slow operation ...
+    await use('hello');
   }, { timeout: 60000 }]
 });
 
@@ -457,17 +453,17 @@ test('example test', async ({ slowFixture }) => {
 });
 ```
 
-## Fixtures-options [​](https://playwright.dev/docs/test-fixtures\#fixtures-options "Direct link to Fixtures-options")
+## Fixtures-options
 
-Playwright Test supports running multiple test projects that can be configured separately. You can use "option" fixtures to make your configuration options declarative and type safe. Learn more about [parameterizing tests](https://playwright.dev/docs/test-parameterize).
+Playwright Test supports running multiple test projects that can be configured separately. You can use "option" fixtures to make your configuration options declarative and type safe. Learn more about [parameterizing tests](./test-parameterize.md).
 
 Below we'll create a `defaultItem` option in addition to the `todoPage` fixture from other examples. This option will be set in the configuration file. Note the tuple syntax and `{ option: true }` argument.
 
-Click to expand the code for the `TodoPage`
+<details>
+  <summary>Click to expand the code for the <code>TodoPage</code></summary>
+  <div>
 
-todo-page.ts
-
-```js
+```js title="todo-page.ts"
 import type { Page, Locator } from '@playwright/test';
 
 export class TodoPage {
@@ -503,9 +499,10 @@ export class TodoPage {
 }
 ```
 
-my-test.ts
+  </div>
+</details>
 
-```js
+```js title="my-test.ts"
 import { test as base } from '@playwright/test';
 import { TodoPage } from './todo-page';
 
@@ -537,22 +534,20 @@ export { expect } from '@playwright/test';
 
 We can now use the `todoPage` fixture as usual, and set the `defaultItem` option in the configuration file.
 
-playwright.config.ts
-
-```js
+```js title="playwright.config.ts"
 import { defineConfig } from '@playwright/test';
 import type { MyOptions } from './my-test';
 
 export default defineConfig<MyOptions>({
-  projects: [\
-    {\
-      name: 'shopping',\
-      use: { defaultItem: 'Buy milk' },\
-    },\
-    {\
-      name: 'wellbeing',\
-      use: { defaultItem: 'Exercise!' },\
-    },\
+  projects: [
+    {
+      name: 'shopping',
+      use: { defaultItem: 'Buy milk' },
+    },
+    {
+      name: 'wellbeing',
+      use: { defaultItem: 'Exercise!' },
+    },
   ]
 });
 ```
@@ -585,9 +580,7 @@ test.use({
 
 You can reset an option to the value defined in the config file by setting it to `undefined`. Consider the following config that sets a `baseURL`:
 
-playwright.config.ts
-
-```js
+```js title="playwright.config.ts"
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
@@ -599,9 +592,7 @@ export default defineConfig({
 
 You can now configure `baseURL` for a file, and also opt-out for a single test.
 
-intro.spec.ts
-
-```js
+```js title="intro.spec.ts"
 import { test } from '@playwright/test';
 
 // Configure baseURL for this file.
@@ -623,9 +614,7 @@ test.describe(() => {
 
 If you would like to completely reset the value to `undefined`, use a long-form fixture notation.
 
-intro.spec.ts
-
-```js
+```js title="intro.spec.ts"
 import { test } from '@playwright/test';
 
 // Completely unset baseURL for this file.
@@ -638,7 +627,7 @@ test('no base url', async ({ page }) => {
 });
 ```
 
-## Execution order [​](https://playwright.dev/docs/test-fixtures\#execution-order "Direct link to Execution order")
+## Execution order
 
 Each fixture has a setup and teardown phase before and after the `await use()` call in the fixture. Setup is executed before the test/hook requiring it is run, and teardown is executed when the fixture is no longer being used by the test/hook.
 
@@ -661,34 +650,34 @@ const test = base.extend<{
   workerFixture: string,
   autoWorkerFixture: string,
 }>({
-  workerFixture: [async ({ browser }) => {\
-    // workerFixture setup...\
-    await use('workerFixture');\
-    // workerFixture teardown...\
+  workerFixture: [async ({ browser }) => {
+    // workerFixture setup...
+    await use('workerFixture');
+    // workerFixture teardown...
   }, { scope: 'worker' }],
 
-  autoWorkerFixture: [async ({ browser }) => {\
-    // autoWorkerFixture setup...\
-    await use('autoWorkerFixture');\
-    // autoWorkerFixture teardown...\
+  autoWorkerFixture: [async ({ browser }) => {
+    // autoWorkerFixture setup...
+    await use('autoWorkerFixture');
+    // autoWorkerFixture teardown...
   }, { scope: 'worker', auto: true }],
 
-  testFixture: [async ({ page, workerFixture }) => {\
-    // testFixture setup...\
-    await use('testFixture');\
-    // testFixture teardown...\
+  testFixture: [async ({ page, workerFixture }) => {
+    // testFixture setup...
+    await use('testFixture');
+    // testFixture teardown...
   }, { scope: 'test' }],
 
-  autoTestFixture: [async () => {\
-    // autoTestFixture setup...\
-    await use('autoTestFixture');\
-    // autoTestFixture teardown...\
+  autoTestFixture: [async () => {
+    // autoTestFixture setup...
+    await use('autoTestFixture');
+    // autoTestFixture teardown...
   }, { scope: 'test', auto: true }],
 
-  unusedFixture: [async ({ page }) => {\
-    // unusedFixture setup...\
-    await use('unusedFixture');\
-    // unusedFixture teardown...\
+  unusedFixture: [async ({ page }) => {
+    // unusedFixture setup...
+    await use('unusedFixture');
+    // unusedFixture teardown...
   }, { scope: 'test' }],
 });
 
@@ -739,13 +728,11 @@ A few observations:
 - `workerFixture` is lazily set up before the second test, but torn down once during worker shutdown, as a worker-scoped fixture.
 - `autoWorkerFixture` is set up for `beforeAll` hook, but `autoTestFixture` is not.
 
-## Combine custom fixtures from multiple modules [​](https://playwright.dev/docs/test-fixtures\#combine-custom-fixtures-from-multiple-modules "Direct link to Combine custom fixtures from multiple modules")
+## Combine custom fixtures from multiple modules
 
 You can merge test fixtures from multiple files or modules:
 
-fixtures.ts
-
-```js
+```js title="fixtures.ts"
 import { mergeTests } from '@playwright/test';
 import { test as dbTest } from 'database-test-utils';
 import { test as a11yTest } from 'a11y-test-utils';
@@ -753,9 +740,7 @@ import { test as a11yTest } from 'a11y-test-utils';
 export const test = mergeTests(dbTest, a11yTest);
 ```
 
-test.spec.ts
-
-```js
+```js title="test.spec.ts"
 import { test } from './fixtures';
 
 test('passes', async ({ database, page, a11y }) => {
@@ -763,7 +748,7 @@ test('passes', async ({ database, page, a11y }) => {
 });
 ```
 
-## Box fixtures [​](https://playwright.dev/docs/test-fixtures\#box-fixtures "Direct link to Box fixtures")
+## Box fixtures
 
 Usually, custom fixtures are reported as separate steps in the UI mode, Trace Viewer and various test reports. They also appear in error messages from the test runner. For frequently used fixtures, this can mean lots of noise. You can stop the fixtures steps from being shown in the UI by "boxing" it.
 
@@ -771,17 +756,17 @@ Usually, custom fixtures are reported as separate steps in the UI mode, Trace Vi
 import { test as base } from '@playwright/test';
 
 export const test = base.extend({
-  helperFixture: [async ({}, use, testInfo) => {\
-    // ...\
+  helperFixture: [async ({}, use, testInfo) => {
+    // ...
   }, { box: true }],
 });
 ```
 
-This is useful for non-interesting helper fixtures. For example, an [automatic](https://playwright.dev/docs/test-fixtures#automatic-fixtures) fixture that sets up some common data can be safely hidden from a test report.
+This is useful for non-interesting helper fixtures. For example, an [automatic](./test-fixtures.md#automatic-fixtures) fixture that sets up some common data can be safely hidden from a test report.
 
 You can also mark the fixture as `box: 'self'` to only hide that particular fixture, but include all the steps inside the fixture in the test report.
 
-## Custom fixture title [​](https://playwright.dev/docs/test-fixtures\#custom-fixture-title "Direct link to Custom fixture title")
+## Custom fixture title
 
 Instead of the usual fixture name, you can give fixtures a custom title that will be shown in test reports and error messages.
 
@@ -789,37 +774,33 @@ Instead of the usual fixture name, you can give fixtures a custom title that wil
 import { test as base } from '@playwright/test';
 
 export const test = base.extend({
-  innerFixture: [async ({}, use, testInfo) => {\
-    // ...\
+  innerFixture: [async ({}, use, testInfo) => {
+    // ...
   }, { title: 'my fixture' }],
 });
 ```
 
-## Adding global beforeEach/afterEach hooks [​](https://playwright.dev/docs/test-fixtures\#adding-global-beforeeachaftereach-hooks "Direct link to Adding global beforeEach/afterEach hooks")
+## Adding global beforeEach/afterEach hooks
 
-[test.beforeEach()](https://playwright.dev/docs/api/class-test#test-before-each) and [test.afterEach()](https://playwright.dev/docs/api/class-test#test-after-each) hooks run before/after each test declared in the same file and same [test.describe()](https://playwright.dev/docs/api/class-test#test-describe) block (if any). If you want to declare hooks that run before/after each test globally, you can declare them as auto fixtures like this:
+[`method: Test.beforeEach`] and [`method: Test.afterEach`] hooks run before/after each test declared in the same file and same [`method: Test.describe`] block (if any). If you want to declare hooks that run before/after each test globally, you can declare them as auto fixtures like this:
 
-fixtures.ts
-
-```js
+```js title="fixtures.ts"
 import { test as base } from '@playwright/test';
 
 export const test = base.extend<{ forEachTest: void }>({
-  forEachTest: [async ({ page }, use) => {\
-    // This code runs before every test.\
-    await page.goto('http://localhost:8000');\
-    await use();\
-    // This code runs after every test.\
-    console.log('Last URL:', page.url());\
+  forEachTest: [async ({ page }, use) => {
+    // This code runs before every test.
+    await page.goto('http://localhost:8000');
+    await use();
+    // This code runs after every test.
+    console.log('Last URL:', page.url());
   }, { auto: true }],  // automatically starts for every test.
 });
 ```
 
 And then import the fixtures in all your tests:
 
-mytest.spec.ts
-
-```js
+```js title="mytest.spec.ts"
 import { test } from './fixtures';
 import { expect } from '@playwright/test';
 
@@ -829,31 +810,28 @@ test('basic', async ({ page }) => {
 });
 ```
 
-## Adding global beforeAll/afterAll hooks [​](https://playwright.dev/docs/test-fixtures\#adding-global-beforeallafterall-hooks "Direct link to Adding global beforeAll/afterAll hooks")
+## Adding global beforeAll/afterAll hooks
 
-[test.beforeAll()](https://playwright.dev/docs/api/class-test#test-before-all) and [test.afterAll()](https://playwright.dev/docs/api/class-test#test-after-all) hooks run before/after all tests declared in the same file and same [test.describe()](https://playwright.dev/docs/api/class-test#test-describe) block (if any), once per worker process. If you want to declare hooks that run before/after all tests in every file, you can declare them as auto fixtures with `scope: 'worker'` as follows:
+[`method: Test.beforeAll`] and [`method: Test.afterAll`] hooks run before/after all tests declared in the same file and same [`method: Test.describe`] block (if any), once per worker process. If you want to declare hooks
+that run before/after all tests in every file, you can declare them as auto fixtures with `scope: 'worker'` as follows:
 
-fixtures.ts
-
-```js
+```js title="fixtures.ts"
 import { test as base } from '@playwright/test';
 
 export const test = base.extend<{}, { forEachWorker: void }>({
-  forEachWorker: [async ({}, use) => {\
-    // This code runs before all the tests in the worker process.\
-    console.log(`Starting test worker ${test.info().workerIndex}`);\
-    await use();\
-    // This code runs after all the tests in the worker process.\
-    console.log(`Stopping test worker ${test.info().workerIndex}`);\
+  forEachWorker: [async ({}, use) => {
+    // This code runs before all the tests in the worker process.
+    console.log(`Starting test worker ${test.info().workerIndex}`);
+    await use();
+    // This code runs after all the tests in the worker process.
+    console.log(`Stopping test worker ${test.info().workerIndex}`);
   }, { scope: 'worker', auto: true }],  // automatically starts for every worker.
 });
 ```
 
 And then import the fixtures in all your tests:
 
-mytest.spec.ts
-
-```js
+```js title="mytest.spec.ts"
 import { test } from './fixtures';
 import { expect } from '@playwright/test';
 
@@ -862,22 +840,4 @@ test('basic', async ({ }) => {
 });
 ```
 
-Note that the fixtures will still run once per [worker process](https://playwright.dev/docs/test-parallel#worker-processes), but you don't need to redeclare them in every file.
-
-- [Introduction](https://playwright.dev/docs/test-fixtures#introduction)
-  - [Built-in fixtures](https://playwright.dev/docs/test-fixtures#built-in-fixtures)
-  - [Without fixtures](https://playwright.dev/docs/test-fixtures#without-fixtures)
-  - [With fixtures](https://playwright.dev/docs/test-fixtures#with-fixtures)
-- [Creating a fixture](https://playwright.dev/docs/test-fixtures#creating-a-fixture)
-- [Using a fixture](https://playwright.dev/docs/test-fixtures#using-a-fixture)
-- [Overriding fixtures](https://playwright.dev/docs/test-fixtures#overriding-fixtures)
-- [Worker-scoped fixtures](https://playwright.dev/docs/test-fixtures#worker-scoped-fixtures)
-- [Automatic fixtures](https://playwright.dev/docs/test-fixtures#automatic-fixtures)
-- [Fixture timeout](https://playwright.dev/docs/test-fixtures#fixture-timeout)
-- [Fixtures-options](https://playwright.dev/docs/test-fixtures#fixtures-options)
-- [Execution order](https://playwright.dev/docs/test-fixtures#execution-order)
-- [Combine custom fixtures from multiple modules](https://playwright.dev/docs/test-fixtures#combine-custom-fixtures-from-multiple-modules)
-- [Box fixtures](https://playwright.dev/docs/test-fixtures#box-fixtures)
-- [Custom fixture title](https://playwright.dev/docs/test-fixtures#custom-fixture-title)
-- [Adding global beforeEach/afterEach hooks](https://playwright.dev/docs/test-fixtures#adding-global-beforeeachaftereach-hooks)
-- [Adding global beforeAll/afterAll hooks](https://playwright.dev/docs/test-fixtures#adding-global-beforeallafterall-hooks)
+Note that the fixtures will still run once per [worker process](./test-parallel.md#worker-processes), but you don't need to redeclare them in every file.

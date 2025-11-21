@@ -1,13 +1,14 @@
-[Skip to main content](https://playwright.dev/docs/test-global-setup-teardown#__docusaurus_skipToContent_fallback)
+---
+id: test-global-setup-teardown
+title: "Global setup and teardown"
+---
 
-On this page
+## Introduction
 
-## Introduction [​](https://playwright.dev/docs/test-global-setup-teardown\#introduction "Direct link to Introduction")
-
-There are two ways to configure global setup and teardown: using a global setup file and setting it in the config under [`globalSetup`](https://playwright.dev/docs/test-global-setup-teardown#option-2-configure-globalsetup-and-globalteardown) or using [project dependencies](https://playwright.dev/docs/test-global-setup-teardown#option-1-project-dependencies). With project dependencies, you define a project that runs before all other projects. This is the recommended approach, as it integrates better with the Playwright test runner: your HTML report will include the global setup, traces will be recorded, and fixtures can be used. For a detailed comparison of the two approaches, see the table below.
+There are two ways to configure global setup and teardown: using a global setup file and setting it in the config under [`globalSetup`](#option-2-configure-globalsetup-and-globalteardown) or using [project dependencies](#option-1-project-dependencies). With project dependencies, you define a project that runs before all other projects. This is the recommended approach, as it integrates better with the Playwright test runner: your HTML report will include the global setup, traces will be recorded, and fixtures can be used. For a detailed comparison of the two approaches, see the table below.
 
 | Feature | Project Dependencies (recommended) | `globalSetup` (config option) |
-| --- | --- | --- |
+| -------- | ----------------------------------- | ----------------------------- |
 | Runs before all tests | ✅ Yes | ✅ Yes |
 | HTML report visibility | ✅ Shown as a separate project | ❌ Not shown |
 | Trace recording | ✅ Full trace available | ❌ Not supported |
@@ -16,63 +17,57 @@ There are two ways to configure global setup and teardown: using a global setup 
 | Parallelism and retries | ✅ Supported via standard config | ❌ Not applicable |
 | Config options like `headless` or `testIdAttribute` | ✅ Automatically applied | ❌ Ignored |
 
-## Option 1: Project Dependencies [​](https://playwright.dev/docs/test-global-setup-teardown\#option-1-project-dependencies "Direct link to Option 1: Project Dependencies")
+## Option 1: Project Dependencies
 
-[Project dependencies](https://playwright.dev/docs/api/class-testproject#test-project-dependencies) are a list of projects that need to run before the tests in another project run. They can be useful for configuring the global setup actions so that one project depends on this running first. Using dependencies allows global setup to produce traces and other artifacts.
+[Project dependencies](./api/class-testproject#test-project-dependencies) are a list of projects that need to run before the tests in another project run. They can be useful for configuring the global setup actions so that one project depends on this running first. Using dependencies allows global setup to produce traces and other artifacts.
 
-### Setup [​](https://playwright.dev/docs/test-global-setup-teardown\#setup "Direct link to Setup")
+### Setup
 
-First we add a new project with the name 'setup db'. We then give it a [testProject.testMatch](https://playwright.dev/docs/api/class-testproject#test-project-test-match) property in order to match the file called `global.setup.ts`:
+First we add a new project with the name 'setup db'. We then give it a [`property: TestProject.testMatch`] property in order to match the file called `global.setup.ts`:
 
-playwright.config.ts
-
-```js
+```js title="playwright.config.ts"
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
   // ...
-  projects: [\
-    {\
-      name: 'setup db',\
-      testMatch: /global\.setup\.ts/,\
-    },\
-    // {\
-    //   other project\
-    // }\
+  projects: [
+    {
+      name: 'setup db',
+      testMatch: /global\.setup\.ts/,
+    },
+    // {
+    //   other project
+    // }
   ]
 });
 ```
 
-Then we add the [testProject.dependencies](https://playwright.dev/docs/api/class-testproject#test-project-dependencies) property to our projects that depend on the setup project and pass into the array the name of our dependency project, which we defined in the previous step:
+Then we add the [`property: TestProject.dependencies`] property to our projects that depend on the setup project and pass into the array the name of our dependency project, which we defined in the previous step:
 
-playwright.config.ts
-
-```js
+```js title="playwright.config.ts"
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
   // ...
-  projects: [\
-    {\
-      name: 'setup db',\
-      testMatch: /global\.setup\.ts/,\
-    },\
-    {\
-      name: 'chromium with db',\
-      use: { ...devices['Desktop Chrome'] },\
-      dependencies: ['setup db'],\
-    },\
+  projects: [
+    {
+      name: 'setup db',
+      testMatch: /global\.setup\.ts/,
+    },
+    {
+      name: 'chromium with db',
+      use: { ...devices['Desktop Chrome'] },
+      dependencies: ['setup db'],
+    },
   ]
 });
 ```
 
-In this example the 'chromium with db' project depends on the 'setup db' project. We then create a setup test, stored at root level of your project (note that setup and teardown code must be defined as regular tests by calling [test()](https://playwright.dev/docs/api/class-test#test-call) function):
+In this example the 'chromium with db' project depends on the 'setup db' project. We then create a setup test, stored at root level of your project (note that setup and teardown code must be defined as regular tests by calling [test()](./api/class-test#test-call) function):
 
-tests/global.setup.ts
-
-```js
+```js title="tests/global.setup.ts"
 import { test as setup } from '@playwright/test';
 
 setup('create new database', async ({ }) => {
@@ -81,9 +76,7 @@ setup('create new database', async ({ }) => {
 });
 ```
 
-tests/menu.spec.ts
-
-```js
+```js title="tests/menu.spec.ts"
 import { test, expect } from '@playwright/test';
 
 test('menu', async ({ page }) => {
@@ -91,44 +84,40 @@ test('menu', async ({ page }) => {
 });
 ```
 
-### Teardown [​](https://playwright.dev/docs/test-global-setup-teardown\#teardown "Direct link to Teardown")
+### Teardown
 
-You can teardown your setup by adding a [testProject.teardown](https://playwright.dev/docs/api/class-testproject#test-project-teardown) property to your setup project. This will run after all dependent projects have run.
+You can teardown your setup by adding a [`property: TestProject.teardown`] property to your setup project. This will run after all dependent projects have run.
 
-First we add the [testProject.teardown](https://playwright.dev/docs/api/class-testproject#test-project-teardown) property to our setup project with the name 'cleanup db' which is the name we gave to our teardown project in the previous step:
+First we add the [`property: TestProject.teardown`] property to our setup project with the name 'cleanup db' which is the name we gave to our teardown project in the previous step:
 
-playwright.config.ts
-
-```js
+```js title="playwright.config.ts"
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
   // ...
-  projects: [\
-    {\
-      name: 'setup db',\
-      testMatch: /global\.setup\.ts/,\
-      teardown: 'cleanup db',\
-    },\
-    {\
-      name: 'cleanup db',\
-      testMatch: /global\.teardown\.ts/,\
-    },\
-    {\
-      name: 'chromium',\
-      use: { ...devices['Desktop Chrome'] },\
-      dependencies: ['setup db'],\
-    },\
+  projects: [
+    {
+      name: 'setup db',
+      testMatch: /global\.setup\.ts/,
+      teardown: 'cleanup db',
+    },
+    {
+      name: 'cleanup db',
+      testMatch: /global\.teardown\.ts/,
+    },
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+      dependencies: ['setup db'],
+    },
   ]
 });
 ```
 
 Then we create a `global.teardown.ts` file in the tests directory of your project. This will be used to delete the data from the database after all tests have run.
 
-tests/global.teardown.ts
-
-```js
+```js title="tests/global.teardown.ts"
 import { test as teardown } from '@playwright/test';
 
 teardown('delete database', async ({ }) => {
@@ -137,33 +126,31 @@ teardown('delete database', async ({ }) => {
 });
 ```
 
-### Test filtering [​](https://playwright.dev/docs/test-global-setup-teardown\#test-filtering "Direct link to Test filtering")
+### Test filtering
 
-All test filtering options, such as `--grep`/`--grep-invert`, `--shard`, filtering directly by location in the command line, or using [`test.only()`](https://playwright.dev/docs/api/class-test#test-only), directly select the primary tests to be run. If those tests belong to a project with dependencies, all tests from those dependencies will also run.
+All test filtering options, such as `--grep`/`--grep-invert`, `--shard`, filtering directly by location in the command line, or using [`test.only()`](./api/class-test.md#test-only), directly select the primary tests to be run. If those tests belong to a project with dependencies, all tests from those dependencies will also run.
 
 You can pass `--no-deps` command line option to ignore all dependencies and teardowns. Only your directly selected projects will run.
 
-### More examples [​](https://playwright.dev/docs/test-global-setup-teardown\#more-examples "Direct link to More examples")
+### More examples
 
 For more detailed examples check out:
 
-- our [authentication](https://playwright.dev/docs/auth) guide
+- our [authentication](./auth.md) guide
 - our blog post [A better global setup in Playwright reusing login with project dependencies](https://dev.to/playwright/a-better-global-setup-in-playwright-reusing-login-with-project-dependencies-14)
 - [v1.31 release video](https://youtu.be/PI50YAPTAs4) to see the demo
 
-## Option 2: Configure globalSetup and globalTeardown [​](https://playwright.dev/docs/test-global-setup-teardown\#option-2-configure-globalsetup-and-globalteardown "Direct link to Option 2: Configure globalSetup and globalTeardown")
+## Option 2: Configure globalSetup and globalTeardown
 
-You can use the `globalSetup` option in the [configuration file](https://playwright.dev/docs/test-configuration#advanced-configuration) to set something up once before running all tests. The global setup file must export a single function that takes a config object. This function will be run once before all the tests.
+You can use the `globalSetup` option in the [configuration file](./test-configuration.md#advanced-configuration) to set something up once before running all tests. The global setup file must export a single function that takes a config object. This function will be run once before all the tests.
 
 Similarly, use `globalTeardown` to run something once after all the tests. Alternatively, let `globalSetup` return a function that will be used as a global teardown. You can pass data such as port number, authentication tokens, etc. from your global setup to your tests using environment variables.
 
-note
+:::note
+Beware that `globalSetup` and `globalTeardown` lack some features — see the [intro](#introduction) section for a detailed comparison. Consider using [project dependencies](#option-1-project-dependencies) instead to get full feature support.
+:::
 
-Beware that `globalSetup` and `globalTeardown` lack some features — see the [intro](https://playwright.dev/docs/test-global-setup-teardown#introduction) section for a detailed comparison. Consider using [project dependencies](https://playwright.dev/docs/test-global-setup-teardown#option-1-project-dependencies) instead to get full feature support.
-
-playwright.config.ts
-
-```js
+```js title="playwright.config.ts"
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
@@ -172,13 +159,11 @@ export default defineConfig({
 });
 ```
 
-### Example [​](https://playwright.dev/docs/test-global-setup-teardown\#example "Direct link to Example")
+### Example
 
 Here is a global setup example that authenticates once and reuses authentication state in tests. It uses the `baseURL` and `storageState` options from the configuration file.
 
-global-setup.ts
-
-```js
+```js title="global-setup.ts"
 import { chromium, type FullConfig } from '@playwright/test';
 
 async function globalSetup(config: FullConfig) {
@@ -198,9 +183,7 @@ export default globalSetup;
 
 Specify `globalSetup`, `baseURL` and `storageState` in the configuration file.
 
-playwright.config.ts
-
-```js
+```js title="playwright.config.ts"
 import { defineConfig } from '@playwright/test';
 export default defineConfig({
   globalSetup: require.resolve('./global-setup'),
@@ -224,9 +207,7 @@ test('test', async ({ page }) => {
 
 You can make arbitrary data available in your tests from your global setup file by setting them as environment variables via `process.env`.
 
-global-setup.ts
-
-```js
+```js title="global-setup.ts"
 import type { FullConfig } from '@playwright/test';
 
 async function globalSetup(config: FullConfig) {
@@ -255,13 +236,11 @@ test('test', async ({ page }) => {
 });
 ```
 
-### Capturing trace of failures during global setup [​](https://playwright.dev/docs/test-global-setup-teardown\#capturing-trace-of-failures-during-global-setup "Direct link to Capturing trace of failures during global setup")
+### Capturing trace of failures during global setup
 
-In some instances, it may be useful to capture a trace of failures encountered during the global setup. In order to do this, you must [start tracing](https://playwright.dev/docs/api/class-tracing#tracing-start) in your setup, and you must ensure that you [stop tracing](https://playwright.dev/docs/api/class-tracing#tracing-stop) if an error occurs before that error is thrown. This can be achieved by wrapping your setup in a `try...catch` block. Here is an example that expands the global setup example to capture a trace.
+In some instances, it may be useful to capture a trace of failures encountered during the global setup. In order to do this, you must [start tracing](./api/class-tracing.md#tracing-start) in your setup, and you must ensure that you [stop tracing](./api/class-tracing.md#tracing-stop) if an error occurs before that error is thrown. This can be achieved by wrapping your setup in a `try...catch` block.  Here is an example that expands the global setup example to capture a trace.
 
-global-setup.ts
-
-```js
+```js title="global-setup.ts"
 import { chromium, type FullConfig } from '@playwright/test';
 
 async function globalSetup(config: FullConfig) {
@@ -291,13 +270,3 @@ async function globalSetup(config: FullConfig) {
 
 export default globalSetup;
 ```
-
-- [Introduction](https://playwright.dev/docs/test-global-setup-teardown#introduction)
-- [Option 1: Project Dependencies](https://playwright.dev/docs/test-global-setup-teardown#option-1-project-dependencies)
-  - [Setup](https://playwright.dev/docs/test-global-setup-teardown#setup)
-  - [Teardown](https://playwright.dev/docs/test-global-setup-teardown#teardown)
-  - [Test filtering](https://playwright.dev/docs/test-global-setup-teardown#test-filtering)
-  - [More examples](https://playwright.dev/docs/test-global-setup-teardown#more-examples)
-- [Option 2: Configure globalSetup and globalTeardown](https://playwright.dev/docs/test-global-setup-teardown#option-2-configure-globalsetup-and-globalteardown)
-  - [Example](https://playwright.dev/docs/test-global-setup-teardown#example)
-  - [Capturing trace of failures during global setup](https://playwright.dev/docs/test-global-setup-teardown#capturing-trace-of-failures-during-global-setup)

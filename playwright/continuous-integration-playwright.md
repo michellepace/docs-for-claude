@@ -1,38 +1,65 @@
-[Skip to main content](https://playwright.dev/docs/ci#__docusaurus_skipToContent_fallback)
+---
+id: ci
+title: "Continuous Integration"
+---
+## Introduction
 
-On this page
-
-## Introduction [​](https://playwright.dev/docs/ci\#introduction "Direct link to Introduction")
-
-Playwright tests can be executed in CI environments. We have created sample configurations for common CI providers.
+Playwright tests can be executed in CI environments. We have created sample
+configurations for common CI providers.
 
 3 steps to get your tests running on CI:
 
-1. **Ensure CI agent can run browsers**: Use [our Docker image](https://playwright.dev/docs/docker) in Linux agents or install your dependencies using the [CLI](https://playwright.dev/docs/browsers#install-system-dependencies).
+1. **Ensure CI agent can run browsers**: Use [our Docker image](./docker.md)
+   in Linux agents or install your dependencies using the [CLI](./browsers#install-system-dependencies).
+1. **Install Playwright**:
 
-2. **Install Playwright**:
+   ```bash js
+   # Install NPM packages
+   npm ci
 
-    ```bash
-    # Install NPM packages
-    npm ci
+   # Install Playwright browsers and dependencies
+   npx playwright install --with-deps
+   ```
 
-    # Install Playwright browsers and dependencies
-    npx playwright install --with-deps
-    ```
+   ```bash python
+   pip install playwright
+   playwright install --with-deps
+   ```
 
-3. **Run your tests**:
+   ```bash java
+   mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
+   ```
 
-    ```bash
-    npx playwright test
-    ```
+   ```bash csharp
+   dotnet build
+   pwsh bin/Debug/netX/playwright.ps1 install --with-deps
+   ```
 
-## Workers [​](https://playwright.dev/docs/ci\#workers "Direct link to Workers")
+1. **Run your tests**:
 
-We recommend setting [workers](https://playwright.dev/docs/api/class-testconfig#test-config-workers) to "1" in CI environments to prioritize stability and reproducibility. Running tests sequentially ensures each test gets the full system resources, avoiding potential conflicts. However, if you have a powerful self-hosted CI system, you may enable [parallel](https://playwright.dev/docs/test-parallel) tests. For wider parallelization, consider [sharding](https://playwright.dev/docs/test-parallel#shard-tests-between-multiple-machines) \- distributing tests across multiple CI jobs.
+   ```bash js
+   npx playwright test
+   ```
 
-playwright.config.ts
+   ```bash python
+   pytest
+   ```
 
-```js
+   ```bash java
+   mvn test
+   ```
+
+   ```bash csharp
+   dotnet test
+   ```
+
+## Workers
+
+* langs: js
+
+We recommend setting [workers](./api/class-testconfig.md#test-config-workers) to "1" in CI environments to prioritize stability and reproducibility. Running tests sequentially ensures each test gets the full system resources, avoiding potential conflicts. However, if you have a powerful self-hosted CI system, you may enable [parallel](./test-parallel.md) tests. For wider parallelization, consider [sharding](./test-parallel.md#shard-tests-between-multiple-machines) - distributing tests across multiple CI jobs.
+
+```js title="playwright.config.ts"
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
@@ -41,19 +68,19 @@ export default defineConfig({
 });
 ```
 
-## CI configurations [​](https://playwright.dev/docs/ci\#ci-configurations "Direct link to CI configurations")
+## CI configurations
 
-The [Command line tools](https://playwright.dev/docs/browsers#install-system-dependencies) can be used to install all operating system dependencies in CI.
+The [Command line tools](./browsers#install-system-dependencies) can be used to install all operating system dependencies in CI.
 
-### GitHub Actions [​](https://playwright.dev/docs/ci\#github-actions "Direct link to GitHub Actions")
+### GitHub Actions
 
-#### On push/pull\_request [​](https://playwright.dev/docs/ci\#on-pushpull_request "Direct link to On push/pull_request")
+#### On push/pull_request
+
+* langs: js
 
 Tests will run on push or pull request on branches main/master. The [workflow](https://docs.github.com/en/actions/using-workflows/about-workflows) will install all dependencies, install Playwright and then run the tests. It will also create the HTML report.
 
-.github/workflows/playwright.yml
-
-```yml
+```yml js title=".github/workflows/playwright.yml"
 name: Playwright Tests
 on:
   push:
@@ -66,7 +93,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v5
-    - uses: actions/setup-node@v5
+    - uses: actions/setup-node@v6
       with:
         node-version: lts/*
     - name: Install dependencies
@@ -75,7 +102,7 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v5
       if: ${{ !cancelled() }}
       with:
         name: playwright-report
@@ -83,17 +110,105 @@ jobs:
         retention-days: 30
 ```
 
-#### On push/pull\_request (sharded) [​](https://playwright.dev/docs/ci\#on-pushpull_request-sharded "Direct link to On push/pull_request (sharded)")
+#### On push/pull_request
 
-GitHub Actions supports [sharding tests between multiple jobs](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs). Check out our [sharding doc](https://playwright.dev/docs/test-sharding) to learn more about sharding and to see a [GitHub actions example](https://playwright.dev/docs/test-sharding#github-actions-example) of how to configure a job to run your tests on multiple machines as well as how to merge the HTML reports.
+* langs: python, java, csharp
 
-#### Via Containers [​](https://playwright.dev/docs/ci\#via-containers "Direct link to Via Containers")
+Tests will run on push or pull request on branches main/master. The [workflow](https://docs.github.com/en/actions/using-workflows/about-workflows) will install all dependencies, install Playwright and then run the tests.
+
+```yml python title=".github/workflows/playwright.yml"
+name: Playwright Tests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v5
+    - name: Set up Python
+      uses: actions/setup-python@v6
+      with:
+        python-version: '3.13'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Ensure browsers are installed
+      run: python -m playwright install --with-deps
+    - name: Run your tests
+      run: pytest --tracing=retain-on-failure
+    - uses: actions/upload-artifact@v5
+      if: ${{ !cancelled() }}
+      with:
+        name: playwright-traces
+        path: test-results/
+```
+
+```yml java title=".github/workflows/playwright.yml"
+name: Playwright Tests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v5
+    - uses: actions/setup-java@v5
+      with:
+        distribution: 'temurin'
+        java-version: '25'
+    - name: Build & Install
+      run: mvn -B install -D skipTests --no-transfer-progress
+    - name: Ensure browsers are installed
+      run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
+    - name: Run tests
+      run: mvn test
+```
+
+```yml csharp title=".github/workflows/playwright.yml"
+name: Playwright Tests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v5
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: 8.0.x
+    - name: Build & Install
+      run: dotnet build
+    - name: Ensure browsers are installed
+      run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+    - name: Run your tests
+      run: dotnet test
+```
+
+#### On push/pull_request (sharded)
+
+* langs: js
+
+GitHub Actions supports [sharding tests between multiple jobs](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs). Check out our [sharding doc](./test-sharding) to learn more about sharding and to see a [GitHub actions example](./test-sharding.md#github-actions-example) of how to configure a job to run your tests on multiple machines as well as how to merge the HTML reports.
+
+#### Via Containers
 
 GitHub Actions support [running jobs in a container](https://docs.github.com/en/actions/using-jobs/running-jobs-in-a-container) by using the [`jobs.<job_id>.container`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idcontainer) option. This is useful to not pollute the host environment with dependencies and to have a consistent environment for e.g. screenshots/visual regression testing across different operating systems.
 
-.github/workflows/playwright.yml
-
-```yml
+```yml js title=".github/workflows/playwright.yml"
 name: Playwright Tests
 on:
   push:
@@ -105,11 +220,11 @@ jobs:
     name: 'Playwright Tests'
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.56.1-noble
+      image: mcr.microsoft.com/playwright:v%%VERSION%%-noble
       options: --user 1001
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: lts/*
       - name: Install dependencies
@@ -118,13 +233,92 @@ jobs:
         run: npx playwright test
 ```
 
-#### On deployment [​](https://playwright.dev/docs/ci\#on-deployment "Direct link to On deployment")
+```yml python title=".github/workflows/playwright.yml"
+name: Playwright Tests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  playwright:
+    name: 'Playwright Tests'
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright/python:v%%VERSION%%-noble
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r local-requirements.txt
+          pip install -e .
+      - name: Run your tests
+        run: pytest
+```
 
-This will start the tests after a [GitHub Deployment](https://developer.github.com/v3/repos/deployments/) went into the `success` state. Services like Vercel use this pattern so you can run your end-to-end tests on their deployed environment.
+```yml java title=".github/workflows/playwright.yml"
+name: Playwright Tests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  playwright:
+    name: 'Playwright Tests'
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright/java:v%%VERSION%%-noble
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '25'
+      - name: Build & Install
+        run: mvn -B install -D skipTests --no-transfer-progress
+      - name: Run tests
+        run: mvn test
+```
 
-.github/workflows/playwright.yml
+```yml csharp title=".github/workflows/playwright.yml"
+name: Playwright Tests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  playwright:
+    name: 'Playwright Tests'
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright/dotnet:v%%VERSION%%-noble
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v5
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 8.0.x
+      - run: dotnet build
+      - name: Run your tests
+        run: dotnet test
+```
 
-```yml
+#### On deployment
+
+This will start the tests after a [GitHub Deployment](https://developer.github.com/v3/repos/deployments/) went into the `success` state.
+Services like Vercel use this pattern so you can run your end-to-end tests on their deployed environment.
+
+```yml js title=".github/workflows/playwright.yml"
 name: Playwright Tests
 on:
   deployment_status:
@@ -135,7 +329,7 @@ jobs:
     if: github.event.deployment_status.state == 'success'
     steps:
     - uses: actions/checkout@v5
-    - uses: actions/setup-node@v5
+    - uses: actions/setup-node@v6
       with:
         node-version: lts/*
     - name: Install dependencies
@@ -148,13 +342,93 @@ jobs:
         PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
 ```
 
-#### Fail-Fast [​](https://playwright.dev/docs/ci\#fail-fast "Direct link to Fail-Fast")
+```yml python title=".github/workflows/playwright.yml"
+name: Playwright Tests
+on:
+  deployment_status:
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    if: github.event.deployment_status.state == 'success'
+    steps:
+    - uses: actions/checkout@v5
+      uses: actions/setup-python@v6
+      with:
+        python-version: '3.13'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Ensure browsers are installed
+      run: python -m playwright install --with-deps
+    - name: Run tests
+      run: pytest
+      env:
+        # This might depend on your test-runner
+        PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
+```
 
-Large test suites can take very long to execute. By executing a preliminary test run with the `--only-changed` flag, you can run test files that are likely to fail first. This will give you a faster feedback loop and slightly lower CI consumption while working on Pull Requests. To detect test files affected by your changeset, `--only-changed` analyses your suites' dependency graph. This is a heuristic and might miss tests, so it's important that you always run the full test suite after the preliminary test run.
+```yml java title=".github/workflows/playwright.yml"
+name: Playwright Tests
+on:
+  deployment_status:
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    if: github.event.deployment_status.state == 'success'
+    steps:
+    - uses: actions/checkout@v5
+    - uses: actions/setup-java@v5
+      with:
+        distribution: 'temurin'
+        java-version: '25'
+    - name: Build & Install
+      run: mvn -B install -D skipTests --no-transfer-progress
+    - name: Install Playwright
+      run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
+    - name: Run tests
+      run: mvn test
+      env:
+        # This might depend on your test-runner
+        PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
+```
 
-.github/workflows/playwright.yml
+```yml csharp title=".github/workflows/playwright.yml"
+name: Playwright Tests
+on:
+  deployment_status:
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    if: github.event.deployment_status.state == 'success'
+    steps:
+    - uses: actions/checkout@v5
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: 8.0.x
+    - run: dotnet build
+    - name: Ensure browsers are installed
+      run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+    - name: Run tests
+      run: dotnet test
+      env:
+        # This might depend on your test-runner
+        PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
+```
 
-```yml
+#### Fail-Fast
+
+* langs: js
+
+Large test suites can take very long to execute. By executing a preliminary test run with the `--only-changed` flag, you can run test files that are likely to fail first.
+This will give you a faster feedback loop and slightly lower CI consumption while working on Pull Requests.
+To detect test files affected by your changeset, `--only-changed` analyses your suites' dependency graph. This is a heuristic and might miss tests, so it's important that you always run the full test suite after the preliminary test run.
+
+```yml js title=".github/workflows/playwright.yml" {24-26}
 name: Playwright Tests
 on:
   push:
@@ -171,7 +445,7 @@ jobs:
         # Force a non-shallow checkout, so that we can reference $GITHUB_BASE_REF.
         # See https://github.com/actions/checkout for more details.
         fetch-depth: 0
-    - uses: actions/setup-node@v5
+    - uses: actions/setup-node@v6
       with:
         node-version: lts/*
     - name: Install dependencies
@@ -183,7 +457,7 @@ jobs:
       if: github.event_name == 'pull_request'
     - name: Run Playwright tests
       run: npx playwright test
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v5
       if: ${{ !cancelled() }}
       with:
         name: playwright-report
@@ -191,19 +465,22 @@ jobs:
         retention-days: 30
 ```
 
-### Docker [​](https://playwright.dev/docs/ci\#docker "Direct link to Docker")
+### Docker
 
-We have a [pre-built Docker image](https://playwright.dev/docs/docker) which can either be used directly or as a reference to update your existing Docker definitions. Make sure to follow the [Recommended Docker Configuration](https://playwright.dev/docs/docker#recommended-docker-configuration) to ensure the best performance.
+We have a [pre-built Docker image](./docker.md) which can either be used directly or as a reference to update your existing Docker definitions. Make sure to follow the [Recommended Docker Configuration](./docker.md#recommended-docker-configuration) to ensure the best performance.
 
-### Azure Pipelines [​](https://playwright.dev/docs/ci\#azure-pipelines "Direct link to Azure Pipelines")
+### Azure Pipelines
 
 For Windows or macOS agents, no additional configuration is required, just install Playwright and run your tests.
 
-For Linux agents, you can use [our Docker container](https://playwright.dev/docs/docker) with Azure Pipelines support [running containerized jobs](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/container-phases?view=azure-devops). Alternatively, you can use [Command line tools](https://playwright.dev/docs/browsers#install-system-dependencies) to install all necessary dependencies.
+For Linux agents, you can use [our Docker container](./docker.md) with Azure
+Pipelines support [running containerized
+jobs](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/container-phases?view=azure-devops).
+Alternatively, you can use [Command line tools](./browsers#install-system-dependencies) to install all necessary dependencies.
 
 For running the Playwright tests use this pipeline task:
 
-```yml
+```yml js
 trigger:
 - main
 
@@ -225,9 +502,76 @@ steps:
     CI: 'true'
 ```
 
-#### Uploading playwright-report folder with Azure Pipelines [​](https://playwright.dev/docs/ci\#uploading-playwright-report-folder-with-azure-pipelines "Direct link to Uploading playwright-report folder with Azure Pipelines")
+```yml python
+trigger:
+- main
 
-This will make the pipeline run fail if any of the playwright tests fails. If you also want to integrate the test results with Azure DevOps, use the task `PublishTestResults` task like so:
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.13'
+  displayName: 'Use Python'
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+  displayName: 'Install dependencies'
+- script: playwright install --with-deps
+  displayName: 'Install Playwright browsers'
+- script: pytest
+  displayName: 'Run Playwright tests'
+```
+
+```yml java
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: JavaToolInstaller@1
+  inputs:
+    versionSpec: '25'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: AzureStorage
+- script: mvn -B install -D skipTests --no-transfer-progress
+  displayName: 'Build and install'
+- script: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
+  displayName: 'Install Playwright browsers'
+- script: mvn test
+  displayName: 'Run tests'
+```
+
+```yml csharp
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: sdk
+    version: '8.0.x'
+  displayName: 'Use .NET SDK'
+- script: dotnet build --configuration Release
+  displayName: 'Build'
+- script: pwsh bin/Release/net8.0/playwright.ps1 install --with-deps
+  displayName: 'Install Playwright browsers'
+- script: dotnet test --configuration Release
+  displayName: 'Run tests'
+```
+
+#### Uploading playwright-report folder with Azure Pipelines
+
+* langs: js
+
+This will make the pipeline run fail if any of the playwright tests fails.
+If you also want to integrate the test results with Azure DevOps, use the task `PublishTestResults` task like so:
 
 ```yml
 trigger:
@@ -266,6 +610,7 @@ steps:
     artifact: playwright-report
     publishLocation: 'pipeline'
   condition: succeededOrFailed()
+
 ```
 
 Note: The JUnit reporter needs to be configured accordingly via
@@ -280,7 +625,9 @@ export default defineConfig({
 
 in `playwright.config.ts`.
 
-#### Azure Pipelines (sharded) [​](https://playwright.dev/docs/ci\#azure-pipelines-sharded "Direct link to Azure Pipelines (sharded)")
+#### Azure Pipelines (sharded)
+
+* langs: js
 
 ```yaml
 trigger:
@@ -334,15 +681,15 @@ steps:
     CI: 'true'
 ```
 
-#### Azure Pipelines (containerized) [​](https://playwright.dev/docs/ci\#azure-pipelines-containerized "Direct link to Azure Pipelines (containerized)")
+#### Azure Pipelines (containerized)
 
-```yml
+```yml js
 trigger:
 - main
 
 pool:
   vmImage: ubuntu-latest
-container: mcr.microsoft.com/playwright:v1.56.1-noble
+container: mcr.microsoft.com/playwright:v%%VERSION%%-noble
 
 steps:
 - task: UseNode@1
@@ -358,38 +705,126 @@ steps:
     CI: 'true'
 ```
 
-### CircleCI [​](https://playwright.dev/docs/ci\#circleci "Direct link to CircleCI")
+```yml python
+trigger:
+- main
 
-Running Playwright on CircleCI is very similar to running on GitHub Actions. In order to specify the pre-built Playwright [Docker image](https://playwright.dev/docs/docker), simply modify the agent definition with `docker:` in your config like so:
+pool:
+  vmImage: ubuntu-latest
+container: mcr.microsoft.com/playwright/python:v%%VERSION%%-noble
 
-```yml
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.13'
+  displayName: 'Use Python'
+
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+  displayName: 'Install dependencies'
+- script: pytest
+  displayName: 'Run tests'
+```
+
+```yml java
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+container: mcr.microsoft.com/playwright/java:v%%VERSION%%-noble
+
+steps:
+- task: JavaToolInstaller@1
+  inputs:
+    versionSpec: '25'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: AzureStorage
+
+- script: mvn -B install -D skipTests --no-transfer-progress
+  displayName: 'Build and install'
+- script: mvn test
+  displayName: 'Run tests'
+```
+
+```yml csharp
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+container: mcr.microsoft.com/playwright/dotnet:v%%VERSION%%-noble
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: sdk
+    version: '8.0.x'
+  displayName: 'Use .NET SDK'
+
+- script: dotnet build --configuration Release
+  displayName: 'Build'
+- script: dotnet test --configuration Release
+  displayName: 'Run tests'
+```
+
+### CircleCI
+
+Running Playwright on CircleCI is very similar to running on GitHub Actions. In order to specify the pre-built Playwright [Docker image](./docker.md), simply modify the agent definition with `docker:` in your config like so:
+
+```yml js
 executors:
   pw-noble-development:
     docker:
-      - image: mcr.microsoft.com/playwright:v1.56.1-noble
+      - image: mcr.microsoft.com/playwright:v%%VERSION%%-noble
 ```
 
-Note: When using the docker agent definition, you are specifying the resource class of where playwright runs to the 'medium' tier [see configuration reference here](https://circleci.com/docs/configuration-reference?#docker-execution-environment). The default behavior of Playwright is to set the number of workers to the detected core count (2 in the case of the medium tier). Overriding the number of workers to greater than this number will cause unnecessary timeouts and failures.
+```yml python
+executors:
+  pw-noble-development:
+    docker:
+      - image: mcr.microsoft.com/playwright/python:v%%VERSION%%-noble
+```
 
-#### Sharding in CircleCI [​](https://playwright.dev/docs/ci\#sharding-in-circleci "Direct link to Sharding in CircleCI")
+```yml java
+executors:
+  pw-noble-development:
+    docker:
+      - image: mcr.microsoft.com/playwright/java:v%%VERSION%%-noble
+```
+
+```yml csharp
+executors:
+  pw-noble-development:
+    docker:
+      - image: mcr.microsoft.com/playwright/dotnet:v%%VERSION%%-noble
+```
+
+Note: When using the docker agent definition, you are specifying the resource class of where playwright runs to the 'medium' [tier here](https://circleci.com/docs/configuration-reference?#docker-execution-environment). The default behavior of Playwright is to set the number of workers to the detected core count (2 in the case of the medium tier). Overriding the number of workers to greater than this number will cause unnecessary timeouts and failures.
+
+#### Sharding in CircleCI
+
+* langs: js
 
 Sharding in CircleCI is indexed with 0 which means that you will need to override the default parallelism ENV VARS. The following example demonstrates how to run Playwright with a CircleCI Parallelism of 4 by adding 1 to the `CIRCLE_NODE_INDEX` to pass into the `--shard` cli arg.
 
-```yml
-  playwright-job-name:
-    executor: pw-noble-development
-    parallelism: 4
-    steps:
-      - run: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; npx playwright test --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
-```
+  ```yml
+    playwright-job-name:
+      executor: pw-noble-development
+      parallelism: 4
+      steps:
+        - run: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; npx playwright test --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
+  ```
 
-### Jenkins [​](https://playwright.dev/docs/ci\#jenkins "Direct link to Jenkins")
+### Jenkins
 
-Jenkins supports Docker agents for pipelines. Use the [Playwright Docker image](https://playwright.dev/docs/docker) to run tests on Jenkins.
+Jenkins supports Docker agents for pipelines. Use the [Playwright Docker image](./docker.md)
+to run tests on Jenkins.
 
-```groovy
+```groovy js
 pipeline {
-   agent { docker { image 'mcr.microsoft.com/playwright:v1.56.1-noble' } }
+   agent { docker { image 'mcr.microsoft.com/playwright:v%%VERSION%%-noble' } }
    stages {
       stage('e2e-tests') {
          steps {
@@ -401,30 +836,119 @@ pipeline {
 }
 ```
 
-### Bitbucket Pipelines [​](https://playwright.dev/docs/ci\#bitbucket-pipelines "Direct link to Bitbucket Pipelines")
-
-Bitbucket Pipelines can use public [Docker images as build environments](https://confluence.atlassian.com/bitbucket/use-docker-images-as-build-environments-792298897.html). To run Playwright tests on Bitbucket, use our public Docker image ( [see Dockerfile](https://playwright.dev/docs/docker)).
-
-```yml
-image: mcr.microsoft.com/playwright:v1.56.1-noble
+```groovy python
+pipeline {
+   agent { docker { image 'mcr.microsoft.com/playwright/python:v%%VERSION%%-noble' } }
+   stages {
+      stage('e2e-tests') {
+         steps {
+            sh 'pip install -r requirements.txt'
+            sh 'pytest'
+         }
+      }
+   }
+}
 ```
 
-### GitLab CI [​](https://playwright.dev/docs/ci\#gitlab-ci "Direct link to GitLab CI")
+```groovy java
+pipeline {
+   agent { docker { image 'mcr.microsoft.com/playwright/java:v%%VERSION%%-noble' } }
+   stages {
+      stage('e2e-tests') {
+         steps {
+            sh 'mvn -B install -D skipTests --no-transfer-progress'
+            sh 'mvn test'
+         }
+      }
+   }
+}
+```
 
-To run Playwright tests on GitLab, use our public Docker image ( [see Dockerfile](https://playwright.dev/docs/docker)).
+```groovy csharp
+pipeline {
+   agent { docker { image 'mcr.microsoft.com/playwright/dotnet:v%%VERSION%%-noble' } }
+   stages {
+      stage('e2e-tests') {
+         steps {
+            sh 'dotnet build'
+            sh 'dotnet test'
+         }
+      }
+   }
+}
+```
 
-```yml
+### Bitbucket Pipelines
+
+Bitbucket Pipelines can use public [Docker images as build environments](https://confluence.atlassian.com/bitbucket/use-docker-images-as-build-environments-792298897.html). To run Playwright tests on Bitbucket, use our public Docker image ([see Dockerfile](./docker.md)).
+
+```yml js
+image: mcr.microsoft.com/playwright:v%%VERSION%%-noble
+```
+
+```yml python
+image: mcr.microsoft.com/playwright/python:v%%VERSION%%-noble
+```
+
+```yml java
+image: mcr.microsoft.com/playwright/java:v%%VERSION%%-noble
+```
+
+```yml csharp
+image: mcr.microsoft.com/playwright/dotnet:v%%VERSION%%-noble
+```
+
+### GitLab CI
+
+To run Playwright tests on GitLab, use our public Docker image ([see Dockerfile](./docker.md)).
+
+```yml js
 stages:
   - test
 
 tests:
   stage: test
-  image: mcr.microsoft.com/playwright:v1.56.1-noble
+  image: mcr.microsoft.com/playwright:v%%VERSION%%-noble
   script:
   ...
 ```
 
-#### Sharding [​](https://playwright.dev/docs/ci\#sharding "Direct link to Sharding")
+```yml python
+stages:
+  - test
+
+tests:
+  stage: test
+  image: mcr.microsoft.com/playwright/python:v%%VERSION%%-noble
+  script:
+  ...
+```
+
+```yml java
+stages:
+  - test
+
+tests:
+  stage: test
+  image: mcr.microsoft.com/playwright/java:v%%VERSION%%-noble
+  script:
+  ...
+```
+
+```yml dotnet
+stages:
+  - test
+
+tests:
+  stage: test
+  image: mcr.microsoft.com/playwright/dotnet:v%%VERSION%%-noble
+  script:
+  ...
+```
+
+#### Sharding
+
+* langs: js
 
 GitLab CI supports [sharding tests between multiple jobs](https://docs.gitlab.com/ee/ci/jobs/job_control.html#parallelize-large-jobs) using the [parallel](https://docs.gitlab.com/ee/ci/yaml/index.html#parallel) keyword. The test job will be split into multiple smaller jobs that run in parallel. Parallel jobs are named sequentially from `job_name 1/N` to `job_name N/N`.
 
@@ -434,7 +958,7 @@ stages:
 
 tests:
   stage: test
-  image: mcr.microsoft.com/playwright:v1.56.1-noble
+  image: mcr.microsoft.com/playwright:v%%VERSION%%-noble
   parallel: 7
   script:
     - npm ci
@@ -449,7 +973,7 @@ stages:
 
 tests:
   stage: test
-  image: mcr.microsoft.com/playwright:v1.56.1-noble
+  image: mcr.microsoft.com/playwright:v%%VERSION%%-noble
   parallel:
     matrix:
       - PROJECT: ['chromium', 'webkit']
@@ -459,22 +983,26 @@ tests:
     - npx playwright test --project=$PROJECT --shard=$SHARD
 ```
 
-### Google Cloud Build [​](https://playwright.dev/docs/ci\#google-cloud-build "Direct link to Google Cloud Build")
+### Google Cloud Build
 
-To run Playwright tests on Google Cloud Build, use our public Docker image ( [see Dockerfile](https://playwright.dev/docs/docker)).
+* langs: js
+
+To run Playwright tests on Google Cloud Build, use our public Docker image ([see Dockerfile](./docker.md)).
 
 ```yml
 steps:
-- name: mcr.microsoft.com/playwright:v1.56.1-noble
-  script:
+- name: mcr.microsoft.com/playwright:v%%VERSION%%-noble
+  script: 
   ...
   env:
   - 'CI=true'
 ```
 
-### Drone [​](https://playwright.dev/docs/ci\#drone "Direct link to Drone")
+### Drone
 
-To run Playwright tests on Drone, use our public Docker image ( [see Dockerfile](https://playwright.dev/docs/docker)).
+* langs: js
+
+To run Playwright tests on Drone, use our public Docker image ([see Dockerfile](./docker.md)).
 
 ```yml
 kind: pipeline
@@ -483,47 +1011,55 @@ type: docker
 
 steps:
   - name: test
-    image: mcr.microsoft.com/playwright:v1.56.1-noble
+    image: mcr.microsoft.com/playwright:v%%VERSION%%-noble
     commands:
       - npx playwright test
 ```
 
-## Caching browsers [​](https://playwright.dev/docs/ci\#caching-browsers "Direct link to Caching browsers")
+## Caching browsers
 
-Caching browser binaries is not recommended, since the amount of time it takes to restore the cache is comparable to the time it takes to download the binaries. Especially under Linux, [operating system dependencies](https://playwright.dev/docs/browsers#install-system-dependencies) need to be installed, which are not cacheable.
+Caching browser binaries is not recommended, since the amount of time it takes to restore the cache is comparable to the time it takes to download the binaries. Especially under Linux, [operating system dependencies](./browsers.md#install-system-dependencies) need to be installed, which are not cacheable.
 
-If you still want to cache the browser binaries between CI runs, cache [these directories](https://playwright.dev/docs/browsers#managing-browser-binaries) in your CI configuration, against a hash of the Playwright version.
+If you still want to cache the browser binaries between CI runs, cache [these directories](./browsers.md#managing-browser-binaries) in your CI configuration, against a hash of the Playwright version.
 
-## Debugging browser launches [​](https://playwright.dev/docs/ci\#debugging-browser-launches "Direct link to Debugging browser launches")
+## Debugging browser launches
 
 Playwright supports the `DEBUG` environment variable to output debug logs during execution. Setting it to `pw:browser` is helpful while debugging `Error: Failed to launch browser` errors.
 
-```bash
+```bash js
 DEBUG=pw:browser npx playwright test
 ```
 
-## Running headed [​](https://playwright.dev/docs/ci\#running-headed "Direct link to Running headed")
+```bash python
+DEBUG=pw:browser pytest
+```
 
-By default, Playwright launches browsers in headless mode. See in our [Running tests](https://playwright.dev/docs/running-tests#run-tests-in-headed-mode) guide how to run tests in headed mode.
+```bash java
+DEBUG=pw:browser mvn test
+```
 
-On Linux agents, headed execution requires [Xvfb](https://en.wikipedia.org/wiki/Xvfb) to be installed. Our [Docker image](https://playwright.dev/docs/docker) and GitHub Action have Xvfb pre-installed. To run browsers in headed mode with Xvfb, add `xvfb-run` before the actual command.
+```bash csharp
+DEBUG=pw:browser dotnet test
+```
 
-```bash
+## Running headed
+
+By default, Playwright launches browsers in headless mode. See in our [Running tests](./running-tests.md#run-tests-in-headed-mode) guide how to run tests in headed mode.
+
+On Linux agents, headed execution requires [Xvfb](https://en.wikipedia.org/wiki/Xvfb) to be installed. Our [Docker image](./docker.md) and GitHub Action have Xvfb pre-installed. To run browsers in headed mode with Xvfb, add `xvfb-run` before the actual command.
+
+```bash js
 xvfb-run npx playwright test
 ```
 
-- [Introduction](https://playwright.dev/docs/ci#introduction)
-- [Workers](https://playwright.dev/docs/ci#workers)
-- [CI configurations](https://playwright.dev/docs/ci#ci-configurations)
-  - [GitHub Actions](https://playwright.dev/docs/ci#github-actions)
-  - [Docker](https://playwright.dev/docs/ci#docker)
-  - [Azure Pipelines](https://playwright.dev/docs/ci#azure-pipelines)
-  - [CircleCI](https://playwright.dev/docs/ci#circleci)
-  - [Jenkins](https://playwright.dev/docs/ci#jenkins)
-  - [Bitbucket Pipelines](https://playwright.dev/docs/ci#bitbucket-pipelines)
-  - [GitLab CI](https://playwright.dev/docs/ci#gitlab-ci)
-  - [Google Cloud Build](https://playwright.dev/docs/ci#google-cloud-build)
-  - [Drone](https://playwright.dev/docs/ci#drone)
-- [Caching browsers](https://playwright.dev/docs/ci#caching-browsers)
-- [Debugging browser launches](https://playwright.dev/docs/ci#debugging-browser-launches)
-- [Running headed](https://playwright.dev/docs/ci#running-headed)
+```bash python
+xvfb-run pytest
+```
+
+```bash java
+xvfb-run mvn test
+```
+
+```bash csharp
+xvfb-run dotnet test
+```

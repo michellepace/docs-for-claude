@@ -1,8 +1,9 @@
-[Skip to main content](https://playwright.dev/docs/test-typescript#__docusaurus_skipToContent_fallback)
+---
+id: test-typescript
+title: "TypeScript"
+---
 
-On this page
-
-## Introduction [​](https://playwright.dev/docs/test-typescript\#introduction "Direct link to Introduction")
+## Introduction
 
 Playwright supports TypeScript out of the box. You just write tests in TypeScript, and Playwright will read them, transform to JavaScript and run.
 
@@ -26,7 +27,7 @@ For local development, you can run `tsc` in [watch](https://www.typescriptlang.o
 npx tsc -p tsconfig.json --noEmit -w
 ```
 
-## tsconfig.json [​](https://playwright.dev/docs/test-typescript\#tsconfigjson "Direct link to tsconfig.json")
+## tsconfig.json
 
 Playwright will pick up `tsconfig.json` for each source file it loads. Note that Playwright **only supports** the following tsconfig options: `allowJs`, `baseUrl`, `paths` and `references`.
 
@@ -45,15 +46,13 @@ tsconfig.json  # generic tsconfig for all typescript sources
 playwright.config.ts
 ```
 
-### tsconfig path mapping [​](https://playwright.dev/docs/test-typescript\#tsconfig-path-mapping "Direct link to tsconfig path mapping")
+### tsconfig path mapping
 
 Playwright supports [path mapping](https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping) declared in the `tsconfig.json`. Make sure that `baseUrl` is also set.
 
 Here is an example `tsconfig.json` that works with Playwright:
 
-tsconfig.json
-
-```json
+```json title="tsconfig.json"
 {
   "compilerOptions": {
     "baseUrl": ".",
@@ -66,9 +65,7 @@ tsconfig.json
 
 You can now import using the mapped paths:
 
-example.spec.ts
-
-```js
+```js title="example.spec.ts"
 import { test, expect } from '@playwright/test';
 import { username, password } from '@myhelper/credentials';
 
@@ -78,7 +75,7 @@ test('example', async ({ page }) => {
 });
 ```
 
-### tsconfig resolution [​](https://playwright.dev/docs/test-typescript\#tsconfig-resolution "Direct link to tsconfig resolution")
+### tsconfig resolution
 
 By default, Playwright will look up a closest tsconfig for each imported file by going up the directory structure and looking for `tsconfig.json` or `jsconfig.json`. This way, you can create a `tests/tsconfig.json` file that will be used only for your tests and Playwright will pick it up automatically.
 
@@ -96,9 +93,7 @@ npx playwright test --tsconfig=tsconfig.test.json
 
 You can specify a single tsconfig file in the config file, that will be used for loading test files, reporters, etc. However, it will not be used while loading the playwright config itself or any files imported from it.
 
-playwright.config.ts
-
-```js
+```js title="playwright.config.ts"
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
@@ -106,7 +101,7 @@ export default defineConfig({
 });
 ```
 
-## Manually compile tests with TypeScript [​](https://playwright.dev/docs/test-typescript\#manually-compile-tests-with-typescript "Direct link to Manually compile tests with TypeScript")
+## Manually compile tests with TypeScript
 
 Sometimes, Playwright Test will not be able to transform your TypeScript code correctly, for example when you are using experimental or very recent features of TypeScript, usually configured in `tsconfig.json`.
 
@@ -140,9 +135,3 @@ In `package.json`, add two scripts:
 The `pretest` script runs typescript on the tests. `test` will run the tests that have been generated to the `tests-out` directory. The `-c` argument configures the test runner to look for tests inside the `tests-out` directory.
 
 Then `npm run test` will build the tests and run them.
-
-- [Introduction](https://playwright.dev/docs/test-typescript#introduction)
-- [tsconfig.json](https://playwright.dev/docs/test-typescript#tsconfigjson)
-  - [tsconfig path mapping](https://playwright.dev/docs/test-typescript#tsconfig-path-mapping)
-  - [tsconfig resolution](https://playwright.dev/docs/test-typescript#tsconfig-resolution)
-- [Manually compile tests with TypeScript](https://playwright.dev/docs/test-typescript#manually-compile-tests-with-typescript)
