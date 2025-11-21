@@ -97,4 +97,11 @@
     <local_file>agents-playwright.md</local_file>
     <scraped_at>2025-11-21</scraped_at>
   </source>
+  <source>
+    <title>Reporters | Playwright</title>
+    <description>Built-in reporters (list, line, dot, HTML, blob, JSON, JUnit, GitHub Actions) with CLI, programmatic, and environment variable configuration, multiple reporter support, CI optimisation, sharding workflows, and custom Reporter API.</description>
+    <source_url>https://playwright.dev/docs/test-reporters</source_url>
+    <local_file>reporters-playwright.md</local_file>
+    <scraped_at>2025-11-21</scraped_at>
+  </source>
 </docs_index>
