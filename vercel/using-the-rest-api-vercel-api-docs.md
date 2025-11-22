@@ -1,72 +1,51 @@
-[Skip to main content](https://vercel.com/docs/rest-api/reference#content-area)
+# Using the REST API
 
-[Vercel API Docs home page![light logo](https://mintcdn.com/vercel/fxKUJx-Oy_im1Iu0/logo/vercel-logotype-light.svg?fit=max&auto=format&n=fxKUJx-Oy_im1Iu0&q=85&s=e16d6302db6411b67d77ddc3810391e8)![dark logo](https://mintcdn.com/vercel/fxKUJx-Oy_im1Iu0/logo/vercel-logotype-dark.svg?fit=max&auto=format&n=fxKUJx-Oy_im1Iu0&q=85&s=ea47a9bb9db0106e05436a6578c50e9f)](https://vercel.com/docs/rest-api/reference)
+> Interact programmatically with your Vercel account using the SDK or direct HTTP requests.
 
-Search...
+<Note>To view all endpoints, and explore code examples with the SDK and direct API calls, see the [reference endpoints documentation](/endpoints).</Note>
 
-Ctrl K
+You can deploy new versions of web applications, manage custom domains, retrieve information about deployments, and manage secrets and environment variables for projects.
 
-Search...
+The API supports any programming language or framework that can send HTTP requests.
 
-Navigation
+To interact with the API, you can:
 
-Using the REST API
+* [Use the Vercel SDK](/sdk) by first instantiating with your token
+* Use the language of your choice by calling the endpoints directly and [providing your token](#authentication)
 
-[Get Started](https://vercel.com/docs/rest-api/reference/welcome) [Endpoints](https://vercel.com/docs/rest-api/reference/endpoints/access-groups/reads-an-access-group)
-
-On this page
-
-- [API Basics](https://vercel.com/docs/rest-api/reference#api-basics)
-- [Server Specs](https://vercel.com/docs/rest-api/reference#server-specs)
-- [HTTP and TLS](https://vercel.com/docs/rest-api/reference#http-and-tls)
-- [Content Type](https://vercel.com/docs/rest-api/reference#content-type)
-- [Authentication](https://vercel.com/docs/rest-api/reference#authentication)
-- [Creating an Access Token](https://vercel.com/docs/rest-api/reference#creating-an-access-token)
-- [Expiration](https://vercel.com/docs/rest-api/reference#expiration)
-- [Accessing Resources Owned by a Team](https://vercel.com/docs/rest-api/reference#accessing-resources-owned-by-a-team)
-- [Failed Authentication](https://vercel.com/docs/rest-api/reference#failed-authentication)
-- [Types](https://vercel.com/docs/rest-api/reference#types)
-- [Pagination](https://vercel.com/docs/rest-api/reference#pagination)
-- [Rate Limits](https://vercel.com/docs/rest-api/reference#rate-limits)
-- [Versioning](https://vercel.com/docs/rest-api/reference#versioning)
-
-To view all endpoints, and explore code examples with the SDK and direct API calls, see the [reference endpoints documentation](https://vercel.com/docs/rest-api/reference/endpoints).
-
-You can deploy new versions of web applications, manage custom domains, retrieve information about deployments, and manage secrets and environment variables for projects.The API supports any programming language or framework that can send HTTP requests.To interact with the API, you can:
-
-- [Use the Vercel SDK](https://vercel.com/docs/rest-api/reference/sdk) by first instantiating with your token
-- Use the language of your choice by calling the endpoints directly and [providing your token](https://vercel.com/docs/rest-api/reference#authentication)
-
-## [​](https://vercel.com/docs/rest-api/reference\#api-basics)  API Basics
+## API Basics
 
 Our API is exposed as an HTTP/1 and HTTP/2 service over SSL. All endpoints live under the URL `https://api.vercel.com` and then generally follow the REST architecture.
 
-### [​](https://vercel.com/docs/rest-api/reference\#server-specs)  Server Specs
+### Server Specs
 
-#### [​](https://vercel.com/docs/rest-api/reference\#http-and-tls)  HTTP and TLS
+#### HTTP and TLS
 
-The API supports HTTP versions 1, 1.1, and 2, although HTTP/2 is preferred.TLS versions 1.2 and 1.3 are supported, with resumption.For more information on TLS support, refer to the SSL Labs report.
+The API supports HTTP versions 1, 1.1, and 2, although HTTP/2 is preferred.
 
-### [​](https://vercel.com/docs/rest-api/reference\#content-type)  Content Type
+TLS versions 1.2 and 1.3 are supported, with resumption.
+
+For more information on TLS support, refer to the SSL Labs report.
+
+### Content Type
 
 All requests must be encoded as JSON with the Content-Type: application/json header. If not otherwise specified, responses from the Vercel API, including errors, are encoded exclusively as JSON as well.
 
-### [​](https://vercel.com/docs/rest-api/reference\#authentication)  Authentication
+### Authentication
 
 Vercel Access Tokens are required to authenticate and use the Vercel API.
 
-Copy
-
-Ask AI
-
-```
+```js  theme={"system"}
   Authorization: Bearer <TOKEN>
-
 ```
 
-#### [​](https://vercel.com/docs/rest-api/reference\#creating-an-access-token)  Creating an Access Token
+#### Creating an Access Token
 
-Access Tokens can be created and managed from inside your [account settings](https://vercel.com/account/tokens).![](https://assets.vercel.com/image/upload/v1701697368/docs-assets/static/docs/rest-api/create-token-light.png)![](https://assets.vercel.com/image/upload/v1701697369/docs-assets/static/docs/rest-api/create-token-dark.png)
+Access Tokens can be created and managed from inside your [account settings](https://vercel.com/account/tokens).
+
+<img className="block dark:hidden" src="https://assets.vercel.com/image/upload/v1701697368/docs-assets/static/docs/rest-api/create-token-light.png" />
+
+<img className="hidden  dark:block" src="https://assets.vercel.com/image/upload/v1701697369/docs-assets/static/docs/rest-api/create-token-dark.png" />
 
 1. In the upper-right corner of your [dashboard](https://vercel.com/dashboard), click your profile picture, then select **Settings**
 2. Select **Tokens** from the sidebar
@@ -74,57 +53,54 @@ Access Tokens can be created and managed from inside your [account settings](htt
 4. Choose the scope from the list of Teams in the drop-down menu. The scope ensures that only your specified Team(s) can use an Access Token
 5. From the drop-down, select an expiration date for the Token
 6. Click **Create Token**
-7. Once you’ve created an Access Token, securely store the value as it will not be shown again.
+7. Once you've created an Access Token, securely store the value as it will not be shown again.
 
-#### [​](https://vercel.com/docs/rest-api/reference\#expiration)  Expiration
+#### Expiration
 
 Setting an expiration date on an Access Token is highly recommended and is considered one of the standard security practices that helps keep your information secure. You can select from a default list of expiration dates ranging from 1 day to 1 year. You can view the expiration date of your Access Tokens on the [tokens page.](https://vercel.com/account/tokens)
 
-#### [​](https://vercel.com/docs/rest-api/reference\#accessing-resources-owned-by-a-team)  Accessing Resources Owned by a Team
+#### Accessing Resources Owned by a Team
 
-By default, you can access resources contained within your own user account (personal).To access resources owned by a team, or create a project for a _specific_ team, you must first find the [Team ID](https://vercel.com/docs/teams-and-accounts/create-or-join-a-team#find-your-team-id).After you obtained the Team ID, append it as a query string at the end of the API endpoint URL:
+By default, you can access resources contained within your own user account (personal).
 
-Copy
+To access resources owned by a team, or create a project for a *specific* team, you must first find the [Team ID](https://vercel.com/docs/teams-and-accounts/create-or-join-a-team#find-your-team-id).
 
-Ask AI
+After you obtained the Team ID, append it as a query string at the end of the API endpoint URL:
 
-```
+```js  theme={"system"}
 https://api.vercel.com/v6/deployments?teamId=[teamID]
-
 ```
 
-#### [​](https://vercel.com/docs/rest-api/reference\#failed-authentication)  Failed Authentication
+#### Failed Authentication
 
-If authentication is unsuccessful for a request, the [error status code](https://vercel.com/docs/rest-api/reference#errors) **403** is returned.
+If authentication is unsuccessful for a request, the [error status code](#errors) **403** is returned.
 
-## [​](https://vercel.com/docs/rest-api/reference\#types)  Types
+## Types
 
 The following is a list of the types of data used within the Vercel API:
 
-| Name | Definition | Example |
-| --- | --- | --- |
-| **ID** | A unique value used to identify resources. | `"V0fra8eEgQwEpFhYG2vTzC3K"` |
-| **String** | A string is a sequence of characters used to represent text. | `"value"` |
-| **Integer** | An integer is a number without decimals. | `1234` |
-| **Float** | A float is a number with decimals. | `12.34` |
-| **Map** | A data structure with a list of values assigned to a unique key. | `{ "key": "value" }` |
-| **List** | A data structure with only a list of values separated by a comma. | `["value", 1234, 12.34]` |
-| **Enum** | An Enum is a String with only a few possible valid values. | `A` or `B` |
-| **Date** | An Integer representing a date in milliseconds since the UNIX epoch. | `1540095775941` |
-| **IsoDate** | A String representing a date in the 8601 format. | `YYYY-MM-DDTHH:mm:ssZ` |
-| **Boolean** | A Boolean is a type of two possible values representing true or false. | `true` |
+| Name        | Definition                                                             | Example                      |
+| ----------- | ---------------------------------------------------------------------- | ---------------------------- |
+| **ID**      | A unique value used to identify resources.                             | `"V0fra8eEgQwEpFhYG2vTzC3K"` |
+| **String**  | A string is a sequence of characters used to represent text.           | `"value"`                    |
+| **Integer** | An integer is a number without decimals.                               | `1234`                       |
+| **Float**   | A float is a number with decimals.                                     | `12.34`                      |
+| **Map**     | A data structure with a list of values assigned to a unique key.       | `{ "key": "value" }`         |
+| **List**    | A data structure with only a list of values separated by a comma.      | `["value", 1234, 12.34]`     |
+| **Enum**    | An Enum is a String with only a few possible valid values.             | `A` or `B`                   |
+| **Date**    | An Integer representing a date in milliseconds since the UNIX epoch.   | `1540095775941`              |
+| **IsoDate** | A String representing a date in the 8601 format.                       | `YYYY-MM-DDTHH:mm:ssZ`       |
+| **Boolean** | A Boolean is a type of two possible values representing true or false. | `true`                       |
 
-## [​](https://vercel.com/docs/rest-api/reference\#pagination)  Pagination
+## Pagination
 
-When the API response includes an array of records, a pagination object is returned when the total number of records present is greater than the limit per request. The default value of this limit is 20 but it can be changed by passing a value to the query parameter `limit` when the request is made. The maximum possible value of `limit` is 100.You can then use the pagination object to make additional requests and obtain all the records.The pagination object is structured as shown in the example below:
+When the API response includes an array of records, a pagination object is returned when the total number of records present is greater than the limit per request. The default value of this limit is 20 but it can be changed by passing a value to the query parameter `limit` when the request is made. The maximum possible value of `limit` is 100.
 
-pagination-structure
+You can then use the pagination object to make additional requests and obtain all the records.
 
-Copy
+The pagination object is structured as shown in the example below:
 
-Ask AI
-
-```
+```json pagination-structure theme={"system"}
 {
   "pagination": {
     "count": 20, //Amount of items in the current page.
@@ -132,7 +108,6 @@ Ask AI
     "prev": 1555413045188 //Timestamp that must be used to request the previous page.
   }
 }
-
 ```
 
 In order to obtain the records for the next batch, perform the following actions:
@@ -143,13 +118,7 @@ In order to obtain the records for the next batch, perform the following actions
 
 This is an example of applying this sequence with `Node.js` to save all the projects in your personal account to a `json` file:
 
-pagination-example.js
-
-Copy
-
-Ask AI
-
-```
+```js pagination-example.js theme={"system"}
 const axios = require('axios');
 const fs = require('fs');
 const vercelToken = 'yourtokenvalue'; //Replace with your token
@@ -180,67 +149,50 @@ let results = [];
       console.log(error);
     });
 })();
-
 ```
 
-## [​](https://vercel.com/docs/rest-api/reference\#rate-limits)  Rate Limits
+## Rate Limits
 
 We limit the number of calls you can make over a certain period of time.
 Rate limits vary and are specified by the following header in all responses:
 
-| Header | Description |
-| --- | --- |
-| `X-RateLimit-Limit` | The maximum number of requests that the consumer is permitted to make. |
-| `X-RateLimit-Remaining` | The number of requests remaining in the current rate limit window. |
-| `X-RateLimit-Reset` | The time at which the current rate limit window resets in UTC epoch seconds. |
+| Header                  | Description                                                                  |
+| ----------------------- | ---------------------------------------------------------------------------- |
+| `X-RateLimit-Limit`     | The maximum number of requests that the consumer is permitted to make.       |
+| `X-RateLimit-Remaining` | The number of requests remaining in the current rate limit window.           |
+| `X-RateLimit-Reset`     | The time at which the current rate limit window resets in UTC epoch seconds. |
 
-When the rate limit is **exceeded**, an error is returned with the status “ **429 Too Many Requests**”:
+When the rate limit is **exceeded**, an error is returned with the status "**429 Too Many Requests**":
 
-error-response
-
-Copy
-
-Ask AI
-
-```
+```json error-response theme={"system"}
 {
   "error": {
     "code": "too_many_requests",
     "message": "Rate limit exceeded"
   }
 }
-
 ```
 
-You can find the complete list of rate limits in the [limits\\
-documentation](https://vercel.com/docs/limits#rate-limits).
+<Note>
+  You can find the complete list of rate limits in the [limits
+  documentation](https://vercel.com/docs/limits#rate-limits).
+</Note>
 
-## [​](https://vercel.com/docs/rest-api/reference\#versioning)  Versioning
+## Versioning
 
-All endpoints and examples are designated with a specific version. Versions vary per endpoint and are not global.The response shape of a certain endpoint is not guaranteed to be fixed over time. In particular, we might add new keys to responses without bumping a version endpoint, which will be noted in the changelog.To ensure the security and correctness of your application, make sure to only read the keys from the response that your application needs. Don’t proxy entire responses to third-parties without validation.Old versions of each endpoint are supported for as long as possible. When we intend to deprecate, we will notify users in the changelog section.Endpoint versions follow the base URL and come before the endpoint. For example:
+All endpoints and examples are designated with a specific version. Versions vary per endpoint and are not global.
 
-version-endpoint
+The response shape of a certain endpoint is not guaranteed to be fixed over time. In particular, we might add new keys to responses without bumping a version endpoint, which will be noted in the changelog.
 
-Copy
+To ensure the security and correctness of your application, make sure to only read the keys from the response that your application needs. Don't proxy entire responses to third-parties without validation.
 
-Ask AI
+Old versions of each endpoint are supported for as long as possible. When we intend to deprecate, we will notify users in the changelog section.
 
-```
+Endpoint versions follow the base URL and come before the endpoint. For example:
+
+```js version-endpoint theme={"system"}
 https://api.vercel.com/v6/deployments`
-
 ```
 
-This examples uses version `6` of the [deployments\\
-endpoint](https://vercel.com/docs/rest-api/reference/docs/rest-api/reference/endpoints/deployments/get-deployment-events).
-
-[Using the Vercel SDK](https://vercel.com/docs/rest-api/reference/sdk)
-
-CtrlI
-
-Assistant
-
-Responses are generated using AI and may contain mistakes.
-
-![](https://assets.vercel.com/image/upload/v1701697368/docs-assets/static/docs/rest-api/create-token-light.png)
-
-![](https://assets.vercel.com/image/upload/v1701697369/docs-assets/static/docs/rest-api/create-token-dark.png)
+This examples uses version `6` of the [deployments
+endpoint](/endpoints/deployments/get-deployment-events).

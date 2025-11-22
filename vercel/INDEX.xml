@@ -1,5 +1,68 @@
 <docs_index>
   <source>
+    <title>Getting started with Vercel</title>
+    <description>Platform overview covering account creation, authentication options, supported frontend frameworks, global infrastructure, development collaboration tools including preview and production environments, deployment comments, and CLI installation.</description>
+    <source_url>https://vercel.com/docs/getting-started-with-vercel</source_url>
+    <local_file>getting-started-with-vercel.md</local_file>
+    <scraped_at>2025-11-22</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started | Step 1 of 8 - Projects and deployments</title>
+    <description>Core concepts defining projects as deployed applications with multiple deployments, and deployments as successful builds triggered by imports, Git commits, or CLI commands, each generating unique URLs automatically.</description>
+    <source_url>https://vercel.com/docs/getting-started-with-vercel/projects-deployments</source_url>
+    <local_file>projects-and-deployments.md</local_file>
+    <scraped_at>2025-11-22</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started | Step 2 of 8 - Use a template</title>
+    <description>Using Vercel templates to accelerate development, including finding templates, deploying to Vercel, connecting Git providers, automatic repository creation, deployment process, dashboard access, and local project cloning.</description>
+    <source_url>https://vercel.com/docs/getting-started-with-vercel/template</source_url>
+    <local_file>use-a-template.md</local_file>
+    <scraped_at>2025-11-22</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started | Step 3 of 8 - Import an existing project</title>
+    <description>Importing existing projects to Vercel via Git providers including GitHub, GitLab, and BitBucket, connecting repositories, configuring framework detection, build settings, environment variables, deployment process, and accessing deployed domains.</description>
+    <source_url>https://vercel.com/docs/getting-started-with-vercel/import</source_url>
+    <local_file>import-an-existing-project.md</local_file>
+    <scraped_at>2025-11-22</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started | Step 4 of 8 - Add a domain</title>
+    <description>Custom domain setup for Vercel projects covering apex domains, subdomains, wildcard domains, domain purchasing, pointing existing domains to Vercel, domain transfers, and next steps for domain configuration.</description>
+    <source_url>https://vercel.com/docs/getting-started-with-vercel/domains</source_url>
+    <local_file>add-a-domain.md</local_file>
+    <scraped_at>2025-11-22</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started | Step 5 of 8 - Buy a domain</title>
+    <description>Purchasing domains on Vercel including marketplace search, TLD selection, premium domain pricing, cart checkout, payment details, ICANN registrant information, WHOIS privacy, auto-renewal, and domain configuration for projects.</description>
+    <source_url>https://vercel.com/docs/getting-started-with-vercel/buy-domain</source_url>
+    <local_file>buy-a-domain.md</local_file>
+    <scraped_at>2025-11-22</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started | Step 6 of 8 - Use an existing domain</title>
+    <description>Using existing domains with Vercel covering CLI commands, project domain settings, adding apex and subdomain configurations, DNS record setup including A records, CNAME records, TXT verification, and nameserver configuration methods.</description>
+    <source_url>https://vercel.com/docs/getting-started-with-vercel/use-existing</source_url>
+    <local_file>use-an-existing-domain.md</local_file>
+    <scraped_at>2025-11-22</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started | Step 7 of 8 - Collaborate on Vercel</title>
+    <description>Collaboration workflow on Vercel including automatic Git deployments, production and preview environments, pull request integration, deployment inspection, sharing preview URLs, Comments feature for team feedback, and collaboration patterns.</description>
+    <source_url>https://vercel.com/docs/getting-started-with-vercel/collaborate</source_url>
+    <local_file>collaborate-on-vercel.md</local_file>
+    <scraped_at>2025-11-22</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started | Step 8 of 8 - Next Steps</title>
+    <description>Next steps overview covering infrastructure with Functions and CDN, storage products including Blob and Edge Config, observability tools for monitoring and analytics, and security features with HTTPS and DDoS mitigation.</description>
+    <source_url>https://vercel.com/docs/getting-started-with-vercel/next-steps</source_url>
+    <local_file>next-steps.md</local_file>
+    <scraped_at>2025-11-22</scraped_at>
+  </source>
+  <source>
     <title>Using the REST API - Vercel API Docs</title>
     <description>Vercel REST API fundamentals covering HTTP/TLS server specs, JSON content-type requirements, bearer token authentication with access token creation and team scope, data types (ID, String, Integer, Float, Map, List, Enum, Date, IsoDate, Boolean), pagination with timestamp-based cursors, rate limits with headers, and endpoint versioning.</description>
     <source_url>https://vercel.com/docs/rest-api/reference</source_url>
@@ -56,20 +119,6 @@
     <scraped_at>2025-11-07</scraped_at>
   </source>
   <source>
-    <title>Next.js on Vercel</title>
-    <description>Next.js deployment on Vercel covering ISR, SSR, streaming, partial prerendering, image and font optimisation, OG images, middleware, Draft Mode, Web Analytics, Speed Insights, and service integrations with zero-configuration benefits.</description>
-    <source_url>https://vercel.com/docs/frameworks/full-stack/nextjs</source_url>
-    <local_file>nextjs-on-vercel.md</local_file>
-    <scraped_at>2025-11-07</scraped_at>
-  </source>
-  <source>
-    <title>Production checklist for launch</title>
-    <description>Pre-launch checklist covering operational excellence, security configuration including CSP and WAF, reliability through observability and failover, performance optimization, and cost management with Fluid compute and usage controls.</description>
-    <source_url>https://vercel.com/docs/production-checklist</source_url>
-    <local_file>production-checklist-for-launch.md</local_file>
-    <scraped_at>2025-11-07</scraped_at>
-  </source>
-  <source>
     <title>How to Build a Fullstack App with Next.js, Prisma, and Postgres</title>
     <description>Step-by-step tutorial for building a fullstack blogging application with Next.js, Prisma ORM, Vercel Postgres, NextAuth.js GitHub OAuth, implementing CRUD operations for post creation, publishing, deletion, and deploying to Vercel.</description>
     <source_url>https://vercel.com/guides/nextjs-prisma-postgres</source_url>
@@ -82,5 +131,26 @@
     <source_url>https://vercel.com/guides/how-do-i-generate-a-sitemap-for-my-nextjs-app-on-vercel</source_url>
     <local_file>how-do-i-generate-a-sitemapxml-for-my-nextjs-app-on-vercel.md</local_file>
     <scraped_at>2025-11-07</scraped_at>
+  </source>
+  <source>
+    <title>How can I run end-to-end tests after my Vercel Preview Deployment?</title>
+    <description>Running end-to-end tests after Vercel preview deployments using GitHub Actions repository_dispatch events or webhooks, including workflow configuration, deployment protection bypass for automation, and Playwright integration.</description>
+    <source_url>https://vercel.com/guides/how-can-i-run-end-to-end-tests-after-my-vercel-preview-deployment</source_url>
+    <local_file>how-can-i-run-end-to-end-tests-after-my-vercel-preview-deployment.md</local_file>
+    <scraped_at>2025-11-22</scraped_at>
+  </source>
+  <source>
+    <title>Next.js on Vercel</title>
+    <description>Next.js deployment on Vercel including ISR, SSR, streaming, image and font optimization, OG image generation, Middleware, Draft Mode, Web Analytics, Speed Insights, and service integrations.</description>
+    <source_url>https://vercel.com/docs/frameworks/full-stack/nextjs</source_url>
+    <local_file>nextjs-on-vercel.md</local_file>
+    <scraped_at>2025-11-22</scraped_at>
+  </source>
+  <source>
+    <title>Production checklist for launch</title>
+    <description>Production launch checklist covering operational excellence, security with WAF and deployment protection, reliability with observability and caching, performance optimization for images and functions, and cost management with spend monitoring.</description>
+    <source_url>https://vercel.com/docs/production-checklist</source_url>
+    <local_file>production-checklist-for-launch.md</local_file>
+    <scraped_at>2025-11-22</scraped_at>
   </source>
 </docs_index>

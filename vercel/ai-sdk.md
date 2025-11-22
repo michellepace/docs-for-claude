@@ -1,22 +1,18 @@
-Choose a framework to optimize documentation to:
-
-Copy page
-
 # AI SDK
 
-The [AI SDK](https://sdk.vercel.ai/) is the TypeScript toolkit designed to help developers build AI-powered applications with [Next.js](https://sdk.vercel.ai/docs/getting-started/nextjs-app-router), [Vue](https://sdk.vercel.ai/docs/getting-started/nuxt), [Svelte](https://sdk.vercel.ai/docs/getting-started/svelte), [Node.js](https://sdk.vercel.ai/docs/getting-started/nodejs), and more. Integrating LLMs into applications is complicated and heavily dependent on the specific model provider you use.
+The [AI SDK](https://sdk.vercel.ai) is the TypeScript toolkit designed to help developers build AI-powered applications with [Next.js](https://sdk.vercel.ai/docs/getting-started/nextjs-app-router), [Vue](https://sdk.vercel.ai/docs/getting-started/nuxt), [Svelte](https://sdk.vercel.ai/docs/getting-started/svelte), [Node.js](https://sdk.vercel.ai/docs/getting-started/nodejs), and more. Integrating LLMs into applications is complicated and heavily dependent on the specific model provider you use.
 
 The AI SDK abstracts away the differences between model providers, eliminates boilerplate code for building chatbots, and allows you to go beyond text output to generate rich, interactive components.
 
-## [Generating text](https://vercel.com/docs/ai-sdk\#generating-text)
+## [Generating text](#generating-text)
 
 At the center of the AI SDK is [AI SDK Core](https://sdk.vercel.ai/docs/ai-sdk-core/overview), which provides a unified API to call any LLM.
 
 The following example shows how to generate text with the AI SDK using OpenAI's GPT-5:
 
-```grid text-[var(--ds-gray-1000)] text-left whitespace-pre break-normal !text-[13px] leading-[20px] font-mono hyphens-none
+```ts
 import { generateText } from 'ai';
-
+ 
 const { text } = await generateText({
   model: 'openai/gpt-5',
   prompt: 'Explain the concept of quantum entanglement.',
@@ -25,27 +21,27 @@ const { text } = await generateText({
 
 The unified interface means that you can easily switch between providers by changing just two lines of code. For example, to use Anthropic's Claude Sonnet 3.7:
 
-```grid text-[var(--ds-gray-1000)] text-left whitespace-pre break-normal !text-[13px] leading-[20px] font-mono hyphens-none
+```ts
 import { generateText } from 'ai';
 import { anthropic } from '@ai-sdk/anthropic';
-
+ 
 const { text } = await generateText({
   model: anthropic('claude-3-7-sonnet-20250219'),
   prompt: 'How many people will live in the world in 2040?',
 });
 ```
 
-## [Generating structured data](https://vercel.com/docs/ai-sdk\#generating-structured-data)
+## [Generating structured data](#generating-structured-data)
 
-While text generation can be useful, you might want to generate structured JSON data. For example, you might want to extract information from text, classify data, or generate synthetic data. AI SDK Core provides two functions ( [`generateObject`](https://sdk.vercel.ai/docs/reference/ai-sdk-core/generate-object) and [`streamObject`](https://sdk.vercel.ai/docs/reference/ai-sdk-core/stream-object)) to generate structured data, allowing you to constrain model outputs to a specific schema.
+While text generation can be useful, you might want to generate structured JSON data. For example, you might want to extract information from text, classify data, or generate synthetic data. AI SDK Core provides two functions ([`generateObject`](https://sdk.vercel.ai/docs/reference/ai-sdk-core/generate-object) and [`streamObject`](https://sdk.vercel.ai/docs/reference/ai-sdk-core/stream-object)) to generate structured data, allowing you to constrain model outputs to a specific schema.
 
 The following example shows how to generate a type-safe recipe that conforms to a zod schema:
 
-```grid text-[var(--ds-gray-1000)] text-left whitespace-pre break-normal !text-[13px] leading-[20px] font-mono hyphens-none
+```ts
 import { generateObject } from 'ai';
 import { openai } from '@ai-sdk/openai';
 import { z } from 'zod';
-
+ 
 const { object } = await generateObject({
   model: 'openai/gpt-5',
   schema: z.object({
@@ -59,14 +55,14 @@ const { object } = await generateObject({
 });
 ```
 
-## [Using tools with the AI SDK](https://vercel.com/docs/ai-sdk\#using-tools-with-the-ai-sdk)
+## [Using tools with the AI SDK](#using-tools-with-the-ai-sdk)
 
 The AI SDK supports tool calling out of the box, allowing it to interact with external systems and perform discrete tasks. The following example shows how to use tool calling with the AI SDK:
 
-```grid text-[var(--ds-gray-1000)] text-left whitespace-pre break-normal !text-[13px] leading-[20px] font-mono hyphens-none
+```ts
 import { generateText, tool } from 'ai';
 import { openai } from '@ai-sdk/openai';
-
+ 
 const { text } = await generateText({
   model: 'openai/gpt-5',
   prompt: 'What is the weather like today in San Francisco?',
@@ -85,37 +81,21 @@ const { text } = await generateText({
 });
 ```
 
-## [Getting started with the AI SDK](https://vercel.com/docs/ai-sdk\#getting-started-with-the-ai-sdk)
+## [Getting started with the AI SDK](#getting-started-with-the-ai-sdk)
 
 The AI SDK is available as a package. To install it, run the following command:
 
-pnpmyarnnpmbun
+pnpmbunyarnnpm
 
-```grid text-[var(--ds-gray-1000)] text-left whitespace-pre break-normal !text-[13px] leading-[20px] font-mono hyphens-none
-pnpm i ai
+```bash
+npm i ai
 ```
 
 See the [AI SDK Getting Started](https://sdk.vercel.ai/docs/getting-started) guide for more information on how to get started with the AI SDK.
 
-## [More resources](https://vercel.com/docs/ai-sdk\#more-resources)
+## [More resources](#more-resources)
 
-- [AI SDK documentation](https://sdk.vercel.ai/docs)
-- [AI SDK examples](https://sdk.vercel.ai/examples)
-- [AI SDK guides](https://sdk.vercel.ai/docs/guides)
-- [AI SDK templates](https://vercel.com/templates?type=ai)
-
-* * *
-
-[Previous\\
-\\
-Agent / Usage](https://vercel.com/docs/agent/usage)
-
-[Next\\
-\\
-AI Gateway](https://vercel.com/docs/ai-gateway)
-
-Was this helpful?
-
-supported.
-
-Send
+* [AI SDK documentation](https://sdk.vercel.ai/docs)
+* [AI SDK examples](https://sdk.vercel.ai/examples)
+* [AI SDK guides](https://sdk.vercel.ai/docs/guides)
+* [AI SDK templates](https://vercel.com/templates?type=ai)

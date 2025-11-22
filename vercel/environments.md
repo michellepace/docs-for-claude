@@ -16,19 +16,19 @@ This environment is where you develop new features and fix bugs on your local ma
 
 1. Install the Vercel CLI:
 
-    ```
+    ```bash
     npm install -g vercel
     ```
 
 2. Link your Vercel project with your local directory:
 
-    ```
+    ```bash
     vercel link
     ```
 
 3. Pull environment variables locally for use with application development:
 
-    ```
+    ```bash
     vercel env pull
     ```
 
@@ -57,7 +57,7 @@ The Production environment is the live, user-facing version of your site or appl
 
 By default, pushing or merging changes into your production branch (commonly `main`) triggers a production deployment. You can also explicitly deploy to production via the CLI:
 
-```
+```bash
 vercel --prod
 ```
 
@@ -86,7 +86,7 @@ To create an Authorization Bearer token, see the [access token](/docs/rest-api/r
 
 cURL
 
-```
+```bash
 curl --request POST \
   --url https://api.vercel.com/v9/projects/<project-id-or-name>/custom-environments \
   --header "Authorization: Bearer $VERCEL_TOKEN" \
@@ -101,7 +101,7 @@ To create an Authorization Bearer token, see the [access token](/docs/rest-api/r
 
 createCustomEnvironment
 
-```
+```ts
 import { Vercel } from '@vercel/sdk';
  
 const vercel = new Vercel({
@@ -127,7 +127,7 @@ run();
 
 You can deploy, pull, and manage environment variables to your custom environment with the CLI:
 
-```
+```bash
 # Deploy to a custom environment named "staging":
 vercel deploy --target=staging
  
