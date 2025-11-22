@@ -55,7 +55,7 @@ source ~/.zshrc
 
 ## 💡 Usage Examples
 
-To curate and keep docs fresh in this repo:
+### Curate
 
 ```bash
 # Curate a new doc from a URL
@@ -75,17 +75,31 @@ To curate and keep docs fresh in this repo:
 # → Re-scrapes all URLs in INDEX.xml, writes all .md files, replaces all sources
 ```
 
-To use the docs (from other projects):
+### Use the docs
+
+You can reference as you would any other file, e.g. *"`@/home/mp/projects/docs-for-ai/tailwind/INDEX.xml` what's a utility?"*. But the BEST way is to setup a personal slash command:
 
 ```bash
-# From a different project
+# 1. Ensure this Claude Code directory exists
+mkdir -p ~/.claude/commands
 
-# 1. Give Claude Code access to the repo
-/add-dir /home/mp/projects/docs-for-ai
+# 2. Copy slash-command to your personal slashes
+cp x_docs/personal-slash/ask-docs.md ~/.claude/commands/.
 
-# 2. Then reference as normal to ask your question
-@/home/mp/projects/docs-for-ai/tailwind/INDEX.xml what's a utility?
+# 3. Open file for changing in Cursor IDE ("code" for VSCode)
+cursor ~/.claude/commands/ask-docs.md
+
+# 4. Change "`~/projects/python/docs-for-ai/" to your own
+echo -e "\n🔥 Change paths to yours (in ask-docs.md)" && sed -n '17,19p' ~/.claude/commands/ask-docs.md | nl -v 17
+
+# 5. Start a new Claude
+claude
 ```
+
+Then you can just run `/add-docs` from anywhere e.g.
+
+- "`/ask-docs tailwind` what are the responsive sizes?"
+- "`/ask-docs nextjs` how are images now optimised?"
 
 ## 🏗️ How This Repo Works
 
@@ -126,7 +140,7 @@ Scripts use FireCrawl Python SDK for scraping. MCP server configured ([.mcp.json
 
 ---
 
-## 🎯🎯🎯 Improve Later
+## 🎯🔥 Notes to Improve later
 
 Instead of crawling, rather go GitHub to find docs there because its cleaner. If in .mdx format then keep it like so (don't convert it breaks)
 
