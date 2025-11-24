@@ -8,6 +8,7 @@ Curate and index documentation from any website into collections like `tailwind/
 |:-----------|:-----------------|:------------|:--------|:-------|
 | 📦 [`anthropic/`](anthropic/) | 📄 [`anthropic/INDEX.xml`](anthropic/INDEX.xml) | Claude Agent SDK | 2025-11-06 | [Official](https://docs.claude.com) |
 | 📦 [`biome/`](biome/) | 📄 [`biome/INDEX.xml`](biome/INDEX.xml) | Fast linter/formatter | 2025-11-04 | [Official](https://biomejs.dev) |
+| 🪝 [`lefthook/`](lefthook/) | 📄 [`lefthook/INDEX.xml`](lefthook/INDEX.xml) | Git hooks manager | 2025-11-24 | [Official](https://github.com/evilmartians/lefthook) |
 | 📦 [`marimo/`](marimo/) | 📄 [`marimo/INDEX.xml`](marimo/INDEX.xml) | Reactive Python notebooks | 2025-11-11 | [Official](https://docs.marimo.io) |
 | 📦 [`nextjs/`](nextjs/) | 📄 [`nextjs/INDEX.xml`](nextjs/INDEX.xml) | React framework | 2025-11-05 | [Official](https://nextjs.org) |
 | 📦 [`playwright/`](playwright/) | 📄 [`playwright/INDEX.xml`](playwright/INDEX.xml) | Browser testing | 2025-11-07 | [Official](https://playwright.dev) |
@@ -19,7 +20,7 @@ Curate and index documentation from any website into collections like `tailwind/
 | 📦 [`vitest/`](vitest/) | 📄 [`vitest/INDEX.xml`](vitest/INDEX.xml) | Testing framework | 2025-11-05 | [Official](https://vitest.dev) |
 | 📦 [`zustand/`](zustand/) | 📄 [`zustand/INDEX.xml`](zustand/INDEX.xml) | State management | 2025-11-18 | [Official](https://zustand.docs.pmnd.rs) |
 
-*Curate your own collections. For most Anthropic docs use [this tool](https://github.com/ericbuess/claude-code-docs).*
+*Curate your own collections. For most Anthropic docs use [this tool](https://github.com/ericbuess/claude-code-docs). [`lefthook/`](lefthook/) is non-standard, files were directly downloaded from GitHub.*
 
 ---
 
