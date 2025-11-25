@@ -202,4 +202,25 @@
     <local_file>filtering-analytics.md</local_file>
     <scraped_at>2025-11-25</scraped_at>
   </source>
+  <source>
+    <title>Protection Bypass for Automation</title>
+    <description>Bypassing deployment protection for E2E testing automation using x-vercel-protection-bypass header with generated secret, x-vercel-set-bypass-cookie for follow-up requests, SameSite configuration for iframes, and Playwright example.</description>
+    <source_url>https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/protection-bypass-automation</source_url>
+    <local_file>protection-bypass-for-automation.md</local_file>
+    <scraped_at>2025-11-25</scraped_at>
+  </source>
+  <source>
+    <title>Deployment Protection on Vercel</title>
+    <description>Overview of Deployment Protection features: Vercel Authentication, Password Protection, Trusted IPs, Standard Protection, All Deployments, production-only protection, legacy options, Advanced Deployment Protection add-on for Pro plans.</description>
+    <source_url>https://vercel.com/docs/deployment-protection</source_url>
+    <local_file>deployment-protection-on-vercel.md</local_file>
+    <scraped_at>2025-11-25</scraped_at>
+  </source>
+  <source>
+    <title>Vercel Authentication</title>
+    <description>Vercel Authentication deployment protection restricting access to logged-in team members, project members, and access groups, with access request workflow, approval management via dashboard and API, security considerations, and Terraform configuration.</description>
+    <source_url>https://vercel.com/docs/deployment-protection/methods-to-protect-deployments/vercel-authentication</source_url>
+    <local_file>vercel-authentication.md</local_file>
+    <scraped_at>2025-11-25</scraped_at>
+  </source>
 </docs_index>
