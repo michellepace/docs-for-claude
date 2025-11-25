@@ -2,7 +2,14 @@
 
 Curate and index documentation from any website into collections like `tailwind/`, `horses/`, etc. Reference collection indexes in your AI chats (e.g. `@tailwind/INDEX.xml what's a utility?`) so that only relevant docs are analysed. Much cleaner than a web-fetch and more focussed than a web-search. Keep your AI context sharp.
 
+<div align="center">
+  <img src="x_docs/images/example_usage.jpg" alt="Terminal showing three-step workflow: (1) Running /curate-doc biome command, (2) Curation success output showing scraped documentation and generated INDEX.xml entry, (3) Use /ask-docs to query docs. Handwritten annotations highlight each step." width="940">
+  <p><em>Complete workflow: curate → auto scrape → "/ask-docs biome Validate my config file please"</em></p>
+</div>
+
 ## 📦 Repo Collections
+
+Available collections in this repo:
 
 | Collection | Collection Index | Description | Scraped | Source |
 |:-----------|:-----------------|:------------|:--------|:-------|
@@ -20,7 +27,7 @@ Curate and index documentation from any website into collections like `tailwind/
 | 📦 [`vitest/`](vitest/) | 📄 [`vitest/INDEX.xml`](vitest/INDEX.xml) | Testing framework | 2025-11-05 | [Official](https://vitest.dev) |
 | 📦 [`zustand/`](zustand/) | 📄 [`zustand/INDEX.xml`](zustand/INDEX.xml) | State management | 2025-11-18 | [Official](https://zustand.docs.pmnd.rs) |
 
-*Curate your own collections. For most Anthropic docs use [this tool](https://github.com/ericbuess/claude-code-docs). [`lefthook/`](lefthook/) is non-standard, files were directly downloaded from GitHub.*
+*Curate your own collections. The [lefthook](lefthook/) collection is non-standard, docs directly downloaded from GitHub. For Anthropic docs use [this tool](https://github.com/ericbuess/claude-code-docs).*
 
 ---
 
@@ -37,79 +44,52 @@ cd docs-for-ai
 # 3. Get free FireCrawl API key
 # Visit: https://www.firecrawl.dev/app/api-keys
 
-# 4. Add to shell profile (.zshrc, .bashrc, .profile)
+# 4. Add to your shell profile
 echo 'export API_KEY_MCP_FIRECRAWL=your-api-key-here' >> ~/.zshrc
-source ~/.zshrc
+source ~/.zshrc  # Use ~/.bashrc if that's your shell
 ```
 
-## 📖 Curate With Slash Commands
+## 📖 Usage via Slash Commands
 
-| Command | Purpose | .md Files | INDEX `<source>` |
+> [!IMPORTANT]
+> Edit the paths in [.claude/commands/ask-docs.md](.claude/commands/ask-docs.md) to match your local setup. To use from anywhere, move it to `~/.claude/commands/`.
+
+| Slash Command | Purpose | .md Files | INDEX `<source>` |
 |:--------|:--------|:----------|:----------|
-| `/curate-doc <directory> <url>` | Add / re-scrape doc | ✅ Write | ✅ Add/replace |
-| `/rescrape-docs <directory>` | Re-scrape all docs | ✅ Write all | ✅ Selective update |
+| `/curate-doc <collection> <url>` | Add new or re-scrape | ✅ Write | ✅ Add/update INDEX.xml |
+| `/rescrape-docs <collection>` | Re-scrape all docs | ✅ Write all | ✅ Selective update INDEX.xml |
+| `/ask-docs <collection> <question>` | Query any collection | Docs analysed | Relevant docs identified |
 
-<div align="center">
-  <img src="x_docs/images/example_usage.jpg" alt="Terminal showing three-step workflow: (1) Running /curate-doc biome command, (2) Curation success output showing scraped documentation and generated INDEX.xml entry, (3) Reference command @biome/INDEX.xml to ask questions. Handwritten annotations highlight each step." width="900">
-  <p><em>Complete workflow: curate → scrape → reference</em></p>
-</div>
+## 💡 Usage Example
 
-## 💡 Usage Examples
-
-### Curate
+Assume tailwind was not already a collection in this repo:
 
 ```bash
-# Curate a new doc from a URL
+# Start a new collection
 /curate-doc tailwind https://tailwindcss.com/docs/customizing-colors
-# → Scrapes page, writes .md file, adds source to INDEX.xml
+# → Creates tailwind/ collection directory, with README.md + INDEX.xml, and first curated doc
 
 # Re-scrape existing doc (refresh content from same URL)
 /curate-doc tailwind https://tailwindcss.com/docs/customizing-colors
 # → Re-scrapes, writes .md file, replaces source in INDEX.xml
 
-# Start a new collection
-/curate-doc reflex https://reflex.dev/docs/getting-started/installation
-# → Creates reflex/ directory, README.md, INDEX.xml, and first curated doc
+# Curate a new doc into collection
+/curate-doc tailwind https://tailwindcss.com/docs/styling-with-utility-classes
+# → Scrapes page into collection, writes .md file, adds source to INDEX.xml
 
-# Re-scrape all docs in collection (monthly maintenance)
+# Re-scrape all docs in collection
 /rescrape-docs tailwind
-# → Re-scrapes all URLs in INDEX.xml, writes all .md files, replaces all sources
+# → Re-scrapes all URLs in INDEX.xml, writes all .md files, updates descriptions for changed content
+
+# ✨ Use the docs
+/ask-docs tailwind Please evaluate my project for correct usage of utility classes?
+# → Searches tailwind/INDEX.xml for relevant docs, analyses these, gives you an answer
 ```
-
-### Use the docs
-
-You can reference as you would any other file, e.g. *"`@/home/mp/projects/docs-for-ai/tailwind/INDEX.xml` what's a utility?"*. But the BEST way is to setup a personal slash command:
-
-```bash
-# 1. Ensure this Claude Code directory exists
-mkdir -p ~/.claude/commands
-
-# 2. Copy slash-command to your personal slashes
-cp x_docs/personal-slash/ask-docs.md ~/.claude/commands/.
-
-# 3. Open file for changing in Cursor IDE ("code" for VSCode)
-cursor ~/.claude/commands/ask-docs.md
-
-# 4. Change "`~/projects/python/docs-for-ai/" to your own
-echo -e "\n🔥 Change paths to yours (in ask-docs.md)" && sed -n '17,19p' ~/.claude/commands/ask-docs.md | nl -v 17
-
-# 5. Start a new Claude
-claude
-```
-
-Then you can just run `/add-docs` from anywhere e.g.
-
-- "`/ask-docs tailwind` what are the responsive sizes?"
-- "`/ask-docs nextjs` how are images now optimised?"
 
 ## 🏗️ How This Repo Works
 
 **Workflow:** Python script scrapes URL → writes .md file → creates INDEX.xml entry with `PLACEHOLDER` description → Claude Code generates semantic description.
-
-- `/curate-doc` - Always regenerates description for the doc
-- `/rescrape-docs` - Only regenerates descriptions for files with content changes (ignores whitespace)
-
-**Usage:** Reference `@INDEX.xml [question]` to let Claude Code use descriptions to find relevant docs.
+The `/curate-doc` command always regenerates the description, whereas `/rescrape-docs` only regenerates descriptions for files with content changes.
 
 **Directory Structure:**
 
@@ -137,23 +117,10 @@ uv/
 </docs_index>
 ```
 
-Scripts use FireCrawl Python SDK for scraping. MCP server configured ([.mcp.json](.mcp.json), [.claude/settings.json](.claude/settings.json)) for Claude Code self-healing beyond scripts.
+Scripts use FireCrawl Python SDK. MCP server also configured ([.mcp.json](.mcp.json), [.claude/settings.json](.claude/settings.json)).
 
 ---
 
-## 🎯🔥 Notes to Improve later
+## 👉 Notes to Improve later (NB!)
 
-Instead of crawling, rather go GitHub to find docs there because its cleaner. If in .mdx format then keep it like so (don't convert it breaks)
-
-```markdown
-Your instinct is correct:
-- FireCrawl scraped HTML → configuration-biome.md = good but has scraper artefacts
-- GitHub source .mdx → keep as .mdx = best (canonical, clean)
-- GitHub source .mdx → converted to .md = worst (broken, lossy conversion)
-
-For future collections, you should:
-1. Check if docs are on GitHub
-2. If yes, grab the .mdx or .md files directly
-3. Keep them in their original format
-4. Only use FireCrawl as a fallback when source files aren't available
-```
+Instead of crawling, rather go to GitHub and automate downloading and index creation. Docs are much cleaner than crawling. Keep .mdx files as-is; do not convert to .md. Trade-off: bulk downloads bloat the index; curating individually keeps focus.
