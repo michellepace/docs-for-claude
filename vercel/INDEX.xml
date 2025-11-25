@@ -174,4 +174,32 @@
     <local_file>speed-insights-metrics.md</local_file>
     <scraped_at>2025-11-25</scraped_at>
   </source>
+  <source>
+    <title>Getting started with Vercel Web Analytics</title>
+    <description>Quickstart guide for Vercel Web Analytics: enabling analytics in dashboard, installing @vercel/analytics package, adding Analytics component to root layout, deploying to Vercel, and viewing visitor data in the dashboard.</description>
+    <source_url>https://vercel.com/docs/analytics/quickstart</source_url>
+    <local_file>getting-started-with-vercel-web-analytics.md</local_file>
+    <scraped_at>2025-11-25</scraped_at>
+  </source>
+  <source>
+    <title>Advanced Web Analytics Config with @vercel/analytics</title>
+    <description>@vercel/analytics package configuration including mode for environment detection, debug logging, beforeSend hook for event filtering and data redaction, custom endpoint for multi-project domains, and scriptSrc for custom script URLs.</description>
+    <source_url>https://vercel.com/docs/analytics/package</source_url>
+    <local_file>advanced-web-analytics-config-with-vercelanalytics.md</local_file>
+    <scraped_at>2025-11-25</scraped_at>
+  </source>
+  <source>
+    <title>Tracking custom events</title>
+    <description>Tracking custom events with track() function for client-side and server-side events, passing custom data properties, event naming limitations, and viewing tracked events in the Vercel dashboard.</description>
+    <source_url>https://vercel.com/docs/analytics/custom-events</source_url>
+    <local_file>tracking-custom-events.md</local_file>
+    <scraped_at>2025-11-25</scraped_at>
+  </source>
+  <source>
+    <title>Filtering Analytics</title>
+    <description>Filtering Web Analytics data by routes, pages, hostname, referrers, UTM parameters, country, browsers, devices, and OS. Includes drill-downs for referrers, feature flags, custom events, and Twitter resolver for t.co traffic.</description>
+    <source_url>https://vercel.com/docs/analytics/filtering</source_url>
+    <local_file>filtering-analytics.md</local_file>
+    <scraped_at>2025-11-25</scraped_at>
+  </source>
 </docs_index>
