@@ -153,4 +153,25 @@
     <local_file>production-checklist-for-launch.md</local_file>
     <scraped_at>2025-11-22</scraped_at>
   </source>
+  <source>
+    <title>Getting started with Speed Insights</title>
+    <description>Speed Insights quickstart covering prerequisites, enabling via dashboard, installing @vercel/speed-insights package, adding SpeedInsights component to Next.js app router layouts, deploying to Vercel, and viewing metrics data.</description>
+    <source_url>https://vercel.com/docs/speed-insights/quickstart</source_url>
+    <local_file>getting-started-with-speed-insights.md</local_file>
+    <scraped_at>2025-11-25</scraped_at>
+  </source>
+  <source>
+    <title>Speed Insights Configuration with @vercel/speed-insights</title>
+    <description>@vercel/speed-insights package configuration options including sampleRate for event sampling, beforeSend for filtering sensitive data, debug mode, route aggregation, custom endpoint URLs, and scriptSrc for script loading.</description>
+    <source_url>https://vercel.com/docs/speed-insights/package</source_url>
+    <local_file>speed-insights-configuration-with-vercelspeed-insights.md</local_file>
+    <scraped_at>2025-11-25</scraped_at>
+  </source>
+  <source>
+    <title>Speed Insights Metrics</title>
+    <description>Core Web Vitals metrics including LCP, CLS, INP, FCP, FID, TBT, and TTFB with target values, Real Experience Score calculation, percentile definitions, score interpretation, and Virtual Experience Score.</description>
+    <source_url>https://vercel.com/docs/speed-insights/metrics</source_url>
+    <local_file>speed-insights-metrics.md</local_file>
+    <scraped_at>2025-11-25</scraped_at>
+  </source>
 </docs_index>
