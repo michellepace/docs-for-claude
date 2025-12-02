@@ -1,6 +1,6 @@
 # Turbopack
 
-@doc-version: 16.0.3
+@doc-version: 16.0.5
 
 Turbopack is an **incremental bundler** optimized for JavaScript and TypeScript, written in Rust, and built into **Next.js**. You can use Turbopack with both the Pages and App Router for a **much faster** local development experience.
 

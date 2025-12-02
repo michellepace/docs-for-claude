@@ -1,6 +1,6 @@
 # TypeScript
-@doc-version: 16.0.3
 
+@doc-version: 16.0.5
 
 Next.js comes with built-in TypeScript, automatically installing the necessary packages and configuring the proper settings when you create a new project with `create-next-app`.
 
@@ -24,7 +24,7 @@ Now, when editing files, the custom plugin will be enabled. When running `next b
 
 The TypeScript plugin can help with:
 
-* Warning if the invalid values for [segment config options](/docs/app/api-reference/file-conventions/route-segment-config.md) are passed.
+* Warning if invalid values for [segment config options](/docs/app/api-reference/file-conventions/route-segment-config.md) are passed.
 * Showing available options and in-context documentation.
 * Ensuring the `'use client'` directive is used correctly.
 * Ensuring client hooks (like `useState`) are only used in Client Components.
@@ -112,7 +112,7 @@ NODE_OPTIONS=--experimental-transform-types next <command>
 
 #### For CommonJS Projects (Default)
 
-Although `next.config.ts` supports native ESM syntax on CommonJS projects, Node.js will still assume `next.config.ts` is a CommonJS file by default, resulting in Node.js reparsing the file as ESM when module syntax is detected. Therefore, we recommend using the `next.config.mts` file for CommonJS projects to explicitly indicate it's an ESM module:
+Although `next.config.ts` supports native ESM syntax in CommonJS projects, Node.js will still assume `next.config.ts` is a CommonJS file by default, resulting in Node.js reparsing the file as ESM when module syntax is detected. Therefore, we recommend using the `next.config.mts` file for CommonJS projects to explicitly indicate it's an ESM module:
 
 ```ts filename="next.config.mts"
 import type { NextConfig } from 'next'
@@ -142,7 +142,7 @@ Works in both the Pages and App Router for the `href` prop in `next/link`. In th
 
 Literal `href` strings are validated, while non-literal `href`s may require a cast with `as Route`.
 
-To opt-into this feature, `typedRoutes` need to be enabled and the project needs to be using TypeScript.
+To opt-into this feature, `typedRoutes` needs to be enabled and the project needs to be using TypeScript.
 
 ```ts filename="next.config.ts"
 import type { NextConfig } from 'next'

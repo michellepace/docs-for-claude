@@ -1,6 +1,6 @@
 # Testing
 
-@doc-version: 16.0.3
+@doc-version: 16.0.5
 
 In React and Next.js, there are a few different types of tests you can write, each with its own purpose and use cases. This page provides an overview of types and commonly used tools you can use to test your application.
 

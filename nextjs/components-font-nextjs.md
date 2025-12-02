@@ -1,6 +1,6 @@
 # Font Module
 
-@doc-version: 16.0.3
+@doc-version: 16.0.5
 
 [`next/font`](/docs/app/api-reference/components/font.md) automatically optimizes your fonts (including custom fonts) and removes external network requests for improved privacy and performance.
 
@@ -138,7 +138,7 @@ Used in `next/font/google`
 
 Examples:
 
-* `axes: ['slnt']`: An array with value `slnt` for the `Inter` variable font which has `slnt` as additional `axes` as shown [here in these google fonts](https://fonts.google.com/variablefonts?vfquery=inter#font-families). You can find the possible `axes` values for your font by using the filter on the [Google variable fonts page](https://fonts.google.com/variablefonts#font-families) and looking for axes other than `wght`
+* `axes: ['slnt']`: An array with value `slnt` for the `Inter` variable font which has `slnt` as additional `axes` as shown [here](https://fonts.google.com/variablefonts?vfquery=inter#font-families). You can find the possible `axes` values for your font by using the filter on the [Google variable fonts page](https://fonts.google.com/variablefonts#font-families) and looking for axes other than `wght`
 
 ### `display`
 

@@ -1,6 +1,6 @@
 # How to set up Jest with Next.js
-@doc-version: 16.0.3
 
+@doc-version: 16.0.5
 
 Jest and React Testing Library are frequently used together for **Unit Testing** and **Snapshot Testing**. This guide will show you how to set up Jest with Next.js and write your first tests.
 

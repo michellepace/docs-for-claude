@@ -1,6 +1,6 @@
 # serverComponentsHmrCache
 
-@doc-version: 16.0.3
+@doc-version: 16.0.5
 
 > This feature is currently experimental and subject to change, it is not recommended for production.
 

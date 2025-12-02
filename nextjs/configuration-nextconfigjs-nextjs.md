@@ -1,6 +1,6 @@
 # next.config.js
 
-@doc-version: 16.0.3
+@doc-version: 16.0.5
 
 Next.js can be configured through a `next.config.js` file in the root of your project directory (for example, by `package.json`) with a default export.
 

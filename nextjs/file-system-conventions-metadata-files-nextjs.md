@@ -1,6 +1,6 @@
 # Metadata Files API Reference
 
-@doc-version: 16.0.3
+@doc-version: 16.0.5
 
 This section of the docs covers **Metadata file conventions**. File-based metadata can be defined by adding special metadata files to route segments.
 

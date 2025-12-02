@@ -1,6 +1,6 @@
 # generateMetadata
 
-@doc-version: 16.0.3
+@doc-version: 16.0.5
 
 You can use the `metadata` object or the `generateMetadata` function to define metadata.
 
@@ -1296,20 +1296,3 @@ export const metadata = {
 
 * `title` from `app/layout.js` is **replaced** by `title` in `app/about/page.js`.
 * All `openGraph` fields from `app/layout.js` are **inherited** in `app/about/page.js` because `app/about/page.js` doesn't set `openGraph` metadata.
-
-## Version History
-
-| Version   | Changes                                                                                                                                                 |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `v15.2.0` | Introduced streaming support to `generateMetadata`.                                                                                                     |
-| `v13.2.0` | `viewport`, `themeColor`, and `colorScheme` deprecated in favor of the [`viewport` configuration](/docs/app/api-reference/functions/generate-viewport.md). |
-| `v13.2.0` | `metadata` and `generateMetadata` introduced.                                                                                                           |
-
-## Next Steps
-
-View all the Metadata API options.
-
-* [Metadata Files](/docs/app/api-reference/file-conventions/metadata.md)
-  * API documentation for the metadata file conventions.
-* [generateViewport](/docs/app/api-reference/functions/generate-viewport.md)
-  * API Reference for the generateViewport function.

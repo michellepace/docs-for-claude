@@ -1,6 +1,6 @@
 # How to set up Vitest with Next.js
 
-@doc-version: 16.0.3
+@doc-version: 16.0.5
 
 Vitest and React Testing Library are frequently used together for **Unit Testing**. This guide will show you how to setup Vitest with Next.js and write your first tests.
 

@@ -1,6 +1,6 @@
 # Layouts and Pages
 
-@doc-version: 16.0.3
+@doc-version: 16.0.5
 
 Next.js uses **file-system based routing**, meaning you can use folders and files to define routes. This page will guide you through how to create layouts and pages, and link between them.
 
@@ -229,7 +229,7 @@ export default async function Page({ searchParams }) {
 }
 ```
 
-Using `searchParams` opts your page into [**dynamic rendering**](/docs/app/guides/caching.md#dynamic-rendering) because it requires a incoming request to read the search parameters from.
+Using `searchParams` opts your page into [**dynamic rendering**](/docs/app/guides/caching.md#dynamic-rendering) because it requires an incoming request to read the search parameters from.
 
 Client Components can read search params using the [`useSearchParams`](/docs/app/api-reference/functions/use-search-params.md) hook.
 

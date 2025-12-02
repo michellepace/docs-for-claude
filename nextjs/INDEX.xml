@@ -11,133 +11,133 @@
     <description>Next.js Image component for automatic size optimisation, WebP format, lazy loading, blur placeholders, local images from public folder with automatic dimensions, remote images requiring width/height props, and remotePatterns security configuration.</description>
     <source_url>https://nextjs.org/docs/app/getting-started/images</source_url>
     <local_file>getting-started-image-optimization-nextjs.md</local_file>
-    <scraped_at>2025-11-05</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>Getting Started: Project Structure | Next.js</title>
     <description>Folder and file conventions including top-level folders, routing files (layout, page, loading, error, route), dynamic routes, route groups, private folders, parallel and intercepted routes, metadata conventions, colocation patterns, component hierarchy.</description>
     <source_url>https://nextjs.org/docs/app/getting-started/project-structure</source_url>
     <local_file>getting-started-project-structure-nextjs.md</local_file>
-    <scraped_at>2025-11-05</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>Getting Started: Installation | Next.js</title>
     <description>Installation methods using create-next-app CLI or manual setup, system requirements, configuration prompts for TypeScript, linting, Tailwind, App Router, creating app directory with layout and page files, development server, and absolute imports.</description>
     <source_url>https://nextjs.org/docs/app/getting-started/installation</source_url>
     <local_file>getting-started-installation-nextjs.md</local_file>
-    <scraped_at>2025-11-05</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>Configuration: TypeScript | Next.js</title>
     <description>Next.js TypeScript configuration including IDE plugin, statically typed links, environment variable IntelliSense, custom tsconfig paths, build error handling, end-to-end type safety, and route-aware type helpers.</description>
     <source_url>https://nextjs.org/docs/app/api-reference/config/typescript</source_url>
     <local_file>configuration-typescript-nextjs.md</local_file>
-    <scraped_at>2025-11-05</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>Getting Started: Layouts and Pages | Next.js</title>
     <description>File-system routing with page and layout files, nested routes, dynamic segments using square brackets, nested layouts wrapping children, search parameters handling, Link component for navigation, and PageProps LayoutProps type helpers.</description>
     <source_url>https://nextjs.org/docs/app/getting-started/layouts-and-pages</source_url>
     <local_file>getting-started-layouts-and-pages-nextjs.md</local_file>
-    <scraped_at>2025-11-05</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>Testing: Vitest | Next.js</title>
     <description>Setting up Vitest with Next.js: quickstart example, manual installation, configuration with jsdom and React Testing Library, creating unit tests for components, running tests, and limitations with async Server Components.</description>
     <source_url>https://nextjs.org/docs/app/guides/testing/vitest</source_url>
     <local_file>testing-vitest-nextjs.md</local_file>
-    <scraped_at>2025-11-05</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>Testing: Playwright | Next.js</title>
     <description>Setting up Playwright with Next.js for E2E testing: quickstart example, manual installation, creating navigation tests, running tests against production build, using webServer feature, and CI configuration with headless mode.</description>
     <source_url>https://nextjs.org/docs/app/guides/testing/playwright</source_url>
     <local_file>testing-playwright-nextjs.md</local_file>
-    <scraped_at>2025-11-05</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>Guides: Testing | Next.js</title>
     <description>Testing overview covering unit testing, component testing, integration testing, end-to-end testing, snapshot testing, async Server Components recommendations, and setup guides for Cypress, Jest, Playwright, and Vitest.</description>
     <source_url>https://nextjs.org/docs/app/guides/testing</source_url>
     <local_file>guides-testing-nextjs.md</local_file>
-    <scraped_at>2025-11-05</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>Testing: Jest | Next.js</title>
     <description>Setting up Jest with Next.js for unit and snapshot testing including installation, configuration with next/jest transformer, handling module path aliases, custom matchers setup, creating test scripts, and example component tests.</description>
     <source_url>https://nextjs.org/docs/app/guides/testing/jest</source_url>
     <local_file>testing-jest-nextjs.md</local_file>
-    <scraped_at>2025-11-05</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>API Reference: Turbopack | Next.js</title>
     <description>Turbopack Rust-based incremental bundler for Next.js, unified graph architecture, lazy bundling, language support (JavaScript, TypeScript, JSX, CSS, Sass, PostCSS), Fast Refresh, React Server Components, webpack gaps, configuration options, trace generation.</description>
     <source_url>https://nextjs.org/docs/app/api-reference/turbopack</source_url>
     <local_file>api-reference-turbopack-nextjs.md</local_file>
-    <scraped_at>2025-11-14</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>Configuration: next.config.js | Next.js</title>
     <description>Next.js configuration reference covering ECMAScript modules, TypeScript support, async functions, phase-based configuration, unit testing utilities, and comprehensive options including headers, redirects, rewrites, images, caching, and routing.</description>
     <source_url>https://nextjs.org/docs/app/api-reference/config/next-config-js</source_url>
     <local_file>configuration-nextconfigjs-nextjs.md</local_file>
-    <scraped_at>2025-11-15</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>next.config.js: serverComponentsHmrCache | Next.js</title>
     <description>Experimental configuration option to cache fetch responses in Server Components across HMR refreshes during development, reducing API costs and improving response times, with default behaviour and opt-out instructions.</description>
     <source_url>https://nextjs.org/docs/app/api-reference/config/next-config-js/serverComponentsHmrCache</source_url>
     <local_file>nextconfigjs-servercomponentshmrcache-nextjs.md</local_file>
-    <scraped_at>2025-11-15</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>Getting Started: Fetching Data | Next.js</title>
     <description>Data fetching in Server and Client Components using fetch API, ORMs, React use hook, SWR, request memoization, Data Cache, streaming with loading.js and Suspense, sequential and parallel patterns.</description>
     <source_url>https://nextjs.org/docs/app/getting-started/fetching-data</source_url>
     <local_file>getting-started-fetching-data-nextjs.md</local_file>
-    <scraped_at>2025-11-15</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>Getting Started: Updating Data | Next.js</title>
     <description>Server Functions and Server Actions with use server directive, creating and invoking from components, forms with FormData, event handlers, useActionState, revalidatePath, revalidateTag, redirect, refresh, cookies API, useEffect patterns.</description>
     <source_url>https://nextjs.org/docs/app/getting-started/updating-data</source_url>
     <local_file>getting-started-updating-data-nextjs.md</local_file>
-    <scraped_at>2025-11-15</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>Functions: generateMetadata | Next.js</title>
     <description>Static metadata object and generateMetadata function for dynamic metadata, including title templates, description, openGraph, Twitter cards, robots, icons, viewport, verification, alternates, metadataBase, and streaming metadata support.</description>
     <source_url>https://nextjs.org/docs/app/api-reference/functions/generate-metadata</source_url>
     <local_file>functions-generatemetadata-nextjs.md</local_file>
-    <scraped_at>2025-11-15</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>File-system conventions: Metadata Files | Next.js</title>
     <description>Metadata file conventions including favicon, icon, apple-icon, manifest.json, Open Graph and Twitter images, robots.txt, and sitemap.xml. Covers static and dynamic variants, automatic serving with caching, and head element updates.</description>
     <source_url>https://nextjs.org/docs/app/api-reference/file-conventions/metadata</source_url>
     <local_file>file-system-conventions-metadata-files-nextjs.md</local_file>
-    <scraped_at>2025-11-15</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>Getting Started: Font Optimization | Next.js</title>
     <description>Using next/font module for automatic font optimisation with built-in self-hosting, Google fonts via next/font/google, local fonts via next/font/local, variable fonts, weight specification, className application, and preventing layout shift.</description>
     <source_url>https://nextjs.org/docs/app/getting-started/fonts</source_url>
     <local_file>getting-started-font-optimization-nextjs.md</local_file>
-    <scraped_at>2025-11-16</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>Components: Font | Next.js</title>
     <description>Font optimization with automatic self-hosting for Google and local fonts, configuration options (weight, style, subsets, display, preload, fallback, variable), Tailwind integration, className/style/CSS variable application methods.</description>
     <source_url>https://nextjs.org/docs/app/api-reference/components/font</source_url>
     <local_file>components-font-nextjs.md</local_file>
-    <scraped_at>2025-11-16</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>Getting Started: Fonts | Next.js</title>
     <description>Automatic font optimization via next/font with self-hosting, zero layout shift, Google Font integration supporting variable fonts, local font imports from single or multiple files, className application, eliminating external requests.</description>
     <source_url>https://nextjs.org/docs/pages/getting-started/fonts</source_url>
     <local_file>getting-started-fonts-nextjs.md</local_file>
-    <scraped_at>2025-11-16</scraped_at>
+    <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
     <title>Getting Started: Cache Components | Next.js</title>

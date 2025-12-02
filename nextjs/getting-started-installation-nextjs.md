@@ -1,6 +1,6 @@
 # Installation
 
-@doc-version: 16.0.3
+@doc-version: 16.0.5
 
 Create a new Next.js app and run it locally.
 
