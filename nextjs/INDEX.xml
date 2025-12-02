@@ -1,5 +1,12 @@
 <docs_index>
   <source>
+    <title>Next.js 16 | Next.js</title>
+    <description>Next.js 16 release notes covering Cache Components, Turbopack stable, proxy.ts replacing middleware, React Compiler, Build Adapters API, enhanced routing, caching APIs, React 19.2 features, and breaking changes.</description>
+    <source_url>https://nextjs.org/blog/next-16</source_url>
+    <local_file>nextjs-16-nextjs.md</local_file>
+    <scraped_at>2025-12-02</scraped_at>
+  </source>
+  <source>
     <title>Getting Started: Image Optimization | Next.js</title>
     <description>Next.js Image component for automatic size optimisation, WebP format, lazy loading, blur placeholders, local images from public folder with automatic dimensions, remote images requiring width/height props, and remotePatterns security configuration.</description>
     <source_url>https://nextjs.org/docs/app/getting-started/images</source_url>
@@ -132,4 +139,33 @@
     <local_file>getting-started-fonts-nextjs.md</local_file>
     <scraped_at>2025-11-16</scraped_at>
   </source>
+  <source>
+    <title>Getting Started: Cache Components | Next.js</title>
+    <description>Cache Components enabling Partial Prerendering for static, cached, and dynamic rendering. Static HTML shell, Suspense streaming, use cache directive, cacheLife/cacheTag functions, runtime data handling, Activity navigation, route segment config migration.</description>
+    <source_url>https://nextjs.org/docs/app/getting-started/cache-components</source_url>
+    <local_file>getting-started-cache-components-nextjs.md</local_file>
+    <scraped_at>2025-12-02</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started: Linking and Navigating | Next.js</title>
+    <description>Navigation and rendering including Link component prefetching, static and dynamic server rendering, streaming with loading.tsx and Suspense, client-side transitions, useLinkStatus for slow networks, generateStaticParams, hydration optimisation, and native History API.</description>
+    <source_url>https://nextjs.org/docs/app/getting-started/linking-and-navigating</source_url>
+    <local_file>getting-started-linking-and-navigating-nextjs.md</local_file>
+    <scraped_at>2025-12-02</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started: Caching and Revalidating | Next.js</title>
+    <description>Caching and revalidation APIs including fetch with force-cache and next.revalidate, cacheTag with use cache directive, revalidateTag with stale-while-revalidate, updateTag for Server Actions, revalidatePath, and legacy unstable_cache.</description>
+    <source_url>https://nextjs.org/docs/app/getting-started/caching-and-revalidating</source_url>
+    <local_file>getting-started-caching-and-revalidating-nextjs.md</local_file>
+    <scraped_at>2025-12-02</scraped_at>
+  </source>
+  <source>
+    <title>Guides: Caching | Next.js</title>
+    <description>Four caching mechanisms including Request Memoization, Data Cache, Full Route Cache, and Router Cache. Static and dynamic rendering strategies, time-based and on-demand revalidation, cache interactions, and API reference.</description>
+    <source_url>https://nextjs.org/docs/app/guides/caching</source_url>
+    <local_file>guides-caching-nextjs.md</local_file>
+    <scraped_at>2025-12-02</scraped_at>
+  </source>
+
 </docs_index>
