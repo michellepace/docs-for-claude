@@ -1,9 +1,23 @@
 <docs_index>
   <source>
+    <title>Clerk: Core concepts</title>
+    <description>Integration options including Account Portal, prebuilt components, and custom API flows; Dashboard configuration; session tokens and JWT authentication; key SDK objects including Clerk, Client, Session, User, Organization, SignIn, and SignUp.</description>
+    <source_url>https://clerk.com/docs/getting-started/core-concepts</source_url>
+    <local_file>next-steps-core-concepts.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
     <title>Next.js Quickstart (App Router)</title>
     <description>Next.js App Router quickstart covering @clerk/nextjs installation, clerkMiddleware setup, ClerkProvider configuration, prebuilt authentication components including SignInButton, SignUpButton, SignedIn, SignedOut, and UserButton for user management.</description>
     <source_url>https://clerk.com/docs/nextjs/getting-started/quickstart</source_url>
     <local_file>nextjs-quickstart-app-router.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Development: Install Clerk with shadcn/ui CLI</title>
+    <description>Using shadcn/ui CLI to bootstrap Next.js apps with Clerk; quickstart package for complete setup, individual sign-in, sign-up, and waitlist pages, ClerkProvider component, and middleware installation commands.</description>
+    <source_url>https://clerk.com/docs/guides/development/shadcn-cli</source_url>
+    <local_file>development-install-clerk-with-shadcnui-cli.md</local_file>
     <scraped_at>2025-12-03</scraped_at>
   </source>
   <source>
