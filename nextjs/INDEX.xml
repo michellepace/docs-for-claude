@@ -167,5 +167,11 @@
     <local_file>guides-caching-nextjs.md</local_file>
     <scraped_at>2025-12-02</scraped_at>
   </source>
-
+  <source>
+    <title>Getting Started: Proxy | Next.js</title>
+    <description>Next.js Proxy (formerly Middleware) for running code before requests complete, modifying responses via rewrites, redirects, header modifications, use cases, proxy.ts file convention, path matching configuration.</description>
+    <source_url>https://nextjs.org/docs/app/getting-started/proxy</source_url>
+    <local_file>getting-started-proxy-nextjs.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
 </docs_index>
