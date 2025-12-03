@@ -83,4 +83,60 @@
     <local_file>read-session-and-user-data-in-your-nextjs-app-with-clerk.md</local_file>
     <scraped_at>2025-12-03</scraped_at>
   </source>
+  <source>
+    <title>Customizing Clerk: Layout prop</title>
+    <description>Layout prop configuration for SignIn and SignUp components including animations, logo customisation, social button placement and variants, help page, terms page, privacy page URLs, shimmer effects, and optional field visibility.</description>
+    <source_url>https://clerk.com/docs/guides/customizing-clerk/appearance-prop/layout</source_url>
+    <local_file>customizing-clerk-layout-prop.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Customizing Clerk: Variables prop</title>
+    <description>Variables prop for styling Clerk components including color properties (primary, danger, success, neutral, foreground, background, input, border), typography settings (fontFamily, fontSize, fontWeight), spacing, borderRadius, CSS variables, and browser compatibility considerations.</description>
+    <source_url>https://clerk.com/docs/guides/customizing-clerk/appearance-prop/variables</source_url>
+    <local_file>customizing-clerk-variables-prop.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Customizing Clerk: Themes</title>
+    <description>Installing and using @clerk/themes package with prebuilt themes (dark, simple, shadcn, neobrutalism, shadesOfPurple), applying themes globally or per-component via appearance prop, stacking multiple themes, and customising with variables.</description>
+    <source_url>https://clerk.com/docs/guides/customizing-clerk/appearance-prop/themes</source_url>
+    <local_file>customizing-clerk-themes.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Customizing Clerk: captcha prop</title>
+    <description>CAPTCHA widget appearance customisation via the captcha property including theme options (auto, light, dark), size variants (normal, flexible, compact), and language/locale settings with Cloudflare Turnstile integration.</description>
+    <source_url>https://clerk.com/docs/guides/customizing-clerk/appearance-prop/captcha</source_url>
+    <local_file>customizing-clerk-captcha-prop.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Customizing Clerk: Account Portal overview</title>
+    <description>Account Portal overview including sign-in, sign-up, user profile, organisation profile, create organisation, waitlist pages, URL structure, redirect configuration, fallback redirects, disabling the portal, and linking to pages with redirect parameters.</description>
+    <source_url>https://clerk.com/docs/guides/customizing-clerk/account-portal</source_url>
+    <local_file>customizing-clerk-account-portal-overview.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Customizing Clerk: Add custom pages and links to the &lt;OrganizationProfile /&gt; component</title>
+    <description>Extending &lt;OrganizationProfile /&gt; sidenav via &lt;OrganizationSwitcher.OrganizationProfilePage /&gt; and &lt;OrganizationProfile.Page /&gt; subcomponents for custom pages and links, props (label, labelIcon, url), reordering default Members and General items, modal versus dedicated page rendering.</description>
+    <source_url>https://clerk.com/docs/guides/customizing-clerk/adding-items/organization-profile</source_url>
+    <local_file>customizing-clerk-add-custom-pages-and-links-to-the-organizationprofile-component.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Customizing Clerk: Add custom pages and links to the &lt;UserProfile /&gt; component</title>
+    <description>Extending UserProfile sidenav with custom pages via UserButton.UserProfilePage/UserProfile.Page, external links via UserProfileLink, modal vs dedicated page modes, JavaScript SDK mountUserProfile customPages array, reordering default Account and Security routes.</description>
+    <source_url>https://clerk.com/docs/guides/customizing-clerk/adding-items/user-profile</source_url>
+    <local_file>customizing-clerk-add-custom-pages-and-links-to-the-userprofile-component.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Customizing Clerk: Add custom items and links to the &lt;UserButton /&gt; component</title>
+    <description>Custom UserButton menus via UserButton.MenuItems: UserButton.Action with onClick/open props for actions and modals, UserButton.Link with href for navigation, UserButton.UserProfilePage for custom pages, reordering manageAccount/signOut, has() permission-based conditional rendering.</description>
+    <source_url>https://clerk.com/docs/guides/customizing-clerk/adding-items/user-button</source_url>
+    <local_file>customizing-clerk-add-custom-items-and-links-to-the-userbutton-component.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
 </docs_index>
