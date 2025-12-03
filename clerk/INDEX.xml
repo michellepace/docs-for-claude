@@ -1,0 +1,142 @@
+<docs_index>
+  <source>
+    <title>Next.js Quickstart (App Router)</title>
+    <description>Next.js App Router quickstart covering @clerk/nextjs installation, clerkMiddleware setup, ClerkProvider configuration, prebuilt authentication components including SignInButton, SignUpButton, SignedIn, SignedOut, and UserButton for user management.</description>
+    <source_url>https://clerk.com/docs/nextjs/getting-started/quickstart</source_url>
+    <local_file>nextjs-quickstart-app-router.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>User management: Users</title>
+    <description>User object structure with identifiers and metadata, managing users via Dashboard or programmatically, frontend components (UserButton, UserProfile) and hooks, backend SDK methods including createUser() and deleteUser().</description>
+    <source_url>https://clerk.com/docs/guides/users/managing</source_url>
+    <local_file>user-management-users.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Session management: Session tokens</title>
+    <description>Session token JWT structure and default claims (azp, exp, fva, iat, iss, sid, sub), organisation claims with feature-permission bitmask encoding, actor claims for impersonation, 4KB cookie size limits, and validation.</description>
+    <source_url>https://clerk.com/docs/guides/sessions/session-tokens</source_url>
+    <local_file>session-management-session-tokens.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Customizing Clerk: Appearance prop</title>
+    <description>Customising Clerk component appearance using the appearance prop with prebuilt themes, layout options, CSS variables, element targeting via global CSS, Tailwind classes, CSS modules, and inline style objects.</description>
+    <source_url>https://clerk.com/docs/guides/customizing-clerk/appearance-prop/overview</source_url>
+    <local_file>customizing-clerk-appearance-prop.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>How Clerk works</title>
+    <description>Clerk architecture covering Frontend API (FAPI), Backend API (BAPI), abstraction levels (prebuilt components, Elements, custom flows), hybrid authentication model with client and session tokens, token refresh mechanism, and handshake flow.</description>
+    <source_url>https://clerk.com/docs/guides/how-clerk-works/overview</source_url>
+    <local_file>how-clerk-works.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Component Reference</title>
+    <description>Component reference covering authentication (SignIn, SignUp), user (UserButton, UserAvatar), organisation (OrganizationSwitcher), billing (PricingTable), control components (SignedIn, SignedOut, Protect, ClerkLoaded), unstyled buttons, and appearance customisation.</description>
+    <source_url>https://clerk.com/docs/nextjs/reference/components/overview</source_url>
+    <local_file>component-reference.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>SDK Reference: Clerk Next.js SDK</title>
+    <description>Clerk Next.js SDK overview: clerkMiddleware integration, client-side React hooks for authentication, organizations, and billing, server-side helpers for App and Pages routers, clerkClient backend API, and Auth object structure.</description>
+    <source_url>https://clerk.com/docs/reference/nextjs/overview</source_url>
+    <local_file>sdk-reference-clerk-nextjs-sdk.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Authentication flows: Sign-up and sign-in options</title>
+    <description>Authentication configuration options including email verification codes/links, phone/SMS with country allowlists, usernames, passwords, passkeys with domain restrictions, SSO connections, Web3 wallets, multi-factor authentication strategies, and user access restrictions.</description>
+    <source_url>https://clerk.com/docs/guides/configure/auth-strategies/sign-up-sign-in-options</source_url>
+    <local_file>authentication-flows-sign-up-and-sign-in-options.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Build your own sign-in-or-up page for your Next.js app with Clerk</title>
+    <description>Building unified sign-in-or-up pages using SignIn component with Next.js catch-all routes, configuring clerkMiddleware and createRouteMatcher for public routes, setting redirect URL environment variables.</description>
+    <source_url>https://clerk.com/docs/nextjs/guides/development/custom-sign-in-or-up-page</source_url>
+    <local_file>build-your-own-sign-in-or-up-page-for-your-nextjs-app-with-clerk.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Build your own sign-up page for your Next.js app with Clerk</title>
+    <description>Custom sign-up page setup in Next.js using the SignUp component with catch-all routing, clerkMiddleware route protection with createRouteMatcher, and environment variables for sign-up and redirect URLs.</description>
+    <source_url>https://clerk.com/docs/nextjs/guides/development/custom-sign-up-page</source_url>
+    <local_file>build-your-own-sign-up-page-for-your-nextjs-app-with-clerk.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Authentication flows: Customize your redirect URLs</title>
+    <description>Redirect URL customisation via environment variables (CLERK_SIGN_IN_URL, CLERK_SIGN_UP_URL, FORCE_REDIRECT_URL, FALLBACK_REDIRECT_URL) and component props (fallbackRedirectUrl, forceRedirectUrl, signInFallbackRedirectUrl) for controlling post-authentication navigation.</description>
+    <source_url>https://clerk.com/docs/guides/development/customize-redirect-urls</source_url>
+    <local_file>authentication-flows-customize-your-redirect-urls.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Read session and user data in your Next.js app with Clerk</title>
+    <description>Server-side helpers: auth(), currentUser() for App Router; getAuth(), clerkClient(), buildClerkProps() for Pages Router. Client-side useAuth() and useUser() hooks for session state, user data, and route protection.</description>
+    <source_url>https://clerk.com/docs/nextjs/guides/users/reading</source_url>
+    <local_file>read-session-and-user-data-in-your-nextjs-app-with-clerk.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Customizing Clerk: Layout prop</title>
+    <description>Layout prop configuration for SignIn and SignUp components including animations, logo customisation, social button placement and variants, help page, terms page, privacy page URLs, shimmer effects, and optional field visibility.</description>
+    <source_url>https://clerk.com/docs/guides/customizing-clerk/appearance-prop/layout</source_url>
+    <local_file>customizing-clerk-layout-prop.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Customizing Clerk: Variables prop</title>
+    <description>Variables prop for styling Clerk components including color properties (primary, danger, success, neutral, foreground, background, input, border), typography settings (fontFamily, fontSize, fontWeight), spacing, borderRadius, CSS variables, and browser compatibility considerations.</description>
+    <source_url>https://clerk.com/docs/guides/customizing-clerk/appearance-prop/variables</source_url>
+    <local_file>customizing-clerk-variables-prop.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Customizing Clerk: Themes</title>
+    <description>Installing and using @clerk/themes package with prebuilt themes (dark, simple, shadcn, neobrutalism, shadesOfPurple), applying themes globally or per-component via appearance prop, stacking multiple themes, and customising with variables.</description>
+    <source_url>https://clerk.com/docs/guides/customizing-clerk/appearance-prop/themes</source_url>
+    <local_file>customizing-clerk-themes.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Customizing Clerk: captcha prop</title>
+    <description>CAPTCHA widget appearance customisation via the captcha property including theme options (auto, light, dark), size variants (normal, flexible, compact), and language/locale settings with Cloudflare Turnstile integration.</description>
+    <source_url>https://clerk.com/docs/guides/customizing-clerk/appearance-prop/captcha</source_url>
+    <local_file>customizing-clerk-captcha-prop.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Customizing Clerk: Account Portal overview</title>
+    <description>Account Portal overview including sign-in, sign-up, user profile, organisation profile, create organisation, waitlist pages, URL structure, redirect configuration, fallback redirects, disabling the portal, and linking to pages with redirect parameters.</description>
+    <source_url>https://clerk.com/docs/guides/customizing-clerk/account-portal</source_url>
+    <local_file>customizing-clerk-account-portal-overview.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Customizing Clerk: Add custom pages and links to the &lt;OrganizationProfile /&gt; component</title>
+    <description>Extending &lt;OrganizationProfile /&gt; sidenav via &lt;OrganizationSwitcher.OrganizationProfilePage /&gt; and &lt;OrganizationProfile.Page /&gt; subcomponents for custom pages and links, props (label, labelIcon, url), reordering default Members and General items, modal versus dedicated page rendering.</description>
+    <source_url>https://clerk.com/docs/guides/customizing-clerk/adding-items/organization-profile</source_url>
+    <local_file>customizing-clerk-add-custom-pages-and-links-to-the-organizationprofile-component.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Customizing Clerk: Add custom pages and links to the &lt;UserProfile /&gt; component</title>
+    <description>Extending UserProfile sidenav with custom pages via UserButton.UserProfilePage/UserProfile.Page, external links via UserProfileLink, modal vs dedicated page modes, JavaScript SDK mountUserProfile customPages array, reordering default Account and Security routes.</description>
+    <source_url>https://clerk.com/docs/guides/customizing-clerk/adding-items/user-profile</source_url>
+    <local_file>customizing-clerk-add-custom-pages-and-links-to-the-userprofile-component.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Customizing Clerk: Add custom items and links to the &lt;UserButton /&gt; component</title>
+    <description>Custom UserButton menus via UserButton.MenuItems: UserButton.Action with onClick/open props for actions and modals, UserButton.Link with href for navigation, UserButton.UserProfilePage for custom pages, reordering manageAccount/signOut, has() permission-based conditional rendering.</description>
+    <source_url>https://clerk.com/docs/guides/customizing-clerk/adding-items/user-button</source_url>
+    <local_file>customizing-clerk-add-custom-items-and-links-to-the-userbutton-component.md</local_file>
+    <scraped_at>2025-12-03</scraped_at>
+  </source>
+</docs_index>
