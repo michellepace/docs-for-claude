@@ -153,4 +153,18 @@
     <local_file>customizing-clerk-add-custom-items-and-links-to-the-userbutton-component.md</local_file>
     <scraped_at>2025-12-03</scraped_at>
   </source>
+  <source>
+    <title>Development: Testing</title>
+    <description>Testing strategies including fake OTP emails/phones, session token creation via Backend API, token refresh workflows, Testing Tokens for bypassing bot detection, and Playwright/Cypress integration support.</description>
+    <source_url>https://clerk.com/docs/guides/development/testing/overview</source_url>
+    <local_file>development-testing.md</local_file>
+    <scraped_at>2025-12-04</scraped_at>
+  </source>
+  <source>
+    <title>Development: Testing with Playwright</title>
+    <description>Playwright end-to-end testing integration with Clerk using @clerk/testing package, clerkSetup() for global configuration, setupClerkTestingToken() for bypassing bot detection, Testing Tokens, API key configuration, and authenticated test setup.</description>
+    <source_url>https://clerk.com/docs/guides/development/testing/playwright/overview</source_url>
+    <local_file>development-testing-with-playwright.md</local_file>
+    <scraped_at>2025-12-04</scraped_at>
+  </source>
 </docs_index>
