@@ -14,8 +14,8 @@ Available collections in this repo:
 | Collection | Collection Index | Description | Scraped | Source |
 |:-----------|:-----------------|:------------|:--------|:-------|
 | 📦 [`biome/`](biome/) | 📄 [`biome/INDEX.xml`](biome/INDEX.xml) | Fast linter/formatter | 2025-11-04 | [Official](https://biomejs.dev) |
-| 📦 [`claude_code/`](claude_code/) | 📄 [`claude_code/INDEX.xml`](claude_code/INDEX.xml) | Claude Code CLI | 2025-12-05 | [Official](https://code.claude.com) |
-| 📦 [`claude_plat/`](claude_plat/) | 📄 [`claude_plat/INDEX.xml`](claude_plat/INDEX.xml) | Claude Platform | 2025-12-05 | [Official](https://platform.claude.com) |
+| 📦 [`claude_code/`](claude_code/) | 📄 [`claude_code/INDEX.xml`](claude_code/INDEX.xml) | Anthropic Claude Code | 2025-12-05 | [Official](https://code.claude.com) |
+| 📦 [`claude_plat/`](claude_plat/) | 📄 [`claude_plat/INDEX.xml`](claude_plat/INDEX.xml) | Anthropic Claude Platform | 2025-12-05 | [Official](https://platform.claude.com) |
 | 📦 [`clerk/`](clerk/) | 📄 [`clerk/INDEX.xml`](clerk/INDEX.xml) | Authentication | 2025-12-03 | [Official](https://clerk.com) |
 | 🪝 [`lefthook/`](lefthook/) | 📄 [`lefthook/INDEX.xml`](lefthook/INDEX.xml) | Git hooks manager | 2025-11-24 | [Official](https://github.com/evilmartians/lefthook) |
 | 📦 [`marimo/`](marimo/) | 📄 [`marimo/INDEX.xml`](marimo/INDEX.xml) | Reactive Python notebooks | 2025-11-11 | [Official](https://docs.marimo.io) |
