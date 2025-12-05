@@ -1,6 +1,6 @@
-# anthropic Documentation
+# claude_code Documentation
 
 Curated docs for targeted AI context.
 
 - Curation Index: [INDEX.xml](INDEX.xml)
-- Curation Source: <https://docs.claude.com>
+- Curation Source: <https://code.claude.com>

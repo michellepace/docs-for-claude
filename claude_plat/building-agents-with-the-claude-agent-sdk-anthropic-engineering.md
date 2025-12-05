@@ -1,7 +1,3 @@
-[Engineering at Anthropic](https://www.anthropic.com/engineering)
-
-![Claude Agent SDK Loop diagram showing a cyclical workflow: gather context (blue box) flows to take action (green box), which flows to verify work (orange box), which loops back to gather context, forming a continuous feedback loop](https://www-cdn.anthropic.com/images/4zrzovbb/website/521a945a74f2d25262db4a002073aaeec9bc1919-1000x1000.svg)
-
 # Building agents with the Claude Agent SDK
 
 Published Sep 29, 2025
@@ -53,15 +49,7 @@ The file system represents information that _could_ be pulled into the model's c
 
 When Claude encounters large files, like logs or user-uploaded files, it will decide which way to load these into its context by using bash scripts like `grep` and `tail`. In essence, the folder and file structure of an agent becomes a form of [context engineering](http://anthropic.com/news/context-management).
 
-Our email agent might store previous conversations in a folder called 'Conversations'. This would allow it to search previous these for its context when asked about them.
-
-```
-/email-agent/
-└─ conversations/
-   ├─ 2025-09-project-alpha-discussion.md
-   ├─ 2025-09-customer-support-thread.md
-   └─ 2025-08-vendor-negotiations.md
-```
+Our email agent might store previous conversations in a folder called ‘Conversations’. This would allow it to search previous these for its context when asked about them.
 
 ### **Semantic search**
 
@@ -95,42 +83,15 @@ Bash is useful as a general-purpose tool to allow the agent to do flexible work 
 
 In our email agent, the user might have important information stored in their attachments. Claude could write code to download the PDF, convert it to text, and search across it to find useful information by calling, as depicted below:
 
-```bash
-pdftotext document.pdf - | grep -n "invoice" | tail -10
-```
-
 ### **Code generation**
 
 The Claude Agent SDK excels at code generation—and for good reason. Code is precise, composable, and infinitely reusable, making it an ideal output for agents that need to perform complex operations reliably.
 
 When building agents, consider: which tasks would benefit from being expressed as code? Often, the answer unlocks significant capabilities.
 
-For example, our recent launch of [file creation in](https://www.anthropic.com/news/create-files) [Claude.AI](http://claude.ai/redirect/website.v1.0d6ad30c-d223-41a6-b606-a77d8ecd138b) relies entirely on code generation. Claude writes Python scripts to create Excel spreadsheets, PowerPoint presentations, and Word documents, ensuring consistent formatting and complex functionality that would be difficult to achieve any other way.
+For example, our recent launch of [file creation in](https://www.anthropic.com/news/create-files) [Claude.AI](http://claude.ai/redirect/website.v1.2407c4c4-98f7-4461-a939-f946b552edf1) relies entirely on code generation. Claude writes Python scripts to create Excel spreadsheets, PowerPoint presentations, and Word documents, ensuring consistent formatting and complex functionality that would be difficult to achieve any other way.
 
 In our email agent, we might want to allow users to create rules for inbound emails. To achieve this, we could write code to run on that event:
-
-```javascript
-async function onEmailReceived(email) {
-  const isFromCustomer = email.from.includes('@customer.com') ||
-                         contacts.clients.some(client =>
-    client.email === email.from);
-  if (!isFromCustomer) return;
-  const isEmailUrgent = await askLLM(`Does this email seem urgent:
-${renderEmail(email)}, return TRUE OR FALSE`);
-  if (isUrgent === "TRUE" && isFromCustomer) {
-    forwardEmail(email, {
-      to: 'teamlead@company.com',
-      addNote: 'Auto-forwarded: Urgent customer email requiring immediate attention',
-      preserveAttachments: true
-    });
-    createTask({
-      title: `Urgent: Respond to ${email.from}`,
-      priority: 'high',
-      dueDate: new Date(Date.now() + 2 * 60 * 60 * 1000) // 2 hours
-    });
-  }
-}
-```
 
 ### **MCPs**
 
@@ -167,9 +128,7 @@ For instance:
 
 Using an MCP server like Playwright, you can automate this visual feedback loop—taking screenshots of rendered HTML, capturing different viewport sizes, and even testing interactive elements—all within your agent's workflow.
 
-![Example of visual feedback showing a TechCorp Analytics monthly performance report email with annotated component analysis. The email contains a header section (1040x110, z-index: 1), greeting text "Hello Sarah" (1040x65), main message paragraph (1040x120), three statistics boxes (315x215 each) displaying 47% Efficiency Gain, 128 Tasks Completed, and 4.8/5 Team Rating, a clickable CTA button "View Full Report" (335x75), closing message (1040x80), and footer section (1040x80) with copyright and links. The annotations demonstrate how an LLM analyses layout dimensions, element positioning, content hierarchy, and interactive components when providing visual feedback to verify generated HTML email formatting.](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F5ea7f3d8652778dc5e2db0cc33a846db5f1a5fb8-2292x2293.png&w=3840&q=75)
-
-Visual feedback from a large-language model (LLM) can provide helpful guidance to your agent.
+![Claude provides visual feedback on the body of an email generated by an agent.](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F5ea7f3d8652778dc5e2db0cc33a846db5f1a5fb8-2292x2293.png&w=3840&q=75)Visual feedback from a large-language model (LLM) can provide helpful guidance to your agent.
 
 ### **LLM as a judge**
 
@@ -205,3 +164,5 @@ Written by Thariq Shihipar with notes and editing from Molly Vorwerck, Suzanne W
 Product updates, how-tos, community spotlights, and more. Delivered monthly to your inbox.
 
 Please provide your email address if you’d like to receive our monthly developer newsletter. You can unsubscribe at any time.
+
+Building agents with the Claude Agent SDK \ Anthropic

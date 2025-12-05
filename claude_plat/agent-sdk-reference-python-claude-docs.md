@@ -1,10 +1,12 @@
 # Agent SDK reference - Python
 
-> Complete API reference for the Python Agent SDK, including all functions, types, and classes.
+Complete API reference for the Python Agent SDK, including all functions, types, and classes.
+
+---
 
 ## Installation
 
-```bash  theme={null}
+```bash
 pip install claude-agent-sdk
 ```
 
@@ -19,31 +21,31 @@ The Python SDK provides two ways to interact with Claude Code:
 | **Session**         | Creates new session each time | Reuses same session                |
 | **Conversation**    | Single exchange               | Multiple exchanges in same context |
 | **Connection**      | Managed automatically         | Manual control                     |
-| **Streaming Input** | ✅ Supported                   | ✅ Supported                        |
-| **Interrupts**      | ❌ Not supported               | ✅ Supported                        |
-| **Hooks**           | ❌ Not supported               | ✅ Supported                        |
-| **Custom Tools**    | ❌ Not supported               | ✅ Supported                        |
-| **Continue Chat**   | ❌ New session each time       | ✅ Maintains conversation           |
+| **Streaming Input** | ✅ Supported                  | ✅ Supported                       |
+| **Interrupts**      | ❌ Not supported              | ✅ Supported                       |
+| **Hooks**           | ❌ Not supported              | ✅ Supported                       |
+| **Custom Tools**    | ❌ Not supported              | ✅ Supported                       |
+| **Continue Chat**   | ❌ New session each time      | ✅ Maintains conversation          |
 | **Use Case**        | One-off tasks                 | Continuous conversations           |
 
 ### When to Use `query()` (New Session Each Time)
 
 **Best for:**
 
-* One-off questions where you don't need conversation history
-* Independent tasks that don't require context from previous exchanges
-* Simple automation scripts
-* When you want a fresh start each time
+- One-off questions where you don't need conversation history
+- Independent tasks that don't require context from previous exchanges
+- Simple automation scripts
+- When you want a fresh start each time
 
 ### When to Use `ClaudeSDKClient` (Continuous Conversation)
 
 **Best for:**
 
-* **Continuing conversations** - When you need Claude to remember context
-* **Follow-up questions** - Building on previous responses
-* **Interactive applications** - Chat interfaces, REPLs
-* **Response-driven logic** - When next action depends on Claude's response
-* **Session control** - Managing conversation lifecycle explicitly
+- **Continuing conversations** - When you need Claude to remember context
+- **Follow-up questions** - Building on previous responses
+- **Interactive applications** - Chat interfaces, REPLs
+- **Response-driven logic** - When next action depends on Claude's response
+- **Session control** - Managing conversation lifecycle explicitly
 
 ## Functions
 
@@ -51,7 +53,7 @@ The Python SDK provides two ways to interact with Claude Code:
 
 Creates a new session for each interaction with Claude Code. Returns an async iterator that yields messages as they arrive. Each call to `query()` starts fresh with no memory of previous interactions.
 
-```python  theme={null}
+```python
 async def query(
     *,
     prompt: str | AsyncIterable[dict[str, Any]],
@@ -72,7 +74,7 @@ Returns an `AsyncIterator[Message]` that yields messages from the conversation.
 
 #### Example - With options
 
-```python  theme={null}
+```python
 
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions
@@ -98,7 +100,7 @@ asyncio.run(main())
 
 Decorator for defining MCP tools with type safety.
 
-```python  theme={null}
+```python
 def tool(
     name: str,
     description: str,
@@ -118,13 +120,13 @@ def tool(
 
 1. **Simple type mapping** (recommended):
 
-   ```python  theme={null}
+   ```python
    {"text": str, "count": int, "enabled": bool}
    ```
 
 2. **JSON Schema format** (for complex validation):
 
-   ```python  theme={null}
+   ```python
    {
        "type": "object",
        "properties": {
@@ -141,7 +143,7 @@ A decorator function that wraps the tool implementation and returns an `SdkMcpTo
 
 #### Example
 
-```python  theme={null}
+```python
 from claude_agent_sdk import tool
 from typing import Any
 
@@ -159,7 +161,7 @@ async def greet(args: dict[str, Any]) -> dict[str, Any]:
 
 Create an in-process MCP server that runs within your Python application.
 
-```python  theme={null}
+```python
 def create_sdk_mcp_server(
     name: str,
     version: str = "1.0.0",
@@ -181,7 +183,7 @@ Returns an `McpSdkServerConfig` object that can be passed to `ClaudeAgentOptions
 
 #### Example
 
-```python  theme={null}
+```python
 from claude_agent_sdk import tool, create_sdk_mcp_server
 
 @tool("add", "Add two numbers", {"a": float, "b": float})
@@ -223,14 +225,14 @@ options = ClaudeAgentOptions(
 
 #### Key Features
 
-* **Session Continuity**: Maintains conversation context across multiple `query()` calls
-* **Same Conversation**: Claude remembers previous messages in the session
-* **Interrupt Support**: Can stop Claude mid-execution
-* **Explicit Lifecycle**: You control when the session starts and ends
-* **Response-driven Flow**: Can react to responses and send follow-ups
-* **Custom Tools & Hooks**: Supports custom tools (created with `@tool` decorator) and hooks
+- **Session Continuity**: Maintains conversation context across multiple `query()` calls
+- **Same Conversation**: Claude remembers previous messages in the session
+- **Interrupt Support**: Can stop Claude mid-execution
+- **Explicit Lifecycle**: You control when the session starts and ends
+- **Response-driven Flow**: Can react to responses and send follow-ups
+- **Custom Tools & Hooks**: Supports custom tools (created with `@tool` decorator) and hooks
 
-```python  theme={null}
+```python
 class ClaudeSDKClient:
     def __init__(self, options: ClaudeAgentOptions | None = None)
     async def connect(self, prompt: str | AsyncIterable[dict] | None = None) -> None
@@ -257,7 +259,7 @@ class ClaudeSDKClient:
 
 The client can be used as an async context manager for automatic connection management:
 
-```python  theme={null}
+```python
 async with ClaudeSDKClient() as client:
     await client.query("Hello Claude")
     async for message in client.receive_response():
@@ -268,7 +270,7 @@ async with ClaudeSDKClient() as client:
 
 #### Example - Continuing a conversation
 
-```python  theme={null}
+```python
 import asyncio
 from claude_agent_sdk import ClaudeSDKClient, AssistantMessage, TextBlock, ResultMessage
 
@@ -307,7 +309,7 @@ asyncio.run(main())
 
 #### Example - Streaming input with ClaudeSDKClient
 
-```python  theme={null}
+```python
 import asyncio
 from claude_agent_sdk import ClaudeSDKClient
 
@@ -341,7 +343,7 @@ asyncio.run(main())
 
 #### Example - Using interrupts
 
-```python  theme={null}
+```python
 import asyncio
 from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions
 
@@ -374,7 +376,7 @@ asyncio.run(interruptible_task())
 
 #### Example - Advanced permission control
 
-```python  theme={null}
+```python
 from claude_agent_sdk import (
     ClaudeSDKClient,
     ClaudeAgentOptions
@@ -431,7 +433,7 @@ asyncio.run(main())
 
 Definition for an SDK MCP tool created with the `@tool` decorator.
 
-```python  theme={null}
+```python
 @dataclass
 class SdkMcpTool(Generic[T]):
     name: str
@@ -451,7 +453,7 @@ class SdkMcpTool(Generic[T]):
 
 Configuration dataclass for Claude Code queries.
 
-```python  theme={null}
+```python
 @dataclass
 class ClaudeAgentOptions:
     allowed_tools: list[str] = field(default_factory=list)
@@ -463,6 +465,7 @@ class ClaudeAgentOptions:
     max_turns: int | None = None
     disallowed_tools: list[str] = field(default_factory=list)
     model: str | None = None
+    output_format: OutputFormat | None = None
     permission_prompt_tool_name: str | None = None
     cwd: str | Path | None = None
     settings: str | None = None
@@ -492,6 +495,7 @@ class ClaudeAgentOptions:
 | `max_turns`                   | `int \| None`                                | `None`               | Maximum conversation turns                                                                                                                                                              |
 | `disallowed_tools`            | `list[str]`                                  | `[]`                 | List of disallowed tool names                                                                                                                                                           |
 | `model`                       | `str \| None`                                | `None`               | Claude model to use                                                                                                                                                                     |
+| `output_format`               | [`OutputFormat`](#outputformat) `\| None`   | `None`               | Define output format for agent results. See [Structured outputs](/docs/en/agent-sdk/structured-outputs) for details                                                                    |
 | `permission_prompt_tool_name` | `str \| None`                                | `None`               | MCP tool name for permission prompts                                                                                                                                                    |
 | `cwd`                         | `str \| Path \| None`                        | `None`               | Current working directory                                                                                                                                                               |
 | `settings`                    | `str \| None`                                | `None`               | Path to settings file                                                                                                                                                                   |
@@ -499,7 +503,7 @@ class ClaudeAgentOptions:
 | `env`                         | `dict[str, str]`                             | `{}`                 | Environment variables                                                                                                                                                                   |
 | `extra_args`                  | `dict[str, str \| None]`                     | `{}`                 | Additional CLI arguments to pass directly to the CLI                                                                                                                                    |
 | `max_buffer_size`             | `int \| None`                                | `None`               | Maximum bytes when buffering CLI stdout                                                                                                                                                 |
-| `debug_stderr`                | `Any`                                        | `sys.stderr`         | *Deprecated* - File-like object for debug output. Use `stderr` callback instead                                                                                                         |
+| `debug_stderr`                | `Any`                                        | `sys.stderr`         | _Deprecated_ - File-like object for debug output. Use `stderr` callback instead                                                                                                         |
 | `stderr`                      | `Callable[[str], None] \| None`              | `None`               | Callback function for stderr output from CLI                                                                                                                                            |
 | `can_use_tool`                | `CanUseTool \| None`                         | `None`               | Tool permission callback function                                                                                                                                                       |
 | `hooks`                       | `dict[HookEvent, list[HookMatcher]] \| None` | `None`               | Hook configurations for intercepting events                                                                                                                                             |
@@ -507,14 +511,30 @@ class ClaudeAgentOptions:
 | `include_partial_messages`    | `bool`                                       | `False`              | Include partial message streaming events                                                                                                                                                |
 | `fork_session`                | `bool`                                       | `False`              | When resuming with `resume`, fork to a new session ID instead of continuing the original session                                                                                        |
 | `agents`                      | `dict[str, AgentDefinition] \| None`         | `None`               | Programmatically defined subagents                                                                                                                                                      |
-| `plugins`                     | `list[SdkPluginConfig]`                      | `[]`                 | Load custom plugins from local paths. See [Plugins](/en/api/agent-sdk/plugins) for details                                                                                              |
+| `plugins`                     | `list[SdkPluginConfig]`                      | `[]`                 | Load custom plugins from local paths. See [Plugins](/docs/en/agent-sdk/plugins) for details                                                                                             |
+| `sandbox`                     | [`SandboxSettings`](#sandboxsettings) `\| None` | `None`              | Configure sandbox behavior programmatically. See [Sandbox settings](#sandboxsettings) for details                                        |
 | `setting_sources`             | `list[SettingSource] \| None`                | `None` (no settings) | Control which filesystem settings to load. When omitted, no settings are loaded. **Note:** Must include `"project"` to load CLAUDE.md files                                             |
+
+### `OutputFormat`
+
+Configuration for structured output validation.
+
+```python
+class OutputFormat(TypedDict):
+    type: Literal["json_schema"]
+    schema: dict[str, Any]
+```
+
+| Field    | Required | Description                                    |
+| :------- | :------- | :--------------------------------------------- |
+| `type`   | Yes      | Must be `"json_schema"` for JSON Schema validation |
+| `schema` | Yes      | JSON Schema definition for output validation   |
 
 ### `SystemPromptPreset`
 
 Configuration for using Claude Code's preset system prompt with optional additions.
 
-```python  theme={null}
+```python
 class SystemPromptPreset(TypedDict):
     type: Literal["preset"]
     preset: Literal["claude_code"]
@@ -531,7 +551,7 @@ class SystemPromptPreset(TypedDict):
 
 Controls which filesystem-based configuration sources the SDK loads settings from.
 
-```python  theme={null}
+```python
 SettingSource = Literal["user", "project", "local"]
 ```
 
@@ -545,11 +565,11 @@ SettingSource = Literal["user", "project", "local"]
 
 When `setting_sources` is **omitted** or **`None`**, the SDK does **not** load any filesystem settings. This provides isolation for SDK applications.
 
-#### Why use setting\_sources?
+#### Why use setting_sources?
 
 **Load all filesystem settings (legacy behavior):**
 
-```python  theme={null}
+```python
 # Load all settings like SDK v0.0.x did
 from claude_agent_sdk import query, ClaudeAgentOptions
 
@@ -564,7 +584,7 @@ async for message in query(
 
 **Load only specific setting sources:**
 
-```python  theme={null}
+```python
 # Load only project settings, ignore user and local
 async for message in query(
     prompt="Run CI checks",
@@ -577,7 +597,7 @@ async for message in query(
 
 **Testing and CI environments:**
 
-```python  theme={null}
+```python
 # Ensure consistent behavior in CI by excluding local settings
 async for message in query(
     prompt="Run tests",
@@ -591,7 +611,7 @@ async for message in query(
 
 **SDK-only applications:**
 
-```python  theme={null}
+```python
 # Define everything programmatically (default behavior)
 # No filesystem dependencies - setting_sources defaults to None
 async for message in query(
@@ -608,7 +628,7 @@ async for message in query(
 
 **Loading CLAUDE.md project instructions:**
 
-```python  theme={null}
+```python
 # Load project settings to include CLAUDE.md files
 async for message in query(
     prompt="Add a new feature following project conventions",
@@ -638,7 +658,7 @@ Programmatic options (like `agents`, `allowed_tools`) always override filesystem
 
 Configuration for a subagent defined programmatically.
 
-```python  theme={null}
+```python
 @dataclass
 class AgentDefinition:
     description: str
@@ -658,7 +678,7 @@ class AgentDefinition:
 
 Permission modes for controlling tool execution.
 
-```python  theme={null}
+```python
 PermissionMode = Literal[
     "default",           # Standard permission behavior
     "acceptEdits",       # Auto-accept file edits
@@ -671,7 +691,7 @@ PermissionMode = Literal[
 
 Configuration for SDK MCP servers created with `create_sdk_mcp_server()`.
 
-```python  theme={null}
+```python
 class McpSdkServerConfig(TypedDict):
     type: Literal["sdk"]
     name: str
@@ -682,13 +702,13 @@ class McpSdkServerConfig(TypedDict):
 
 Union type for MCP server configurations.
 
-```python  theme={null}
+```python
 McpServerConfig = McpStdioServerConfig | McpSSEServerConfig | McpHttpServerConfig | McpSdkServerConfig
 ```
 
 #### `McpStdioServerConfig`
 
-```python  theme={null}
+```python
 class McpStdioServerConfig(TypedDict):
     type: NotRequired[Literal["stdio"]]  # Optional for backwards compatibility
     command: str
@@ -698,7 +718,7 @@ class McpStdioServerConfig(TypedDict):
 
 #### `McpSSEServerConfig`
 
-```python  theme={null}
+```python
 class McpSSEServerConfig(TypedDict):
     type: Literal["sse"]
     url: str
@@ -707,7 +727,7 @@ class McpSSEServerConfig(TypedDict):
 
 #### `McpHttpServerConfig`
 
-```python  theme={null}
+```python
 class McpHttpServerConfig(TypedDict):
     type: Literal["http"]
     url: str
@@ -718,27 +738,27 @@ class McpHttpServerConfig(TypedDict):
 
 Configuration for loading plugins in the SDK.
 
-```python  theme={null}
+```python
 class SdkPluginConfig(TypedDict):
     type: Literal["local"]
     path: str
 ```
 
-| Field  | Type               | Description                                                |
-| :----- | :----------------- | :--------------------------------------------------------- |
+| Field | Type | Description |
+|:------|:-----|:------------|
 | `type` | `Literal["local"]` | Must be `"local"` (only local plugins currently supported) |
-| `path` | `str`              | Absolute or relative path to the plugin directory          |
+| `path` | `str` | Absolute or relative path to the plugin directory |
 
 **Example:**
 
-```python  theme={null}
+```python
 plugins=[
     {"type": "local", "path": "./my-plugin"},
     {"type": "local", "path": "/absolute/path/to/plugin"}
 ]
 ```
 
-For complete information on creating and using plugins, see [Plugins](/en/api/agent-sdk/plugins).
+For complete information on creating and using plugins, see [Plugins](/docs/en/agent-sdk/plugins).
 
 ## Message Types
 
@@ -746,7 +766,7 @@ For complete information on creating and using plugins, see [Plugins](/en/api/ag
 
 Union type of all possible messages.
 
-```python  theme={null}
+```python
 Message = UserMessage | AssistantMessage | SystemMessage | ResultMessage
 ```
 
@@ -754,7 +774,7 @@ Message = UserMessage | AssistantMessage | SystemMessage | ResultMessage
 
 User input message.
 
-```python  theme={null}
+```python
 @dataclass
 class UserMessage:
     content: str | list[ContentBlock]
@@ -764,7 +784,7 @@ class UserMessage:
 
 Assistant response message with content blocks.
 
-```python  theme={null}
+```python
 @dataclass
 class AssistantMessage:
     content: list[ContentBlock]
@@ -775,7 +795,7 @@ class AssistantMessage:
 
 System message with metadata.
 
-```python  theme={null}
+```python
 @dataclass
 class SystemMessage:
     subtype: str
@@ -786,7 +806,7 @@ class SystemMessage:
 
 Final result message with cost and usage information.
 
-```python  theme={null}
+```python
 @dataclass
 class ResultMessage:
     subtype: str
@@ -806,7 +826,7 @@ class ResultMessage:
 
 Union type of all content blocks.
 
-```python  theme={null}
+```python
 ContentBlock = TextBlock | ThinkingBlock | ToolUseBlock | ToolResultBlock
 ```
 
@@ -814,7 +834,7 @@ ContentBlock = TextBlock | ThinkingBlock | ToolUseBlock | ToolResultBlock
 
 Text content block.
 
-```python  theme={null}
+```python
 @dataclass
 class TextBlock:
     text: str
@@ -824,7 +844,7 @@ class TextBlock:
 
 Thinking content block (for models with thinking capability).
 
-```python  theme={null}
+```python
 @dataclass
 class ThinkingBlock:
     thinking: str
@@ -835,7 +855,7 @@ class ThinkingBlock:
 
 Tool use request block.
 
-```python  theme={null}
+```python
 @dataclass
 class ToolUseBlock:
     id: str
@@ -847,7 +867,7 @@ class ToolUseBlock:
 
 Tool execution result block.
 
-```python  theme={null}
+```python
 @dataclass
 class ToolResultBlock:
     tool_use_id: str
@@ -861,7 +881,7 @@ class ToolResultBlock:
 
 Base exception class for all SDK errors.
 
-```python  theme={null}
+```python
 class ClaudeSDKError(Exception):
     """Base error for Claude SDK."""
 ```
@@ -870,7 +890,7 @@ class ClaudeSDKError(Exception):
 
 Raised when Claude Code CLI is not installed or not found.
 
-```python  theme={null}
+```python
 class CLINotFoundError(CLIConnectionError):
     def __init__(self, message: str = "Claude Code not found", cli_path: str | None = None):
         """
@@ -884,7 +904,7 @@ class CLINotFoundError(CLIConnectionError):
 
 Raised when connection to Claude Code fails.
 
-```python  theme={null}
+```python
 class CLIConnectionError(ClaudeSDKError):
     """Failed to connect to Claude Code."""
 ```
@@ -893,7 +913,7 @@ class CLIConnectionError(ClaudeSDKError):
 
 Raised when the Claude Code process fails.
 
-```python  theme={null}
+```python
 class ProcessError(ClaudeSDKError):
     def __init__(self, message: str, exit_code: int | None = None, stderr: str | None = None):
         self.exit_code = exit_code
@@ -904,7 +924,7 @@ class ProcessError(ClaudeSDKError):
 
 Raised when JSON parsing fails.
 
-```python  theme={null}
+```python
 class CLIJSONDecodeError(ClaudeSDKError):
     def __init__(self, line: str, original_error: Exception):
         """
@@ -922,7 +942,7 @@ class CLIJSONDecodeError(ClaudeSDKError):
 
 Supported hook event types. Note that due to setup limitations, the Python SDK does not support SessionStart, SessionEnd, and Notification hooks.
 
-```python  theme={null}
+```python
 HookEvent = Literal[
     "PreToolUse",      # Called before tool execution
     "PostToolUse",     # Called after tool execution
@@ -937,7 +957,7 @@ HookEvent = Literal[
 
 Type definition for hook callback functions.
 
-```python  theme={null}
+```python
 HookCallback = Callable[
     [dict[str, Any], str | None, HookContext],
     Awaitable[dict[str, Any]]
@@ -946,21 +966,21 @@ HookCallback = Callable[
 
 Parameters:
 
-* `input_data`: Hook-specific input data (see [hook documentation](https://docs.claude.com/en/docs/claude-code/hooks#hook-input))
-* `tool_use_id`: Optional tool use identifier (for tool-related hooks)
-* `context`: Hook context with additional information
+- `input_data`: Hook-specific input data (see [hook documentation](https://docs.claude.comhttps://code.claude.com/docs/en/hooks#hook-input))
+- `tool_use_id`: Optional tool use identifier (for tool-related hooks)
+- `context`: Hook context with additional information
 
 Returns a dictionary that may contain:
 
-* `decision`: `"block"` to block the action
-* `systemMessage`: System message to add to the transcript
-* `hookSpecificOutput`: Hook-specific output data
+- `decision`: `"block"` to block the action
+- `systemMessage`: System message to add to the transcript
+- `hookSpecificOutput`: Hook-specific output data
 
 ### `HookContext`
 
 Context information passed to hook callbacks.
 
-```python  theme={null}
+```python
 @dataclass
 class HookContext:
     signal: Any | None = None  # Future: abort signal support
@@ -970,16 +990,17 @@ class HookContext:
 
 Configuration for matching hooks to specific events or tools.
 
-```python  theme={null}
+```python
 @dataclass
 class HookMatcher:
     matcher: str | None = None        # Tool name or pattern to match (e.g., "Bash", "Write|Edit")
     hooks: list[HookCallback] = field(default_factory=list)  # List of callbacks to execute
+    timeout: float | None = None        # Timeout in seconds for all hooks in this matcher (default: 60)
 ```
 
 ### Hook Usage Example
 
-```python  theme={null}
+```python
 from claude_agent_sdk import query, ClaudeAgentOptions, HookMatcher, HookContext
 from typing import Any
 
@@ -1013,8 +1034,8 @@ async def log_tool_use(
 options = ClaudeAgentOptions(
     hooks={
         'PreToolUse': [
-            HookMatcher(matcher='Bash', hooks=[validate_bash_command]),
-            HookMatcher(hooks=[log_tool_use])  # Applies to all tools
+            HookMatcher(matcher='Bash', hooks=[validate_bash_command], timeout=120),  # 2 min for validation
+            HookMatcher(hooks=[log_tool_use])  # Applies to all tools (default 60s timeout)
         ],
         'PostToolUse': [
             HookMatcher(hooks=[log_tool_use])
@@ -1039,7 +1060,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Input:**
 
-```python  theme={null}
+```python
 {
     "description": str,      # A short (3-5 word) description of the task
     "prompt": str,           # The task for the agent to perform
@@ -1049,7 +1070,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Output:**
 
-```python  theme={null}
+```python
 {
     "result": str,                    # Final result from the subagent
     "usage": dict | None,             # Token usage statistics
@@ -1064,7 +1085,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Input:**
 
-```python  theme={null}
+```python
 {
     "command": str,                  # The command to execute
     "timeout": int | None,           # Optional timeout in milliseconds (max 600000)
@@ -1075,7 +1096,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Output:**
 
-```python  theme={null}
+```python
 {
     "output": str,              # Combined stdout and stderr output
     "exitCode": int,            # Exit code of the command
@@ -1090,7 +1111,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Input:**
 
-```python  theme={null}
+```python
 {
     "file_path": str,           # The absolute path to the file to modify
     "old_string": str,          # The text to replace
@@ -1101,7 +1122,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Output:**
 
-```python  theme={null}
+```python
 {
     "message": str,      # Confirmation message
     "replacements": int, # Number of replacements made
@@ -1115,7 +1136,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Input:**
 
-```python  theme={null}
+```python
 {
     "file_path": str,       # The absolute path to the file to read
     "offset": int | None,   # The line number to start reading from
@@ -1125,7 +1146,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Output (Text files):**
 
-```python  theme={null}
+```python
 {
     "content": str,         # File contents with line numbers
     "total_lines": int,     # Total number of lines in file
@@ -1135,7 +1156,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Output (Images):**
 
-```python  theme={null}
+```python
 {
     "image": str,       # Base64 encoded image data
     "mime_type": str,   # Image MIME type
@@ -1149,7 +1170,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Input:**
 
-```python  theme={null}
+```python
 {
     "file_path": str,  # The absolute path to the file to write
     "content": str     # The content to write to the file
@@ -1158,7 +1179,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Output:**
 
-```python  theme={null}
+```python
 {
     "message": str,        # Success message
     "bytes_written": int,  # Number of bytes written
@@ -1172,7 +1193,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Input:**
 
-```python  theme={null}
+```python
 {
     "pattern": str,       # The glob pattern to match files against
     "path": str | None    # The directory to search in (defaults to cwd)
@@ -1181,7 +1202,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Output:**
 
-```python  theme={null}
+```python
 {
     "matches": list[str],  # Array of matching file paths
     "count": int,          # Number of matches found
@@ -1195,7 +1216,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Input:**
 
-```python  theme={null}
+```python
 {
     "pattern": str,                    # The regular expression pattern
     "path": str | None,                # File or directory to search in
@@ -1214,7 +1235,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Output (content mode):**
 
-```python  theme={null}
+```python
 {
     "matches": [
         {
@@ -1229,9 +1250,9 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 }
 ```
 
-**Output (files\_with\_matches mode):**
+**Output (files_with_matches mode):**
 
-```python  theme={null}
+```python
 {
     "files": list[str],  # Files containing matches
     "count": int         # Number of files with matches
@@ -1244,7 +1265,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Input:**
 
-```python  theme={null}
+```python
 {
     "notebook_path": str,                     # Absolute path to the Jupyter notebook
     "cell_id": str | None,                    # The ID of the cell to edit
@@ -1256,7 +1277,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Output:**
 
-```python  theme={null}
+```python
 {
     "message": str,                              # Success message
     "edit_type": "replaced" | "inserted" | "deleted",  # Type of edit performed
@@ -1271,7 +1292,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Input:**
 
-```python  theme={null}
+```python
 {
     "url": str,     # The URL to fetch content from
     "prompt": str   # The prompt to run on the fetched content
@@ -1280,7 +1301,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Output:**
 
-```python  theme={null}
+```python
 {
     "response": str,           # AI model's response to the prompt
     "url": str,                # URL that was fetched
@@ -1295,7 +1316,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Input:**
 
-```python  theme={null}
+```python
 {
     "query": str,                        # The search query to use
     "allowed_domains": list[str] | None, # Only include results from these domains
@@ -1305,7 +1326,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Output:**
 
-```python  theme={null}
+```python
 {
     "results": [
         {
@@ -1326,7 +1347,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Input:**
 
-```python  theme={null}
+```python
 {
     "todos": [
         {
@@ -1340,7 +1361,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Output:**
 
-```python  theme={null}
+```python
 {
     "message": str,  # Success message
     "stats": {
@@ -1358,7 +1379,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Input:**
 
-```python  theme={null}
+```python
 {
     "bash_id": str,       # The ID of the background shell
     "filter": str | None  # Optional regex to filter output lines
@@ -1367,7 +1388,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Output:**
 
-```python  theme={null}
+```python
 {
     "output": str,                                      # New output since last check
     "status": "running" | "completed" | "failed",       # Current shell status
@@ -1381,7 +1402,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Input:**
 
-```python  theme={null}
+```python
 {
     "shell_id": str  # The ID of the background shell to kill
 }
@@ -1389,7 +1410,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Output:**
 
-```python  theme={null}
+```python
 {
     "message": str,  # Success message
     "shell_id": str  # ID of the killed shell
@@ -1402,7 +1423,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Input:**
 
-```python  theme={null}
+```python
 {
     "plan": str  # The plan to run by the user for approval
 }
@@ -1410,7 +1431,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Output:**
 
-```python  theme={null}
+```python
 {
     "message": str,          # Confirmation message
     "approved": bool | None  # Whether user approved the plan
@@ -1423,7 +1444,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Input:**
 
-```python  theme={null}
+```python
 {
     "server": str | None  # Optional server name to filter resources by
 }
@@ -1431,7 +1452,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Output:**
 
-```python  theme={null}
+```python
 {
     "resources": [
         {
@@ -1452,7 +1473,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Input:**
 
-```python  theme={null}
+```python
 {
     "server": str,  # The MCP server name
     "uri": str      # The resource URI to read
@@ -1461,7 +1482,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 **Output:**
 
-```python  theme={null}
+```python
 {
     "contents": [
         {
@@ -1479,7 +1500,7 @@ Documentation of input/output schemas for all built-in Claude Code tools. While 
 
 ### Building a Continuous Conversation Interface
 
-```python  theme={null}
+```python
 from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions, AssistantMessage, TextBlock
 import asyncio
 
@@ -1549,7 +1570,7 @@ asyncio.run(main())
 
 ### Using Hooks for Behavior Modification
 
-```python  theme={null}
+```python
 from claude_agent_sdk import (
     ClaudeSDKClient,
     ClaudeAgentOptions,
@@ -1637,7 +1658,7 @@ asyncio.run(main())
 
 ### Real-time Progress Monitoring
 
-```python  theme={null}
+```python
 from claude_agent_sdk import (
     ClaudeSDKClient,
     ClaudeAgentOptions,
@@ -1685,7 +1706,7 @@ asyncio.run(monitor_progress())
 
 ### Basic file operations (using query)
 
-```python  theme={null}
+```python
 from claude_agent_sdk import query, ClaudeAgentOptions, AssistantMessage, ToolUseBlock
 import asyncio
 
@@ -1710,7 +1731,7 @@ asyncio.run(create_project())
 
 ### Error handling
 
-```python  theme={null}
+```python
 from claude_agent_sdk import (
     query,
     CLINotFoundError,
@@ -1731,7 +1752,7 @@ except CLIJSONDecodeError as e:
 
 ### Streaming mode with client
 
-```python  theme={null}
+```python
 from claude_agent_sdk import ClaudeSDKClient
 import asyncio
 
@@ -1756,7 +1777,7 @@ asyncio.run(interactive_session())
 
 ### Using custom tools with ClaudeSDKClient
 
-```python  theme={null}
+```python
 from claude_agent_sdk import (
     ClaudeSDKClient,
     ClaudeAgentOptions,
@@ -1839,10 +1860,153 @@ async def main():
 asyncio.run(main())
 ```
 
+## Sandbox Configuration
+
+### `SandboxSettings`
+
+Configuration for sandbox behavior. Use this to enable command sandboxing and configure network restrictions programmatically.
+
+```python
+class SandboxSettings(TypedDict, total=False):
+    enabled: bool
+    autoAllowBashIfSandboxed: bool
+    excludedCommands: list[str]
+    allowUnsandboxedCommands: bool
+    network: SandboxNetworkConfig
+    ignoreViolations: SandboxIgnoreViolations
+    enableWeakerNestedSandbox: bool
+```
+
+| Property | Type | Default | Description |
+| :------- | :--- | :------ | :---------- |
+| `enabled` | `bool` | `False` | Enable sandbox mode for command execution |
+| `autoAllowBashIfSandboxed` | `bool` | `False` | Auto-approve bash commands when sandbox is enabled |
+| `excludedCommands` | `list[str]` | `[]` | Commands that always bypass sandbox restrictions (e.g., `["docker"]`). These run unsandboxed automatically without model involvement |
+| `allowUnsandboxedCommands` | `bool` | `False` | Allow the model to request running commands outside the sandbox. When `True`, the model can set `dangerouslyDisableSandbox` in tool input, which falls back to the [permissions system](#permissions-fallback-for-unsandboxed-commands) |
+| `network` | [`SandboxNetworkConfig`](#sandboxnetworkconfig) | `None` | Network-specific sandbox configuration |
+| `ignoreViolations` | [`SandboxIgnoreViolations`](#sandboxignoreviolations) | `None` | Configure which sandbox violations to ignore |
+| `enableWeakerNestedSandbox` | `bool` | `False` | Enable a weaker nested sandbox for compatibility |
+
+<Note>
+**Filesystem and network access restrictions** are NOT configured via sandbox settings. Instead, they are derived from [permission rules](https://code.claude.com/docs/en/settings#permission-settings):
+
+- **Filesystem read restrictions**: Read deny rules
+- **Filesystem write restrictions**: Edit allow/deny rules
+- **Network restrictions**: WebFetch allow/deny rules
+
+Use sandbox settings for command execution sandboxing, and permission rules for filesystem and network access control.
+</Note>
+
+#### Example usage
+
+```python
+from claude_agent_sdk import query, ClaudeAgentOptions, SandboxSettings
+
+sandbox_settings: SandboxSettings = {
+    "enabled": True,
+    "autoAllowBashIfSandboxed": True,
+    "excludedCommands": ["docker"],
+    "network": {
+        "allowLocalBinding": True,
+        "allowUnixSockets": ["/var/run/docker.sock"]
+    }
+}
+
+async for message in query(
+    prompt="Build and test my project",
+    options=ClaudeAgentOptions(sandbox=sandbox_settings)
+):
+    print(message)
+```
+
+### `SandboxNetworkConfig`
+
+Network-specific configuration for sandbox mode.
+
+```python
+class SandboxNetworkConfig(TypedDict, total=False):
+    allowLocalBinding: bool
+    allowUnixSockets: list[str]
+    allowAllUnixSockets: bool
+    httpProxyPort: int
+    socksProxyPort: int
+```
+
+| Property | Type | Default | Description |
+| :------- | :--- | :------ | :---------- |
+| `allowLocalBinding` | `bool` | `False` | Allow processes to bind to local ports (e.g., for dev servers) |
+| `allowUnixSockets` | `list[str]` | `[]` | Unix socket paths that processes can access (e.g., Docker socket) |
+| `allowAllUnixSockets` | `bool` | `False` | Allow access to all Unix sockets |
+| `httpProxyPort` | `int` | `None` | HTTP proxy port for network requests |
+| `socksProxyPort` | `int` | `None` | SOCKS proxy port for network requests |
+
+### `SandboxIgnoreViolations`
+
+Configuration for ignoring specific sandbox violations.
+
+```python
+class SandboxIgnoreViolations(TypedDict, total=False):
+    file: list[str]
+    network: list[str]
+```
+
+| Property | Type | Default | Description |
+| :------- | :--- | :------ | :---------- |
+| `file` | `list[str]` | `[]` | File path patterns to ignore violations for |
+| `network` | `list[str]` | `[]` | Network patterns to ignore violations for |
+
+### Permissions Fallback for Unsandboxed Commands
+
+When `allowUnsandboxedCommands` is enabled, the model can request to run commands outside the sandbox by setting `dangerouslyDisableSandbox: True` in the tool input. These requests fall back to the existing permissions system, meaning your `can_use_tool` handler will be invoked, allowing you to implement custom authorization logic.
+
+<Note>
+**`excludedCommands` vs `allowUnsandboxedCommands`:**
+- `excludedCommands`: A static list of commands that always bypass the sandbox automatically (e.g., `["docker"]`). The model has no control over this.
+- `allowUnsandboxedCommands`: Lets the model decide at runtime whether to request unsandboxed execution by setting `dangerouslyDisableSandbox: True` in the tool input.
+</Note>
+
+```python
+from claude_agent_sdk import query, ClaudeAgentOptions
+
+async def can_use_tool(tool: str, input: dict) -> bool:
+    # Check if the model is requesting to bypass the sandbox
+    if tool == "Bash" and input.get("dangerouslyDisableSandbox"):
+        # The model wants to run this command outside the sandbox
+        print(f"Unsandboxed command requested: {input.get('command')}")
+
+        # Return True to allow, False to deny
+        return is_command_authorized(input.get("command"))
+    return True
+
+async def main():
+    async for message in query(
+        prompt="Deploy my application",
+        options=ClaudeAgentOptions(
+            sandbox={
+                "enabled": True,
+                "allowUnsandboxedCommands": True  # Model can request unsandboxed execution
+            },
+            permission_mode="default",
+            can_use_tool=can_use_tool
+        )
+    ):
+        print(message)
+```
+
+This pattern enables you to:
+
+- **Audit model requests**: Log when the model requests unsandboxed execution
+- **Implement allowlists**: Only permit specific commands to run unsandboxed
+- **Add approval workflows**: Require explicit authorization for privileged operations
+
+<Warning>
+Commands running with `dangerouslyDisableSandbox: True` have full system access. Ensure your `can_use_tool` handler validates these requests carefully.
+</Warning>
+
 ## See also
 
-* [Python SDK guide](/en/api/agent-sdk/python) - Tutorial and examples
-* [SDK overview](/en/api/agent-sdk/overview) - General SDK concepts
-* [TypeScript SDK reference](/en/docs/claude-code/typescript-sdk-reference) - TypeScript SDK documentation
-* [CLI reference](/en/docs/claude-code/cli-reference) - Command-line interface
-* [Common workflows](/en/docs/claude-code/common-workflows) - Step-by-step guides
+- [Python SDK guide](/docs/en/agent-sdk/python) - Tutorial and examples
+- [SDK overview](/docs/en/agent-sdk/overview) - General SDK concepts
+- [TypeScript SDK reference](/docs/en/agent-sdk/typescript) - TypeScript SDK documentation
+- [CLI reference](https://code.claude.com/docs/en/cli-reference) - Command-line interface
+- [Common workflows](https://code.claude.com/docs/en/common-workflows) - Step-by-step guides
