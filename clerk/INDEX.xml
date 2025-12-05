@@ -167,4 +167,11 @@
     <local_file>development-testing-with-playwright.md</local_file>
     <scraped_at>2025-12-04</scraped_at>
   </source>
+  <source>
+    <title>Development: Test emails and phones</title>
+    <description>Simulating OTP verification for E2E tests using +clerk_test email subaddresses, fictional 555 phone numbers, fixed code 424242, development instance monthly limits, and sign-in/sign-up code examples.</description>
+    <source_url>https://clerk.com/docs/guides/development/testing/test-emails-and-phones</source_url>
+    <local_file>development-test-emails-and-phones.md</local_file>
+    <scraped_at>2025-12-05</scraped_at>
+  </source>
 </docs_index>
