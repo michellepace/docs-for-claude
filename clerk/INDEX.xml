@@ -174,4 +174,74 @@
     <local_file>development-test-emails-and-phones.md</local_file>
     <scraped_at>2025-12-05</scraped_at>
   </source>
+  <source>
+    <title>Securing your app: Legal compliance</title>
+    <description>Legal compliance settings requiring users to accept terms of service or privacy policy before sign-up, with dashboard configuration for express consent to legal documents.</description>
+    <source_url>https://clerk.com/docs/authentication/configuration/legal-compliance</source_url>
+    <local_file>securing-your-app-legal-compliance.md</local_file>
+    <scraped_at>2025-12-09</scraped_at>
+  </source>
+  <source>
+    <title>Customizing Clerk: shadcn/ui</title>
+    <description>Complete sign-up and sign-in flow examples using Clerk Elements with shadcn/ui components, social OAuth connections, OTP verification input with custom render, loading states, and multi-step authentication.</description>
+    <source_url>https://clerk.com/docs/guides/customizing-clerk/elements/examples/shadcn-ui</source_url>
+    <local_file>customizing-clerk-shadcnui.md</local_file>
+    <scraped_at>2025-12-09</scraped_at>
+  </source>
+  <source>
+    <title>Appearance prop</title>
+    <description>The appearance prop for styling Clerk components including prebuilt themes, layout customisation, variables, element targeting with CSS classes, Tailwind integration, CSS modules, inline styles, and cssLayerName for cascade control.</description>
+    <source_url>https://clerk.com/docs/nextjs/guides/customizing-clerk/appearance-prop/overview</source_url>
+    <local_file>appearance-prop.md</local_file>
+    <scraped_at>2025-12-09</scraped_at>
+  </source>
+  <source>
+    <title>Layout prop</title>
+    <description>Layout property for SignIn and SignUp components including animations, logo placement and URL, social button positioning and variants, optional fields visibility, terms/privacy/help page URLs, shimmer effects, and development warnings.</description>
+    <source_url>https://clerk.com/docs/nextjs/guides/customizing-clerk/appearance-prop/layout</source_url>
+    <local_file>layout-prop.md</local_file>
+    <scraped_at>2025-12-09</scraped_at>
+  </source>
+  <source>
+    <title>Themes</title>
+    <description>Prebuilt themes including dark, simple, shadcn, shadesOfPurple, and neobrutalism with installation, usage patterns for applying themes globally or per-component, stacking multiple themes, and customising with variables.</description>
+    <source_url>https://clerk.com/docs/nextjs/guides/customizing-clerk/appearance-prop/themes</source_url>
+    <local_file>themes.md</local_file>
+    <scraped_at>2025-12-09</scraped_at>
+  </source>
+  <source>
+    <title>Variables prop</title>
+    <description>Variables property for theming Clerk components including colour settings (primary, danger, success, warning, neutral, foreground, background, input, border), typography (fontFamily, fontSize, fontWeight), borderRadius, spacing, and CSS variable equivalents.</description>
+    <source_url>https://clerk.com/docs/nextjs/guides/customizing-clerk/appearance-prop/variables</source_url>
+    <local_file>variables-prop.md</local_file>
+    <scraped_at>2025-12-09</scraped_at>
+  </source>
+  <source>
+    <title>captcha prop</title>
+    <description>CAPTCHA widget customisation via the captcha appearance property with theme options (auto, light, dark), size variants (normal, flexible, compact), and language/locale settings using Cloudflare Turnstile.</description>
+    <source_url>https://clerk.com/docs/nextjs/guides/customizing-clerk/appearance-prop/captcha</source_url>
+    <local_file>captcha-prop.md</local_file>
+    <scraped_at>2025-12-09</scraped_at>
+  </source>
+  <source>
+    <title>Add custom pages and links to the &lt;OrganizationProfile /&gt; component</title>
+    <description>Adding custom pages and external links to OrganizationProfile component sidenav, using OrganizationSwitcher.OrganizationProfilePage and OrganizationProfileLink components, with props for label, icon, URL, and reordering default routes.</description>
+    <source_url>https://clerk.com/docs/nextjs/guides/customizing-clerk/adding-items/organization-profile</source_url>
+    <local_file>add-custom-pages-and-links-to-the-organizationprofile-component.md</local_file>
+    <scraped_at>2025-12-09</scraped_at>
+  </source>
+  <source>
+    <title>Add custom items and links to the &lt;UserButton /&gt; component</title>
+    <description>Customising UserButton component with custom menu items using UserButton.Action for triggering actions, UserButton.Link for navigation, reordering default items like manageAccount and signOut, and conditionally rendering items based on permissions.</description>
+    <source_url>https://clerk.com/docs/nextjs/guides/customizing-clerk/adding-items/user-button</source_url>
+    <local_file>add-custom-items-and-links-to-the-userbutton-component.md</local_file>
+    <scraped_at>2025-12-09</scraped_at>
+  </source>
+  <source>
+    <title>Add custom pages and links to the &lt;UserProfile /&gt; component</title>
+    <description>Customising UserProfile component with custom pages using UserProfile.Page, custom links using UserProfile.Link, reordering default routes like account and security, with modal and dedicated page examples.</description>
+    <source_url>https://clerk.com/docs/nextjs/guides/customizing-clerk/adding-items/user-profile</source_url>
+    <local_file>add-custom-pages-and-links-to-the-userprofile-component.md</local_file>
+    <scraped_at>2025-12-09</scraped_at>
+  </source>
 </docs_index>
