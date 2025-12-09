@@ -55,4 +55,11 @@
     <local_file>plugins-reference-claude-code-docs.md</local_file>
     <scraped_at>2025-12-05</scraped_at>
   </source>
+  <source>
+    <title>Slash commands - Claude Code Docs</title>
+    <description>Built-in commands reference, custom slash command creation in project and personal directories, arguments, bash execution, file references, frontmatter options, plugin commands, MCP slash commands, SlashCommand tool permissions, and skills comparison.</description>
+    <source_url>https://code.claude.com/docs/en/slash-commands</source_url>
+    <local_file>slash-commands-claude-code-docs.md</local_file>
+    <scraped_at>2025-12-07</scraped_at>
+  </source>
 </docs_index>
