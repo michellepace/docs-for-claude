@@ -1,6 +1,7 @@
 # Fetching Data
 
-@doc-version: 16.0.5
+@doc-version: 16.0.8
+@last-updated: 2025-11-05
 
 This page will walk you through how you can fetch data in [Server and Client Components](/docs/app/getting-started/server-and-client-components.md), and how to [stream](#streaming) components that depend on data.
 
@@ -535,7 +536,7 @@ export default async function Page({ params }) {
 
 ### Preloading data
 
-You can preload data by creating an utility function that you eagerly call above blocking requests. `<Item>` conditionally renders based on the `checkIsAvailable()` function.
+You can preload data by creating a utility function that you eagerly call above blocking requests. `<Item>` conditionally renders based on the `checkIsAvailable()` function.
 
 You can call `preload()` before `checkIsAvailable()` to eagerly initiate `<Item/>` data dependencies. By the time `<Item/>` is rendered, its data has already been fetched.
 

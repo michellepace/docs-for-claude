@@ -91,13 +91,6 @@
     <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
-    <title>Getting Started: Fetching Data | Next.js</title>
-    <description>Data fetching in Server and Client Components using fetch API, ORMs, React use hook, SWR, request memoization, Data Cache, streaming with loading.js and Suspense, sequential and parallel patterns.</description>
-    <source_url>https://nextjs.org/docs/app/getting-started/fetching-data</source_url>
-    <local_file>getting-started-fetching-data-nextjs.md</local_file>
-    <scraped_at>2025-12-02</scraped_at>
-  </source>
-  <source>
     <title>Getting Started: Updating Data | Next.js</title>
     <description>Server Functions and Server Actions with use server directive, creating and invoking from components, forms with FormData, event handlers, useActionState, revalidatePath, revalidateTag, redirect, refresh, cookies API, useEffect patterns.</description>
     <source_url>https://nextjs.org/docs/app/getting-started/updating-data</source_url>
@@ -173,5 +166,33 @@
     <source_url>https://nextjs.org/docs/app/getting-started/proxy</source_url>
     <local_file>getting-started-proxy-nextjs.md</local_file>
     <scraped_at>2025-12-03</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started: Fetching Data | Next.js</title>
+    <description>Data fetching in Server and Client Components using fetch, ORMs, React use hook, SWR; streaming with Suspense and loading.js; deduplication, caching, sequential, parallel, and preloading patterns.</description>
+    <source_url>https://nextjs.org/docs/app/getting-started/fetching-data</source_url>
+    <local_file>getting-started-fetching-data-nextjs.md</local_file>
+    <scraped_at>2025-12-09</scraped_at>
+  </source>
+  <source>
+    <title>File-system conventions: loading.js | Next.js</title>
+    <description>loading.js special file convention for creating instant loading states with React Suspense, streaming behaviour, navigation interruptibility, SEO considerations, status codes, platform support, and manual Suspense boundaries implementation.</description>
+    <source_url>https://nextjs.org/docs/app/api-reference/file-conventions/loading</source_url>
+    <local_file>file-system-conventions-loadingjs-nextjs.md</local_file>
+    <scraped_at>2025-12-09</scraped_at>
+  </source>
+  <source>
+    <title>Guides: Production | Next.js</title>
+    <description>Production optimisation checklist covering automatic optimisations, routing and rendering patterns, data fetching and caching, UI accessibility, security practices, metadata and SEO, type safety, Core Web Vitals monitoring, and bundle analysis.</description>
+    <source_url>https://nextjs.org/docs/app/guides/production-checklist</source_url>
+    <local_file>guides-production-nextjs.md</local_file>
+    <scraped_at>2025-12-09</scraped_at>
+  </source>
+  <source>
+    <title>Uncached data was accessed outside of `&lt;Suspense&gt;` | Next.js</title>
+    <description>Blocking route error when uncached data is accessed outside Suspense boundaries with cacheComponents enabled, covering fixes using use cache directive, Suspense boundaries, headers cookies params handling, and short-lived cache configurations.</description>
+    <source_url>https://nextjs.org/docs/messages/blocking-route</source_url>
+    <local_file>uncached-data-was-accessed-outside-of-suspense-nextjs.md</local_file>
+    <scraped_at>2025-12-09</scraped_at>
   </source>
 </docs_index>
