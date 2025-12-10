@@ -223,4 +223,11 @@
     <local_file>vercel-authentication.md</local_file>
     <scraped_at>2025-11-25</scraped_at>
   </source>
+  <source>
+    <title>Deploying GitHub Projects with Vercel</title>
+    <description>GitHub integration for automatic deployments, preview URLs, fork protection, production rollbacks, silencing bot comments, GitHub Actions CI/CD with vercel build/deploy, repository_dispatch events, VERCEL_GIT_* environment variables, and permission scopes.</description>
+    <source_url>https://vercel.com/docs/git/vercel-for-github</source_url>
+    <local_file>deploying-github-projects-with-vercel.md</local_file>
+    <scraped_at>2025-12-10</scraped_at>
+  </source>
 </docs_index>

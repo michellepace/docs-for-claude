@@ -244,4 +244,11 @@
     <local_file>add-custom-pages-and-links-to-the-userprofile-component.md</local_file>
     <scraped_at>2025-12-09</scraped_at>
   </source>
+  <source>
+    <title>Development: Clerk environment variables</title>
+    <description>Environment variables reference covering sign-in and sign-up redirect URLs, publishable and secret keys, API and SDK configuration, satellite domains, webhook signing secrets, telemetry settings, and deprecated variables with Next.js variants.</description>
+    <source_url>https://clerk.com/docs/guides/development/clerk-environment-variables</source_url>
+    <local_file>development-clerk-environment-variables.md</local_file>
+    <scraped_at>2025-12-11</scraped_at>
+  </source>
 </docs_index>

@@ -133,6 +133,13 @@
     <scraped_at>2025-12-02</scraped_at>
   </source>
   <source>
+    <title>Missing Suspense boundary with useSearchParams | Next.js</title>
+    <description>Error explanation and solutions for missing Suspense boundary with useSearchParams, including wrapping in Suspense, using connection function for dynamic rendering, passing searchParams from Server Components, and debugging with --debug-prerender flag.</description>
+    <source_url>https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout</source_url>
+    <local_file>missing-suspense-boundary-with-usesearchparams-nextjs.md</local_file>
+    <scraped_at>2025-12-10</scraped_at>
+  </source>
+  <source>
     <title>Getting Started: Cache Components | Next.js</title>
     <description>Cache Components enabling Partial Prerendering for static, cached, and dynamic rendering. Static HTML shell, Suspense streaming, use cache directive, cacheLife/cacheTag functions, runtime data handling, Activity navigation, route segment config migration.</description>
     <source_url>https://nextjs.org/docs/app/getting-started/cache-components</source_url>
@@ -181,18 +188,18 @@
     <local_file>file-system-conventions-loadingjs-nextjs.md</local_file>
     <scraped_at>2025-12-09</scraped_at>
   </source>
+    <source>
+    <title>Uncached data was accessed outside of `&lt;Suspense&gt;` | Next.js</title>
+    <description>Blocking route error when uncached data is accessed outside Suspense boundaries with cacheComponents enabled, covering fixes using use cache directive, Suspense boundaries, headers cookies params handling, and short-lived cache configurations.</description>
+    <source_url>https://nextjs.org/docs/messages/blocking-route</source_url>
+    <local_file>uncached-data-was-accessed-outside-of-suspense-nextjs.md</local_file>
+    <scraped_at>2025-12-09</scraped_at>
+  </source>
   <source>
     <title>Guides: Production | Next.js</title>
     <description>Production optimisation checklist covering automatic optimisations, routing and rendering patterns, data fetching and caching, UI accessibility, security practices, metadata and SEO, type safety, Core Web Vitals monitoring, and bundle analysis.</description>
     <source_url>https://nextjs.org/docs/app/guides/production-checklist</source_url>
     <local_file>guides-production-nextjs.md</local_file>
-    <scraped_at>2025-12-09</scraped_at>
-  </source>
-  <source>
-    <title>Uncached data was accessed outside of `&lt;Suspense&gt;` | Next.js</title>
-    <description>Blocking route error when uncached data is accessed outside Suspense boundaries with cacheComponents enabled, covering fixes using use cache directive, Suspense boundaries, headers cookies params handling, and short-lived cache configurations.</description>
-    <source_url>https://nextjs.org/docs/messages/blocking-route</source_url>
-    <local_file>uncached-data-was-accessed-outside-of-suspense-nextjs.md</local_file>
     <scraped_at>2025-12-09</scraped_at>
   </source>
 </docs_index>
