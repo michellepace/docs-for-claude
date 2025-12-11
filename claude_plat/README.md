@@ -1,4 +1,4 @@
-# Claude Platform Documentation | Anthropic
+# Claude Platform Documentation
 
 Curated docs for targeted AI context.
 

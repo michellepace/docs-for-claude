@@ -1,4 +1,4 @@
-# vercel Documentation
+# Vercel Documentation
 
 Curated docs for targeted AI context.
 

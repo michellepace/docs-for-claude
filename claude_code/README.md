@@ -1,4 +1,4 @@
-# claude_code Documentation
+# Claude Code Documentation
 
 Curated docs for targeted AI context.
 

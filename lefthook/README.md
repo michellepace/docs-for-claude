@@ -1,4 +1,4 @@
-# lefthook Documentation
+# Lefthook Documentation
 
 Curated docs for targeted AI context.
 

@@ -1,4 +1,4 @@
-# nextjs Documentation
+# Next.js Documentation
 
 Curated docs for targeted AI context.
 

@@ -1,4 +1,4 @@
-# zustand Documentation
+# Zustand Documentation
 
 Curated docs for targeted AI context.
 

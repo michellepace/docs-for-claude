@@ -1,4 +1,4 @@
-# biome Documentation
+# Biome Documentation
 
 Curated docs for targeted AI context.
 

@@ -1,4 +1,4 @@
-# tailwindplus Documentation
+# Tailwind Plus Documentation
 
 Curated docs for targeted AI context.
 

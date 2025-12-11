@@ -1,4 +1,4 @@
-# marimo Documentation
+# Marimo Documentation
 
 Curated docs for targeted AI context.
 

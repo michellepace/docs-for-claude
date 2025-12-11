@@ -1,4 +1,4 @@
-# playwright Documentation
+# Playwright Documentation
 
 Curated docs for targeted AI context.
 

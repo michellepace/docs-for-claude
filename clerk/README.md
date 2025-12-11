@@ -1,4 +1,4 @@
-# clerk Documentation
+# Clerk Documentation
 
 Curated docs for targeted AI context.
 
