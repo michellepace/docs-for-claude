@@ -1,6 +1,14 @@
-# README: Index of all LeftHook Docs
+# lefthook Documentation
 
-These docs were downloaded from <https://github.com/evilmartians/lefthook/tree/master/docs/mdbook> on 2025-11-24. This README content also also represented in [INDEX.xml](INDEX.xml)
+Curated docs for targeted AI context.
+
+- Curation Index: [INDEX.xml](INDEX.xml)
+- Curation Source: <https://github.com/evilmartians/lefthook>
+
+## What is Lefthook?
+
+- **Lefthook runs tasks automatically before you commit or push code to Git. Use it to lint, format, and test your code so problems are caught before they reach your repository.**
+- Lefthook is a fast and flexible Git hooks manager written in Go that allows you to configure and run commands, scripts, and jobs at various Git lifecycle events like pre-commit or pre-push. It provides extensive configuration options through YAML, TOML, or JSON files, supporting features like parallel execution, file filtering, conditional execution, and remote configuration sharing. Lefthook helps teams enforce code quality standards and automate tasks like linting, testing, and formatting before code is committed or pushed to repositories.
 
 ## User guide
 
