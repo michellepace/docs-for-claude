@@ -244,4 +244,11 @@
     <local_file>customizing-clerk-localization-prop-experimental.md</local_file>
     <scraped_at>2025-12-13</scraped_at>
   </source>
+  <source>
+    <title>&lt;ClerkProvider&gt;</title>
+    <description>ClerkProvider component reference covering session and user context, redirect URLs, appearance, localization, satellite apps, security validation (allowed origins, CSP nonce), telemetry, and SDK-specific properties for Next.js and Chrome Extension.</description>
+    <source_url>https://clerk.com/docs/nextjs/reference/components/clerk-provider</source_url>
+    <local_file>clerkprovider.md</local_file>
+    <scraped_at>2025-12-13</scraped_at>
+  </source>
 </docs_index>
