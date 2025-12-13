@@ -237,4 +237,11 @@
     <local_file>development-testing-with-playwright.md</local_file>
     <scraped_at>2025-12-04</scraped_at>
   </source>
+  <source>
+    <title>Customizing Clerk: Localization prop (experimental)</title>
+    <description>Localising Clerk components via ClerkProvider's localization prop, using @clerk/localizations for predefined translations, creating custom localisations for branding, finding localisation keys, contributing new languages, and customising error messages with unstable__errors.</description>
+    <source_url>https://clerk.com/docs/customization/localization</source_url>
+    <local_file>customizing-clerk-localization-prop-experimental.md</local_file>
+    <scraped_at>2025-12-13</scraped_at>
+  </source>
 </docs_index>
