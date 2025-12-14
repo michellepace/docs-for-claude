@@ -251,4 +251,11 @@
     <local_file>clerkprovider.md</local_file>
     <scraped_at>2025-12-13</scraped_at>
   </source>
+  <source>
+    <title>SDK Reference: User object</title>
+    <description>JavaScript User object with properties for identifiers, emails, phones, external accounts, passkeys, Web3 wallets, metadata, and organisation memberships. Methods for creating identifiers, managing passwords, TOTP, backup codes, and profile updates.</description>
+    <source_url>https://clerk.com/docs/reference/javascript/user</source_url>
+    <local_file>sdk-reference-user-object.md</local_file>
+    <scraped_at>2025-12-14</scraped_at>
+  </source>
 </docs_index>
