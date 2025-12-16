@@ -1,0 +1,93 @@
+<docs_index>
+  <source>
+    <title>Sheet - shadcn/ui</title>
+    <description>Sheet component extending Dialog for slide-in panels from screen edges, with side property options (top, right, bottom, left), CSS-based size customisation, and Radix UI primitives integration.</description>
+    <source_url>https://ui.shadcn.com/docs/components/sheet</source_url>
+    <local_file>sheet-shadcnui.md</local_file>
+    <scraped_at>2025-12-16</scraped_at>
+  </source>
+  <source>
+    <title>Field - shadcn/ui</title>
+    <description>Field component system including Field, FieldSet, FieldGroup, FieldLabel, FieldContent, FieldDescription, FieldError for composing accessible forms with inputs, checkboxes, radios, switches, choice cards, responsive layouts, and validation states.</description>
+    <source_url>https://ui.shadcn.com/docs/components/field</source_url>
+    <local_file>field-shadcnui.md</local_file>
+    <scraped_at>2025-12-16</scraped_at>
+  </source>
+  <source>
+    <title>TanStack Form - shadcn/ui</title>
+    <description>TanStack Form integration with shadcn Field components, Zod schema validation, useForm hook setup, validation modes, error display, field types including input, textarea, select, checkbox, radio, switch, and array fields.</description>
+    <source_url>https://ui.shadcn.com/docs/forms/tanstack-form</source_url>
+    <local_file>tanstack-form-shadcnui.md</local_file>
+    <scraped_at>2025-12-16</scraped_at>
+  </source>
+  <source>
+    <title>Button - shadcn/ui</title>
+    <description>Button component with variants (default, outline, ghost, destructive, secondary, link), sizes (sm, default, lg, icon, icon-sm, icon-lg), icon support, spinner loading state, asChild prop for polymorphism, and ButtonGroup composition.</description>
+    <source_url>https://ui.shadcn.com/docs/components/button</source_url>
+    <local_file>button-shadcnui.md</local_file>
+    <scraped_at>2025-12-16</scraped_at>
+  </source>
+  <source>
+    <title>Sonner - shadcn/ui</title>
+    <description>Sonner toast component installation, setup with Toaster in app layout, usage patterns, toast variants including default, success, info, warning, error, and promise-based toasts, plus changelog for lucide icon updates.</description>
+    <source_url>https://ui.shadcn.com/docs/components/sonner</source_url>
+    <local_file>sonner-shadcnui.md</local_file>
+    <scraped_at>2025-12-16</scraped_at>
+  </source>
+  <source>
+    <title>Shadcn Sonner</title>
+    <description>Sonner toast patterns including success, error, loading states, promise integration for async operations, custom JSX content, undo actions, persistent notifications, API reference for core functions, configuration options, and Toaster setup.</description>
+    <source_url>https://www.shadcn.io/ui/sonner</source_url>
+    <local_file>shadcn-sonner.md</local_file>
+    <scraped_at>2025-12-16</scraped_at>
+  </source>
+  <source>
+    <title>Shadcn Sheet</title>
+    <description>Sheet slide-out panel patterns with edge positioning (left, right, top, bottom), navigation drawers, mobile action sheets, settings panels, form layouts, focus trapping, API reference for SheetContent, SheetTrigger, and SheetClose components.</description>
+    <source_url>https://www.shadcn.io/ui/sheet</source_url>
+    <local_file>shadcn-sheet.md</local_file>
+    <scraped_at>2025-12-16</scraped_at>
+  </source>
+  <source>
+    <title>Sidebar - shadcn/ui</title>
+    <description>Composable sidebar component with SidebarProvider, SidebarMenu, SidebarGroup, collapsible states (offcanvas, icon, none), variants (sidebar, floating, inset), useSidebar hook, theming with CSS variables, persisted state via cookies, and keyboard shortcuts.</description>
+    <source_url>https://ui.shadcn.com/docs/components/sidebar</source_url>
+    <local_file>sidebar-shadcnui.md</local_file>
+    <scraped_at>2025-12-16</scraped_at>
+  </source>
+  <source>
+    <title>MCP Server - shadcn/ui</title>
+    <description>MCP Server for AI assistants to browse, search, and install components from registries using natural language, with configuration for Claude Code, Cursor, VS Code, Codex, namespaced registries, authentication, and troubleshooting.</description>
+    <source_url>https://ui.shadcn.com/docs/mcp</source_url>
+    <local_file>mcp-server-shadcnui.md</local_file>
+    <scraped_at>2025-12-16</scraped_at>
+  </source>
+  <source>
+    <title>shadcn - shadcn/ui</title>
+    <description>CLI commands including init for project setup, add for installing components, view for previewing registry items, search and list for discovering components, and build for generating registry JSON files.</description>
+    <source_url>https://ui.shadcn.com/docs/cli</source_url>
+    <local_file>shadcn-shadcnui.md</local_file>
+    <scraped_at>2025-12-16</scraped_at>
+  </source>
+  <source>
+    <title>components.json - shadcn/ui</title>
+    <description>Project configuration file defining style, Tailwind CSS settings (config path, base colour, CSS variables, prefix), RSC support, TypeScript choice, path aliases for components and utils, and namespaced registry configuration.</description>
+    <source_url>https://ui.shadcn.com/docs/components-json</source_url>
+    <local_file>componentsjson-shadcnui.md</local_file>
+    <scraped_at>2025-12-16</scraped_at>
+  </source>
+  <source>
+    <title>Theming - shadcn/ui</title>
+    <description>CSS variables and utility classes theming configuration, background and foreground colour conventions, adding custom colours with @theme inline directive, and base colour palettes including neutral, stone, zinc, gray, and slate.</description>
+    <source_url>https://ui.shadcn.com/docs/theming</source_url>
+    <local_file>theming-shadcnui.md</local_file>
+    <scraped_at>2025-12-16</scraped_at>
+  </source>
+  <source>
+    <title>Empty - shadcn/ui</title>
+    <description>Empty component for displaying placeholder states with EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription, and EmptyContent subcomponents, supporting icons, avatars, backgrounds, outlines, and interactive content like buttons or inputs.</description>
+    <source_url>https://ui.shadcn.com/docs/components/empty</source_url>
+    <local_file>empty-shadcnui.md</local_file>
+    <scraped_at>2025-12-16</scraped_at>
+  </source>
+</docs_index>
