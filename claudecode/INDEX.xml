@@ -21,6 +21,13 @@
     <scraped_at>2025-12-05</scraped_at>
   </source>
   <source>
+    <title>Skill authoring best practices - Claude Docs</title>
+    <description>Skill authoring best practices: conciseness principles, naming conventions, description writing, progressive disclosure patterns, workflows and feedback loops, utility scripts, validation, code execution environment, MCP tool references, and evaluation-driven development.</description>
+    <source_url>https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices</source_url>
+    <local_file>skill-authoring-best-practices-claude-docs.md</local_file>
+    <scraped_at>2025-12-16</scraped_at>
+  </source>
+  <source>
     <title>Output Styles - Claude Code Docs</title>
     <description>Output styles for adapting Claude Code: built-in styles (default, explanatory, learning), custom Markdown frontmatter creation, keep-coding-instructions option, /output-style command switching, and comparisons to CLAUDE.md, agents, and slash commands.</description>
     <source_url>https://code.claude.com/docs/en/output-styles</source_url>
