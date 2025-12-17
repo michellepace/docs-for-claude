@@ -111,4 +111,11 @@
     <local_file>background-image-backgrounds-tailwind-css.md</local_file>
     <scraped_at>2025-11-17</scraped_at>
   </source>
+  <source>
+    <title>backdrop-filter: blur() - Filters - Tailwind CSS</title>
+    <description>Backdrop blur filter utilities including preset sizes (xs to 3xl), backdrop-blur-none to disable, custom values via arbitrary syntax, CSS custom properties, responsive breakpoint variants, and theme customisation with --blur-* variables.</description>
+    <source_url>https://tailwindcss.com/docs/backdrop-blur</source_url>
+    <local_file>backdrop-filter-blur-filters-tailwind-css.md</local_file>
+    <scraped_at>2025-12-17</scraped_at>
+  </source>
 </docs_index>
