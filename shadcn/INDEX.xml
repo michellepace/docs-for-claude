@@ -7,6 +7,13 @@
     <scraped_at>2025-12-16</scraped_at>
   </source>
   <source>
+    <title>Shadcn Sheet</title>
+    <description>Sheet slide-out panel patterns with edge positioning (left, right, top, bottom), navigation drawers, mobile action sheets, settings panels, form layouts, focus trapping, API reference for SheetContent, SheetTrigger, and SheetClose components.</description>
+    <source_url>https://www.shadcn.io/ui/sheet</source_url>
+    <local_file>shadcn-sheet.md</local_file>
+    <scraped_at>2025-12-16</scraped_at>
+  </source>
+  <source>
     <title>Field - shadcn/ui</title>
     <description>Field component system including Field, FieldSet, FieldGroup, FieldLabel, FieldContent, FieldDescription, FieldError for composing accessible forms with inputs, checkboxes, radios, switches, choice cards, responsive layouts, and validation states.</description>
     <source_url>https://ui.shadcn.com/docs/components/field</source_url>
@@ -39,13 +46,6 @@
     <description>Sonner toast patterns including success, error, loading states, promise integration for async operations, custom JSX content, undo actions, persistent notifications, API reference for core functions, configuration options, and Toaster setup.</description>
     <source_url>https://www.shadcn.io/ui/sonner</source_url>
     <local_file>shadcn-sonner.md</local_file>
-    <scraped_at>2025-12-16</scraped_at>
-  </source>
-  <source>
-    <title>Shadcn Sheet</title>
-    <description>Sheet slide-out panel patterns with edge positioning (left, right, top, bottom), navigation drawers, mobile action sheets, settings panels, form layouts, focus trapping, API reference for SheetContent, SheetTrigger, and SheetClose components.</description>
-    <source_url>https://www.shadcn.io/ui/sheet</source_url>
-    <local_file>shadcn-sheet.md</local_file>
     <scraped_at>2025-12-16</scraped_at>
   </source>
   <source>
@@ -89,5 +89,12 @@
     <source_url>https://ui.shadcn.com/docs/components/empty</source_url>
     <local_file>empty-shadcnui.md</local_file>
     <scraped_at>2025-12-16</scraped_at>
+  </source>
+  <source>
+    <title>Item - shadcn/ui</title>
+    <description>Versatile flex container component for displaying content with media (icons, avatars, images), titles, descriptions, and actions. Includes variants, sizes, ItemGroup for lists, and asChild prop for link rendering.</description>
+    <source_url>https://ui.shadcn.com/docs/components/item</source_url>
+    <local_file>item-shadcnui.md</local_file>
+    <scraped_at>2025-12-18</scraped_at>
   </source>
 </docs_index>
