@@ -183,7 +183,7 @@
   </source>
   <source>
     <title>Add custom pages and links to the &lt;UserProfile /&gt; component</title>
-    <description>Customising UserProfile component with custom pages using UserProfile.Page, custom links using UserProfile.Link, reordering default routes like account and security, with modal and dedicated page examples.</description>
+    <description>Customising UserProfile component sidenav with custom pages using UserButton.UserProfilePage or UserProfile.Page, custom links using UserProfileLink, required props label labelIcon url and children, and reordering default Account and Security routes.</description>
     <source_url>https://clerk.com/docs/nextjs/guides/customizing-clerk/adding-items/user-profile</source_url>
     <local_file>add-custom-pages-and-links-to-the-userprofile-component.md</local_file>
     <scraped_at>2025-12-09</scraped_at>
