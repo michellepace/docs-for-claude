@@ -30,6 +30,11 @@ repos:
         language: system
         types: [python]
         pass_filenames: false
+      - id: xmllint
+        name: xmllint
+        entry: xmllint --noout
+        language: system
+        types: [xml]
 
 # Notes:
 # 1. Hook order: uv-lock (instant) → ruff-format (auto-fix) → ruff-check (validate) → pyright (type check) → pytest (slowest)
