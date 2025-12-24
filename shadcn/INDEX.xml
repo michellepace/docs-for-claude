@@ -49,13 +49,6 @@
     <scraped_at>2025-12-16</scraped_at>
   </source>
   <source>
-    <title>Sidebar - shadcn/ui</title>
-    <description>Composable sidebar component with SidebarProvider, SidebarMenu, SidebarGroup, collapsible states (offcanvas, icon, none), variants (sidebar, floating, inset), useSidebar hook, theming with CSS variables, persisted state via cookies, and keyboard shortcuts.</description>
-    <source_url>https://ui.shadcn.com/docs/components/sidebar</source_url>
-    <local_file>sidebar-shadcnui.md</local_file>
-    <scraped_at>2025-12-16</scraped_at>
-  </source>
-  <source>
     <title>MCP Server - shadcn/ui</title>
     <description>MCP Server for AI assistants to browse, search, and install components from registries using natural language, with configuration for Claude Code, Cursor, VS Code, Codex, namespaced registries, authentication, and troubleshooting.</description>
     <source_url>https://ui.shadcn.com/docs/mcp</source_url>
@@ -96,5 +89,19 @@
     <source_url>https://ui.shadcn.com/docs/components/item</source_url>
     <local_file>item-shadcnui.md</local_file>
     <scraped_at>2025-12-18</scraped_at>
+  </source>
+  <source>
+    <title>Sidebar - shadcn/ui</title>
+    <description>SidebarProvider (state, cookies, keyboard shortcut, width), Sidebar (side, variant, collapsible modes), structural components (Header, Footer, Content, Trigger, Rail, Inset), SidebarGroup with labels/actions, SidebarMenu with MenuButton, MenuAction, MenuSub, MenuBadge, MenuSkeleton, useSidebar hook</description>
+    <source_url>https://ui.shadcn.com/docs/components/sidebar</source_url>
+    <local_file>sidebar-shadcnui.md</local_file>
+    <scraped_at>2025-12-24</scraped_at>
+  </source>
+  <source>
+    <title>Navigation Menu - shadcn/ui</title>
+    <description>NavigationMenu with List, Item, Trigger, Content, Link, Indicator, Viewport subcomponents. CLI/manual installation, composition structure, asChild prop for Next.js Link integration. Radix UI primitives.</description>
+    <source_url>https://ui.shadcn.com/docs/components/navigation-menu</source_url>
+    <local_file>navigation-menu-shadcnui.md</local_file>
+    <scraped_at>2025-12-24</scraped_at>
   </source>
 </docs_index>
