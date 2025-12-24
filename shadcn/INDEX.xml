@@ -7,8 +7,8 @@
     <scraped_at>2025-12-16</scraped_at>
   </source>
   <source>
-    <title>Shadcn Sheet</title>
-    <description>Extended Sheet implementation guide: complete form examples with state, navigation drawer patterns, mobile action sheets, API reference tables for all subcomponents, edge positioning use cases, production tips.</description>
+    <title>Shadcn Sheet (Unofficial)</title>
+    <description>Unofficial guide (shadcn.io): Extended Sheet examples including form patterns, navigation drawers, mobile action sheets, API reference tables, edge positioning use cases, production tips. Same Radix Dialog API as official.</description>
     <source_url>https://www.shadcn.io/ui/sheet</source_url>
     <local_file>shadcn-sheet.md</local_file>
     <scraped_at>2025-12-16</scraped_at>
@@ -42,8 +42,8 @@
     <scraped_at>2025-12-16</scraped_at>
   </source>
   <source>
-    <title>Shadcn Sonner</title>
-    <description>Sonner toast patterns including success, error, loading states, promise integration for async operations, custom JSX content, undo actions, persistent notifications, API reference for core functions, configuration options, and Toaster setup.</description>
+    <title>Shadcn Sonner (Unofficial)</title>
+    <description>Unofficial guide (shadcn.io): Extended Sonner toast patterns including success, error, loading states, promise integration, custom JSX content, undo actions, persistent notifications, API reference, configuration options.</description>
     <source_url>https://www.shadcn.io/ui/sonner</source_url>
     <local_file>shadcn-sonner.md</local_file>
     <scraped_at>2025-12-16</scraped_at>
@@ -103,5 +103,19 @@
     <source_url>https://ui.shadcn.com/docs/components/navigation-menu</source_url>
     <local_file>navigation-menu-shadcnui.md</local_file>
     <scraped_at>2025-12-24</scraped_at>
+  </source>
+  <source>
+    <title>Drawer - shadcn/ui</title>
+    <description>Drawer component built on Vaul library for mobile-friendly slide-up panels, with installation via CLI, usage patterns, and responsive dialog example combining Drawer on mobile with Dialog on desktop.</description>
+    <source_url>https://ui.shadcn.com/docs/components/drawer</source_url>
+    <local_file>drawer-shadcnui.md</local_file>
+    <scraped_at>2025-12-25</scraped_at>
+  </source>
+  <source>
+    <title>Shadcn Drawer (Unofficial)</title>
+    <description>Unofficial guide (shadcn.io): Extended Drawer examples covering Vaul gestures, multi-direction support, snap points, nested patterns, API reference tables, production tips, responsive dialog-drawer strategy. Same Vaul API as official.</description>
+    <source_url>https://www.shadcn.io/ui/drawer</source_url>
+    <local_file>shadcn-drawer.md</local_file>
+    <scraped_at>2025-12-25</scraped_at>
   </source>
 </docs_index>
