@@ -1,14 +1,14 @@
 <docs_index>
   <source>
     <title>Sheet - shadcn/ui</title>
-    <description>Sheet component extending Dialog for slide-in panels from screen edges, with side property options (top, right, bottom, left), CSS-based size customisation, and Radix UI primitives integration.</description>
+    <description>Official shadcn/ui Sheet quick-reference: CLI/manual installation, import statements, basic usage structure, side property options, CSS width customisation. Use for setup and minimal examples.</description>
     <source_url>https://ui.shadcn.com/docs/components/sheet</source_url>
     <local_file>sheet-shadcnui.md</local_file>
     <scraped_at>2025-12-16</scraped_at>
   </source>
   <source>
     <title>Shadcn Sheet</title>
-    <description>Sheet slide-out panel patterns with edge positioning (left, right, top, bottom), navigation drawers, mobile action sheets, settings panels, form layouts, focus trapping, API reference for SheetContent, SheetTrigger, and SheetClose components.</description>
+    <description>Extended Sheet implementation guide: complete form examples with state, navigation drawer patterns, mobile action sheets, API reference tables for all subcomponents, edge positioning use cases, production tips.</description>
     <source_url>https://www.shadcn.io/ui/sheet</source_url>
     <local_file>shadcn-sheet.md</local_file>
     <scraped_at>2025-12-16</scraped_at>
