@@ -1,10 +1,17 @@
 <docs_index>
   <source>
-    <title>Next.js 16 | Next.js</title>
+    <title>Next.js 16 Release Notes| Next.js</title>
     <description>Next.js 16 release notes covering Cache Components, Turbopack stable, proxy.ts replacing middleware, React Compiler, Build Adapters API, enhanced routing, caching APIs, React 19.2 features, and breaking changes.</description>
     <source_url>https://nextjs.org/blog/next-16</source_url>
     <local_file>nextjs-16-nextjs.md</local_file>
     <scraped_at>2025-12-02</scraped_at>
+  </source>
+  <source>
+    <title>Next.js 16.1 Release Notes | Next.js</title>
+    <description>Next.js 16.1 release notes: stable Turbopack file system caching for faster dev server restarts, experimental bundle analyser, --inspect debugging flag, improved serverExternalPackages handling for transitive dependencies, and 20MB smaller installs.</description>
+    <source_url>https://nextjs.org/blog/next-16-1</source_url>
+    <local_file>nextjs-161-nextjs.md</local_file>
+    <scraped_at>2025-12-25</scraped_at>
   </source>
   <source>
     <title>Getting Started: Image Optimization | Next.js</title>
@@ -188,7 +195,7 @@
     <local_file>file-system-conventions-loadingjs-nextjs.md</local_file>
     <scraped_at>2025-12-09</scraped_at>
   </source>
-    <source>
+  <source>
     <title>Uncached data was accessed outside of `&lt;Suspense&gt;` | Next.js</title>
     <description>Blocking route error when uncached data is accessed outside Suspense boundaries with cacheComponents enabled, covering fixes using use cache directive, Suspense boundaries, headers cookies params handling, and short-lived cache configurations.</description>
     <source_url>https://nextjs.org/docs/messages/blocking-route</source_url>
