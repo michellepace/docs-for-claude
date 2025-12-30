@@ -125,4 +125,11 @@
     <local_file>animation-transitions-animation-tailwind-css.md</local_file>
     <scraped_at>2025-12-22</scraped_at>
   </source>
+  <source>
+    <title>font-size - Typography - Tailwind CSS</title>
+    <description>Font-size utilities from text-xs to text-9xl with line-heights, combined size/line-height shorthand syntax, arbitrary values, responsive variants, and --text-* theme customisation.</description>
+    <source_url>https://tailwindcss.com/docs/font-size</source_url>
+    <local_file>font-size-typography-tailwind-css.md</local_file>
+    <scraped_at>2025-12-30</scraped_at>
+  </source>
 </docs_index>
