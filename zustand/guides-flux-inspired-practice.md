@@ -3,8 +3,6 @@ title: Flux inspired practice
 nav: 4
 ---
 
-# Flux inspired practice
-
 Although Zustand is an unopinionated library, we do recommend a few patterns.
 These are inspired by practices originally found in [Flux](https://github.com/facebookarchive/flux),
 and more recently [Redux](https://redux.js.org/understanding/thinking-in-redux/three-principles),

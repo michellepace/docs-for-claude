@@ -3,8 +3,6 @@ title: Advanced TypeScript Guide
 nav: 7
 ---
 
-# Advanced TypeScript Guide
-
 ## Basic usage
 
 The difference when using TypeScript is that instead of writing `create(...)`, you have to write `create<T>()(...)` (notice the extra parentheses `()` too along with the type parameter) where `T` is the type of the state to annotate it. For example:
@@ -477,7 +475,7 @@ const useBoundStore = create<BearSlice & FishSlice & SharedSlice>()((...a) => ({
 }))
 ```
 
-A detailed explanation on the slices pattern can be found in the [slices pattern guide](./slices-pattern.md).
+A detailed explanation on the slices pattern can be found [here](./slices-pattern.md).
 
 If you have some middlewares then replace `StateCreator<MyState, [], [], MySlice>` with `StateCreator<MyState, Mutators, [], MySlice>`. For example, if you are using `devtools` then it will be `StateCreator<MyState, [["zustand/devtools", never]], [], MySlice>`. See the ["Middlewares and their mutators reference"](#middlewares-and-their-mutators-reference) section for a list of all mutators.
 

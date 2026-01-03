@@ -3,8 +3,6 @@ title: Persisting store data
 nav: 20
 ---
 
-# Persisting store data
-
 The Persist middleware enables you to store
 your Zustand state in a storage
 (e.g., `localStorage`, `AsyncStorage`, `IndexedDB`, etc.),
@@ -106,7 +104,7 @@ export const useBoundStore = create(
 ### `partialize`
 
 > Type: `(state: Object) => Object`
->
+
 > Default: `(state) => state`
 
 Enables you to pick some of the state's fields to be stored in the storage.
@@ -185,7 +183,7 @@ export const useBoundStore = create(
 ### `version`
 
 > Type: `number`
->
+
 > Default: `0`
 
 If you want to introduce a breaking change in your storage
@@ -199,7 +197,7 @@ to handle breaking changes in order to persist previously stored data.
 ### `migrate`
 
 > Type: `(persistedState: Object, version: number) => Object | Promise<Object>`
->
+
 > Default: `(persistedState) => persistedState`
 
 You can use this option to handle versions migration.
@@ -236,7 +234,7 @@ export const useBoundStore = create(
 ### `merge`
 
 > Type: `(persistedState: Object, currentState: Object) => Object`
->
+
 > Default: `(persistedState, currentState) => ({ ...currentState, ...persistedState })`
 
 In some cases, you might want to use a custom merge function
@@ -290,7 +288,7 @@ export const useBoundStore = create(
 ### `skipHydration`
 
 > Type: `boolean | undefined`
->
+
 > Default: `undefined`
 
 By default the store will be hydrated on initialization.
@@ -342,7 +340,7 @@ from inside or outside of a React component.
 ### `getOptions`
 
 > Type: `() => Partial<PersistOptions>`
->
+
 > Returns: Options of the Persist middleware
 
 For example, it can be used to obtain the storage name:
@@ -410,7 +408,7 @@ useBoundStore.persist.hasHydrated()
 ### `onHydrate`
 
 > Type: `(listener: (state) => void) => () => void`
->
+
 > Returns: Unsubscribe function
 
 This listener will be called when the hydration process starts.
@@ -427,7 +425,7 @@ unsub()
 ### `onFinishHydration`
 
 > Type: `(listener: (state) => void) => () => void`
->
+
 > Returns: Unsubscribe function
 
 This listener will be called when the hydration process ends.
@@ -444,7 +442,7 @@ unsub()
 ### `createJSONStorage`
 
 > Type: `(getStorage: () => StateStorage, options?: JsonStorageOptions) => StateStorage`
->
+
 > Returns: `PersistStorage`
 
 This helper function enables you to create a [`storage`](#storage) object which is useful when you want to use a custom storage engine.

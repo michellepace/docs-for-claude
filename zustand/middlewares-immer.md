@@ -233,7 +233,3 @@ render(personStore.getInitialState(), personStore.getInitialState())
 
 personStore.subscribe(render)
 ```
-
-## Troubleshooting
-
-TBD

@@ -4,8 +4,6 @@ description: How to use vanilla stores in React
 nav: 30
 ---
 
-# useStore ⚛️
-
 `useStore` is a React Hook that lets you use a vanilla store in React.
 
 ```js
@@ -16,7 +14,7 @@ const someState = useStore(store, selectorFn)
   - [Signature](#signature)
 - [Reference](#reference)
 - [Usage](#usage)
-  - [Using a global vanilla store in React](#using-a-global-vanilla-store-in-react)
+  - [Use a vanilla store in React](#use-a-vanilla-store-in-react)
   - [Using dynamic vanilla stores in React](#using-dynamic-global-vanilla-stores-in-react)
   - [Using scoped (non-global) vanilla store in React](#using-scoped-non-global-vanilla-store-in-react)
   - [Using dynamic scoped (non-global) vanilla stores in React](#using-dynamic-scoped-non-global-vanilla-stores-in-react)
@@ -426,10 +424,9 @@ const PositionStoreContext = createContext<ReturnType<
 > | null>(null)
 
 function PositionStoreProvider({ children }: { children: ReactNode }) {
-  const [positionStore] = useState(createPositionStore)
-
+  const [store] = useState(() => createPositionStore())
   return (
-    <PositionStoreContext.Provider value={positionStore}>
+    <PositionStoreContext.Provider value={store}>
       {children}
     </PositionStoreContext.Provider>
   )
@@ -539,10 +536,9 @@ const PositionStoreContext = createContext<ReturnType<
 > | null>(null)
 
 function PositionStoreProvider({ children }: { children: ReactNode }) {
-  const [positionStore] = useState(createPositionStore)
-
+  const [store] = useState(() => createPositionStore())
   return (
-    <PositionStoreContext.Provider value={positionStore}>
+    <PositionStoreContext.Provider value={store}>
       {children}
     </PositionStoreContext.Provider>
   )

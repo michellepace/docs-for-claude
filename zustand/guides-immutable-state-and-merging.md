@@ -3,8 +3,6 @@ title: Immutable state and merging
 nav: 3
 ---
 
-# Immutable state and merging
-
 Like with React's `useState`, we need to update state immutably.
 
 Here's a typical example:

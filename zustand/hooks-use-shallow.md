@@ -4,15 +4,13 @@ description: How to memoize selector functions
 nav: 28
 ---
 
-# useShallow ⚛️
-
 `useShallow` is a React Hook that lets you optimize re-renders.
 
 ```js
 const memoizedSelector = useShallow(selector)
 ```
 
-- [Reference](#reference)
+- [Types](#types)
   - [Signature](#signature)
 - [Reference](#reference)
 - [Usage](#usage)

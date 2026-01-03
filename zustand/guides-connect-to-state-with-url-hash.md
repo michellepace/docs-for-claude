@@ -3,8 +3,6 @@ title: Connect to state with URL
 nav: 11
 ---
 
-# Connect to state with URL
-
 ## Connect State with URL Hash
 
 If you want to connect state of a store to URL hash, you can create your own hash storage.

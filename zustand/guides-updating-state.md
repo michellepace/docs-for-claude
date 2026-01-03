@@ -3,8 +3,6 @@ title: Updating state
 nav: 2
 ---
 
-# Updating state
-
 ## Flat updates
 
 Updating state with Zustand is simple! Call the provided `set` function with

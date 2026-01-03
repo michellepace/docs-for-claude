@@ -4,8 +4,6 @@ description: How Zustand stacks up against similar libraries
 nav: 1
 ---
 
-# Comparison
-
 Zustand is one of many state management libraries for React.
 On this page we will discuss Zustand
 in comparison to some of these libraries,
@@ -51,14 +49,13 @@ type State = {
   count: number
 }
 
-type Actions = {
-  increment: (qty: number) => void
-  decrement: (qty: number) => void
+type Action = {
+  type: 'increment' | 'decrement'
+  qty: number
 }
 
-type Action = {
-  type: keyof Actions
-  qty: number
+type Actions = {
+  dispatch: (action: Action) => void
 }
 
 const countReducer = (state: State, action: Action) => {

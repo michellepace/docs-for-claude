@@ -4,8 +4,6 @@ description: How to use vanilla stores effectively in React
 nav: 29
 ---
 
-# useStoreWithEqualityFn ⚛️
-
 `useStoreWithEqualityFn` is a React Hook that lets you use a vanilla store in React, just like
 `useStore`. However, it offers a way to define a custom equality check. This allows for more
 granular control over when components re-render, improving performance and responsiveness.
@@ -18,7 +16,7 @@ granular control over when components re-render, improving performance and respo
 const someState = useStoreWithEqualityFn(store, selectorFn, equalityFn)
 ```
 
-- [Reference](#reference)
+- [Types](#types)
   - [Signature](#signature)
 - [Reference](#reference)
 - [Usage](#usage)
@@ -460,10 +458,9 @@ const PositionStoreContext = createContext<ReturnType<
 > | null>(null)
 
 function PositionStoreProvider({ children }: { children: ReactNode }) {
-  const [positionStore] = useState(createPositionStore)
-
+  const [store] = useState(() => createPositionStore())
   return (
-    <PositionStoreContext.Provider value={positionStore}>
+    <PositionStoreContext.Provider value={store}>
       {children}
     </PositionStoreContext.Provider>
   )
@@ -575,10 +572,9 @@ const PositionStoreContext = createContext<ReturnType<
 > | null>(null)
 
 function PositionStoreProvider({ children }: { children: ReactNode }) {
-  const [positionStore] = useState(createPositionStore)
-
+  const [store] = useState(() => createPositionStore())
   return (
-    <PositionStoreContext.Provider value={positionStore}>
+    <PositionStoreContext.Provider value={store}>
       {children}
     </PositionStoreContext.Provider>
   )

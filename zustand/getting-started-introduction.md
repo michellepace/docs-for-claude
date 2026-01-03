@@ -4,8 +4,6 @@ description: How to use Zustand
 nav: 0
 ---
 
-# Introduction
-
 <div class="flex justify-center mb-4">
   <img src="../bear.jpg" alt="Logo Zustand" />
 </div>
@@ -22,7 +20,7 @@ like the dreaded [zombie child problem],
 between mixed renderers.
 It may be the one state manager in the React space that gets all of these right.
 
-You can try a [live demo on CodeSandbox](https://codesandbox.io/s/dazzling-moon-itop4).
+You can try a live demo [here](https://codesandbox.io/s/dazzling-moon-itop4).
 
 [zombie child problem]: https://react-redux.js.org/api/hooks#stale-props-and-zombie-children
 [react concurrency]: https://github.com/bvaughn/rfcs/blob/useMutableSource/text/0000-use-mutable-source.md

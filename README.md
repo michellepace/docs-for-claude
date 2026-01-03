@@ -28,7 +28,7 @@ Available collections in this repo:
 | 📦 [`uv/`](uv/) | 📄 [`uv/INDEX.xml`](uv/INDEX.xml) | Python projects | 2025-10-15 | [Official](https://docs.astral.sh/uv/) |
 | 📦 [`vercel/`](vercel/) | 📄 [`vercel/INDEX.xml`](vercel/INDEX.xml) | Deployment platform | 2025-10-20 | [Official](https://vercel.com) |
 | 📦 [`vitest/`](vitest/) | 📄 [`vitest/INDEX.xml`](vitest/INDEX.xml) | Testing framework | 2025-11-05 | [Official](https://vitest.dev) |
-| 📦 [`zustand/`](zustand/) | 📄 [`zustand/INDEX.xml`](zustand/INDEX.xml) | State management | 2025-11-18 | [Official](https://zustand.docs.pmnd.rs) |
+| 📦 [`zustand/`](zustand/) | 📄 [`zustand/INDEX.xml`](zustand/INDEX.xml) | State management | 2026-01-03 | [Official](https://zustand.docs.pmnd.rs) |
 
 *Curate your own collections. The [lefthook](lefthook/) collection is non-standard, docs directly downloaded from GitHub. For Anthropic docs use [this tool](https://github.com/ericbuess/claude-code-docs).*
 
