@@ -118,4 +118,11 @@
     <local_file>shadcn-drawer.md</local_file>
     <scraped_at>2025-12-25</scraped_at>
   </source>
+  <source>
+    <title>Badge - shadcn/ui</title>
+    <description>Badge component for displaying labels and status indicators, with variants including default, secondary, destructive, and outline styles, plus asChild prop for rendering badges as links.</description>
+    <source_url>https://ui.shadcn.com/docs/components/badge</source_url>
+    <local_file>badge-shadcnui.md</local_file>
+    <scraped_at>2025-12-31</scraped_at>
+  </source>
 </docs_index>
