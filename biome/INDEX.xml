@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='utf-8'?>
 <docs_index>
   <source>
     <title>Getting Started | Biome</title>
@@ -9,7 +8,7 @@
   </source>
   <source>
     <title>Configure Biome | Biome</title>
-    <description>Configuration structure (`biome.json`, `biome.jsonc`), tool enablement (formatter, linter, assist), language-specific overrides, auto-discovery resolution, file inclusion/exclusion via glob patterns and negated globs (`!`, `!!`), VCS integration, and well-known JSON files with parsing options.</description>
+    <description>biome.json/biome.jsonc structure, enabling/disabling formatter/linter/assist, language-specific overrides (javascript.formatter, json.formatter), auto-discovery resolution, files.includes glob patterns with negation (! and !!), tool-specific includes, VCS integration, well-known JSON files parsing.</description>
     <source_url>https://biomejs.dev/guides/configure-biome</source_url>
     <local_file>configure-biome-biome.mdx</local_file>
     <scraped_at>2025-11-04</scraped_at>
@@ -76,5 +75,19 @@
     <source_url>https://biomejs.dev/reference/reporters</source_url>
     <local_file>reporters-biome.mdx</local_file>
     <scraped_at>2025-11-22</scraped_at>
+  </source>
+  <source>
+    <title>useSortedClasses | Biome</title>
+    <description>Nursery rule useSortedClasses for automatic CSS utility class sorting using Tailwind algorithm, attributes/functions options for clsx/cva/tw, current limitations including no screen variants or custom utilities.</description>
+    <source_url>https://biomejs.dev/linter/rules/use-sorted-classes</source_url>
+    <local_file>usesortedclasses-biome.md</local_file>
+    <scraped_at>2026-01-04</scraped_at>
+  </source>
+  <source>
+    <title>Linter | Biome</title>
+    <description>Configuring biome.json linter rules: enable/disable rules, set severity (off/on/error/warn/info), rule groups (a11y, style, suspicious), domains, safe/unsafe fixes, --write --skip --only flags, editor integration, ESLint migration.</description>
+    <source_url>https://biomejs.dev/linter</source_url>
+    <local_file>linter-biome.md</local_file>
+    <scraped_at>2026-01-04</scraped_at>
   </source>
 </docs_index>
