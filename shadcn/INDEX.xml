@@ -1,177 +1,184 @@
 <docs_index>
   <source>
-    <title>Sheet - shadcn/ui</title>
-    <description>Official shadcn/ui Sheet quick-reference: CLI/manual installation, import statements, basic usage structure, side property options, CSS width customisation. Use for setup and minimal examples.</description>
+    <title>Sheet</title>
+    <description>Slide-out panel component extending Radix Dialog for sidebars, settings panels, and mobile menus. Side prop positions content at top, right, bottom, or left edges with CSS width customisation.</description>
     <source_url>https://ui.shadcn.com/docs/components/sheet</source_url>
     <local_file>sheet-shadcnui.md</local_file>
     <scraped_at>2025-12-16</scraped_at>
   </source>
   <source>
     <title>Shadcn Sheet (Unofficial)</title>
-    <description>Unofficial guide (shadcn.io): Extended Sheet examples including form patterns, navigation drawers, mobile action sheets, API reference tables, edge positioning use cases, production tips. Same Radix Dialog API as official.</description>
+    <description>Extended Sheet patterns including settings panels, navigation drawers, mobile action sheets, notification bars. API reference for SheetContent side prop, SheetHeader, SheetFooter, SheetClose with production tips.</description>
     <source_url>https://www.shadcn.io/ui/sheet</source_url>
     <local_file>shadcn-sheet.md</local_file>
     <scraped_at>2025-12-16</scraped_at>
   </source>
   <source>
-    <title>Field - shadcn/ui</title>
-    <description>Field component system including Field, FieldSet, FieldGroup, FieldLabel, FieldContent, FieldDescription, FieldError for composing accessible forms with inputs, checkboxes, radios, switches, choice cards, responsive layouts, and validation states.</description>
+    <title>Field</title>
+    <description>Field component family for accessible forms: Field, FieldSet, FieldGroup, FieldLabel, FieldContent, FieldDescription, FieldError, FieldSeparator. Supports vertical/horizontal/responsive orientations, validation states, choice cards, semantic fieldset grouping.</description>
     <source_url>https://ui.shadcn.com/docs/components/field</source_url>
     <local_file>field-shadcnui.md</local_file>
     <scraped_at>2025-12-16</scraped_at>
   </source>
   <source>
-    <title>TanStack Form - shadcn/ui</title>
-    <description>TanStack Form integration with shadcn Field components, Zod schema validation, useForm hook setup, validation modes, error display, field types including input, textarea, select, checkbox, radio, switch, and array fields.</description>
+    <title>TanStack Form</title>
+    <description>TanStack Form integration with useForm hook, Zod schema validation, Field component composition. Validation modes (onChange, onBlur, onSubmit), error display, field types (input, textarea, select, checkbox, radio, switch), array fields with pushValue/removeValue.</description>
     <source_url>https://ui.shadcn.com/docs/forms/tanstack-form</source_url>
     <local_file>tanstack-form-shadcnui.md</local_file>
     <scraped_at>2025-12-16</scraped_at>
   </source>
   <source>
-    <title>Button - shadcn/ui</title>
-    <description>Button component with variants (default, outline, ghost, destructive, secondary, link), sizes (sm, default, lg, icon, icon-sm, icon-lg), icon support, spinner loading state, asChild prop for polymorphism, and ButtonGroup composition.</description>
+    <title>Button</title>
+    <description>Button component with variants (default, outline, ghost, destructive, secondary, link), sizes (sm, default, lg, icon, icon-sm, icon-lg), automatic icon spacing, Spinner loading state, asChild for polymorphic rendering, ButtonGroup composition.</description>
     <source_url>https://ui.shadcn.com/docs/components/button</source_url>
     <local_file>button-shadcnui.md</local_file>
     <scraped_at>2025-12-16</scraped_at>
   </source>
   <source>
-    <title>Sonner - shadcn/ui</title>
-    <description>Sonner toast component installation, setup with Toaster in app layout, usage patterns, toast variants including default, success, info, warning, error, and promise-based toasts, plus changelog for lucide icon updates.</description>
+    <title>Sonner</title>
+    <description>Toast notification component using Sonner library. Toaster setup in app layout, toast() function, success/error/warning/info/loading variants, lucide icons customisation, next-themes integration, CSS variables styling.</description>
     <source_url>https://ui.shadcn.com/docs/components/sonner</source_url>
     <local_file>sonner-shadcnui.md</local_file>
     <scraped_at>2025-12-16</scraped_at>
   </source>
   <source>
     <title>Shadcn Sonner (Unofficial)</title>
-    <description>Unofficial guide (shadcn.io): Extended Sonner toast patterns including success, error, loading states, promise integration, custom JSX content, undo actions, persistent notifications, API reference, configuration options.</description>
+    <description>Extended Sonner toast patterns with success, error, loading states, toast.promise() async handling, custom JSX content, undo actions, persistent notifications, duration control, icon customisation, position configuration.</description>
     <source_url>https://www.shadcn.io/ui/sonner</source_url>
     <local_file>shadcn-sonner.md</local_file>
     <scraped_at>2025-12-16</scraped_at>
   </source>
   <source>
-    <title>MCP Server - shadcn/ui</title>
-    <description>MCP Server for AI assistants to browse, search, and install components from registries using natural language, with configuration for Claude Code, Cursor, VS Code, Codex, namespaced registries, authentication, and troubleshooting.</description>
+    <title>MCP Server</title>
+    <description>Model Context Protocol server enabling AI assistants (Claude Code, Cursor, VS Code, Codex) to browse, search, and install components via natural language. Covers `npx shadcn mcp init`, registry namespaces, authentication headers, troubleshooting.</description>
     <source_url>https://ui.shadcn.com/docs/mcp</source_url>
     <local_file>mcp-server-shadcnui.md</local_file>
     <scraped_at>2025-12-16</scraped_at>
   </source>
   <source>
-    <title>shadcn - shadcn/ui</title>
-    <description>CLI commands including init for project setup, add for installing components, view for previewing registry items, search and list for discovering components, and build for generating registry JSON files.</description>
+    <title>shadcn</title>
+    <description>CLI reference for `npx shadcn init`, `add`, `view`, `search`, `list`, and `build` commands. Flags like --template, --base-color, --overwrite, --all, --path, --silent, --cwd, namespaced registry syntax, registry JSON generation.</description>
     <source_url>https://ui.shadcn.com/docs/cli</source_url>
     <local_file>shadcn-shadcnui.md</local_file>
     <scraped_at>2025-12-16</scraped_at>
   </source>
   <source>
-    <title>components.json - shadcn/ui</title>
-    <description>Project configuration file defining style, Tailwind CSS settings (config path, base colour, CSS variables, prefix), RSC support, TypeScript choice, path aliases for components and utils, and namespaced registry configuration.</description>
+    <title>components.json</title>
+    <description>Project configuration schema for style, Tailwind CSS (config path, css, baseColor, cssVariables, prefix), rsc, tsx, aliases (components, utils, ui, lib, hooks), registries with namespaced URLs, authentication headers, environment variable expansion.</description>
     <source_url>https://ui.shadcn.com/docs/components-json</source_url>
     <local_file>componentsjson-shadcnui.md</local_file>
     <scraped_at>2025-12-16</scraped_at>
   </source>
   <source>
-    <title>Theming - shadcn/ui</title>
-    <description>CSS variables and utility classes theming configuration, background and foreground colour conventions, adding custom colours with @theme inline directive, and base colour palettes including neutral, stone, zinc, gray, and slate.</description>
+    <title>Theming</title>
+    <description>CSS variables theming with oklch colour format, background/foreground naming convention, complete variable list (primary, secondary, muted, accent, destructive, border, ring, chart, sidebar), @theme inline directive, base palettes (neutral, stone, zinc, gray, slate).</description>
     <source_url>https://ui.shadcn.com/docs/theming</source_url>
     <local_file>theming-shadcnui.md</local_file>
     <scraped_at>2025-12-16</scraped_at>
   </source>
   <source>
-    <title>Empty - shadcn/ui</title>
-    <description>Empty component for displaying placeholder states with EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription, and EmptyContent subcomponents, supporting icons, avatars, backgrounds, outlines, and interactive content like buttons or inputs.</description>
+    <title>Empty</title>
+    <description>Empty state placeholder component with EmptyHeader, EmptyMedia (icon/avatar variants), EmptyTitle, EmptyDescription, EmptyContent subcomponents. Supports outline borders, gradient backgrounds, avatar groups, InputGroup integration, call-to-action buttons.</description>
     <source_url>https://ui.shadcn.com/docs/components/empty</source_url>
     <local_file>empty-shadcnui.md</local_file>
     <scraped_at>2025-12-16</scraped_at>
   </source>
   <source>
-    <title>Item - shadcn/ui</title>
-    <description>Versatile flex container component for displaying content with media (icons, avatars, images), titles, descriptions, and actions. Includes variants, sizes, ItemGroup for lists, and asChild prop for link rendering.</description>
+    <title>Item</title>
+    <description>Versatile flex container with ItemMedia (icons, avatars, images), ItemContent, ItemTitle, ItemDescription, ItemActions, ItemHeader, ItemFooter. Variants (default, outline, muted), sizes (default, sm), ItemGroup for lists, ItemSeparator, asChild for links.</description>
     <source_url>https://ui.shadcn.com/docs/components/item</source_url>
     <local_file>item-shadcnui.md</local_file>
     <scraped_at>2025-12-18</scraped_at>
   </source>
   <source>
-    <title>Sidebar - shadcn/ui</title>
-    <description>SidebarProvider (state, cookies, keyboard shortcut, width), Sidebar (side, variant, collapsible modes), structural components (Header, Footer, Content, Trigger, Rail, Inset), SidebarGroup with labels/actions, SidebarMenu with MenuButton, MenuAction, MenuSub, MenuBadge, MenuSkeleton, useSidebar hook</description>
+    <title>Sidebar</title>
+    <description>Composable sidebar with SidebarProvider, useSidebar hook, collapsible modes (offcanvas, icon, none), variants (sidebar, floating, inset), SidebarMenu with buttons/actions/submenus/badges/skeletons, groups, header/footer, CSS variables theming, keyboard shortcuts, cookie persistence.</description>
     <source_url>https://ui.shadcn.com/docs/components/sidebar</source_url>
     <local_file>sidebar-shadcnui.md</local_file>
     <scraped_at>2025-12-24</scraped_at>
   </source>
   <source>
-    <title>Navigation Menu - shadcn/ui</title>
-    <description>NavigationMenu with List, Item, Trigger, Content, Link, Indicator, Viewport subcomponents. CLI/manual installation, composition structure, asChild prop for Next.js Link integration. Radix UI primitives.</description>
+    <title>Navigation Menu</title>
+    <description>Radix UI navigation menu with NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink, NavigationMenuIndicator, NavigationMenuViewport. Supports asChild prop for Next.js Link integration and dropdown navigation patterns.</description>
     <source_url>https://ui.shadcn.com/docs/components/navigation-menu</source_url>
     <local_file>navigation-menu-shadcnui.md</local_file>
     <scraped_at>2025-12-24</scraped_at>
   </source>
   <source>
-    <title>Drawer - shadcn/ui</title>
-    <description>Drawer component built on Vaul library for mobile-friendly slide-up panels, with installation via CLI, usage patterns, and responsive dialog example combining Drawer on mobile with Dialog on desktop.</description>
+    <title>Drawer</title>
+    <description>Mobile-friendly slide-up panel built on Vaul library with gesture support. DrawerTrigger, DrawerContent, DrawerHeader, DrawerFooter subcomponents, and responsive Dialog/Drawer pattern for desktop/mobile switching.</description>
     <source_url>https://ui.shadcn.com/docs/components/drawer</source_url>
     <local_file>drawer-shadcnui.md</local_file>
     <scraped_at>2025-12-25</scraped_at>
   </source>
   <source>
     <title>Shadcn Drawer (Unofficial)</title>
-    <description>Unofficial guide (shadcn.io): Extended Drawer examples covering Vaul gestures, multi-direction support, snap points, nested patterns, API reference tables, production tips, responsive dialog-drawer strategy. Same Vaul API as official.</description>
+    <description>Extended Drawer patterns with Vaul gestures, snap points, multi-direction support (bottom, top, left, right), nested drawers, controlled state. API reference, responsive dialog-drawer strategy, and production tips.</description>
     <source_url>https://www.shadcn.io/ui/drawer</source_url>
     <local_file>shadcn-drawer.md</local_file>
     <scraped_at>2025-12-25</scraped_at>
   </source>
   <source>
-    <title>Badge - shadcn/ui</title>
-    <description>Badge component for displaying labels and status indicators, with variants including default, secondary, destructive, and outline styles, plus asChild prop for rendering badges as links.</description>
+    <title>Badge</title>
+    <description>Small label component for status indicators, tags, and counts. Variants: default, outline, secondary, destructive. Supports asChild prop for polymorphic rendering as links via Next.js Link component.</description>
     <source_url>https://ui.shadcn.com/docs/components/badge</source_url>
     <local_file>badge-shadcnui.md</local_file>
     <scraped_at>2025-12-31</scraped_at>
   </source>
   <source>
-    <title>LLMs.txt - shadcn/ui</title>
-    <description>Complete component reference with links to official shadcn/ui documentation, organised by category (form, layout, overlay, feedback, display), plus dark mode, forms, and registry sections.</description>
+    <title>LLMs.txt</title>
+    <description>Machine-readable component index for AI assistants listing all shadcn/ui components by category: form/input, layout/navigation, overlays/dialogs, feedback/status, display/media. Links to dark mode, forms, monorepo, registry, MCP server docs.</description>
     <source_url>https://ui.shadcn.com/llms.txt</source_url>
     <local_file>llms-txt.md</local_file>
     <scraped_at>2025-01-05</scraped_at>
   </source>
   <source>
-    <title>Input Group - shadcn/ui</title>
-    <description>InputGroup component for adding icons, text, buttons, tooltips, spinners, labels, and dropdowns to inputs and textareas, with InputGroupAddon alignment options, InputGroupButton variants, and custom input support via data-slot attribute.</description>
+    <title>Input Group</title>
+    <description>InputGroup component for enhancing inputs/textareas with icons, text, buttons, tooltips, spinners, labels, dropdowns. InputGroupAddon with inline-start/end, block-start/end alignment, InputGroupButton variants, custom input via data-slot attribute.</description>
     <source_url>https://ui.shadcn.com/docs/components/input-group</source_url>
     <local_file>input-group-shadcnui.md</local_file>
     <scraped_at>2026-01-05</scraped_at>
   </source>
   <source>
-    <title>Native Select - shadcn/ui</title>
-    <description>Styled native HTML select element with NativeSelect, NativeSelectOption, and NativeSelectOptGroup components, featuring option groups, disabled and invalid states, form integration, InputGroup compatibility, and accessibility with native browser behavior.</description>
+    <title>Native Select</title>
+    <description>Styled native HTML select with NativeSelect, NativeSelectOption, NativeSelectOptGroup. Option grouping, disabled/invalid states, aria-invalid validation, React Hook Form integration, InputGroup compatibility, mobile-optimised native dropdowns.</description>
     <source_url>https://ui.shadcn.com/docs/components/native-select</source_url>
     <local_file>native-select-shadcnui.md</local_file>
     <scraped_at>2026-01-05</scraped_at>
   </source>
   <source>
-    <title>Spinner - shadcn/ui</title>
-    <description>Loading indicator component with customisable size and colour via Tailwind utilities, replaceable icon, usage examples with Button, Badge, Input Group, Empty, and Item components.</description>
+    <title>Spinner</title>
+    <description>Loading indicator component with animate-spin animation. Customisable size via size-* utilities, colour via text-* utilities, replaceable icon, integration examples with Button, Badge, InputGroup, Empty, Item components.</description>
     <source_url>https://ui.shadcn.com/docs/components/spinner</source_url>
     <local_file>spinner-shadcnui.md</local_file>
     <scraped_at>2026-01-05</scraped_at>
   </source>
   <source>
-    <title>Registry Item JSON Schema Examples - shadcn/ui</title>
+    <title>Registry Item JSON Schema Examples</title>
     <description>JSON examples for registry:style, registry:theme, registry:block types. Covers cssVars, @layer CSS, @utility, @import, @plugin Tailwind, @keyframes animations, envVars, universal items.</description>
     <source_url>https://ui.shadcn.com/docs/registry/examples</source_url>
     <local_file>examples-shadcnui.md</local_file>
     <scraped_at>2026-01-05</scraped_at>
   </source>
   <source>
-    <title>Registry System Introduction - shadcn/ui</title>
+    <title>Registry System Introduction</title>
     <description>Overview of shadcn CLI registry for distributing components, hooks, pages, configs, and rules. Framework-agnostic system works with React, Vue, Svelte, or any project type.</description>
     <source_url>https://ui.shadcn.com/docs/registry</source_url>
     <local_file>introduction-shadcnui.md</local_file>
     <scraped_at>2026-01-05</scraped_at>
   </source>
   <source>
-    <title>Registry Setup and Build Guide - shadcn/ui</title>
+    <title>Registry Setup and Build Guide</title>
     <description>Configure registry.json, define items with files and dependencies, build with `shadcn build`, serve from public/r/. Guidelines for registryDependencies, @/registry imports, and `shadcn add` installation.</description>
     <source_url>https://ui.shadcn.com/docs/registry/getting-started</source_url>
     <local_file>getting-started-shadcnui.md</local_file>
+    <scraped_at>2026-01-05</scraped_at>
+  </source>
+  <source>
+    <title>Changelog</title>
+    <description>Release history covering npx shadcn create, visual styles (Vega, Nova, Maia, Lyra, Mira), Registry directory, and October 2025 component additions.</description>
+    <source_url>https://ui.shadcn.com/docs/changelog</source_url>
+    <local_file>changelog.md</local_file>
     <scraped_at>2026-01-05</scraped_at>
   </source>
 </docs_index>
