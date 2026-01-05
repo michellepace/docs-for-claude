@@ -25,13 +25,13 @@ These registries are built into the CLI with no additional configuration require
 | [@basecn](https://basecn.dev/) | Beautifully crafted shadcn/ui components powered by Base UI. | |
 | [@better-upload](https://better-upload.com/) | Simple and easy file uploads for React. Upload directly to any S3-compatible service with minimal setup. | |
 | [@billingsdk](https://billingsdk.com/) | BillingSDK is an open-source React and Next.js component library for SaaS billing and payments. It offers ready-to-use, customisable components for subscriptions, invoices, usage-based pricing and billing - fully compatible with Dodo Payments and Stripe. | |
-| [@blocks](https://blocks.so/) | A set of clean, modern application building blocks for you in your applications. Free and Open Source. | |
+| [@blocks](https://blocks.so/) | A set of clean, modern application building blocks for you in your applications. Free and Open Source. | ✅ Ray Fernando |
 | [@cardcn](https://cardcn.dev/) | A set of beautifully-designed shadcn card components. | |
 | [@clerk](https://clerk.com/docs/guides/development/shadcn-cli) | The easiest way to add authentication and user management to your application. Purpose-built for React, Next.js, Remix, and The Modern Web. | |
 | [@commercn](https://commercn.com/) | Shadcn UI Blocks for Ecommerce websites. | |
 | [@coss](https://coss.com/ui) | A new, modern UI component library built on top of Base UI. Built for developers and AI. | |
 | [@creative-tim](https://www.creative-tim.com/ui) | A collection of open-source UI components, blocks and AI Agents. Integrate them in v0, Lovable, Claude or in your application. | |
-| [@cult-ui](https://www.cult-ui.com/) | Cult UI is a rare, curated set of shadcn-compatible, headless and composable components—tastefully animated with Framer Motion. | ✅ |
+| [@cult-ui](https://www.cult-ui.com/) | Cult UI is a rare, curated set of shadcn-compatible, headless and composable components—tastefully animated with Framer Motion. | ✅ Ray Fernando |
 | [@diceui](https://www.diceui.com/) | Accessible shadcn/ui components built with React, TypeScript, and Tailwind CSS. Copy-paste ready, and customisable. | |
 | [@doras-ui](https://ui.doras.to/) | A collection of beautiful, reusable component blocks built with React. | |
 | [@efferd](https://efferd.com/) | A collection of beautifully crafted Shadcn/UI blocks, designed to help developers build modern websites with ease. | |
