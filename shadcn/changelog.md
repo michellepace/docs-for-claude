@@ -742,75 +742,14 @@ See all calendar blocks in the [Blocks Library](/blocks/calendar) page.
 
 To upgrade your project to the latest version of the `Calendar` component, see the [upgrade guide](/docs/components/calendar#upgrade-guide).
 
-## May 2025 - New Site
+## January–May 2025 (Summary)
 
-We've upgraded [ui.shadcn.com](https://ui.shadcn.com) to Next.js 15.3 and Tailwind v4. The site now uses the upgraded `new-york` components.
+**May** – Site upgraded to Next.js 15.3 + Tailwind v4, using `new-york` components.
 
-We've also made some minor design updates to make the site faster and easier to navigate.
+**April** – Initial MCP work: `npx shadcn registry:mcp` for zero-config MCP support.
 
-This upgrade unlocks a lot of new features that we're working on. More to come.
+**March** – CLI 2.5.0 with "resolve anywhere" (registries can place files anywhere, multi-pass import resolution). Cross-framework route auto-detection (Laravel, Vite, React Router).
 
-## April 2025 - MCP
+**February** – Tailwind v4 + React 19 preview. Key changes: `@theme` directive, `data-slot` attributes on primitives, HSL→OKLCH colours, sonner replaces toast, `new-york` is now default style. Updated registry schema for custom styles, themes, CSS vars, hooks.
 
-We're working on zero-config MCP support for shadcn/ui registry. One command `npx shadcn registry:mcp` to make any registry mcp-compatible.
-
-<Image
-  src="/images/mcp.jpeg"
-  width="1432"
-  height="1050"
-  alt="Lift Mode"
-  className="mt-6 w-full overflow-hidden rounded-lg border"
-/>
-
-Learn more in the [thread here](https://x.com/shadcn/status/1917597228513853603).
-
-## March 2025 - shadcn 2.5.0
-
-We tagged shadcn 2.5.0 earlier this week. It comes with a pretty cool feature: **resolve anywhere**.
-
-Registries can now place files anywhere in an app and we'll properly resolve imports. No need to stick to a fixed file structure. It can even add files outside the registry itself.
-
-On install, we track all files and perform a multi-pass resolution to correctly handle imports and aliases. It's fast.
-
-## March 2025 - Cross-framework Route Support
-
-The shadcn CLI can now auto-detect your framework and adapts routes for you.
-
-Works with all frameworks including Laravel, Vite and React Router.
-
-## February 2025 - Tailwind v4
-
-We shipped the first preview of Tailwind v4 and React 19. Ready for you to try out. You can start using it today.
-
-What's New:
-
-- The CLI can now initialize projects with Tailwind v4.
-- Full support for the new @theme directive and @theme inline option.
-- All components are updated for Tailwind v4 and React 19.
-- We've removed the forwardRefs and adjusted the types.
-- Every primitive now has a data-slot attribute for styling.
-- We've fixed and cleaned up the style of the components.
-- We're deprecating the toast component in favor of sonner.
-- Buttons now use the default cursor.
-- We're deprecating the default style. New projects will use new-york.
-- HSL colors are now converted to OKLCH.
-
-Read more in the [docs](/docs/tailwind-v4).
-
-## February 2025 - Updated Registry Schema
-
-We're updating the registry schema to support more features.
-
-Define code as a flat JSON file and distribute it via the CLI.
-
-- Custom styles: bring your own design system, components & tokens
-- Extend, override, mix & match components from third-party registries and LLMs
-- Install themes, CSS vars, hooks, animations, and Tailwind layers & utilities
-
-## January 2025 - Blocks
-
-We are inviting the community to contribute to the blocks library. Share your components and blocks with other developers and help build a library of high-quality, reusable components.
-
-We'd love to see all types of blocks: applications, marketing, products, and more.
-
-See the [docs](/docs/blocks) page to get started.
+**January** – Community blocks library launched. See [/docs/blocks](/docs/blocks).

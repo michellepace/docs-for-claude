@@ -175,10 +175,17 @@
     <scraped_at>2026-01-05</scraped_at>
   </source>
   <source>
-    <title>Changelog</title>
-    <description>Release history covering npx shadcn create, visual styles (Vega, Nova, Maia, Lyra, Mira), Registry directory, and October 2025 component additions.</description>
+    <title>Changelog 2025 (newest-first)</title>
+    <description>2025 release history (newest-first). Post-May: npx shadcn create with visual styles Vega/Nova/Maia/Lyra/Mira (Dec), Registry directory (Nov), CLI 3.0 with namespaced registries and MCP server (Aug), October components (Spinner, Field, Item, ButtonGroup), universal registry items, radix-ui migration. Earlier: Tailwind v4, blocks.</description>
     <source_url>https://ui.shadcn.com/docs/changelog</source_url>
     <local_file>changelog.md</local_file>
+    <scraped_at>2026-01-05</scraped_at>
+  </source>
+  <source>
+    <title>Registry Directory - shadcn/ui</title>
+    <description>Directory of 90+ community component registries with zero-config @namespace installation. Includes MagicUI, Aceternity, assistant-ui. Links to registry setup, authentication, and MCP server docs.</description>
+    <source_url>https://ui.shadcn.com/docs/directory</source_url>
+    <local_file>registry-directory-shadcnui.md</local_file>
     <scraped_at>2026-01-05</scraped_at>
   </source>
 </docs_index>
