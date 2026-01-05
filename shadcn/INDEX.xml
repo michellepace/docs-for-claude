@@ -132,4 +132,46 @@
     <local_file>llms-txt.md</local_file>
     <scraped_at>2025-01-05</scraped_at>
   </source>
+  <source>
+    <title>Input Group - shadcn/ui</title>
+    <description>InputGroup component for adding icons, text, buttons, tooltips, spinners, labels, and dropdowns to inputs and textareas, with InputGroupAddon alignment options, InputGroupButton variants, and custom input support via data-slot attribute.</description>
+    <source_url>https://ui.shadcn.com/docs/components/input-group</source_url>
+    <local_file>input-group-shadcnui.md</local_file>
+    <scraped_at>2026-01-05</scraped_at>
+  </source>
+  <source>
+    <title>Native Select - shadcn/ui</title>
+    <description>Styled native HTML select element with NativeSelect, NativeSelectOption, and NativeSelectOptGroup components, featuring option groups, disabled and invalid states, form integration, InputGroup compatibility, and accessibility with native browser behavior.</description>
+    <source_url>https://ui.shadcn.com/docs/components/native-select</source_url>
+    <local_file>native-select-shadcnui.md</local_file>
+    <scraped_at>2026-01-05</scraped_at>
+  </source>
+  <source>
+    <title>Spinner - shadcn/ui</title>
+    <description>Loading indicator component with customisable size and colour via Tailwind utilities, replaceable icon, usage examples with Button, Badge, Input Group, Empty, and Item components.</description>
+    <source_url>https://ui.shadcn.com/docs/components/spinner</source_url>
+    <local_file>spinner-shadcnui.md</local_file>
+    <scraped_at>2026-01-05</scraped_at>
+  </source>
+  <source>
+    <title>Registry Item JSON Schema Examples - shadcn/ui</title>
+    <description>JSON examples for registry:style, registry:theme, registry:block types. Covers cssVars, @layer CSS, @utility, @import, @plugin Tailwind, @keyframes animations, envVars, universal items.</description>
+    <source_url>https://ui.shadcn.com/docs/registry/examples</source_url>
+    <local_file>examples-shadcnui.md</local_file>
+    <scraped_at>2026-01-05</scraped_at>
+  </source>
+  <source>
+    <title>Registry System Introduction - shadcn/ui</title>
+    <description>Overview of shadcn CLI registry for distributing components, hooks, pages, configs, and rules. Framework-agnostic system works with React, Vue, Svelte, or any project type.</description>
+    <source_url>https://ui.shadcn.com/docs/registry</source_url>
+    <local_file>introduction-shadcnui.md</local_file>
+    <scraped_at>2026-01-05</scraped_at>
+  </source>
+  <source>
+    <title>Registry Setup and Build Guide - shadcn/ui</title>
+    <description>Configure registry.json, define items with files and dependencies, build with `shadcn build`, serve from public/r/. Guidelines for registryDependencies, @/registry imports, and `shadcn add` installation.</description>
+    <source_url>https://ui.shadcn.com/docs/registry/getting-started</source_url>
+    <local_file>getting-started-shadcnui.md</local_file>
+    <scraped_at>2026-01-05</scraped_at>
+  </source>
 </docs_index>
