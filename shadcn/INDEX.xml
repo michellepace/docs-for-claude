@@ -125,4 +125,11 @@
     <local_file>badge-shadcnui.md</local_file>
     <scraped_at>2025-12-31</scraped_at>
   </source>
+  <source>
+    <title>LLMs.txt - shadcn/ui</title>
+    <description>Complete component reference with links to official shadcn/ui documentation, organised by category (form, layout, overlay, feedback, display), plus dark mode, forms, and registry sections.</description>
+    <source_url>https://ui.shadcn.com/llms.txt</source_url>
+    <local_file>llms-txt.md</local_file>
+    <scraped_at>2025-01-05</scraped_at>
+  </source>
 </docs_index>
