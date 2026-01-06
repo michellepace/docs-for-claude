@@ -132,4 +132,11 @@
     <local_file>font-size-typography-tailwind-css.md</local_file>
     <scraped_at>2025-12-30</scraped_at>
   </source>
+  <source>
+    <title>box-shadow - Effects - Tailwind CSS</title>
+    <description>Shadow and ring utilities including outer shadows (2xs-2xl), inset shadows, rings, inset rings, colour and opacity modifiers, removing shadows, custom arbitrary values, responsive design, and theme customisation.</description>
+    <source_url>https://tailwindcss.com/docs/box-shadow</source_url>
+    <local_file>box-shadow-effects-tailwind-css.md</local_file>
+    <scraped_at>2026-01-06</scraped_at>
+  </source>
 </docs_index>
