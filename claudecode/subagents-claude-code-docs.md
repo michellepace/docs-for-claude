@@ -75,10 +75,10 @@ To create your first subagent:
 
 Subagents are stored as Markdown files with YAML frontmatter in two possible locations:
 
-| Type                  | Location            | Scope                         | Priority |
-| :-------------------- | :------------------ | :---------------------------- | :------- |
-| **Project subagents** | `.claude/agents/`   | Available in current project  | Highest  |
-| **User subagents**    | `~/.claude/agents/` | Available across all projects | Lower    |
+| Type | Location | Scope | Priority |
+| :--- | :------- | :---- | :------- |
+| **Project subagents** | `.claude/agents/` | Available in current project | Highest |
+| **User subagents** | `~/.claude/agents/` | Available across all projects | Lower |
 
 When subagent names conflict, project-level subagents take precedence over user-level subagents.
 
@@ -147,14 +147,14 @@ the subagent should follow.
 
 #### Configuration fields
 
-| Field            | Required | Description                                                                                                                                                                                                     |
-| :--------------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`           | Yes      | Unique identifier using lowercase letters and hyphens                                                                                                                                                           |
-| `description`    | Yes      | Natural language description of the subagent's purpose                                                                                                                                                          |
-| `tools`          | No       | Comma-separated list of specific tools. If omitted, inherits all tools from the main thread                                                                                                                     |
-| `model`          | No       | Model to use for this subagent. Can be a model alias (`sonnet`, `opus`, `haiku`) or `'inherit'` to use the main conversation's model. If omitted, defaults to the [configured subagent model](/en/model-config) |
-| `permissionMode` | No       | Permission mode for the subagent. Valid values: `default`, `acceptEdits`, `dontAsk`, `bypassPermissions`, `plan`, `ignore`. Controls how the subagent handles permission requests                               |
-| `skills`         | No       | Comma-separated list of skill names to auto-load when the subagent starts. Subagents do not inherit Skills from the parent conversation. If omitted, no Skills are preloaded.                                   |
+| Field | Required | Description |
+| :---- | :------- | :---------- |
+| `name` | Yes | Unique identifier using lowercase letters and hyphens |
+| `description` | Yes | Natural language description of the subagent's purpose |
+| `tools` | No | Comma-separated list of specific tools. If omitted, inherits all tools from the main thread |
+| `model` | No | Model to use for this subagent. Can be a model alias (`sonnet`, `opus`, `haiku`) or `'inherit'` to use the main conversation's model. If omitted, defaults to the [configured subagent model](/en/model-config) |
+| `permissionMode` | No | Permission mode for the subagent. Valid values: `default`, `acceptEdits`, `dontAsk`, `bypassPermissions`, `plan`, `ignore`. Controls how the subagent handles permission requests |
+| `skills` | No | Comma-separated list of skill names to auto-load when the subagent starts. Subagents do not inherit Skills from the parent conversation. If omitted, no Skills are preloaded. |
 
 ### Model selection
 

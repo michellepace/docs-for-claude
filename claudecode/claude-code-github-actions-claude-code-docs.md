@@ -464,11 +464,11 @@ Before setting up Claude Code GitHub Actions with cloud providers, you need:
 
         **Required GitHub secrets:**
 
-        | Secret Name          | Description                                       |
-        | -------------------- | ------------------------------------------------- |
-        | `AWS_ROLE_TO_ASSUME` | ARN of the IAM role for Bedrock access            |
-        | `APP_ID`             | Your GitHub App ID (from app settings)            |
-        | `APP_PRIVATE_KEY`    | The private key you generated for your GitHub App |
+        | Secret Name | Description |
+        | ----------- | ----------- |
+        | `AWS_ROLE_TO_ASSUME` | ARN of the IAM role for Bedrock access |
+        | `APP_ID` | Your GitHub App ID (from app settings) |
+        | `APP_PRIVATE_KEY` | The private key you generated for your GitHub App |
 
         ```yaml  theme={null}
         name: Claude PR Action
