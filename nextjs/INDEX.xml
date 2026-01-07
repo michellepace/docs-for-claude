@@ -209,4 +209,46 @@
     <local_file>guides-production-nextjs.md</local_file>
     <scraped_at>2025-12-09</scraped_at>
   </source>
+  <source>
+    <title>Directives: use client | Next.js</title>
+    <description>'use client' directive for interactive UI requiring useState, onClick handlers, browser APIs. Defines client-server boundary and entry points. Covers serializable props requirements, 'Function is not serializable' errors, and nesting patterns.</description>
+    <source_url>https://nextjs.org/docs/app/api-reference/directives/use-client</source_url>
+    <local_file>directives-use-client-nextjs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Directives: use server | Next.js</title>
+    <description>'use server' directive for Server Actions and Server Functions callable from Client Components. Covers file-level and inline syntax, database operations, formData handling, revalidatePath, authentication, and security for sensitive operations.</description>
+    <source_url>https://nextjs.org/docs/app/api-reference/directives/use-server</source_url>
+    <local_file>directives-use-server-nextjs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Directives: use cache | Next.js</title>
+    <description>The use cache directive for marking routes, components, and functions as cacheable. Cache key generation, serialization constraints, runtime behaviour, revalidation with cacheLife and cacheTag, pass-through patterns, and troubleshooting build timeouts.</description>
+    <source_url>https://nextjs.org/docs/app/api-reference/directives/use-cache</source_url>
+    <local_file>directives-use-cache-nextjs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Directives: use cache: private | Next.js</title>
+    <description>'use cache: private' directive for browser-only caching with access to runtime APIs (cookies, headers, searchParams), cacheLife configuration, compliance use cases, and comparison with other cache directives.</description>
+    <source_url>https://nextjs.org/docs/app/api-reference/directives/use-cache-private</source_url>
+    <local_file>directives-use-cache-private-nextjs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Directives: use cache: remote | Next.js</title>
+    <description>The 'use cache: remote' directive for storing cached output in remote handlers, including when to use remote caching, nesting rules, cache key strategies, and examples with user preferences.</description>
+    <source_url>https://nextjs.org/docs/app/api-reference/directives/use-cache-remote</source_url>
+    <local_file>directives-use-cache-remote-nextjs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Getting Started: Server and Client Components | Next.js</title>
+    <description>Choosing Server vs Client Components: when to use useState, useEffect, browser APIs. Composition patterns including children prop nesting, context providers, third-party component wrapping, server-only package, and passing serializable props.</description>
+    <source_url>https://nextjs.org/docs/app/getting-started/server-and-client-components</source_url>
+    <local_file>getting-started-server-and-client-components-nextjs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
 </docs_index>
