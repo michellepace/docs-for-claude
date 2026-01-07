@@ -15,7 +15,7 @@ Available collections in this repo:
 |:-----------|:-----------------|:------------|:--------|:-------|
 | 📦 [`biome/`](biome/) | 📄 [`biome/INDEX.xml`](biome/INDEX.xml) | Fast linter/formatter | 2025-11-04 | [Official](https://biomejs.dev) |
 | 📦 [`claudecode/`](claudecode/) | 📄 [`claudecode/INDEX.xml`](claudecode/INDEX.xml) | Anthropic Claude Code | 2026-01-07 | [Official](https://code.claude.com) |
-| 📦 [`claudeplat/`](claudeplat/) | 📄 [`claudeplat/INDEX.xml`](claudeplat/INDEX.xml) | Anthropic Claude Platform | 2025-12-05 | [Official](https://platform.claude.com) |
+| 📦 [`claudeplat/`](claudeplat/) | 📄 [`claudeplat/INDEX.xml`](claudeplat/INDEX.xml) | Anthropic Claude Platform | 2026-01-07 | [Official](https://platform.claude.com) |
 | 📦 [`clerk/`](clerk/) | 📄 [`clerk/INDEX.xml`](clerk/INDEX.xml) | Authentication | 2025-12-03 | [Official](https://clerk.com) |
 | 📦 [`convex/`](convex/) | 📄 [`convex/INDEX.xml`](convex/INDEX.xml) | Reactive database | 2026-01-07 | [Official](https://docs.convex.dev) |
 | 🪝 [`lefthook/`](lefthook/) | 📄 [`lefthook/INDEX.xml`](lefthook/INDEX.xml) | Git hooks manager | 2025-11-24 | [Official](https://github.com/evilmartians/lefthook) |

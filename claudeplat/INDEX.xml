@@ -4,90 +4,139 @@
     <description>Claude 4.x prompting best practices covering explicit instructions, context awareness, multi-window workflows, state management, tool usage patterns, parallel tool calling, thinking capabilities, frontend design, subagent orchestration, and migration guidance.</description>
     <source_url>https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-4-best-practices</source_url>
     <local_file>prompting-best-practices-claude-docs.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Define your success criteria - Claude Docs</title>
     <description>Defining measurable success criteria for LLM applications including specific, quantifiable metrics, achievable targets, task fidelity, consistency, relevance, tone, privacy, context utilisation, latency, and price considerations.</description>
     <source_url>https://platform.claude.com/docs/en/test-and-evaluate/define-success</source_url>
     <local_file>define-your-success-criteria-claude-docs.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Create strong empirical evaluations - Claude Docs</title>
     <description>Eval design principles, test case development, grading methods including code-based exact/string match, human grading, and LLM-based grading with rubrics, reasoning encouragement, and Likert scale approaches for measuring LLM performance.</description>
     <source_url>https://platform.claude.com/docs/en/test-and-evaluate/develop-tests</source_url>
     <local_file>create-strong-empirical-evaluations-claude-docs.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Using the Evaluation Tool - Claude Docs</title>
     <description>Claude Console Evaluation tool: accessing the evaluate tab, generating prompts with variables, creating test cases manually or via AI, importing CSV, side-by-side comparison, quality grading, and prompt versioning.</description>
     <source_url>https://platform.claude.com/docs/en/test-and-evaluate/eval-tool</source_url>
     <local_file>using-the-evaluation-tool-claude-docs.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Reducing latency - Claude Docs</title>
     <description>Latency measurement concepts including baseline latency and time to first token (TTFT), strategies for reducing latency through model selection, prompt optimisation, output length limits, temperature settings, and streaming implementation.</description>
     <source_url>https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-latency</source_url>
     <local_file>reducing-latency-claude-docs.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Agent Skills - Claude Docs</title>
     <description>Reusable filesystem-based Skills providing domain expertise through progressive disclosure: YAML metadata, SKILL.md instructions, bundled resources. Covers pre-built document Skills (PowerPoint, Excel, Word, PDF), custom Skill creation, and security considerations.</description>
     <source_url>https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview</source_url>
     <local_file>agent-skills-claude-docs.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Get started with Agent Skills in the API - Claude Docs</title>
     <description>Pre-built Agent Skills quickstart covering Skills API listing, container parameter configuration for pptx/xlsx/docx/pdf capabilities, code execution setup, progressive disclosure mechanism, and file download via Files API.</description>
     <source_url>https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart</source_url>
     <local_file>get-started-with-agent-skills-in-the-api-claude-docs.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Skill authoring best practices - Claude Docs</title>
     <description>Skill authoring best practices: conciseness principles, naming conventions, description writing, progressive disclosure patterns, workflows and feedback loops, utility scripts, validation, code execution environment, MCP tool references, and evaluation-driven development.</description>
     <source_url>https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices</source_url>
     <local_file>skill-authoring-best-practices-claude-docs.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Article: Equipping agents for the real world with Agent Skills</title>
     <description>Agent Skills engineering overview: SKILL.md anatomy with YAML frontmatter, progressive disclosure design (metadata, body, bundled files), context window mechanics, code execution integration, development best practices, security considerations, and future roadmap.</description>
     <source_url>https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills</source_url>
     <local_file>equipping-agents-skills-anthropic-engineering.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Agent SDK overview - Claude Docs</title>
     <description>Claude Agent SDK installation, TypeScript and Python SDK options, core features including context management, tool ecosystem, permissions, MCP extensibility, authentication methods, system prompts, branding guidelines, and bug reporting.</description>
     <source_url>https://platform.claude.com/docs/en/agent-sdk/overview</source_url>
     <local_file>agent-sdk-overview-claude-docs.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Agent SDK reference - TypeScript - Claude Docs</title>
     <description>TypeScript SDK API reference covering query(), tool(), createSdkMcpServer() functions, Options configuration, SDK message types, hook events, built-in tool input/output schemas, permissions, and sandbox settings.</description>
     <source_url>https://platform.claude.com/docs/en/agent-sdk/typescript</source_url>
     <local_file>agent-sdk-reference-typescript-claude-docs.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Agent SDK reference - Python - Claude Docs</title>
     <description>Complete Python SDK API reference covering query() function, ClaudeSDKClient class, ClaudeAgentOptions configuration, message types, content blocks, hook callbacks, MCP tool creation, sandbox settings, and error handling.</description>
     <source_url>https://platform.claude.com/docs/en/agent-sdk/python</source_url>
     <local_file>agent-sdk-reference-python-claude-docs.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Article: Building agents with the Claude Agent SDK</title>
     <description>Agent SDK engineering tutorial covering the agent feedback loop (gather context, take action, verify work), agentic search, file system context, subagents, compaction, tools, code generation, MCP integrations, and verification strategies.</description>
     <source_url>https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk</source_url>
     <local_file>building-agents-with-the-claude-agent-sdk-anthropic-engineering.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Extended thinking tips - Claude Docs</title>
+    <description>Extended thinking prompt techniques: thinking budget management, high-level vs step-by-step instructions, multishot prompting with thinking examples, instruction following, debugging via thinking output, longform generation, work verification strategies.</description>
+    <source_url>https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/extended-thinking-tips</source_url>
+    <local_file>extended-thinking-tips-claude-docs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Long context prompting tips - Claude Docs</title>
+    <description>Longform data placement, XML tags for structuring multi-document content and metadata, grounding responses in quotes, and query positioning strategies for optimal performance with Claude's 200K token context window.</description>
+    <source_url>https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/long-context-tips</source_url>
+    <local_file>long-context-prompting-tips-claude-docs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Chain complex prompts for stronger performance - Claude Docs</title>
+    <description>Prompt chaining technique for breaking complex multi-step tasks into sequential subtasks, improving accuracy, clarity, and traceability through structured handoffs, self-correction chains, and parallel execution of independent steps.</description>
+    <source_url>https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/chain-prompts</source_url>
+    <local_file>chain-complex-prompts-for-stronger-performance-claude-docs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Be clear, direct, and detailed - Claude Docs</title>
+    <description>Techniques for writing clear, direct prompts including providing contextual information, being specific about desired outputs, using sequential steps, and the golden rule of testing prompts with colleagues.</description>
+    <source_url>https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/be-clear-and-direct</source_url>
+    <local_file>be-clear-direct-and-detailed-claude-docs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Use prompt templates and variables - Claude Docs</title>
+    <description>Prompt templates with fixed and variable content using {{double brackets}} placeholders, benefits for consistency, efficiency, testability, scalability, version control, integration with prompt generator, improver, and evaluation tools.</description>
+    <source_url>https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompt-templates-and-variables</source_url>
+    <local_file>use-prompt-templates-and-variables-claude-docs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Use XML tags to structure your prompts - Claude Docs</title>
+    <description>XML tags for prompt structure: benefits of clarity, accuracy, flexibility, and parseability; best practices for consistent naming, nesting hierarchical content, and combining with multishot or chain-of-thought techniques.</description>
+    <source_url>https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/use-xml-tags</source_url>
+    <local_file>use-xml-tags-to-structure-your-prompts-claude-docs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Let Claude think (chain of thought prompting) to increase performance - Claude Docs</title>
+    <description>Chain of thought (CoT) prompting techniques for step-by-step reasoning: basic, guided, and structured approaches using XML tags, benefits for accuracy and debugging, trade-offs with latency, and financial analysis examples.</description>
+    <source_url>https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/chain-of-thought</source_url>
+    <local_file>let-claude-think-chain-of-thought-prompting-to-increase-performance-claude-docs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
 </docs_index>

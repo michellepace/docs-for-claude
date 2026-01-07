@@ -240,6 +240,7 @@ class ClaudeSDKClient:
     async def receive_messages(self) -> AsyncIterator[Message]
     async def receive_response(self) -> AsyncIterator[Message]
     async def interrupt(self) -> None
+    async def rewind_files(self, user_message_uuid: str) -> None
     async def disconnect(self) -> None
 ```
 
@@ -253,6 +254,7 @@ class ClaudeSDKClient:
 | `receive_messages()`        | Receive all messages from Claude as an async iterator               |
 | `receive_response()`        | Receive messages until and including a ResultMessage                |
 | `interrupt()`               | Send interrupt signal (only works in streaming mode)                |
+| `rewind_files(user_message_uuid)` | Restore files to their state at the specified user message. Requires `enable_file_checkpointing=True`. See [File checkpointing](/docs/en/agent-sdk/file-checkpointing) |
 | `disconnect()`              | Disconnect from Claude                                              |
 
 #### Context Manager Support
@@ -494,6 +496,7 @@ class ClaudeAgentOptions:
 | `resume`                      | `str \| None`                                | `None`               | Session ID to resume                                                                                                                                                                    |
 | `max_turns`                   | `int \| None`                                | `None`               | Maximum conversation turns                                                                                                                                                              |
 | `disallowed_tools`            | `list[str]`                                  | `[]`                 | List of disallowed tool names                                                                                                                                                           |
+| `enable_file_checkpointing`   | `bool`                                       | `False`              | Enable file change tracking for rewinding. See [File checkpointing](/docs/en/agent-sdk/file-checkpointing)                                                                              |
 | `model`                       | `str \| None`                                | `None`               | Claude model to use                                                                                                                                                                     |
 | `output_format`               | [`OutputFormat`](#outputformat) `\| None`   | `None`               | Define output format for agent results. See [Structured outputs](/docs/en/agent-sdk/structured-outputs) for details                                                                    |
 | `permission_prompt_tool_name` | `str \| None`                                | `None`               | MCP tool name for permission prompts                                                                                                                                                    |
@@ -938,6 +941,8 @@ class CLIJSONDecodeError(ClaudeSDKError):
 
 ## Hook Types
 
+For a comprehensive guide on using hooks with examples and common patterns, see the [Hooks guide](/en/docs/agent-sdk/hooks).
+
 ### `HookEvent`
 
 Supported hook event types. Note that due to setup limitations, the Python SDK does not support SessionStart, SessionEnd, and Notification hooks.
@@ -966,7 +971,7 @@ HookCallback = Callable[
 
 Parameters:
 
-- `input_data`: Hook-specific input data (see [hook documentation](https://docs.claude.comhttps://code.claude.com/docs/en/hooks#hook-input))
+- `input_data`: Hook-specific input data (see [Hooks guide](/docs/en/agent-sdk/hooks#input-data))
 - `tool_use_id`: Optional tool use identifier (for tool-related hooks)
 - `context`: Hook context with additional information
 
@@ -999,6 +1004,8 @@ class HookMatcher:
 ```
 
 ### Hook Usage Example
+
+This example registers two hooks: one that blocks dangerous bash commands like `rm -rf /`, and another that logs all tool usage for auditing. The security hook only runs on Bash commands (via the `matcher`), while the logging hook runs on all tools.
 
 ```python
 from claude_agent_sdk import query, ClaudeAgentOptions, HookMatcher, HookContext

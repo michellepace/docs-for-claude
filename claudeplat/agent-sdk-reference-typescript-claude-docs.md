@@ -6,6 +6,10 @@ Complete API reference for the TypeScript Agent SDK, including all functions, ty
 
 <script src="/components/typescript-sdk-type-links.js" defer />
 
+<Note>
+**Try the new V2 interface (preview):** A simplified interface with `send()` and `receive()` patterns is now available, making multi-turn conversations easier. [Learn more](/docs/en/agent-sdk/typescript-v2-preview)
+</Note>
+
 ## Installation
 
 ```bash
@@ -99,6 +103,7 @@ Configuration object for the `query()` function.
 | `continue` | `boolean` | `false` | Continue the most recent conversation |
 | `cwd` | `string` | `process.cwd()` | Current working directory |
 | `disallowedTools` | `string[]` | `[]` | List of disallowed tool names |
+| `enableFileCheckpointing` | `boolean` | `false` | Enable file change tracking for rewinding. See [File checkpointing](/docs/en/agent-sdk/file-checkpointing) |
 | `env` | `Dict<string>` | `process.env` | Environment variables |
 | `executable` | `'bun' \| 'deno' \| 'node'` | Auto-detected | JavaScript runtime to use |
 | `executableArgs` | `string[]` | `[]` | Arguments to pass to the executable |
@@ -133,6 +138,7 @@ Interface returned by the `query()` function.
 ```typescript
 interface Query extends AsyncGenerator<SDKMessage, void> {
   interrupt(): Promise<void>;
+  rewindFiles(userMessageUuid: string): Promise<void>;
   setPermissionMode(mode: PermissionMode): Promise<void>;
   setModel(model?: string): Promise<void>;
   setMaxThinkingTokens(maxThinkingTokens: number | null): Promise<void>;
@@ -148,6 +154,7 @@ interface Query extends AsyncGenerator<SDKMessage, void> {
 | Method | Description |
 | :----- | :---------- |
 | `interrupt()` | Interrupts the query (only available in streaming input mode) |
+| `rewindFiles(userMessageUuid)` | Restores files to their state at the specified user message. Requires `enableFileCheckpointing: true`. See [File checkpointing](/docs/en/agent-sdk/file-checkpointing) |
 | `setPermissionMode()` | Changes the permission mode (only available in streaming input mode) |
 | `setModel()` | Changes the model (only available in streaming input mode) |
 | `setMaxThinkingTokens()` | Changes the maximum thinking tokens (only available in streaming input mode) |
@@ -563,6 +570,8 @@ type SDKPermissionDenial = {
 
 ## Hook Types
 
+For a comprehensive guide on using hooks with examples and common patterns, see the [Hooks guide](/docs/en/agent-sdk/hooks).
+
 ### `HookEvent`
 
 Available hook events.
@@ -603,8 +612,6 @@ Hook configuration with optional matcher.
 interface HookCallbackMatcher {
   matcher?: string;
   hooks: HookCallback[];
-  /** Timeout in seconds for all hooks in this matcher (default: 60) */
-  timeout?: number;
 }
 ```
 
@@ -647,7 +654,7 @@ type BaseHookInput = {
 type PreToolUseHookInput = BaseHookInput & {
   hook_event_name: 'PreToolUse';
   tool_name: string;
-  tool_input: ToolInput;
+  tool_input: unknown;
 }
 ```
 
@@ -657,9 +664,8 @@ type PreToolUseHookInput = BaseHookInput & {
 type PostToolUseHookInput = BaseHookInput & {
   hook_event_name: 'PostToolUse';
   tool_name: string;
-  tool_input: ToolInput;
-  tool_response: ToolOutput;
-  tool_use_id: string;
+  tool_input: unknown;
+  tool_response: unknown;
 }
 ```
 
@@ -670,7 +676,6 @@ type PostToolUseFailureHookInput = BaseHookInput & {
   hook_event_name: 'PostToolUseFailure';
   tool_name: string;
   tool_input: unknown;
-  tool_use_id: string;
   error: string;
   is_interrupt?: boolean;
 }
@@ -709,7 +714,7 @@ type SessionStartHookInput = BaseHookInput & {
 ```typescript
 type SessionEndHookInput = BaseHookInput & {
   hook_event_name: 'SessionEnd';
-  reason: 'clear' | 'logout' | 'prompt_input_exit' | 'other';
+  reason: ExitReason;  // String from EXIT_REASONS array
 }
 ```
 
@@ -738,8 +743,6 @@ type SubagentStartHookInput = BaseHookInput & {
 type SubagentStopHookInput = BaseHookInput & {
   hook_event_name: 'SubagentStop';
   stop_hook_active: boolean;
-  agent_id: string;
-  agent_transcript_path: string;
 }
 ```
 
@@ -807,31 +810,8 @@ type SyncHookJSONOutput = {
         additionalContext?: string;
       }
     | {
-        hookEventName: 'SubagentStart';
-        additionalContext?: string;
-      }
-    | {
         hookEventName: 'PostToolUse';
         additionalContext?: string;
-        updatedMCPToolOutput?: unknown;
-      }
-    | {
-        hookEventName: 'PostToolUseFailure';
-        additionalContext?: string;
-      }
-    | {
-        hookEventName: 'PermissionRequest';
-        decision:
-          | {
-              behavior: 'allow';
-              updatedInput?: Record<string, unknown>;
-              updatedPermissions?: PermissionUpdate[];
-            }
-          | {
-              behavior: 'deny';
-              message?: string;
-              interrupt?: boolean;
-            };
       };
 }
 ```
@@ -847,6 +827,7 @@ Documentation of input schemas for all built-in Claude Code tools. These types a
 ```typescript
 type ToolInput =
   | AgentInput
+  | AskUserQuestionInput
   | BashInput
   | BashOutputInput
   | FileEditInput
@@ -886,6 +867,56 @@ interface AgentInput {
 ```
 
 Launches a new agent to handle complex, multi-step tasks autonomously.
+
+### AskUserQuestion
+
+**Tool name:** `AskUserQuestion`
+
+```typescript
+interface AskUserQuestionInput {
+  /**
+   * Questions to ask the user (1-4 questions)
+   */
+  questions: Array<{
+    /**
+     * The complete question to ask the user. Should be clear, specific,
+     * and end with a question mark.
+     */
+    question: string;
+    /**
+     * Very short label displayed as a chip/tag (max 12 chars).
+     * Examples: "Auth method", "Library", "Approach"
+     */
+    header: string;
+    /**
+     * The available choices (2-4 options). An "Other" option is
+     * automatically provided.
+     */
+    options: Array<{
+      /**
+       * Display text for this option (1-5 words)
+       */
+      label: string;
+      /**
+       * Explanation of what this option means
+       */
+      description: string;
+    }>;
+    /**
+     * Set to true to allow multiple selections
+     */
+    multiSelect: boolean;
+  }>;
+  /**
+   * User answers populated by the permission system.
+   * Maps question text to selected option label(s).
+   * Multi-select answers are comma-separated.
+   */
+  answers?: Record<string, string>;
+}
+```
+
+Asks the user clarifying questions during execution. See [Handling the AskUserQuestion Tool](/docs/en/agent-sdk/permissions#handling-the-askuserquestion-tool) for usage details.
 
 ### Bash
 
@@ -1256,6 +1287,7 @@ Documentation of output schemas for all built-in Claude Code tools. These types 
 ```typescript
 type ToolOutput =
   | TaskOutput
+  | AskUserQuestionOutput
   | BashOutput
   | BashOutputToolOutput
   | EditOutput
@@ -1304,6 +1336,35 @@ interface TaskOutput {
 ```
 
 Returns the final result from the subagent after completing the delegated task.
+
+### AskUserQuestion
+
+**Tool name:** `AskUserQuestion`
+
+```typescript
+interface AskUserQuestionOutput {
+  /**
+   * The questions that were asked
+   */
+  questions: Array<{
+    question: string;
+    header: string;
+    options: Array<{
+      label: string;
+      description: string;
+    }>;
+    multiSelect: boolean;
+  }>;
+  /**
+   * The answers provided by the user.
+   * Maps question text to answer string.
+   * Multi-select answers are comma-separated.
+   */
+  answers: Record<string, string>;
+}
+```
+
+Returns the questions asked and the user's answers.
 
 ### Bash
 

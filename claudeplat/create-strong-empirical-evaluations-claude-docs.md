@@ -4,6 +4,8 @@
 
 After defining your success criteria, the next step is designing evaluations to measure LLM performance against those criteria. This is a vital part of the prompt engineering cycle.
 
+![A workflow diagram illustrating the prompt engineering cycle with six sequential steps connected by arrows: 1) Develop test cases (document icon with a callout noting "Don't forget edge cases!"), 2) Engineer preliminary prompt (speech bubble icon), 3) Test prompt against cases (checklist icon showing pass/fail marks), 4) Refine prompt (speech bubble with pencil icon), 5) Test against held-out evals (checkmark icon), and 6) Ship polished prompt (laptop with rocket icon). Steps 3 and 4 are grouped together under a bracket labeled "EVALS!" indicating an iterative loop between testing and refining.](/docs/images/how-to-prompt-eng.png)
+
 This guide focuses on how to develop your test cases.
 
 ## Building evals and test cases
@@ -378,7 +380,7 @@ print(f"Score: {grades.count('correct') / len(grades) * 100}%")
   <Card title="Brainstorm evaluations" icon="link" href="/docs/en/build-with-claude/prompt-engineering/overview">
     Learn how to craft prompts that maximize your eval scores.
   </Card>
-  <Card title="Evals cookbook" icon="link" href="https://github.com/anthropics/anthropic-cookbook/blob/main/misc/building%5Fevals.ipynb">
+  <Card title="Evals cookbook" icon="link" href="https://platform.claude.com/cookbook/misc-building-evals">
     More code examples of human-, code-, and LLM-graded evals.
   </Card>
 </CardGroup>
