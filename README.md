@@ -17,6 +17,7 @@ Available collections in this repo:
 | 📦 [`claudecode/`](claudecode/) | 📄 [`claudecode/INDEX.xml`](claudecode/INDEX.xml) | Anthropic Claude Code | 2025-12-05 | [Official](https://code.claude.com) |
 | 📦 [`claudeplat/`](claudeplat/) | 📄 [`claudeplat/INDEX.xml`](claudeplat/INDEX.xml) | Anthropic Claude Platform | 2025-12-05 | [Official](https://platform.claude.com) |
 | 📦 [`clerk/`](clerk/) | 📄 [`clerk/INDEX.xml`](clerk/INDEX.xml) | Authentication | 2025-12-03 | [Official](https://clerk.com) |
+| 📦 [`convex/`](convex/) | 📄 [`convex/INDEX.xml`](convex/INDEX.xml) | Reactive database | 2026-01-07 | [Official](https://docs.convex.dev) |
 | 🪝 [`lefthook/`](lefthook/) | 📄 [`lefthook/INDEX.xml`](lefthook/INDEX.xml) | Git hooks manager | 2025-11-24 | [Official](https://github.com/evilmartians/lefthook) |
 | 📦 [`marimo/`](marimo/) | 📄 [`marimo/INDEX.xml`](marimo/INDEX.xml) | Reactive Python notebooks | 2025-11-11 | [Official](https://docs.marimo.io) |
 | 📦 [`nextjs/`](nextjs/) | 📄 [`nextjs/INDEX.xml`](nextjs/INDEX.xml) | React framework | 2025-12-02 | [Official](https://nextjs.org) |
