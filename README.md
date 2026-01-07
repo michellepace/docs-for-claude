@@ -62,6 +62,7 @@ source ~/.zshrc  # Use ~/.bashrc if that's your shell
 |:--------|:--------|:----------|:----------|
 | `/curate-doc <collection> <url>` | Add new or re-scrape | ✅ Write | ✅ Add/update INDEX.xml |
 | `/rescrape-docs <collection>` | Re-scrape all docs | ✅ Write all | ✅ Selective update INDEX.xml |
+| `/improve-index-xml <collection>` | Batch improve descriptions | 📖 Read | ✅ Update INDEX.xml |
 | `/ask-docs <collection> <question>` | Query any collection | Docs analysed | Relevant docs identified |
 
 ## 💡 Usage Example
