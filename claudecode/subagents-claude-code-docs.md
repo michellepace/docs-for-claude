@@ -27,7 +27,7 @@ When Claude Code encounters a task that matches a subagent's expertise, it can d
   </Card>
 
   <Card title="Reusability" icon="rotate">
-    Once created, subagents can be used across different projects and shared with your team for consistent workflows.
+    Once created, you can use subagents across different projects and share them with your team for consistent workflows.
   </Card>
 
   <Card title="Flexible permissions" icon="shield-check">
@@ -53,15 +53,15 @@ To create your first subagent:
   </Step>
 
   <Step title="Define the subagent">
-    * **Recommended**: Generate with Claude first, then customize to make it yours
-    * Describe your subagent in detail and when it should be used
-    * Select the tools you want to grant access to (or leave blank to inherit all tools)
-    * The interface shows all available tools, making selection easy
+    * **Recommended**: generate with Claude first, then customize to make it yours
+    * Describe your subagent in detail, including when Claude should use it
+    * Select the tools you want to grant access to, or leave this blank to inherit all tools
+    * The interface shows all available tools
     * If you're generating with Claude, you can also edit the system prompt in your own editor by pressing `e`
   </Step>
 
   <Step title="Save and use">
-    Your subagent is now available! Claude will use it automatically when appropriate, or you can invoke it explicitly:
+    Your subagent is now available. Claude uses it automatically when appropriate, or you can invoke it explicitly:
 
     ```
     > Use the code-reviewer subagent to check my recent changes
@@ -86,7 +86,7 @@ When subagent names conflict, project-level subagents take precedence over user-
 
 [Plugins](/en/plugins) can provide custom subagents that integrate seamlessly with Claude Code. Plugin agents work identically to user-defined agents and appear in the `/agents` interface.
 
-**Plugin agent locations**: Plugins include agents in their `agents/` directory (or custom paths specified in the plugin manifest).
+**Plugin agent locations**: plugins include agents in their `agents/` directory (or custom paths specified in the plugin manifest).
 
 **Using plugin agents**:
 
@@ -101,7 +101,7 @@ See the [plugin components reference](/en/plugins-reference#agents) for details 
 
 You can also define subagents dynamically using the `--agents` CLI flag, which accepts a JSON object:
 
-```bash
+```bash  theme={null}
 claude --agents '{
   "code-reviewer": {
     "description": "Expert code reviewer. Use proactively after code changes.",
@@ -127,7 +127,7 @@ For detailed information about the JSON format and all available options, see th
 
 Each subagent is defined in a Markdown file with this structure:
 
-```markdown
+```markdown  theme={null}
 ---
 name: your-sub-agent-name
 description: Description of when this subagent should be invoked
@@ -147,14 +147,14 @@ the subagent should follow.
 
 #### Configuration fields
 
-| Field | Required | Description |
-| :------- | :------- | :------- |
-| `name` | Yes | Unique identifier using lowercase letters and hyphens |
-| `description` | Yes | Natural language description of the subagent's purpose |
-| `tools` | No | Comma-separated list of specific tools. If omitted, inherits all tools from the main thread |
-| `model` | No | Model to use for this subagent. Can be a model alias (`sonnet`, `opus`, `haiku`) or `'inherit'` to use the main conversation's model. If omitted, defaults to the [configured subagent model](/en/model-config) |
-| `permissionMode` | No | Permission mode for the subagent. Valid values: `default`, `acceptEdits`, `bypassPermissions`, `plan`, `ignore`. Controls how the subagent handles permission requests |
-| `skills` | No | Comma-separated list of skill names to auto-load when the subagent starts. Skills are loaded into the subagent's context automatically |
+| Field            | Required | Description                                                                                                                                                                                                     |
+| :--------------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`           | Yes      | Unique identifier using lowercase letters and hyphens                                                                                                                                                           |
+| `description`    | Yes      | Natural language description of the subagent's purpose                                                                                                                                                          |
+| `tools`          | No       | Comma-separated list of specific tools. If omitted, inherits all tools from the main thread                                                                                                                     |
+| `model`          | No       | Model to use for this subagent. Can be a model alias (`sonnet`, `opus`, `haiku`) or `'inherit'` to use the main conversation's model. If omitted, defaults to the [configured subagent model](/en/model-config) |
+| `permissionMode` | No       | Permission mode for the subagent. Valid values: `default`, `acceptEdits`, `dontAsk`, `bypassPermissions`, `plan`, `ignore`. Controls how the subagent handles permission requests                               |
+| `skills`         | No       | Comma-separated list of skill names to auto-load when the subagent starts. Subagents do not inherit Skills from the parent conversation. If omitted, no Skills are preloaded.                                   |
 
 ### Model selection
 
@@ -200,13 +200,13 @@ This opens an interactive menu where you can:
 * Edit existing custom subagents, including their tool access
 * Delete custom subagents
 * See which subagents are active when duplicates exist
-* **Easily manage tool permissions** with a complete list of available tools
+* **Manage tool permissions** with a complete list of available tools
 
 ### Direct file management
 
 You can also manage subagents by working directly with their files:
 
-```bash
+```bash  theme={null}
 # Create a project subagent
 mkdir -p .claude/agents
 echo '---
@@ -324,7 +324,7 @@ The Explore subagent is a fast, lightweight agent optimized for searching and an
 * **Mode**: Strictly read-only - cannot create, modify, or delete files
 * **Tools available**:
   * Glob - File pattern matching
-  * Grep - Content searching with regex
+  * Grep - Content searching with regular expressions
   * Read - Reading file contents
   * Bash - Read-only commands only (ls, git status, git log, git diff, find, cat, head, tail)
 
@@ -336,7 +336,7 @@ Claude will delegate to the Explore subagent when it needs to search or understa
 
 When invoking the Explore subagent, Claude specifies a thoroughness level:
 
-* **Quick** - Basic searches, fastest results. Good for simple lookups.
+* **Quick** - Fast searches with minimal exploration. Good for targeted lookups.
 * **Medium** - Moderate exploration. Balances speed and thoroughness.
 * **Very thorough** - Comprehensive analysis across multiple locations and naming conventions. Used when the target might be in unexpected places.
 
@@ -364,7 +364,7 @@ Claude: [Invokes Explore subagent with "quick" thoroughness]
 
 ### Code reviewer
 
-```markdown
+```markdown  theme={null}
 ---
 name: code-reviewer
 description: Expert code review specialist. Proactively reviews code for quality, security, and maintainability. Use immediately after writing or modifying code.
@@ -380,7 +380,7 @@ When invoked:
 3. Begin review immediately
 
 Review checklist:
-- Code is simple and readable
+- Code is clear and readable
 - Functions and variables are well-named
 - No duplicated code
 - Proper error handling
@@ -399,7 +399,7 @@ Include specific examples of how to fix issues.
 
 ### Debugger
 
-```markdown
+```markdown  theme={null}
 ---
 name: debugger
 description: Debugging specialist for errors, test failures, and unexpected behavior. Use proactively when encountering any issues.
@@ -429,12 +429,12 @@ For each issue, provide:
 - Testing approach
 - Prevention recommendations
 
-Focus on fixing the underlying issue, not just symptoms.
+Focus on fixing the underlying issue, not the symptoms.
 ```
 
 ### Data scientist
 
-```markdown
+```markdown  theme={null}
 ---
 name: data-scientist
 description: Data analysis expert for SQL queries, BigQuery operations, and data insights. Use proactively for data analysis tasks and queries.
@@ -539,7 +539,7 @@ Resume the agent:
 
 If you're using the Agent SDK or interacting with the AgentTool directly, you can pass the `resume` parameter:
 
-```typescript
+```typescript  theme={null}
 {
   "description": "Continue analysis",
   "prompt": "Now examine the error handling patterns",

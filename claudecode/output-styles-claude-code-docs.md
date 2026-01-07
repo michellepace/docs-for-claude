@@ -15,36 +15,36 @@ There are two additional built-in output styles focused on teaching you the
 codebase and how Claude operates:
 
 * **Explanatory**: Provides educational "Insights" in between helping you
-  complete software engineering tasks. Helps you understand implementation
-  choices and codebase patterns.
+ complete software engineering tasks. Helps you understand implementation
+ choices and codebase patterns.
 
 * **Learning**: Collaborative, learn-by-doing mode where Claude will not only
-  share "Insights" while coding, but also ask you to contribute small, strategic
-  pieces of code yourself. Claude Code will add `TODO(human)` markers in your
-  code for you to implement.
+ share "Insights" while coding, but also ask you to contribute small, strategic
+ pieces of code yourself. Claude Code will add `TODO(human)` markers in your
+ code for you to implement.
 
 ## How output styles work
 
 Output styles directly modify Claude Code's system prompt.
 
 * All output styles exclude instructions for efficient output (such as
-  responding concisely).
+ responding concisely).
 * Custom output styles exclude instructions for coding (such as verifying code
-  with tests), unless `keep-coding-instructions` is true.
+ with tests), unless `keep-coding-instructions` is true.
 * All output styles have their own custom instructions added to the end of the
-  system prompt.
+ system prompt.
 * All output styles trigger reminders for Claude to adhere to the output style
-  instructions during the conversation.
+ instructions during the conversation.
 
 ## Change your output style
 
 You can either:
 
 * Run `/output-style` to access a menu and select your output style (this can
-  also be accessed from the `/config` menu)
+ also be accessed from the `/config` menu)
 
 * Run `/output-style [style]`, such as `/output-style explanatory`, to directly
-  switch to a style
+ switch to a style
 
 These changes apply to the [local project level](/en/settings) and are saved in
 `.claude/settings.local.json`. You can also directly edit the `outputStyle`
@@ -55,11 +55,11 @@ field in a settings file at a different level.
 Custom output styles are Markdown files with frontmatter and the text that will
 be added to the system prompt:
 
-```markdown  theme={null}
+```markdown theme={null}
 ---
 name: My Custom Style
 description:
-  A brief description of what this style does, to be displayed to the user
+ A brief description of what this style does, to be displayed to the user
 ---
 
 # Custom Style Instructions
@@ -80,11 +80,11 @@ project level (`.claude/output-styles`).
 Output style files support frontmatter, useful for specifying metadata about the
 command:
 
-| Frontmatter                | Purpose                                                                     | Default                 |
-| :------------------------- | :-------------------------------------------------------------------------- | :---------------------- |
-| `name`                     | Name of the output style, if not the file name                              | Inherits from file name |
-| `description`              | Description of the output style. Used only in the UI of `/output-style`     | None                    |
-| `keep-coding-instructions` | Whether to keep the parts of Claude Code's system prompt related to coding. | false                   |
+| Frontmatter | Purpose | Default |
+| :---------- | :------ | :------ |
+| `name` | Name of the output style, if not the file name | Inherits from file name |
+| `description` | Description of the output style. Used only in the UI of `/output-style` | None |
+| `keep-coding-instructions` | Whether to keep the parts of Claude Code's system prompt related to coding. | false |
 
 ## Comparisons to related features
 

@@ -76,4 +76,60 @@
     <local_file>use-claude-code-with-chrome-beta-claude-code-docs.md</local_file>
     <scraped_at>2026-01-07</scraped_at>
   </source>
+  <source>
+    <title>CLI reference - Claude Code Docs</title>
+    <description>CLI commands for interactive REPL, piped queries, session continuation, CLI flags for configuration including model selection, tools, system prompts, agents, MCP servers, permission modes, output formats, and debugging options.</description>
+    <source_url>https://code.claude.com/docs/en/cli-reference</source_url>
+    <local_file>cli-reference-claude-code-docs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Common workflows - Claude Code Docs</title>
+    <description>Common workflows including codebase exploration, bug fixing, refactoring, subagents, Plan Mode, test creation, pull requests, documentation, image analysis, extended thinking, session resumption, Git worktrees, Unix piping, and custom slash commands.</description>
+    <source_url>https://code.claude.com/docs/en/common-workflows</source_url>
+    <local_file>common-workflows-claude-code-docs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Discover and install prebuilt plugins through marketplaces - Claude Code Docs</title>
+    <description>Plugin marketplace system for discovering, installing, and managing plugins from official Anthropic and third-party sources, including LSP code intelligence plugins, external service integrations, development workflow tools, and output styles.</description>
+    <source_url>https://code.claude.com/docs/en/discover-plugins</source_url>
+    <local_file>discover-and-install-prebuilt-plugins-through-marketplaces-claude-code-docs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Claude Code GitHub Actions - Claude Code Docs</title>
+    <description>GitHub Actions integration with @claude mentions, PR automation, slash commands, CLAUDE.md configuration, AWS Bedrock and Google Vertex AI setup, OIDC authentication, custom GitHub Apps, workflow triggers, and troubleshooting.</description>
+    <source_url>https://code.claude.com/docs/en/github-actions</source_url>
+    <local_file>claude-code-github-actions-claude-code-docs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Claude Code GitLab CI/CD - Claude Code Docs</title>
+    <description>GitLab CI/CD integration for Claude Code including job configuration, AWS Bedrock and Google Vertex AI setup with OIDC/WIF authentication, MR automation, security best practices, and troubleshooting.</description>
+    <source_url>https://code.claude.com/docs/en/gitlab-ci-cd</source_url>
+    <local_file>claude-code-gitlab-cicd-claude-code-docs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Hooks reference - Claude Code Docs</title>
+    <description>Hook events (PreToolUse, PostToolUse, Stop, SubagentStop, SessionStart, SessionEnd, UserPromptSubmit, Notification, PreCompact, PermissionRequest), configuration structure, matchers, input/output schemas, JSON decision control, prompt-based hooks, MCP tool integration, and debugging.</description>
+    <source_url>https://code.claude.com/docs/en/hooks</source_url>
+    <local_file>hooks-reference-claude-code-docs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Connect Claude Code to tools via MCP - Claude Code Docs</title>
+    <description>Model Context Protocol (MCP) server installation and configuration including transport types (HTTP, SSE, stdio), installation scopes (local, project, user), plugin servers, OAuth authentication, resources, prompts as commands, and enterprise controls.</description>
+    <source_url>https://code.claude.com/docs/en/mcp</source_url>
+    <local_file>connect-claude-code-to-tools-via-mcp-claude-code-docs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
+  <source>
+    <title>Optimize your terminal setup - Claude Code Docs</title>
+    <description>Terminal configuration including themes, line break shortcuts (Shift+Enter, Option+Enter), iTerm2 and VS Code notification setup, handling large inputs, and Vim mode keybindings for navigation and editing.</description>
+    <source_url>https://code.claude.com/docs/en/terminal-config</source_url>
+    <local_file>optimize-your-terminal-setup-claude-code-docs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
 </docs_index>
