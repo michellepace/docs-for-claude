@@ -1,91 +1,91 @@
 <docs_index>
   <source>
     <title>Getting Started | Biome</title>
-    <description>Installation instructions for npm/pnpm/bun/deno/yarn, `biome.json` configuration initialisation, CLI commands (`format`, `lint`, `check` with `--write`), editor integrations (VS Code, IntelliJ, Zed), continuous integration setup (`biome ci`), and migration paths from ESLint/Prettier.</description>
+    <description>Installation via npm/pnpm/bun/deno/yarn, `biome init` for `biome.json`, CLI commands `format`, `lint`, `check` with `--write`, editor extensions (VS Code, IntelliJ, Zed), `biome ci` for CI pipelines, ESLint/Prettier migration.</description>
     <source_url>https://biomejs.dev/guides/getting-started</source_url>
     <local_file>getting-started-biome.mdx</local_file>
     <scraped_at>2025-11-04</scraped_at>
   </source>
   <source>
     <title>Configure Biome | Biome</title>
-    <description>biome.json/biome.jsonc structure, enabling/disabling formatter/linter/assist, language-specific overrides (javascript.formatter, json.formatter), auto-discovery resolution, files.includes glob patterns with negation (! and !!), tool-specific includes, VCS integration, well-known JSON files parsing.</description>
+    <description>`biome.json`/`biome.jsonc` structure, `formatter.enabled`/`linter.enabled`/`assist.enabled` toggles, language overrides (`javascript.formatter`, `json.formatter`), auto-discovery resolution, `files.includes` glob patterns with `!`/`!!` negation syntax, tool-specific includes, VCS integration, well-known JSON files.</description>
     <source_url>https://biomejs.dev/guides/configure-biome</source_url>
     <local_file>configure-biome-biome.mdx</local_file>
     <scraped_at>2025-11-04</scraped_at>
   </source>
   <source>
     <title>First-party extensions | Biome</title>
-    <description>Official editor integrations for VS Code (marketplace extension with format-on-save and linting), IntelliJ (plugin installation via marketplace or disk), and Zed (extension installation via command palette), including setup instructions and configuration steps for each editor.</description>
+    <description>Official editor integrations for VS Code, IntelliJ, and Zed: marketplace installation, format-on-save setup, `Format Document With` command palette configuration, default formatter selection.</description>
     <source_url>https://biomejs.dev/guides/editors/first-party-extensions</source_url>
     <local_file>first-party-extensions-biome.mdx</local_file>
     <scraped_at>2025-11-04</scraped_at>
   </source>
   <source>
     <title>VS Code extension | Biome</title>
-    <description>VS Code extension installation, workspace configuration (single-root, multi-root), formatting features (document, selection, on-save), code fixing (quick fixes, fix-on-save for safe/unsafe fixes), import sorting, settings reference (`biome.enabled`, `biome.configurationPath`, `biome.requireConfiguration`, `biome.lsp.bin`, trace levels), troubleshooting LSP traces, and migration from 2.x extension.</description>
+    <description>VS Code extension: single-root/multi-root workspaces, `Format Document`, `Format Selection`, `editor.formatOnSave`, `source.fixAll.biome`, `source.organizeImports.biome`, settings `biome.enabled`, `biome.lsp.bin`, `biome.requireConfiguration`, `biome.configurationPath`, LSP trace troubleshooting, 2.x migration.</description>
     <source_url>https://biomejs.dev/reference/vscode</source_url>
     <local_file>vs-code-extension-biome.mdx</local_file>
     <scraped_at>2025-11-04</scraped_at>
   </source>
   <source>
     <title>Integrate Biome with your VCS | Biome</title>
-    <description>Git integration configuration (`vcs.enabled`, `vcs.clientKind`), using VCS ignore files (`.gitignore`, `.ignore`) with `useIgnoreFile`, processing only changed files via `--changed` option with `defaultBranch` or `--since` for custom branches, and processing staged files with `--staged` option before commits.</description>
+    <description>Git VCS integration: `vcs.enabled`, `vcs.clientKind`, `vcs.useIgnoreFile` for `.gitignore`/`.ignore` files, `--changed` with `vcs.defaultBranch` or `--since`, `--staged` option for processing staged files before commits.</description>
     <source_url>https://biomejs.dev/guides/integrate-in-vcs</source_url>
     <local_file>integrate-biome-with-your-vcs-biome.mdx</local_file>
     <scraped_at>2025-11-04</scraped_at>
   </source>
   <source>
     <title>Continuous Integration | Biome</title>
-    <description>CI setup guidance comparing `biome check` vs `biome ci` commands (no `--write`, GitHub annotations, thread control), GitHub Actions workflows with `biomejs/setup-biome` action, handling external config dependencies, third-party reviewdog integration, and GitLab CI configuration with Docker image and code quality reporting.</description>
+    <description>CI setup: `biome ci` vs `biome check` (no `--write`, GitHub annotations), `biomejs/setup-biome` GitHub Action, `reviewdog-action-biome` third-party, GitLab CI with `--reporter=gitlab` code quality reports.</description>
     <source_url>https://biomejs.dev/recipes/continuous-integration</source_url>
     <local_file>continuous-integration-biome.mdx</local_file>
     <scraped_at>2025-11-04</scraped_at>
   </source>
   <source>
     <title>Git Hooks | Biome</title>
-    <description>Git hook integration using Lefthook (pre-commit, pre-push configurations), Husky with lint-staged and git-format-staged, pre-commit framework hooks (`biome-ci`, `biome-check`, `biome-format`, `biome-lint`), and custom shell scripts for formatting, linting, and applying fixes to staged files with `--staged`, `--write`, and `--no-errors-on-unmatched` options.</description>
+    <description>Git hooks: Lefthook `pre-commit`/`pre-push` with `stage_fixed`, Husky with lint-staged/git-format-staged, pre-commit framework hooks (`biome-ci`, `biome-check`, `biome-format`, `biome-lint`), `--staged`, `--no-errors-on-unmatched`, shell scripts.</description>
     <source_url>https://biomejs.dev/recipes/git-hooks</source_url>
     <local_file>git-hooks-biome.mdx</local_file>
     <scraped_at>2025-11-04</scraped_at>
   </source>
   <source>
     <title>Philosophy | Biome</title>
-    <description>Project ethos covering management principles (clear expectations, public decision communication), technical guidelines (helpful error messages with fixes, specific errors, API optimisation, code documentation, reduced jargon, verbose naming, inclusive terminology, generic client support, unambiguous terminal output without relying solely on colour).</description>
+    <description>Project ethos: clear expectations, public decision communication, helpful error messages with fixes, specific errors, API optimisation, code documentation, verbose naming, inclusive terminology, generic client support, unambiguous terminal output.</description>
     <source_url>https://biomejs.dev/internals/philosophy</source_url>
     <local_file>philosophy-biome.mdx</local_file>
     <scraped_at>2025-11-04</scraped_at>
   </source>
   <source>
     <title>Language support | Biome</title>
-    <description>Language support matrix for JavaScript (ES2024), TypeScript (5.6), JSX, TSX, JSON, JSONC (with comments/trailing commas configuration), HTML, Vue/Svelte/Astro (experimental with linting caveats), CSS, GraphQL, GritQL, covering parsing, formatting, linting, and plugin support status with YAML/Markdown in progress.</description>
+    <description>Language support matrix: JavaScript (ES2024), TypeScript (5.6), JSX, TSX, JSON, JSONC (`allowComments`, `allowTrailingCommas`), HTML, Vue/Svelte/Astro (experimental), CSS, GraphQL, GritQL. Parsing, formatting, linting, plugin support status.</description>
     <source_url>https://biomejs.dev/internals/language-support</source_url>
     <local_file>language-support-biome.mdx</local_file>
     <scraped_at>2025-11-04</scraped_at>
   </source>
   <source>
     <title>Configuration | Biome</title>
-    <description>Biome configuration reference including schema, file patterns, VCS integration, linter and formatter settings, language-specific options for JavaScript, JSON, CSS, HTML, GraphQL, indentation, quotes, and override patterns.</description>
+    <description>Complete `biome.json` schema reference: `$schema`, `extends`, `root`, `files.includes`/`maxSize`, `vcs` settings, `linter.rules` groups, `formatter` options (`indentStyle`, `lineWidth`), `javascript`/`json`/`css`/`graphql`/`html` language settings, `overrides` patterns, glob syntax.</description>
     <source_url>https://github.com/biomejs/website/blob/main/src/content/docs/reference/configuration.mdx</source_url>
     <local_file>configuration-biome.mdx</local_file>
     <scraped_at>2025-11-20</scraped_at>
   </source>
   <source>
     <title>Reporters | Biome</title>
-    <description>CLI reporter formats including summary, JSON, JSON pretty, GitHub workflow integration, JUnit XML, Checkstyle XML, and RDJSON for displaying diagnostics and violations.</description>
+    <description>CLI `--reporter` formats: `summary`, `json`, `json-pretty`, `github` (workflow annotations), `junit` XML, `checkstyle` XML, `rdjson`. Controls diagnostic and violation output for CI/CD integration.</description>
     <source_url>https://biomejs.dev/reference/reporters</source_url>
     <local_file>reporters-biome.mdx</local_file>
     <scraped_at>2025-11-22</scraped_at>
   </source>
   <source>
     <title>useSortedClasses | Biome</title>
-    <description>Nursery rule useSortedClasses for automatic CSS utility class sorting using Tailwind algorithm, attributes/functions options for clsx/cva/tw, current limitations including no screen variants or custom utilities.</description>
+    <description>Nursery rule `useSortedClasses` for Tailwind CSS utility class sorting. Configure `attributes` and `functions` options for `clsx`/`cva`/`tw` template literals. Unsafe fix, uses default Tailwind algorithm.</description>
     <source_url>https://biomejs.dev/linter/rules/use-sorted-classes</source_url>
     <local_file>usesortedclasses-biome.md</local_file>
     <scraped_at>2026-01-04</scraped_at>
   </source>
   <source>
     <title>Linter | Biome</title>
-    <description>Configuring biome.json linter rules: enable/disable rules, set severity (off/on/error/warn/info), rule groups (a11y, style, suspicious), domains, safe/unsafe fixes, --write --skip --only flags, editor integration, ESLint migration.</description>
+    <description>Configuring `biome.json` linter: enable/disable rules, severity levels (`off`/`on`/`error`/`warn`/`info`), rule groups (`a11y`, `style`, `suspicious`), domains, safe/unsafe fixes, `--write` `--skip` `--only` flags, LSP integration, ESLint migration.</description>
     <source_url>https://biomejs.dev/linter</source_url>
     <local_file>linter-biome.md</local_file>
     <scraped_at>2026-01-04</scraped_at>

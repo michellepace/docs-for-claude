@@ -1,133 +1,133 @@
 <docs_index>
   <source>
     <title>Subagents - Claude Code Docs</title>
-    <description>Subagents for task delegation: YAML frontmatter configuration, file locations, tools and model selection, built-in agents (general-purpose, plan, explore), plugin agents, /agents command, chaining, resumable sessions, and example templates.</description>
+    <description>Custom subagents via `.claude/agents/` Markdown files: YAML frontmatter (`name`, `description`, `tools`, `model`, `permissionMode`, `skills`), `/agents` command, built-in agents (general-purpose, plan, explore), `--agents` CLI flag, chaining, resumable `agentId` sessions.</description>
     <source_url>https://code.claude.com/docs/en/sub-agents</source_url>
     <local_file>subagents-claude-code-docs.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Plugins - Claude Code Docs</title>
-    <description>Plugin system for extending Claude Code with custom commands, agents, Skills, hooks, and MCP servers. Covers plugin creation, marketplace management, installation, local testing, debugging, team distribution, and directory structure.</description>
+    <description>Plugin creation with `.claude-plugin/plugin.json` manifest: `commands/`, `agents/`, `skills/`, `hooks/` directories, `.mcp.json`, `.lsp.json` configuration, `--plugin-dir` testing, namespaced slash commands (`/plugin-name:command`), migration from standalone `.claude/` configuration.</description>
     <source_url>https://code.claude.com/docs/en/plugins</source_url>
     <local_file>plugins-claude-code-docs.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Agent Skills - Claude Code Docs</title>
-    <description>Model-invoked Agent Skills extending Claude capabilities: SKILL.md with YAML frontmatter, personal and project directories, plugin skills, allowed-tools restrictions, discovery, testing, debugging, team sharing via git, troubleshooting conflicts, and multi-file examples.</description>
+    <description>Model-invoked `SKILL.md` files with YAML frontmatter (`name`, `description`, `allowed-tools`, `model`): personal `~/.claude/skills/`, project `.claude/skills/`, plugin distribution, progressive disclosure with reference files, subagent `skills` field integration, troubleshooting discovery and conflicts.</description>
     <source_url>https://code.claude.com/docs/en/skills</source_url>
     <local_file>agent-skills-claude-code-docs.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Skill authoring best practices - Claude Docs</title>
-    <description>Skill authoring best practices: conciseness principles, naming conventions, description writing, progressive disclosure patterns, workflows and feedback loops, utility scripts, validation, code execution environment, MCP tool references, and evaluation-driven development.</description>
+    <description>Skill authoring best practices: conciseness, gerund naming, third-person descriptions, progressive disclosure patterns, workflow checklists, feedback loops, bundled utility scripts, template and examples patterns, evaluation-driven development, MCP tool references (`ServerName:tool_name`), anti-patterns.</description>
     <source_url>https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices</source_url>
     <local_file>skill-authoring-best-practices-claude-docs.md</local_file>
-    <scraped_at>2025-12-16</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Output Styles - Claude Code Docs</title>
-    <description>Output styles for adapting Claude Code: built-in styles (default, explanatory, learning), custom Markdown frontmatter creation, keep-coding-instructions option, /output-style command switching, and comparisons to CLAUDE.md, agents, and slash commands.</description>
+    <description>Output styles modifying system prompt: built-in styles (`default`, `explanatory`, `learning` with `TODO(human)`), custom Markdown files in `~/.claude/output-styles/` or `.claude/output-styles/`, `keep-coding-instructions` frontmatter, `/output-style` command, comparisons to `CLAUDE.md` and agents.</description>
     <source_url>https://code.claude.com/docs/en/output-styles</source_url>
     <local_file>output-styles-claude-code-docs.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Get started with Claude Code hooks - Claude Code Docs</title>
-    <description>Hook lifecycle events (PreToolUse, PostToolUse, Notification, Stop, Session), matcher configuration, practical examples for command logging, auto-formatting TypeScript and markdown, desktop notifications, and file protection with security guidelines.</description>
+    <description>Hooks quickstart: `/hooks` command, `PreToolUse`/`PostToolUse` matchers, `jq` command logging, `prettier`/`gofmt` auto-formatting, markdown language detection, `notify-send` desktop alerts, file protection blocking `.env`/`.git` paths, security considerations.</description>
     <source_url>https://code.claude.com/docs/en/hooks-guide</source_url>
     <local_file>hooks-guide-claude-code.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Headless mode - Claude Code Docs</title>
-    <description>Headless mode for running Claude Code programmatically via CLI scripts and automation. Covers --print flag, output formats (text, JSON, stream-json), input formats, multi-turn conversations, session resumption, and agent integration examples.</description>
+    <description>Agent SDK CLI mode with `-p`/`--print` flag for non-interactive execution. `--output-format` (text, json, stream-json), `--json-schema` structured output, `--allowedTools` auto-approval, `--continue`/`--resume` session continuation, `--append-system-prompt` customisation.</description>
     <source_url>https://code.claude.com/docs/en/headless</source_url>
     <local_file>headless-mode-claude-code-docs.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Plugin marketplaces - Claude Code Docs</title>
-    <description>Plugin marketplaces for distributing Claude Code extensions: /plugin marketplace commands, GitHub/Git/local sources, marketplace.json schema, plugin entries with component configuration (commands, agents, hooks, mcpServers), strict mode, extraKnownMarketplaces for teams, and troubleshooting.</description>
+    <description>Creating and distributing plugin marketplaces: `marketplace.json` schema, `/plugin marketplace add` commands, plugin sources (GitHub, Git URL, local), `strict` mode, `extraKnownMarketplaces`, `strictKnownMarketplaces` enterprise restrictions, and troubleshooting.</description>
     <source_url>https://code.claude.com/docs/en/plugin-marketplaces</source_url>
     <local_file>plugin-marketplaces-claude-code-docs.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Plugins reference - Claude Code Docs</title>
-    <description>Plugin technical reference: five component types (commands, agents, skills, hooks with 10 event types, MCP servers), plugin.json manifest schema, path behaviour rules, directory layout, CLAUDE_PLUGIN_ROOT variable, and debugging troubleshooting.</description>
+    <description>Plugin technical reference: component types (commands, agents, skills, hooks, MCP/LSP servers), `plugin.json` manifest, `${CLAUDE_PLUGIN_ROOT}` variable, installation scopes, CLI commands, caching, directory layout, and debugging.</description>
     <source_url>https://code.claude.com/docs/en/plugins-reference</source_url>
     <local_file>plugins-reference-claude-code-docs.md</local_file>
-    <scraped_at>2025-12-05</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Slash commands - Claude Code Docs</title>
-    <description>Built-in commands reference, custom slash command creation in project and personal directories, arguments, bash execution, file references, frontmatter options, plugin commands, MCP slash commands, SlashCommand tool permissions, and skills comparison.</description>
+    <description>Built-in slash commands, custom command creation in `.claude/commands/`, `$ARGUMENTS`/`$1` placeholders, bash execution with `!` prefix, frontmatter (`allowed-tools`, `model`), plugin and MCP commands, `SlashCommand` tool, and Skills comparison.</description>
     <source_url>https://code.claude.com/docs/en/slash-commands</source_url>
     <local_file>slash-commands-claude-code-docs.md</local_file>
-    <scraped_at>2025-12-07</scraped_at>
+    <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Use Claude Code with Chrome (beta) - Claude Code Docs</title>
-    <description>Chrome browser integration via Claude in Chrome extension enabling terminal-to-browser automation including navigation, clicking, typing, form filling, console log reading, tab management, GIF recording, and multi-site workflows.</description>
+    <description>Chrome browser integration via Claude in Chrome extension: `--chrome` flag, `/chrome` command, navigation, clicking, typing, form filling, console log reading, authenticated web apps, GIF recording, multi-site workflows.</description>
     <source_url>https://code.claude.com/docs/en/chrome</source_url>
     <local_file>use-claude-code-with-chrome-beta-claude-code-docs.md</local_file>
     <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>CLI reference - Claude Code Docs</title>
-    <description>CLI commands for interactive REPL, piped queries, session continuation, CLI flags for configuration including model selection, tools, system prompts, agents, MCP servers, permission modes, output formats, and debugging options.</description>
+    <description>CLI commands and flags reference: `claude`, `claude -p`, `claude -c`, `--model`, `--agent`, `--agents` JSON format, `--allowedTools`, `--mcp-config`, `--system-prompt`, `--append-system-prompt`, `--output-format`, `--permission-mode`, session management, and debugging options.</description>
     <source_url>https://code.claude.com/docs/en/cli-reference</source_url>
     <local_file>cli-reference-claude-code-docs.md</local_file>
     <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Common workflows - Claude Code Docs</title>
-    <description>Common workflows including codebase exploration, bug fixing, refactoring, subagents, Plan Mode, test creation, pull requests, documentation, image analysis, extended thinking, session resumption, Git worktrees, Unix piping, and custom slash commands.</description>
+    <description>Codebase exploration, bug fixing, refactoring, subagents via `/agents`, Plan Mode (`--permission-mode plan`), test creation, PR generation, image analysis, `ultrathink` extended thinking, session resumption, Git worktrees, Unix piping, custom slash commands.</description>
     <source_url>https://code.claude.com/docs/en/common-workflows</source_url>
     <local_file>common-workflows-claude-code-docs.md</local_file>
     <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Discover and install prebuilt plugins through marketplaces - Claude Code Docs</title>
-    <description>Plugin marketplace system for discovering, installing, and managing plugins from official Anthropic and third-party sources, including LSP code intelligence plugins, external service integrations, development workflow tools, and output styles.</description>
+    <description>Plugin discovery and installation from marketplaces: `/plugin install`, `/plugin marketplace add`, official Anthropic marketplace, LSP code intelligence plugins (`pyright-lsp`, `typescript-lsp`), MCP integrations, development workflow plugins, installation scopes, auto-updates, and troubleshooting.</description>
     <source_url>https://code.claude.com/docs/en/discover-plugins</source_url>
     <local_file>discover-and-install-prebuilt-plugins-through-marketplaces-claude-code-docs.md</local_file>
     <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Claude Code GitHub Actions - Claude Code Docs</title>
-    <description>GitHub Actions integration with @claude mentions, PR automation, slash commands, CLAUDE.md configuration, AWS Bedrock and Google Vertex AI setup, OIDC authentication, custom GitHub Apps, workflow triggers, and troubleshooting.</description>
+    <description>GitHub Actions integration: `@claude` mentions, PR/issue automation, `/install-github-app` setup, `claude-code-action@v1`, `claude_args`, slash commands, `CLAUDE.md` configuration, AWS Bedrock and Google Vertex AI OIDC authentication, custom GitHub Apps, and workflow triggers.</description>
     <source_url>https://code.claude.com/docs/en/github-actions</source_url>
     <local_file>claude-code-github-actions-claude-code-docs.md</local_file>
     <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Claude Code GitLab CI/CD - Claude Code Docs</title>
-    <description>GitLab CI/CD integration for Claude Code including job configuration, AWS Bedrock and Google Vertex AI setup with OIDC/WIF authentication, MR automation, security best practices, and troubleshooting.</description>
+    <description>GitLab CI/CD integration: `.gitlab-ci.yml` job configuration, `@claude` mention triggers, `AI_FLOW_*` variables, MR automation, AWS Bedrock OIDC and Google Vertex AI WIF authentication, `mcp__gitlab` tooling, `CLAUDE.md` standards, and security best practices.</description>
     <source_url>https://code.claude.com/docs/en/gitlab-ci-cd</source_url>
     <local_file>claude-code-gitlab-cicd-claude-code-docs.md</local_file>
     <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Hooks reference - Claude Code Docs</title>
-    <description>Hook events (PreToolUse, PostToolUse, Stop, SubagentStop, SessionStart, SessionEnd, UserPromptSubmit, Notification, PreCompact, PermissionRequest), configuration structure, matchers, input/output schemas, JSON decision control, prompt-based hooks, MCP tool integration, and debugging.</description>
+    <description>Hook reference: 10 events (`PreToolUse`, `PostToolUse`, `PermissionRequest`, `Stop`, `SubagentStop`, `SessionStart`, `SessionEnd`, `UserPromptSubmit`, `Notification`, `PreCompact`), JSON input/output schemas, `decision`/`reason` control, `type: prompt` LLM hooks, MCP tool matchers, `CLAUDE_PROJECT_DIR` environment variable.</description>
     <source_url>https://code.claude.com/docs/en/hooks</source_url>
     <local_file>hooks-reference-claude-code-docs.md</local_file>
     <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Connect Claude Code to tools via MCP - Claude Code Docs</title>
-    <description>Model Context Protocol (MCP) server installation and configuration including transport types (HTTP, SSE, stdio), installation scopes (local, project, user), plugin servers, OAuth authentication, resources, prompts as commands, and enterprise controls.</description>
+    <description>MCP server configuration: `claude mcp add` with `--transport` (http, sse, stdio), `--scope` (local, project, user), `--env` variables, `.mcp.json` files, OAuth `/mcp` authentication, `@server:resource` mentions, `/mcp__server__prompt` commands, `managed-mcp.json` enterprise controls.</description>
     <source_url>https://code.claude.com/docs/en/mcp</source_url>
     <local_file>connect-claude-code-to-tools-via-mcp-claude-code-docs.md</local_file>
     <scraped_at>2026-01-07</scraped_at>
   </source>
   <source>
     <title>Optimize your terminal setup - Claude Code Docs</title>
-    <description>Terminal configuration including themes, line break shortcuts (Shift+Enter, Option+Enter), iTerm2 and VS Code notification setup, handling large inputs, and Vim mode keybindings for navigation and editing.</description>
+    <description>Terminal optimisation: `/config` theme matching, `/terminal-setup` for Shift+Enter, Option+Enter with Meta key, iTerm2 `Silence bell` notifications, `/vim` mode keybindings (`hjkl`, `dw`, `cw`), handling large paste inputs, `/statusline` customisation.</description>
     <source_url>https://code.claude.com/docs/en/terminal-config</source_url>
     <local_file>optimize-your-terminal-setup-claude-code-docs.md</local_file>
     <scraped_at>2026-01-07</scraped_at>
