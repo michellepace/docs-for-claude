@@ -69,4 +69,11 @@
     <local_file>slash-commands-claude-code-docs.md</local_file>
     <scraped_at>2025-12-07</scraped_at>
   </source>
+  <source>
+    <title>Use Claude Code with Chrome (beta) - Claude Code Docs</title>
+    <description>Chrome browser integration via Claude in Chrome extension enabling terminal-to-browser automation including navigation, clicking, typing, form filling, console log reading, tab management, GIF recording, and multi-site workflows.</description>
+    <source_url>https://code.claude.com/docs/en/chrome</source_url>
+    <local_file>use-claude-code-with-chrome-beta-claude-code-docs.md</local_file>
+    <scraped_at>2026-01-07</scraped_at>
+  </source>
 </docs_index>
