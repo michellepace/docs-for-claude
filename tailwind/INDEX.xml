@@ -1,140 +1,140 @@
 <docs_index>
   <source>
     <title>Install Tailwind CSS with Next.js - Tailwind CSS</title>
-    <description>Step-by-step guide to install and configure Tailwind CSS v4 in Next.js projects using PostCSS plugin and TypeScript setup.</description>
+    <description>Next.js v4 installation: `create-next-app` scaffolding, `npm install tailwindcss @tailwindcss/postcss postcss`, `postcss.config.mjs` plugin configuration, `@import "tailwindcss"` in `globals.css`, TypeScript setup, `npm run dev` build process.</description>
     <source_url>https://tailwindcss.com/docs/installation/framework-guides/nextjs</source_url>
     <local_file>install-tailwind-css-with-nextjs-tailwind-css.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Editor setup - Getting started - Tailwind CSS</title>
-    <description>Editor tooling for Tailwind CSS including VS Code IntelliSense extension, Prettier plugin for class sorting, and IDE support for syntax highlighting and autocomplete.</description>
+    <description>Editor tooling: VS Code IntelliSense extension for autocomplete/linting/hover previews, `prettier-plugin-tailwindcss` for class sorting, JetBrains IDE completions, Zed built-in support, custom syntax highlighting for `@theme`/`@variant`/`@source`.</description>
     <source_url>https://tailwindcss.com/docs/editor-setup</source_url>
     <local_file>editor-setup-getting-started-tailwind-css.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Compatibility - Getting started - Tailwind CSS</title>
-    <description>Browser support requirements, CSS preprocessor alternatives, CSS modules compatibility, and framework integration guidance for Vue, Svelte, and Astro with Tailwind CSS v4.</description>
+    <description>Browser requirements (Chrome 111+, Safari 16.4+, Firefox 128+), why not Sass/Less/Stylus, CSS modules performance gotchas, `@reference` for `@apply` in Vue/Svelte/Astro `&lt;style&gt;` blocks, native nesting/variables.</description>
     <source_url>https://tailwindcss.com/docs/compatibility</source_url>
     <local_file>compatibility-getting-started-tailwind-css.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Styling with utility classes - Core concepts - Tailwind CSS</title>
-    <description>Utility-first methodology: variants (`hover:`, `dark:`, `group-*`), responsive design, arbitrary values, class composition, complex selectors, `!important` modifier, managing duplication via components/loops, resolving conflicts, and import `prefix`/`important` flags.</description>
+    <description>Utility-first methodology: variants (`hover:`, `dark:`, `lg:`), responsive design, arbitrary values with `[]` syntax, class composition, complex selectors, `group-*` patterns, `!` important modifier, `prefix`/`important` flags, duplication management via components/loops.</description>
     <source_url>https://tailwindcss.com/docs/styling-with-utility-classes</source_url>
     <local_file>styling-with-utility-classes-core-concepts-tailwind-css.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Hover, focus, and other states - Core concepts - Tailwind CSS</title>
-    <description>Comprehensive guide to variants including pseudo-classes (hover, focus, disabled), pseudo-elements (before, after, placeholder), media queries, ARIA states, data attributes, RTL support, and parent/sibling styling.</description>
+    <description>Variant system for conditional styling: `hover:`, `focus:`, `active:`, `disabled:`, `first:`, `odd:`, `group-*`, `peer-*`, `has-*`, `not-*`, pseudo-elements (`before:`, `after:`, `placeholder:`), media queries, ARIA/data attributes, RTL, child selectors.</description>
     <source_url>https://tailwindcss.com/docs/hover-focus-and-other-states</source_url>
     <local_file>hover-focus-and-other-states-core-concepts-tailwind-css.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Colors - Core concepts - Tailwind CSS</title>
-    <description>Default OKLCH color palette with 11-step scales (50-950), color utilities, opacity modifiers, CSS variable referencing, custom palette creation, and dark mode support.</description>
+    <description>OKLCH color palette with 11-step scales (50-950), color utilities (`bg-*`, `text-*`, `border-*`, `ring-*`, `fill-*`, `stroke-*`), opacity modifiers (`/75`), `--color-*` CSS variables, `--alpha()` function, `@theme` customisation, `dark:` variant.</description>
     <source_url>https://tailwindcss.com/docs/colors</source_url>
     <local_file>colors-core-concepts-tailwind-css.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Adding custom styles - Core concepts - Tailwind CSS</title>
-    <description>Tailwind theme customisation via `@theme` directive, arbitrary values/properties/variants with whitespace handling, custom CSS layers, functional utilities with `--value()`, `@variant` and `@custom-variant` directives.</description>
+    <description>Theme customisation via `@theme` directive, arbitrary values/properties/variants with `[]` syntax, underscore whitespace handling, type hints, CSS layers (`@layer base/components`), `@utility` with `--value()`/`--modifier()`, `@variant`, `@custom-variant` directives.</description>
     <source_url>https://tailwindcss.com/docs/adding-custom-styles</source_url>
     <local_file>adding-custom-styles-core-concepts-tailwind-css.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Detecting classes in source files - Core concepts - Tailwind CSS</title>
-    <description>Plain-text scanning mechanism, dynamic class name restrictions, @source directives for explicit registration, safelisting utilities with inline() and brace expansion, and excluding classes.</description>
+    <description>Class detection via plain-text scanning, dynamic class name restrictions, `@source` directive for explicit paths, `source()` base path, `@source not` exclusion, `@source inline()` safelisting with brace expansion.</description>
     <source_url>https://tailwindcss.com/docs/detecting-classes-in-source-files</source_url>
     <local_file>detecting-classes-in-source-files-core-concepts-tailwind-css.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Functions and directives - Core concepts - Tailwind CSS</title>
-    <description>Reference for Tailwind CSS directives (@import, @theme, @source, @utility, @variant, @custom-variant, @apply, @reference) and functions (--alpha(), --spacing()) plus v3.x compatibility directives (@config, @plugin).</description>
+    <description>Tailwind CSS at-rules: `@import`, `@theme`, `@source`, `@utility`, `@variant`, `@custom-variant`, `@apply`, `@reference` directives, `--alpha()`/`--spacing()` functions, v3.x compatibility with `@config`, `@plugin`, `theme()`.</description>
     <source_url>https://tailwindcss.com/docs/functions-and-directives</source_url>
     <local_file>functions-and-directives-core-concepts-tailwind-css.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Dark mode - Core concepts - Tailwind CSS</title>
-    <description>Dark mode implementation using the dark: variant with prefers-color-scheme media query, manual class-based toggling, data attributes, and system theme synchronisation via localStorage.</description>
+    <description>`dark:` variant for dark mode styling using `prefers-color-scheme` media query, `@custom-variant` for manual class/data-attribute toggling, `localStorage` theme persistence, `window.matchMedia()` system preference detection.</description>
     <source_url>https://tailwindcss.com/docs/dark-mode</source_url>
     <local_file>dark-mode-core-concepts-tailwind-css.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Responsive design - Core concepts - Tailwind CSS</title>
-    <description>Mobile-first responsive breakpoints (sm, md, lg, xl, 2xl), custom breakpoints, max-width variants, breakpoint ranges, container queries with named containers and size variants, and arbitrary value support.</description>
+    <description>Mobile-first breakpoint variants `sm:`/`md:`/`lg:`/`xl:`/`2xl:`, `max-*` variants for upper bounds, `--breakpoint-*` customisation, container queries with `@container`, named containers, `@sm`/`@md` variants, `--container-*` theme variables.</description>
     <source_url>https://tailwindcss.com/docs/responsive-design</source_url>
     <local_file>responsive-design-core-concepts-tailwind-css.md</local_file>
     <scraped_at>2025-10-15</scraped_at>
   </source>
   <source>
     <title>Theme variables - Core concepts - Tailwind CSS</title>
-    <description>Theme variables via @theme directive defining design tokens mapped to utilities, namespaces (color, font, spacing), default theme, customisation through extending/overriding, animation keyframes, inline/static options, CSS/JavaScript referencing.</description>
+    <description>`@theme` directive for design tokens, namespace mappings (`--color-*`, `--font-*`, `--spacing-*`, `--breakpoint-*`), extending/overriding defaults, `@keyframes` definitions, `inline`/`static` options, CSS variable output, JavaScript access via `getComputedStyle`.</description>
     <source_url>https://tailwindcss.com/docs/theme</source_url>
     <local_file>theme-variables-core-concepts-tailwind-css.md</local_file>
     <scraped_at>2025-11-16</scraped_at>
   </source>
   <source>
     <title>font-family - Typography - Tailwind CSS</title>
-    <description>Utilities for controlling font-family including font-sans, font-serif, font-mono classes, custom values with arbitrary syntax, CSS variable integration, responsive variants, theme customisation with --font-* variables, font-feature-settings and @font-face integration.</description>
+    <description>Font-family utilities: `font-sans`, `font-serif`, `font-mono` classes, `font-[value]` arbitrary syntax, `font-(family-name:--var)` CSS variables, `--font-*` theme customisation, `font-feature-settings`, `font-variation-settings`, `@font-face` integration, Google Fonts `@import`.</description>
     <source_url>https://tailwindcss.com/docs/font-family</source_url>
     <local_file>font-family-typography-tailwind-css.md</local_file>
     <scraped_at>2025-11-16</scraped_at>
   </source>
   <source>
     <title>Preflight - Base styles - Tailwind CSS</title>
-    <description>Opinionated base styles built on modern-normalize with complete CSS source covering margin/border/padding resets, unstyled headings and lists, block-level images, form input normalisation, extending Preflight, and disabling options.</description>
+    <description>Base reset styles built on modern-normalize: margin/padding/border resets, unstyled headings/lists, block-level images with `max-width: 100%`, form input normalisation, `[hidden]` attribute enforcement, extending via `@layer base`, disabling by omitting `preflight.css` import.</description>
     <source_url>https://tailwindcss.com/docs/preflight</source_url>
     <local_file>preflight-base-styles-tailwind-css.md</local_file>
     <scraped_at>2025-11-17</scraped_at>
   </source>
   <source>
     <title>Upgrade guide - Getting started - Tailwind CSS</title>
-    <description>Upgrading Tailwind CSS v3 to v4 with automatic upgrade tool, manual migration for PostCSS, Vite, CLI, breaking changes including renamed utilities, preflight updates, browser requirements, configuration changes, and compatibility notes.</description>
+    <description>v3 to v4 migration: `npx @tailwindcss/upgrade` tool, `@tailwindcss/postcss`/`@tailwindcss/vite`/`@tailwindcss/cli` packages, renamed utilities (`shadow-sm`-&gt;`shadow-xs`, `ring`-&gt;`ring-3`, `outline-none`-&gt;`outline-hidden`), `@utility` directive, variant stacking order reversal, CSS variable syntax changes.</description>
     <source_url>https://tailwindcss.com/docs/upgrade-guide</source_url>
     <local_file>upgrade-guide-getting-started-tailwind-css.md</local_file>
     <scraped_at>2025-11-17</scraped_at>
   </source>
   <source>
     <title>background-image - Backgrounds - Tailwind CSS</title>
-    <description>Background image utilities including linear, radial, and conic gradients with directional variants, gradient color stops and positions, interpolation modes, custom values with arbitrary syntax, and responsive design variants.</description>
+    <description>Background image utilities: `bg-linear-to-r`/`bg-linear-&lt;angle&gt;` linear gradients, `bg-radial` radial gradients, `bg-conic-&lt;angle&gt;` conic gradients, `from-`/`via-`/`to-` colour stops with positions, interpolation modifiers (`srgb`, `oklch`, `oklab`), `bg-none`, arbitrary values.</description>
     <source_url>https://tailwindcss.com/docs/background-image</source_url>
     <local_file>background-image-backgrounds-tailwind-css.md</local_file>
     <scraped_at>2025-11-17</scraped_at>
   </source>
   <source>
     <title>backdrop-filter: blur() - Filters - Tailwind CSS</title>
-    <description>Backdrop blur filter utilities including preset sizes (xs to 3xl), backdrop-blur-none to disable, custom values via arbitrary syntax, CSS custom properties, responsive breakpoint variants, and theme customisation with --blur-* variables.</description>
+    <description>Backdrop blur filter utilities: `backdrop-blur-xs` through `backdrop-blur-3xl` preset sizes, `backdrop-blur-none` to disable, `backdrop-blur-[value]` arbitrary values, `backdrop-blur-(--var)` CSS variables, `--blur-*` theme customisation, responsive variants.</description>
     <source_url>https://tailwindcss.com/docs/backdrop-blur</source_url>
     <local_file>backdrop-filter-blur-filters-tailwind-css.md</local_file>
     <scraped_at>2025-12-17</scraped_at>
   </source>
   <source>
     <title>animation - Transitions &amp; Animation - Tailwind CSS</title>
-    <description>Built-in animation utilities including animate-spin, animate-ping, animate-pulse, and animate-bounce with keyframe definitions, motion-safe and motion-reduce variants for accessibility, custom animation values via arbitrary syntax, and theme customisation with --animate-* variables.</description>
+    <description>CSS animation utilities: `animate-spin`, `animate-ping`, `animate-pulse`, `animate-bounce` with keyframe definitions, `animate-none`, `motion-safe`/`motion-reduce` accessibility variants, `animate-[value]` arbitrary syntax, `--animate-*` theme customisation with `@keyframes`.</description>
     <source_url>https://tailwindcss.com/docs/animation</source_url>
     <local_file>animation-transitions-animation-tailwind-css.md</local_file>
     <scraped_at>2025-12-22</scraped_at>
   </source>
   <source>
     <title>font-size - Typography - Tailwind CSS</title>
-    <description>Font-size utilities from text-xs to text-9xl with line-heights, combined size/line-height shorthand syntax, arbitrary values, responsive variants, and --text-* theme customisation.</description>
+    <description>Font-size utilities from `text-xs` to `text-9xl`, combined `text-sm/6` size/line-height shorthand, `text-[value]` arbitrary values, `text-(length:--var)` CSS variables, `--text-*` theme customisation with `line-height`, `letter-spacing`, `font-weight` defaults.</description>
     <source_url>https://tailwindcss.com/docs/font-size</source_url>
     <local_file>font-size-typography-tailwind-css.md</local_file>
     <scraped_at>2025-12-30</scraped_at>
   </source>
   <source>
     <title>box-shadow - Effects - Tailwind CSS</title>
-    <description>Shadow and ring utilities including outer shadows (2xs-2xl), inset shadows, rings, inset rings, colour and opacity modifiers, removing shadows, custom arbitrary values, responsive design, and theme customisation.</description>
+    <description>Box shadow utilities: `shadow-2xs` to `shadow-2xl` outer shadows, `inset-shadow-*` inset shadows, `ring`/`ring-&lt;number&gt;` solid rings, `inset-ring-*` inset rings, colour modifiers (`shadow-indigo-500`), opacity modifiers (`/50`), `shadow-none`, `--shadow-*` theme customisation.</description>
     <source_url>https://tailwindcss.com/docs/box-shadow</source_url>
     <local_file>box-shadow-effects-tailwind-css.md</local_file>
     <scraped_at>2026-01-06</scraped_at>
