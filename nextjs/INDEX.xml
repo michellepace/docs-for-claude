@@ -251,4 +251,25 @@
     <local_file>getting-started-server-and-client-components-nextjs.md</local_file>
     <scraped_at>2026-01-07</scraped_at>
   </source>
+  <source>
+    <title>next.config.js: redirects | Next.js</title>
+    <description>Redirects configuration in next.config.js including source/destination patterns, path matching with wildcards and regex, header/cookie/query conditional matching, basePath integration, i18n locale handling, and permanent vs temporary status codes.</description>
+    <source_url>https://nextjs.org/docs/app/api-reference/config/next-config-js/redirects</source_url>
+    <local_file>nextconfigjs-redirects-nextjs.md</local_file>
+    <scraped_at>2026-01-08</scraped_at>
+  </source>
+  <source>
+    <title>Functions: permanentRedirect | Next.js</title>
+    <description>permanentRedirect function for 308 permanent HTTP redirects in Server Components, Client Components, Route Handlers, and Server Actions, path and type parameters, streaming context meta tag insertion, TypeScript never type usage.</description>
+    <source_url>https://nextjs.org/docs/app/api-reference/functions/permanentRedirect</source_url>
+    <local_file>functions-permanentredirect-nextjs.md</local_file>
+    <scraped_at>2026-01-08</scraped_at>
+  </source>
+  <source>
+    <title>Functions: redirect | Next.js</title>
+    <description>redirect function from next/navigation for URL redirection in Server Components, Client Components, Route Handlers, Server Actions, path/type parameters, RedirectType options, 307/308 HTTP status codes, streaming behaviour.</description>
+    <source_url>https://nextjs.org/docs/app/api-reference/functions/redirect</source_url>
+    <local_file>functions-redirect-nextjs.md</local_file>
+    <scraped_at>2026-01-08</scraped_at>
+  </source>
 </docs_index>
