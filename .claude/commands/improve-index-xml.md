@@ -157,27 +157,30 @@ After all agents complete:
 
 <details>
 
+_______________________
 `<local_file1>.md`
+
 OLD: [old description from agent output]
 
 NEW: *[new description from agent output]*
 
 [✅/❌] WHY: [Agent REASON from above. Prefix with ✅/❌ if you agree/disagree]
 
-xxxxxxxxxxxxxxxxxxxxx
-
+_______________________
 `<local_file2>.md`
+
 OLD: [old description from agent output]
---
+
 NEW: *[new description from agent output]*
---
+
 [✅/❌] WHY: [Agent REASON from output. Prefix with ✅/❌ if you agree/disagree]
 
-xxxxxxxxxxxxxxxxxxxxx
+_______________________
 
 </details>
 
 _______________________________________
+
 **Total:** [N] descriptions ready to update
 
 Type "yes" to apply, or "no" to cancel.
