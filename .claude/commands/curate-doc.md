@@ -99,19 +99,27 @@ Script errors print actionable information. If recovery is possible, propose spe
 
 ### 4. Generate descriptions for PLACEHOLDER entries only
 
-Review example description patterns:
+Descriptions must be optimised for **Claude Code semantic search**, not human readability:
+
+1. **High-signal keyword density** - Include specific API names, function names, patterns, and technical terms Claude will search for
+2. **Conceptual enumeration** - List the main topics/concepts covered, not just paraphrase the title
+3. **Backticks for code** - ALWAYS use backticks for code elements: `config.json`, `useQuery()`, `--flag`, etc.
+
+**Preserve high-value terms:** Retain "best practices", "anti-patterns", "patterns", "gotchas" when the document covers these topics.
+
+**Avoid:** Do NOT include "Does not cover..." or similar exclusions — these create false positive matches in semantic search.
 
 <example_description>
 
 ```xml
-<!-- Example 1 (30 words, single line, no line breaks) -->
-<description>Folder and file conventions including top-level folders, routing files (layout, page, loading, error, route), dynamic routes, route groups, private folders, parallel and intercepted routes, metadata conventions, colocation patterns, component hierarchy.</description>
+<!-- Good: 24 words, backticks for code, high keyword density -->
+<description>Convex database fundamentals: tables, JSON-like documents, optional schemas with `defineSchema`/`defineTable`, document IDs, `v` validators. Entry point for reading/writing data.</description>
 
-<!-- Example 2 (23 words, single line, no line breaks) -->
-<description>Dependency fields, uv add/remove commands, dependency sources (Git, URL, path, workspace), optional dependencies, development groups, build dependencies, editable installations, and dependency specifiers syntax.</description>
+<!-- Good: 30 words, enumerates concepts with backticks -->
+<description>Folder and file conventions including top-level folders, routing files (`layout`, `page`, `loading`, `error`, `route`), dynamic routes, route groups, private folders, parallel and intercepted routes, metadata conventions, colocation patterns.</description>
 
-<!-- Example 3 (27 words, single line, no line breaks) -->
-<description>Advanced reactive patterns including `@reactive.event` and `isolate` for event-driven execution, `req` for conditional execution, `invalidate_later` for scheduled updates, `@reactive.file_reader` for monitoring files, and `@reactive.poll` for conditional polling.</description>
+<!-- Good: 23 words, technical terms with backticks -->
+<description>`uv add`/`uv remove` commands, dependency sources (Git, URL, path, workspace), optional dependencies, development groups, build dependencies, editable installations, dependency specifiers syntax.</description>
 ```
 
 </example_description>
@@ -119,7 +127,7 @@ Review example description patterns:
 Now, write a description:
 
 1. Analyse the scraped markdown file
-2. Draft a description (20-30 words) following the example patterns above
+2. Draft a description (20-30 words) following the 3 quality criteria above
 3. **COUNT THE WORDS** using `echo "description text" | wc -w` to verify it's 20-30 words - if not, rewrite until it is
 4. Write the validated description to `$1/description.txt` in this format:
 
