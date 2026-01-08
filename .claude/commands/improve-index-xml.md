@@ -53,12 +53,7 @@ Found [N] documents in INDEX.xml
 
 Read `$1/INDEX.xml` and extract all `<source>` entries into a list.
 
-**Agent count:**
-
-- Tiny collections (< 6 docs): 1 agent
-- Small collections (6-12 docs): 3 agents
-- Large collections (12-20 docs): 4 agents
-- Extra Large collections (> 20 docs): 5 agents
+**Agent count:** ceil(docs / 5) - max 5 docs per agent
 
 **Grouping strategy:**
 
