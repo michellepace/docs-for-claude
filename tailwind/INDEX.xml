@@ -1,5 +1,19 @@
 <docs_index>
   <source>
+    <title>Tailwind CSS v4.0 - Release Notes / Change Log - Tailwind CSS</title>
+    <description>Tailwind CSS v4.0 release: high-performance engine, CSS-first configuration with `@theme`/`@source`, Vite plugin, P3 colour palette, container queries, 3D transforms, gradient APIs, `@starting-style`, `not-*` variant, automatic content detection.</description>
+    <source_url>https://tailwindcss.com/blog/tailwindcss-v4</source_url>
+    <local_file>tailwind-css-v40-tailwind-css.md</local_file>
+    <scraped_at>2026-01-09</scraped_at>
+  </source>
+  <source>
+    <title>Tailwind CSS v4.1 - Release Notes / Change Log - Tailwind CSS</title>
+    <description>Tailwind CSS v4.1 release: `text-shadow-*` utilities, `mask-*` composable masking API, `overflow-wrap` utilities (`wrap-break-word`, `wrap-anywhere`), coloured `drop-shadow`, `pointer-*`/`any-pointer-*` variants, `items-baseline-last`, `safe` alignment, `@source not`, `@source inline()` safelisting, browser compatibility improvements.</description>
+    <source_url>https://tailwindcss.com/blog/tailwindcss-v4-1</source_url>
+    <local_file>tailwind-css-v41-text-shadows-masks-and-tons-more-tailwind-css.md</local_file>
+    <scraped_at>2026-01-09</scraped_at>
+  </source>
+  <source>
     <title>Install Tailwind CSS with Next.js - Tailwind CSS</title>
     <description>Next.js v4 installation: `create-next-app` scaffolding, `npm install tailwindcss @tailwindcss/postcss postcss`, `postcss.config.mjs` plugin configuration, `@import "tailwindcss"` in `globals.css`, TypeScript setup, `npm run dev` build process.</description>
     <source_url>https://tailwindcss.com/docs/installation/framework-guides/nextjs</source_url>
