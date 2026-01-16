@@ -15,7 +15,7 @@ Documentation is organised by tool/framework in collection directories:
 └── *.md            # Documentation markdown files
 ```
 
-## Development Workflow (Python 3.13)
+## Development Workflow (Python 3.14)
 
 **Package Management:** [uv](https://docs.astral.sh/uv/)
 
