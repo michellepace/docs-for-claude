@@ -12,11 +12,14 @@ import xml.etree.ElementTree as ET
 from datetime import date
 from os import environ
 from pathlib import Path
+from typing import TYPE_CHECKING
 from urllib.parse import urlparse
 
 from firecrawl import Firecrawl
-from firecrawl.v2.types import Document
 from firecrawl.v2.utils.error_handler import FirecrawlError, RateLimitError
+
+if TYPE_CHECKING:
+    from firecrawl.v2.types import Document
 
 
 def _normalise_directory_path(dir_path_str: str) -> Path:

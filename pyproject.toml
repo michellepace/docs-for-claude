@@ -6,17 +6,17 @@ name = "docs-for-ai"
 version = "0.1.0"
 description = "Curate and index clean docs for AI context and keep it fresh (with Claude Code)"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 dependencies = [
-    "firecrawl-py>=4.11.0",
+    "firecrawl-py>=4.13.0",
 ]
 
 [dependency-groups]
 dev = [
-    "pre-commit>=4.5.0",
-    "pyright>=1.1.407",
+    "pre-commit>=4.5.1",
+    "pyright>=1.1.408",
     "pytest>=9.0.2",
-    "ruff>=0.14.9",
+    "ruff>=0.14.13",
 ]
 
 
@@ -29,7 +29,7 @@ dev = [
 # Cursor Pyright forks BasedPyright, some lint rules overlap with Ruff, causes dupe errors
 
 typeCheckingMode = "standard" # Cursor Pyright default
-pythonVersion = "3.13"
+pythonVersion = "3.14"
 
 # Disable Basedpyright rules that duplicate Ruff
 reportUnusedImport = false      # Ruff F401 handles it
@@ -43,7 +43,7 @@ reportDuplicateImport = false   # Ruff F811 handles it
 [tool.ruff]
 # Strictest ruff settings
 line-length = 90
-target-version = "py313"
+target-version = "py314"
 
 [tool.ruff.lint]
 # Enable all available rules
