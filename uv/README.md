@@ -4,6 +4,7 @@ Curated docs for targeted AI context.
 
 - Curation Index: [INDEX.xml](INDEX.xml)
 - Curation Source: <https://docs.astral.sh>
+- Better Curation Source: <https://docs.astral.sh/uv/llms.txt> (need to refactor, see [README.md](../README.md)) "👉 Notes to Improve later"
 
 What is uv?
 

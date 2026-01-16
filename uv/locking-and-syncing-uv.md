@@ -1,213 +1,191 @@
-[Skip to content](https://docs.astral.sh/uv/concepts/projects/sync/#locking-and-syncing)
+# [Locking and syncing](#locking-and-syncing)
 
-# [Locking and syncing](https://docs.astral.sh/uv/concepts/projects/sync/\#locking-and-syncing)
+Locking is the process of resolving your project's dependencies into a [lockfile](../layout/#the-lockfile). Syncing is the process of installing a subset of packages from the lockfile into the [project environment](../layout/#the-project-environment).
 
-Locking is the process of resolving your project's dependencies into a
-[lockfile](https://docs.astral.sh/uv/concepts/projects/layout/#the-lockfile). Syncing is the process of installing a subset of packages from
-the lockfile into the [project environment](https://docs.astral.sh/uv/concepts/projects/layout/#the-project-environment).
+## [Automatic lock and sync](#automatic-lock-and-sync)
 
-## [Automatic lock and sync](https://docs.astral.sh/uv/concepts/projects/sync/\#automatic-lock-and-sync)
-
-Locking and syncing are _automatic_ in uv. For example, when `uv run` is used, the project is locked
-and synced before invoking the requested command. This ensures the project environment is always
-up-to-date. Similarly, commands which read the lockfile, such as `uv tree`, will automatically
-update it before running.
+Locking and syncing are *automatic* in uv. For example, when `uv run` is used, the project is locked and synced before invoking the requested command. This ensures the project environment is always up-to-date. Similarly, commands which read the lockfile, such as `uv tree`, will automatically update it before running.
 
 To disable automatic locking, use the `--locked` option:
 
-```bash
-uv run --locked ...
+```
+$ uv run --locked ...
+
 ```
 
 If the lockfile is not up-to-date, uv will raise an error instead of updating the lockfile.
 
 To use the lockfile without checking if it is up-to-date, use the `--frozen` option:
 
-```bash
-uv run --frozen ...
+```
+$ uv run --frozen ...
+
 ```
 
-Similarly, to run a command without checking if the environment is up-to-date, use the `--no-sync`
-option:
+Similarly, to run a command without checking if the environment is up-to-date, use the `--no-sync` option:
 
-```bash
-uv run --no-sync ...
+```
+$ uv run --no-sync ...
+
 ```
 
-## [Checking the lockfile](https://docs.astral.sh/uv/concepts/projects/sync/\#checking-the-lockfile)
+## [Checking the lockfile](#checking-the-lockfile)
 
-When considering if the lockfile is up-to-date, uv will check if it matches the project metadata.
-For example, if you add a dependency to your `pyproject.toml`, the lockfile will be considered
-outdated. Similarly, if you change the version constraints for a dependency such that the locked
-version is excluded, the lockfile will be considered outdated. However, if you change the version
-constraints such that the existing locked version is still included, the lockfile will still be
-considered up-to-date.
+When considering if the lockfile is up-to-date, uv will check if it matches the project metadata. For example, if you add a dependency to your `pyproject.toml`, the lockfile will be considered outdated. Similarly, if you change the version constraints for a dependency such that the locked version is excluded, the lockfile will be considered outdated. However, if you change the version constraints such that the existing locked version is still included, the lockfile will still be considered up-to-date.
 
 You can check if the lockfile is up-to-date by passing the `--check` flag to `uv lock`:
 
-```bash
-uv lock --check
+```
+$ uv lock --check
+
 ```
 
 This is equivalent to the `--locked` flag for other commands.
 
 Important
 
-uv will not consider lockfiles outdated when new versions of packages are released — the lockfile
-needs to be explicitly updated if you want to upgrade dependencies. See the documentation on
-[upgrading locked package versions](https://docs.astral.sh/uv/concepts/projects/sync/#upgrading-locked-package-versions) for details.
+uv will not consider lockfiles outdated when new versions of packages are released — the lockfile needs to be explicitly updated if you want to upgrade dependencies. See the documentation on [upgrading locked package versions](#upgrading-locked-package-versions) for details.
 
-## [Creating the lockfile](https://docs.astral.sh/uv/concepts/projects/sync/\#creating-the-lockfile)
+## [Creating the lockfile](#creating-the-lockfile)
 
-While the lockfile is created [automatically](https://docs.astral.sh/uv/concepts/projects/sync/#automatic-lock-and-sync), the lockfile may also be
-explicitly created or updated using `uv lock`:
+While the lockfile is created [automatically](#automatic-lock-and-sync), the lockfile may also be explicitly created or updated using `uv lock`:
 
-```bash
-uv lock
+```
+$ uv lock
+
 ```
 
-## [Syncing the environment](https://docs.astral.sh/uv/concepts/projects/sync/\#syncing-the-environment)
+## [Syncing the environment](#syncing-the-environment)
 
-While the environment is synced [automatically](https://docs.astral.sh/uv/concepts/projects/sync/#automatic-lock-and-sync), it may also be explicitly
-synced using `uv sync`:
+While the environment is synced [automatically](#automatic-lock-and-sync), it may also be explicitly synced using `uv sync`:
 
-```bash
-uv sync
+```
+$ uv sync
+
 ```
 
-Syncing the environment manually is especially useful for ensuring your editor has the correct
-versions of dependencies.
+Syncing the environment manually is especially useful for ensuring your editor has the correct versions of dependencies.
 
-### [Editable installation](https://docs.astral.sh/uv/concepts/projects/sync/\#editable-installation)
+### [Editable installation](#editable-installation)
 
-When the environment is synced, uv will install the project (and other workspace members) as
-_editable_ packages, such that re-syncing is not necessary for changes to be reflected in the
-environment.
+When the environment is synced, uv will install the project (and other workspace members) as *editable* packages, such that re-syncing is not necessary for changes to be reflected in the environment.
 
 To opt-out of this behavior, use the `--no-editable` option.
 
 Note
 
-If the project does not define a build system, it will not be installed.
-See the [build systems](https://docs.astral.sh/uv/concepts/projects/config/#build-systems) documentation for details.
+If the project does not define a build system, it will not be installed. See the [build systems](../config/#build-systems) documentation for details.
 
-### [Retaining extraneous packages](https://docs.astral.sh/uv/concepts/projects/sync/\#retaining-extraneous-packages)
+### [Handling of extraneous packages](#handling-of-extraneous-packages)
 
-Syncing is "exact" by default, which means it will remove any packages that are not present in the
-lockfile.
+`uv sync` performs "exact" syncing by default, which means it will remove any packages that are not present in the lockfile.
 
-To retain extraneous packages, use the `--inexact` option:
+To retain extraneous packages, use the `--inexact` flag:
 
-```bash
-uv sync --inexact
+```
+$ uv sync --inexact
+
 ```
 
-### [Syncing optional dependencies](https://docs.astral.sh/uv/concepts/projects/sync/\#syncing-optional-dependencies)
+In contrast, `uv run` uses "inexact" syncing by default, ensuring that all required packages are installed but not removing extraneous packages. To enable exact syncing with `uv run`, use the `--exact` flag:
 
-uv reads optional dependencies from the `[project.optional-dependencies]` table. These are
-frequently referred to as "extras".
+```
+$ uv run --exact ...
+
+```
+
+### [Syncing optional dependencies](#syncing-optional-dependencies)
+
+uv reads optional dependencies from the `[project.optional-dependencies]` table. These are frequently referred to as "extras".
 
 uv does not sync extras by default. Use the `--extra` option to include an extra.
 
-```bash
-uv sync --extra foo
+```
+$ uv sync --extra foo
+
 ```
 
 To quickly enable all extras, use the `--all-extras` option.
 
-See the [optional dependencies](https://docs.astral.sh/uv/concepts/projects/dependencies/#optional-dependencies) documentation for details
-on how to manage optional dependencies.
+See the [optional dependencies](../dependencies/#optional-dependencies) documentation for details on how to manage optional dependencies.
 
-### [Syncing development dependencies](https://docs.astral.sh/uv/concepts/projects/sync/\#syncing-development-dependencies)
+### [Syncing development dependencies](#syncing-development-dependencies)
 
-uv reads development dependencies from the `[dependency-groups]` table (as defined in
-[PEP 735](https://peps.python.org/pep-0735/)).
+uv reads development dependencies from the `[dependency-groups]` table (as defined in [PEP 735](https://peps.python.org/pep-0735/)).
 
-The `dev` group is special-cased and synced by default. See the
-[default groups](https://docs.astral.sh/uv/concepts/projects/dependencies/#default-groups) documentation for details on changing the
-defaults.
+The `dev` group is special-cased and synced by default. See the [default groups](../dependencies/#default-groups) documentation for details on changing the defaults.
 
 The `--no-dev` flag can be used to exclude the `dev` group.
 
-The `--only-dev` flag can be used to install the `dev` group _without_ the project and its
-dependencies.
+The `--only-dev` flag can be used to install the `dev` group *without* the project and its dependencies.
 
-Additional groups can be included or excluded with the `--all-groups`, `--no-default-groups`,
-`--group <name>`, `--only-group <name>`, and `--no-group <name>` options. The semantics of
-`--only-group` are the same as `--only-dev`, the project will not be included. However,
-`--only-group` will also exclude default groups.
+Additional groups can be included or excluded with the `--all-groups`, `--no-default-groups`, `--group <name>`, `--only-group <name>`, and `--no-group <name>` options. The semantics of `--only-group` are the same as `--only-dev`, the project will not be included. However, `--only-group` will also exclude default groups.
 
 Group exclusions always take precedence over inclusions, so given the command:
 
-```bash
-uv sync --no-group foo --group foo
+```
+$ uv sync --no-group foo --group foo
+
 ```
 
 The `foo` group would not be installed.
 
-See the [development dependencies](https://docs.astral.sh/uv/concepts/projects/dependencies/#development-dependencies) documentation for
-details on how to manage development dependencies.
+See the [development dependencies](../dependencies/#development-dependencies) documentation for details on how to manage development dependencies.
 
-## [Upgrading locked package versions](https://docs.astral.sh/uv/concepts/projects/sync/\#upgrading-locked-package-versions)
+## [Upgrading locked package versions](#upgrading-locked-package-versions)
 
-With an existing `uv.lock` file, uv will prefer the previously locked versions of packages when
-running `uv sync` and `uv lock`. Package versions will only change if the project's dependency
-constraints exclude the previous, locked version.
+With an existing `uv.lock` file, uv will prefer the previously locked versions of packages when running `uv sync` and `uv lock`. Package versions will only change if the project's dependency constraints exclude the previous, locked version.
 
 To upgrade all packages:
 
-```bash
-uv lock --upgrade
+```
+$ uv lock --upgrade
+
 ```
 
-To upgrade a single package to the latest version, while retaining the locked versions of all other
-packages:
+To upgrade a single package to the latest version, while retaining the locked versions of all other packages:
 
-```bash
-uv lock --upgrade-package <package>
+```
+$ uv lock --upgrade-package <package>
+
 ```
 
 To upgrade a single package to a specific version:
 
-```bash
-uv lock --upgrade-package <package>==<version>
+```
+$ uv lock --upgrade-package <package>==<version>
+
 ```
 
-In all cases, upgrades are limited to the project's dependency constraints. For example, if the
-project defines an upper bound for a package then an upgrade will not go beyond that version.
+In all cases, upgrades are limited to the project's dependency constraints. For example, if the project defines an upper bound for a package then an upgrade will not go beyond that version.
 
 Note
 
-uv applies similar logic to Git dependencies. For example, if a Git dependency references
-the `main` branch, uv will prefer the locked commit SHA in an existing `uv.lock` file over
-the latest commit on the `main` branch, unless the `--upgrade` or `--upgrade-package` flags
-are used.
+uv applies similar logic to Git dependencies. For example, if a Git dependency references the `main` branch, uv will prefer the locked commit SHA in an existing `uv.lock` file over the latest commit on the `main` branch, unless the `--upgrade` or `--upgrade-package` flags are used.
 
-These flags can also be provided to `uv sync` or `uv run` to update the lockfile _and_ the
-environment.
+These flags can also be provided to `uv sync` or `uv run` to update the lockfile *and* the environment.
 
-## [Exporting the lockfile](https://docs.astral.sh/uv/concepts/projects/sync/\#exporting-the-lockfile)
+## [Exporting the lockfile](#exporting-the-lockfile)
 
-If you need to integrate uv with other tools or workflows, you can export `uv.lock` to the
-`requirements.txt` format with `uv export --format requirements-txt`. The generated
-`requirements.txt` file can then be installed via `uv pip install`, or with other tools like `pip`.
+If you need to integrate uv with other tools or workflows, you can export `uv.lock` to different formats including `requirements.txt`, `pylock.toml` (PEP 751), and CycloneDX SBOM.
 
-In general, we recommend against using both a `uv.lock` and a `requirements.txt` file. If you find
-yourself exporting a `uv.lock` file, consider opening an issue to discuss your use case.
+```
+$ uv export --format requirements.txt
+$ uv export --format pylock.toml
+$ uv export --format cyclonedx1.5
 
-## [Partial installations](https://docs.astral.sh/uv/concepts/projects/sync/\#partial-installations)
+```
 
-Sometimes it's helpful to perform installations in multiple steps, e.g., for optimal layer caching
-while building a Docker image. `uv sync` has several flags for this purpose.
+See the [export guide](../export/) for comprehensive documentation on all export formats and their use cases.
+
+## [Partial installations](#partial-installations)
+
+Sometimes it's helpful to perform installations in multiple steps, e.g., for optimal layer caching while building a Docker image. `uv sync` has several flags for this purpose.
 
 - `--no-install-project`: Do not install the current project
 - `--no-install-workspace`: Do not install any workspace members, including the root project
 - `--no-install-package <NO_INSTALL_PACKAGE>`: Do not install the given package(s)
 
-When these options are used, all the dependencies of the target are still installed. For example,
-`--no-install-project` will omit the _project_ but not any of its dependencies.
+When these options are used, all the dependencies of the target are still installed. For example, `--no-install-project` will omit the *project* but not any of its dependencies.
 
-If used improperly, these flags can result in a broken environment since a package can be missing
-its dependencies.
-
-Back to top
+If used improperly, these flags can result in a broken environment since a package can be missing its dependencies.

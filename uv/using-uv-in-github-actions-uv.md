@@ -1,18 +1,14 @@
-[Skip to content](https://docs.astral.sh/uv/guides/integration/github/#using-uv-in-github-actions)
+# [Using uv in GitHub Actions](#using-uv-in-github-actions)
 
-# [Using uv in GitHub Actions](https://docs.astral.sh/uv/guides/integration/github/\#using-uv-in-github-actions)
+## [Installation](#installation)
 
-## [Installation](https://docs.astral.sh/uv/guides/integration/github/\#installation)
-
-For use with GitHub Actions, we recommend the official
-[`astral-sh/setup-uv`](https://github.com/astral-sh/setup-uv) action, which installs uv, adds it to
-PATH, (optionally) persists the cache, and more, with support for all uv-supported platforms.
+For use with GitHub Actions, we recommend the official [`astral-sh/setup-uv`](https://github.com/astral-sh/setup-uv) action, which installs uv, adds it to PATH, (optionally) persists the cache, and more, with support for all uv-supported platforms.
 
 To install the latest version of uv:
 
 example.yml
 
-```yaml
+```
 name: Example
 
 jobs:
@@ -21,17 +17,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
+
 ```
 
 It is considered best practice to pin to a specific uv version, e.g., with:
 
 example.yml
 
-```yaml
+```
 name: Example
 
 jobs:
@@ -40,22 +37,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           # Install a specific version of uv.
-          version: "0.9.8"
+          version: "0.9.26"
+
 ```
 
-## [Setting up Python](https://docs.astral.sh/uv/guides/integration/github/\#setting-up-python)
+## [Setting up Python](#setting-up-python)
 
 Python can be installed with the `python install` command:
 
 example.yml
 
-```yaml
+```
 name: Example
 
 jobs:
@@ -64,27 +62,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
 
       - name: Set up Python
         run: uv python install
+
 ```
 
 This will respect the Python version pinned in the project.
 
-Alternatively, the official GitHub `setup-python` action can be used. This can be faster, because
-GitHub caches the Python versions alongside the runner.
+Alternatively, the official GitHub `setup-python` action can be used. This can be faster, because GitHub caches the Python versions alongside the runner.
 
-Set the
-[`python-version-file`](https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#using-the-python-version-file-input)
-option to use the pinned version for the project:
+Set the [`python-version-file`](https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#using-the-python-version-file-input) option to use the pinned version for the project:
 
 example.yml
 
-```yaml
+```
 name: Example
 
 jobs:
@@ -93,7 +89,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: "Set up Python"
         uses: actions/setup-python@v6
@@ -101,15 +97,15 @@ jobs:
           python-version-file: ".python-version"
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
+
 ```
 
-Or, specify the `pyproject.toml` file to ignore the pin and use the latest version compatible with
-the project's `requires-python` constraint:
+Or, specify the `pyproject.toml` file to ignore the pin and use the latest version compatible with the project's `requires-python` constraint:
 
 example.yml
 
-```yaml
+```
 name: Example
 
 jobs:
@@ -118,7 +114,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: "Set up Python"
         uses: actions/setup-python@v6
@@ -126,18 +122,17 @@ jobs:
           python-version-file: "pyproject.toml"
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
+
 ```
 
-## [Multiple Python versions](https://docs.astral.sh/uv/guides/integration/github/\#multiple-python-versions)
+## [Multiple Python versions](#multiple-python-versions)
 
-When using a matrix to test multiple Python versions, set the Python version using
-`astral-sh/setup-uv`, which will override the Python version specification in the `pyproject.toml`
-or `.python-version` files:
+When using a matrix to test multiple Python versions, set the Python version using `astral-sh/setup-uv`, which will override the Python version specification in the `pyproject.toml` or `.python-version` files:
 
 example.yml
 
-```yaml
+```
 jobs:
   build:
     name: continuous-integration
@@ -150,19 +145,20 @@ jobs:
           - "3.12"
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Install uv and set the Python version
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           python-version: ${{ matrix.python-version }}
+
 ```
 
 If not using the `setup-uv` action, you can set the `UV_PYTHON` environment variable:
 
 example.yml
 
-```yaml
+```
 jobs:
   build:
     name: continuous-integration
@@ -176,17 +172,17 @@ jobs:
     env:
       UV_PYTHON: ${{ matrix.python-version }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
+
 ```
 
-## [Syncing and running](https://docs.astral.sh/uv/guides/integration/github/\#syncing-and-running)
+## [Syncing and running](#syncing-and-running)
 
-Once uv and Python are installed, the project can be installed with `uv sync` and commands can be
-run in the environment with `uv run`:
+Once uv and Python are installed, the project can be installed with `uv sync` and commands can be run in the environment with `uv run`:
 
 example.yml
 
-```yaml
+```
 name: Example
 
 jobs:
@@ -195,10 +191,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
 
       - name: Install the project
         run: uv sync --locked --all-extras --dev
@@ -206,35 +202,34 @@ jobs:
       - name: Run tests
         # For example, using `pytest`
         run: uv run pytest tests
+
 ```
 
 Tip
 
-The
-[`UV_PROJECT_ENVIRONMENT` setting](https://docs.astral.sh/uv/concepts/projects/config/#project-environment-path) can
-be used to install to the system Python environment instead of creating a virtual environment.
+The [`UV_PROJECT_ENVIRONMENT` setting](../../../concepts/projects/config/#project-environment-path) can be used to install to the system Python environment instead of creating a virtual environment.
 
-## [Caching](https://docs.astral.sh/uv/guides/integration/github/\#caching)
+## [Caching](#caching)
 
 It may improve CI times to store uv's cache across workflow runs.
 
-The [`astral-sh/setup-uv`](https://github.com/astral-sh/setup-uv) has built-in support for
-persisting the cache:
+The [`astral-sh/setup-uv`](https://github.com/astral-sh/setup-uv) has built-in support for persisting the cache:
 
 example.yml
 
-```yaml
+```
 - name: Enable caching
-  uses: astral-sh/setup-uv@v6
+  uses: astral-sh/setup-uv@v7
   with:
     enable-cache: true
+
 ```
 
 Alternatively, you can manage the cache manually with the `actions/cache` action:
 
 example.yml
 
-```yaml
+```
 jobs:
   install_job:
     env:
@@ -245,7 +240,7 @@ jobs:
       # ... setup up Python and uv ...
 
       - name: Restore uv cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: /tmp/.uv-cache
           key: uv-${{ runner.os }}-${{ hashFiles('uv.lock') }}
@@ -257,10 +252,10 @@ jobs:
 
       - name: Minimize uv cache
         run: uv cache prune --ci
+
 ```
 
-The `uv cache prune --ci` command is used to reduce the size of the cache and is optimized for CI.
-Its effect on performance is dependent on the packages being installed.
+The `uv cache prune --ci` command is used to reduce the size of the cache and is optimized for CI. Its effect on performance is dependent on the packages being installed.
 
 Tip
 
@@ -268,33 +263,29 @@ If using `uv pip`, use `requirements.txt` instead of `uv.lock` in the cache key.
 
 Note
 
-When using non-ephemeral, self-hosted runners the default cache directory can grow unbounded.
-In this case, it may not be optimal to share the cache between jobs. Instead, move the cache
-inside the GitHub Workspace and remove it once the job finishes using a
-[Post Job Hook](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/running-scripts-before-or-after-a-job).
+When using non-ephemeral, self-hosted runners the default cache directory can grow unbounded. In this case, it may not be optimal to share the cache between jobs. Instead, move the cache inside the GitHub Workspace and remove it once the job finishes using a [Post Job Hook](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/running-scripts-before-or-after-a-job).
 
-```yaml
+```
 install_job:
   env:
     # Configure a relative location for the uv cache
     UV_CACHE_DIR: ${{ github.workspace }}/.cache/uv
+
 ```
 
-Using a post job hook requires setting the `ACTIONS_RUNNER_HOOK_JOB_STARTED` environment
-variable on the self-hosted runner to the path of a cleanup script such as the one shown below.
+Using a post job hook requires setting the `ACTIONS_RUNNER_HOOK_JOB_STARTED` environment variable on the self-hosted runner to the path of a cleanup script such as the one shown below.
 
 clean-uv-cache.sh
 
-```bash
+```
 #!/usr/bin/env sh
 uv cache clean
+
 ```
 
-## [Using `uv pip`](https://docs.astral.sh/uv/guides/integration/github/\#using-uv-pip)
+## [Using `uv pip`](#using-uv-pip)
 
-If using the `uv pip` interface instead of the uv project interface, uv requires a virtual
-environment by default. To allow installing packages into the system environment, use the `--system`
-flag on all `uv` invocations or set the `UV_SYSTEM_PYTHON` variable.
+If using the `uv pip` interface instead of the uv project interface, uv requires a virtual environment by default. To allow installing packages into the system environment, use the `--system` flag on all `uv` invocations or set the `UV_SYSTEM_PYTHON` variable.
 
 The `UV_SYSTEM_PYTHON` variable can be defined in at different scopes.
 
@@ -302,81 +293,74 @@ Opt-in for the entire workflow by defining it at the top level:
 
 example.yml
 
-```yaml
+```
 env:
   UV_SYSTEM_PYTHON: 1
 
 jobs: ...
+
 ```
 
 Or, opt-in for a specific job in the workflow:
 
 example.yml
 
-```yaml
+```
 jobs:
   install_job:
     env:
       UV_SYSTEM_PYTHON: 1
     ...
+
 ```
 
 Or, opt-in for a specific step in a job:
 
 example.yml
 
-```yaml
+```
 steps:
   - name: Install requirements
     run: uv pip install -r requirements.txt
     env:
       UV_SYSTEM_PYTHON: 1
+
 ```
 
 To opt-out again, the `--no-system` flag can be used in any uv invocation.
 
-## [Private repos](https://docs.astral.sh/uv/guides/integration/github/\#private-repos)
+## [Private repos](#private-repos)
 
-If your project has [dependencies](https://docs.astral.sh/uv/concepts/projects/dependencies/#git) on private GitHub
-repositories, you will need to configure a [personal access token (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) to allow uv to fetch
-them.
+If your project has [dependencies](../../../concepts/projects/dependencies/#git) on private GitHub repositories, you will need to configure a [personal access token (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) to allow uv to fetch them.
 
-After creating a PAT that has read access to the private repositories, add it as a [repository\\
-secret](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository).
+After creating a PAT that has read access to the private repositories, add it as a [repository secret](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository).
 
-Then, you can use the [`gh`](https://cli.github.com/) CLI (which is installed in GitHub Actions
-runners by default) to configure a
-[credential helper for Git](https://docs.astral.sh/uv/concepts/authentication/git/#git-credential-helpers) to use the
-PAT for queries to repositories hosted on `github.com`.
+Then, you can use the [`gh`](https://cli.github.com/) CLI (which is installed in GitHub Actions runners by default) to configure a [credential helper for Git](../../../concepts/authentication/git/#git-credential-helpers) to use the PAT for queries to repositories hosted on `github.com`.
 
 For example, if you called your repository secret `MY_PAT`:
 
 example.yml
 
-```yaml
+```
 steps:
   - name: Register the personal access token
     run: echo "${{ secrets.MY_PAT }}" | gh auth login --with-token
   - name: Configure the Git credential helper
     run: gh auth setup-git
+
 ```
 
-## [Publishing to PyPI](https://docs.astral.sh/uv/guides/integration/github/\#publishing-to-pypi)
+## [Publishing to PyPI](#publishing-to-pypi)
 
-uv can be used to build and publish your package to PyPI from GitHub Actions. We provide a
-standalone example alongside this guide in
-[astral-sh/trusted-publishing-examples](https://github.com/astral-sh/trusted-publishing-examples).
-The workflow uses [trusted publishing](https://docs.pypi.org/trusted-publishers/), so no credentials
-need to be configured.
+uv can be used to build and publish your package to PyPI from GitHub Actions. We provide a standalone example alongside this guide in [astral-sh/trusted-publishing-examples](https://github.com/astral-sh/trusted-publishing-examples). The workflow uses [trusted publishing](https://docs.pypi.org/trusted-publishers/), so no credentials need to be configured.
 
-In the example workflow, we use a script to test that the source distribution and the wheel are both
-functional and we didn't miss any files. This step is recommended, but optional.
+In the example workflow, we use a script to test that the source distribution and the wheel are both functional and we didn't miss any files. This step is recommended, but optional.
 
 First, add a release workflow to your project:
 
 .github/workflows/publish.yml
 
-```yaml
+```
 name: "Publish"
 
 on:
@@ -395,9 +379,9 @@ jobs:
       contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
       - name: Install Python 3.13
         run: uv python install 3.13
       - name: Build
@@ -409,29 +393,19 @@ jobs:
         run: uv run --isolated --no-project --with dist/*.tar.gz tests/smoke_test.py
       - name: Publish
         run: uv publish
+
 ```
 
-Then, create the environment defined in the workflow in the GitHub repository under "Settings" ->
-"Environments".
+Then, create the environment defined in the workflow in the GitHub repository under "Settings" -> "Environments".
 
-![GitHub settings dialog showing how to add the "pypi" environment under "Settings" -> "Environments"](https://docs.astral.sh/uv/assets/github-add-environment.png)
-
-Add a [trusted publisher](https://docs.pypi.org/trusted-publishers/adding-a-publisher/) to your PyPI
-project in the project settings under "Publishing". Ensure that all fields match with your GitHub
-configuration.
-
-![PyPI project publishing settings dialog showing how to set all fields for a trusted publisher configuration](https://docs.astral.sh/uv/assets/pypi-add-trusted-publisher.png)
+Add a [trusted publisher](https://docs.pypi.org/trusted-publishers/adding-a-publisher/) to your PyPI project in the project settings under "Publishing". Ensure that all fields match with your GitHub configuration.
 
 After saving:
 
-![PyPI project publishing settings dialog showing the configured trusted publishing settings](https://docs.astral.sh/uv/assets/pypi-with-trusted-publisher.png)
+Finally, tag a release and push it. Make sure it starts with `v` to match the pattern in the workflow.
 
-Finally, tag a release and push it. Make sure it starts with `v` to match the pattern in the
-workflow.
-
-```bash
-git tag -a v0.1.0 -m v0.1.0
-git push --tags
 ```
+$ git tag -a v0.1.0 -m v0.1.0
+$ git push --tags
 
-Back to top
+```

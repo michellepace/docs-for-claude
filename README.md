@@ -126,6 +126,21 @@ Scripts use FireCrawl Python SDK. MCP server also configured ([.mcp.json](.mcp.j
 
 ---
 
-## 👉 Notes to Improve later (NB!)
+## 👉 Notes to Improve later
+
+### Old Idea
 
 Instead of crawling, rather go to GitHub and automate downloading and index creation. Docs are much cleaner than crawling. Keep .mdx files as-is; do not convert to .md. Trade-off: bulk downloads bloat the index; curating individually keeps focus.
+
+### New Idea (2026.01.16) — use `llms.txt` + direct fetch
+
+Instruction given to Claude Code and successfully run on `uv/` directory to update all documents via direct HTTP fetch (Python script), so no scraping, 100% clean, and no Firecrawl tokens.
+
+<div align="center">
+  <a href="x_docs/images/20260116_better_idea.jpg">
+    <img src="x_docs/images/20260116_better_idea.jpg" alt="Claude Code terminal showing user prompt to assess llms.txt approach: explains that instead of FireCrawl scraping (which isn't always clean), match INDEX.xml source_url entries to llms.txt markdown URLs and curl content directly. Shows Claude reading README.md, uv/llms.txt, and uv/INDEX.xml files." width="875">
+  </a>
+  <p><em>Refactor to use llms.txt + direct fetch</em></p>
+</div>
+
+Adding this as a note for later to refactor to this method. (The screenshot mentions `curl` but we used Python's `urllib.request`.)

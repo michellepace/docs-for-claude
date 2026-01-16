@@ -1,10 +1,8 @@
-[Skip to content](https://docs.astral.sh/uv/guides/projects/#working-on-projects)
-
-# [Working on projects](https://docs.astral.sh/uv/guides/projects/\#working-on-projects)
+# [Working on projects](#working-on-projects)
 
 uv supports managing Python projects, which define their dependencies in a `pyproject.toml` file.
 
-## [Creating a new project](https://docs.astral.sh/uv/guides/projects/\#creating-a-new-project)
+## [Creating a new project](#creating-a-new-project)
 
 You can create a new Python project using the `uv init` command:
 
@@ -42,12 +40,9 @@ Hello from hello-world!
 
 ```
 
-## [Project structure](https://docs.astral.sh/uv/guides/projects/\#project-structure)
+## [Project structure](#project-structure)
 
-A project consists of a few important parts that work together and allow uv to manage your project.
-In addition to the files created by `uv init`, uv will create a virtual environment and `uv.lock`
-file in the root of your project the first time you run a project command, i.e., `uv run`,
-`uv sync`, or `uv lock`.
+A project consists of a few important parts that work together and allow uv to manage your project. In addition to the files created by `uv init`, uv will create a virtual environment and `uv.lock` file in the root of your project the first time you run a project command, i.e., `uv run`, `uv sync`, or `uv lock`.
 
 A complete listing would look like:
 
@@ -65,7 +60,7 @@ A complete listing would look like:
 
 ```
 
-### [`pyproject.toml`](https://docs.astral.sh/uv/guides/projects/\#pyprojecttoml)
+### [`pyproject.toml`](#pyprojecttoml)
 
 The `pyproject.toml` contains metadata about your project:
 
@@ -81,47 +76,35 @@ dependencies = []
 
 ```
 
-You'll use this file to specify dependencies, as well as details about the project such as its
-description or license. You can edit this file manually, or use commands like `uv add` and
-`uv remove` to manage your project from the terminal.
+You'll use this file to specify dependencies, as well as details about the project such as its description or license. You can edit this file manually, or use commands like `uv add` and `uv remove` to manage your project from the terminal.
 
 Tip
 
-See the official [`pyproject.toml` guide](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/)
-for more details on getting started with the `pyproject.toml` format.
+See the official [`pyproject.toml` guide](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) for more details on getting started with the `pyproject.toml` format.
 
-You'll also use this file to specify uv [configuration options](https://docs.astral.sh/uv/concepts/configuration-files/)
-in a [`[tool.uv]`](https://docs.astral.sh/uv/reference/settings/) section.
+You'll also use this file to specify uv [configuration options](../../concepts/configuration-files/) in a [`[tool.uv]`](../../reference/settings/) section.
 
-### [`.python-version`](https://docs.astral.sh/uv/guides/projects/\#python-version)
+### [`.python-version`](#python-version)
 
-The `.python-version` file contains the project's default Python version. This file tells uv which
-Python version to use when creating the project's virtual environment.
+The `.python-version` file contains the project's default Python version. This file tells uv which Python version to use when creating the project's virtual environment.
 
-### [`.venv`](https://docs.astral.sh/uv/guides/projects/\#venv)
+### [`.venv`](#venv)
 
-The `.venv` folder contains your project's virtual environment, a Python environment that is
-isolated from the rest of your system. This is where uv will install your project's dependencies.
+The `.venv` folder contains your project's virtual environment, a Python environment that is isolated from the rest of your system. This is where uv will install your project's dependencies.
 
-See the [project environment](https://docs.astral.sh/uv/concepts/projects/layout/#the-project-environment) documentation
-for more details.
+See the [project environment](../../concepts/projects/layout/#the-project-environment) documentation for more details.
 
-### [`uv.lock`](https://docs.astral.sh/uv/guides/projects/\#uvlock)
+### [`uv.lock`](#uvlock)
 
-`uv.lock` is a cross-platform lockfile that contains exact information about your project's
-dependencies. Unlike the `pyproject.toml` which is used to specify the broad requirements of your
-project, the lockfile contains the exact resolved versions that are installed in the project
-environment. This file should be checked into version control, allowing for consistent and
-reproducible installations across machines.
+`uv.lock` is a cross-platform lockfile that contains exact information about your project's dependencies. Unlike the `pyproject.toml` which is used to specify the broad requirements of your project, the lockfile contains the exact resolved versions that are installed in the project environment. This file should be checked into version control, allowing for consistent and reproducible installations across machines.
 
 `uv.lock` is a human-readable TOML file but is managed by uv and should not be edited manually.
 
-See the [lockfile](https://docs.astral.sh/uv/concepts/projects/layout/#the-lockfile) documentation for more details.
+See the [lockfile](../../concepts/projects/layout/#the-lockfile) documentation for more details.
 
-## [Managing dependencies](https://docs.astral.sh/uv/guides/projects/\#managing-dependencies)
+## [Managing dependencies](#managing-dependencies)
 
-You can add dependencies to your `pyproject.toml` with the `uv add` command. This will also update
-the lockfile and project environment:
+You can add dependencies to your `pyproject.toml` with the `uv add` command. This will also update the lockfile and project environment:
 
 ```
 $ uv add requests
@@ -139,8 +122,7 @@ $ uv add git+https://github.com/psf/requests
 
 ```
 
-If you're migrating from a `requirements.txt` file, you can use `uv add` with the `-r` flag to add
-all dependencies from the file:
+If you're migrating from a `requirements.txt` file, you can use `uv add` with the `-r` flag to add all dependencies from the file:
 
 ```
 $ # Add all dependencies from `requirements.txt`.
@@ -162,13 +144,11 @@ $ uv lock --upgrade-package requests
 
 ```
 
-The `--upgrade-package` flag will attempt to update the specified package to the latest compatible
-version, while keeping the rest of the lockfile intact.
+The `--upgrade-package` flag will attempt to update the specified package to the latest compatible version, while keeping the rest of the lockfile intact.
 
-See the documentation on [managing dependencies](https://docs.astral.sh/uv/concepts/projects/dependencies/) for more
-details.
+See the documentation on [managing dependencies](../../concepts/projects/dependencies/) for more details.
 
-## [Viewing your version](https://docs.astral.sh/uv/guides/projects/\#viewing-your-version)
+## [Viewing your version](#viewing-your-version)
 
 The `uv version` command can be used to read your package's version.
 
@@ -200,17 +180,17 @@ $ uv version --output-format json
 
 ```
 
-See the [publishing guide](https://docs.astral.sh/uv/guides/package/#updating-your-version) for details on updating your package
-version.
+See the [publishing guide](../package/#updating-your-version) for details on updating your package version.
 
-## [Running commands](https://docs.astral.sh/uv/guides/projects/\#running-commands)
+## [Running commands](#running-commands)
 
 `uv run` can be used to run arbitrary scripts or commands in your project environment.
 
-Prior to every `uv run` invocation, uv will verify that the lockfile is up-to-date with the
-`pyproject.toml`, and that the environment is up-to-date with the lockfile, keeping your project
-in-sync without the need for manual intervention. `uv run` guarantees that your command is run in a
-consistent, locked environment.
+Prior to every `uv run` invocation, uv will verify that the lockfile is up-to-date with the `pyproject.toml`, and that the environment is up-to-date with the lockfile, keeping your project in-sync without the need for manual intervention. `uv run` guarantees that your command is run in an environment with all required dependencies at their locked versions.
+
+Note
+
+`uv run` does not remove extraneous packages (those not in the lockfile) from the environment by default. See [handling of extraneous packages](../../concepts/projects/sync/#handling-of-extraneous-packages) for details.
 
 For example, to use `flask`:
 
@@ -237,10 +217,7 @@ $ uv run example.py
 
 ```
 
-Alternatively, you can use `uv sync` to manually update the environment then activate it before
-executing a command:
-
-[macOS and Linux](https://docs.astral.sh/uv/guides/projects/#__tabbed_1_1)[Windows](https://docs.astral.sh/uv/guides/projects/#__tabbed_1_2)
+Alternatively, you can use `uv sync` to manually update the environment then activate it before executing a command:
 
 ```
 $ uv sync
@@ -262,16 +239,13 @@ Note
 
 The virtual environment must be active to run scripts and commands in the project without `uv run`. Virtual environment activation differs per shell and platform.
 
-See the documentation on [running commands and scripts](https://docs.astral.sh/uv/concepts/projects/run/) in projects for
-more details.
+See the documentation on [running commands and scripts](../../concepts/projects/run/) in projects for more details.
 
-## [Building distributions](https://docs.astral.sh/uv/guides/projects/\#building-distributions)
+## [Building distributions](#building-distributions)
 
-`uv build` can be used to build source distributions and binary distributions (wheel) for your
-project.
+`uv build` can be used to build source distributions and binary distributions (wheel) for your project.
 
-By default, `uv build` will build the project in the current directory, and place the built
-artifacts in a `dist/` subdirectory:
+By default, `uv build` will build the project in the current directory, and place the built artifacts in a `dist/` subdirectory:
 
 ```
 $ uv build
@@ -281,14 +255,10 @@ hello-world-0.1.0.tar.gz
 
 ```
 
-See the documentation on [building projects](https://docs.astral.sh/uv/concepts/projects/build/) for more details.
+See the documentation on [building projects](../../concepts/projects/build/) for more details.
 
-## [Next steps](https://docs.astral.sh/uv/guides/projects/\#next-steps)
+## [Next steps](#next-steps)
 
-To learn more about working on projects with uv, see the
-[projects concept](https://docs.astral.sh/uv/concepts/projects/) page and the
-[command reference](https://docs.astral.sh/uv/reference/cli/#uv).
+To learn more about working on projects with uv, see the [projects concept](../../concepts/projects/) page and the [command reference](../../reference/cli/#uv).
 
-Or, read on to learn how to [build and publish your project to a package index](https://docs.astral.sh/uv/guides/package/).
-
-Back to top
+Or, read on to learn how to [export a uv lockfile to different formats](../../concepts/projects/export/).

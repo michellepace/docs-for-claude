@@ -1,13 +1,10 @@
-[Skip to content](https://docs.astral.sh/uv/getting-started/features/#features)
+# [Features](#features)
 
-# [Features](https://docs.astral.sh/uv/getting-started/features/\#features)
-
-uv provides essential features for Python development — from installing Python and hacking on simple
-scripts to working on large projects that support multiple Python versions and platforms.
+uv provides essential features for Python development — from installing Python and hacking on simple scripts to working on large projects that support multiple Python versions and platforms.
 
 uv's interface can be broken down into sections, which are usable independently or together.
 
-## [Python versions](https://docs.astral.sh/uv/getting-started/features/\#python-versions)
+## [Python versions](#python-versions)
 
 Installing and managing Python itself.
 
@@ -17,9 +14,9 @@ Installing and managing Python itself.
 - `uv python pin`: Pin the current project to use a specific Python version.
 - `uv python uninstall`: Uninstall a Python version.
 
-See the [guide on installing Python](https://docs.astral.sh/uv/guides/install-python/) to get started.
+See the [guide on installing Python](../../guides/install-python/) to get started.
 
-## [Scripts](https://docs.astral.sh/uv/getting-started/features/\#scripts)
+## [Scripts](#scripts)
 
 Executing standalone Python scripts, e.g., `example.py`.
 
@@ -27,9 +24,9 @@ Executing standalone Python scripts, e.g., `example.py`.
 - `uv add --script`: Add a dependency to a script.
 - `uv remove --script`: Remove a dependency from a script.
 
-See the [guide on running scripts](https://docs.astral.sh/uv/guides/scripts/) to get started.
+See the [guide on running scripts](../../guides/scripts/) to get started.
 
-## [Projects](https://docs.astral.sh/uv/getting-started/features/\#projects)
+## [Projects](#projects)
 
 Creating and working on Python projects, i.e., with a `pyproject.toml`.
 
@@ -43,9 +40,9 @@ Creating and working on Python projects, i.e., with a `pyproject.toml`.
 - `uv build`: Build the project into distribution archives.
 - `uv publish`: Publish the project to a package index.
 
-See the [guide on projects](https://docs.astral.sh/uv/guides/projects/) to get started.
+See the [guide on projects](../../guides/projects/) to get started.
 
-## [Tools](https://docs.astral.sh/uv/getting-started/features/\#tools)
+## [Tools](#tools)
 
 Running and installing tools published to Python package indexes, e.g., `ruff` or `black`.
 
@@ -55,21 +52,19 @@ Running and installing tools published to Python package indexes, e.g., `ruff` o
 - `uv tool list`: List installed tools.
 - `uv tool update-shell`: Update the shell to include tool executables.
 
-See the [guide on tools](https://docs.astral.sh/uv/guides/tools/) to get started.
+See the [guide on tools](../../guides/tools/) to get started.
 
-## [The pip interface](https://docs.astral.sh/uv/getting-started/features/\#the-pip-interface)
+## [The pip interface](#the-pip-interface)
 
-Manually managing environments and packages — intended to be used in legacy workflows or cases where
-the high-level commands do not provide enough control.
+Manually managing environments and packages — intended to be used in legacy workflows or cases where the high-level commands do not provide enough control.
 
 Creating virtual environments (replacing `venv` and `virtualenv`):
 
 - `uv venv`: Create a new virtual environment.
 
-See the documentation on [using environments](https://docs.astral.sh/uv/pip/environments/) for details.
+See the documentation on [using environments](../../pip/environments/) for details.
 
-Managing packages in an environment (replacing [`pip`](https://github.com/pypa/pip) and
-[`pipdeptree`](https://github.com/tox-dev/pipdeptree)):
+Managing packages in an environment (replacing [`pip`](https://github.com/pypa/pip) and [`pipdeptree`](https://github.com/tox-dev/pipdeptree)):
 
 - `uv pip install`: Install packages into the current environment.
 - `uv pip show`: Show details about an installed package.
@@ -79,23 +74,22 @@ Managing packages in an environment (replacing [`pip`](https://github.com/pypa/p
 - `uv pip uninstall`: Uninstall packages.
 - `uv pip tree`: View the dependency tree for the environment.
 
-See the documentation on [managing packages](https://docs.astral.sh/uv/pip/packages/) for details.
+See the documentation on [managing packages](../../pip/packages/) for details.
 
 Locking packages in an environment (replacing [`pip-tools`](https://github.com/jazzband/pip-tools)):
 
 - `uv pip compile`: Compile requirements into a lockfile.
 - `uv pip sync`: Sync an environment with a lockfile.
 
-See the documentation on [locking environments](https://docs.astral.sh/uv/pip/compile/) for details.
+See the documentation on [locking environments](../../pip/compile/) for details.
 
 Important
 
-These commands do not exactly implement the interfaces and behavior of the tools they are based on. The further you stray from common workflows, the more likely you are to encounter differences. Consult the [pip-compatibility guide](https://docs.astral.sh/uv/pip/compatibility/) for details.
+These commands do not exactly implement the interfaces and behavior of the tools they are based on. The further you stray from common workflows, the more likely you are to encounter differences. Consult the [pip-compatibility guide](../../pip/compatibility/) for details.
 
-## [Utility](https://docs.astral.sh/uv/getting-started/features/\#utility)
+## [Utility](#utility)
 
-Managing and inspecting uv's state, such as the cache, storage directories, or performing a
-self-update:
+Managing and inspecting uv's state, such as the cache, storage directories, or performing a self-update:
 
 - `uv cache clean`: Remove cache entries.
 - `uv cache prune`: Remove outdated cache entries.
@@ -104,10 +98,6 @@ self-update:
 - `uv python dir`: Show the uv installed Python versions path.
 - `uv self update`: Update uv to the latest version.
 
-## [Next steps](https://docs.astral.sh/uv/getting-started/features/\#next-steps)
+## [Next steps](#next-steps)
 
-Read the [guides](https://docs.astral.sh/uv/guides/) for an introduction to each feature, check out the
-[concept](https://docs.astral.sh/uv/concepts/) pages for in-depth details about uv's features, or learn how to
-[get help](https://docs.astral.sh/uv/getting-started/help/) if you run into any problems.
-
-Back to top
+Read the [guides](../../guides/) for an introduction to each feature, check out the [concept](../../concepts/) pages for in-depth details about uv's features, or learn how to [get help](../help/) if you run into any problems.

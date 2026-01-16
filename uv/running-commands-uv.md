@@ -1,19 +1,13 @@
-[Skip to content](https://docs.astral.sh/uv/concepts/projects/run/#running-commands-in-projects)
+# [Running commands in projects](#running-commands-in-projects)
 
-# [Running commands in projects](https://docs.astral.sh/uv/concepts/projects/run/\#running-commands-in-projects)
-
-When working on a project, it is installed into the virtual environment at `.venv`. This environment
-is isolated from the current shell by default, so invocations that require the project, e.g.,
-`python -c "import example"`, will fail. Instead, use `uv run` to run commands in the project
-environment:
+When working on a project, it is installed into the virtual environment at `.venv`. This environment is isolated from the current shell by default, so invocations that require the project, e.g., `python -c "import example"`, will fail. Instead, use `uv run` to run commands in the project environment:
 
 ```
 $ uv run python -c "import example"
 
 ```
 
-When using `run`, uv will ensure that the project environment is up-to-date before running the given
-command.
+When using `run`, uv will ensure that the project environment is up-to-date before running the given command.
 
 The given command can be provided by the project environment or exist outside of it, e.g.:
 
@@ -26,12 +20,11 @@ $ uv run bash scripts/foo.sh
 
 ```
 
-## [Requesting additional dependencies](https://docs.astral.sh/uv/concepts/projects/run/\#requesting-additional-dependencies)
+## [Requesting additional dependencies](#requesting-additional-dependencies)
 
 Additional dependencies or different versions of dependencies can be requested per invocation.
 
-The `--with` option is used to include a dependency for the invocation, e.g., to request a different
-version of `httpx`:
+The `--with` option is used to include a dependency for the invocation, e.g., to request a different version of `httpx`:
 
 ```
 $ uv run --with httpx==0.26.0 python -c "import httpx; print(httpx.__version__)"
@@ -41,14 +34,11 @@ $ uv run --with httpx==0.25.0 python -c "import httpx; print(httpx.__version__)"
 
 ```
 
-The requested version will be respected regardless of the project's requirements. For example, even
-if the project requires `httpx==0.24.0`, the output above would be the same.
+The requested version will be respected regardless of the project's requirements. For example, even if the project requires `httpx==0.24.0`, the output above would be the same.
 
-## [Running scripts](https://docs.astral.sh/uv/concepts/projects/run/\#running-scripts)
+## [Running scripts](#running-scripts)
 
-Scripts that declare inline metadata are automatically executed in environments isolated from the
-project. See the [scripts guide](https://docs.astral.sh/uv/guides/scripts/#declaring-script-dependencies) for more
-details.
+Scripts that declare inline metadata are automatically executed in environments isolated from the project. See the [scripts guide](../../../guides/scripts/#declaring-script-dependencies) for more details.
 
 For example, given a script:
 
@@ -56,8 +46,8 @@ example.py
 
 ```
 # /// script
-# dependencies = [\
-#   "httpx",\
+# dependencies = [
+#   "httpx",
 # ]
 # ///
 
@@ -69,14 +59,11 @@ print([(k, v["title"]) for k, v in data.items()][:10])
 
 ```
 
-The invocation `uv run example.py` would run _isolated_ from the project with only the given
-dependencies listed.
+The invocation `uv run example.py` would run *isolated* from the project with only the given dependencies listed.
 
-## [Legacy scripts on Windows](https://docs.astral.sh/uv/concepts/projects/run/\#legacy-scripts-on-windows)
+## [Legacy scripts on Windows](#legacy-scripts-on-windows)
 
-Support is provided for
-[legacy setuptools scripts](https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/#scripts).
-These types of scripts are additional files installed by setuptools in `.venv\Scripts`.
+Support is provided for [legacy setuptools scripts](https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/#scripts). These types of scripts are additional files installed by setuptools in `.venv\Scripts`.
 
 Currently only legacy scripts with the `.ps1`, `.cmd`, and `.bat` extensions are supported.
 
@@ -87,25 +74,17 @@ $ uv run --with nuitka==2.6.7 -- nuitka.cmd --version
 
 ```
 
-In addition, you don't need to specify the extension. `uv` will automatically look for files ending
-in `.ps1`, `.cmd`, and `.bat` in that order of execution on your behalf.
+In addition, you don't need to specify the extension. `uv` will automatically look for files ending in `.ps1`, `.cmd`, and `.bat` in that order of execution on your behalf.
 
 ```
 $ uv run --with nuitka==2.6.7 -- nuitka --version
 
 ```
 
-## [Signal handling](https://docs.astral.sh/uv/concepts/projects/run/\#signal-handling)
+## [Signal handling](#signal-handling)
 
-uv does not cede control of the process to the spawned command in order to provide better error
-messages on failure. Consequently, uv is responsible for forwarding some signals to the child
-process the requested command runs in.
+uv does not cede control of the process to the spawned command in order to provide better error messages on failure. Consequently, uv is responsible for forwarding some signals to the child process the requested command runs in.
 
-On Unix systems, uv will forward SIGINT and SIGTERM to the child process. Since terminals send
-SIGINT to the foreground process group on Ctrl-C, uv will only forward a SIGINT to the child process
-if it is sent more than once or the child process group differs from uv's.
+On Unix systems, uv will forward most signals (with the exception of SIGKILL, SIGCHLD, SIGIO, and SIGPOLL) to the child process. Since terminals send SIGINT to the foreground process group on Ctrl-C, uv will only forward a SIGINT to the child process if it is sent more than once or the child process group differs from uv's.
 
-On Windows, these concepts do not apply and uv ignores Ctrl-C events, deferring handling to the
-child process so it can exit cleanly.
-
-Back to top
+On Windows, these concepts do not apply and uv ignores Ctrl-C events, deferring handling to the child process so it can exit cleanly.

@@ -1,12 +1,8 @@
-[Skip to content](https://docs.astral.sh/uv/guides/integration/pre-commit/#using-uv-in-pre-commit)
+# [Using uv in pre-commit](#using-uv-in-pre-commit)
 
-# [Using uv in pre-commit](https://docs.astral.sh/uv/guides/integration/pre-commit/\#using-uv-in-pre-commit)
+An official pre-commit hook is provided at [`astral-sh/uv-pre-commit`](https://github.com/astral-sh/uv-pre-commit).
 
-An official pre-commit hook is provided at
-[`astral-sh/uv-pre-commit`](https://github.com/astral-sh/uv-pre-commit).
-
-To use uv with pre-commit, add one of the following examples to the `repos` list in the
-`.pre-commit-config.yaml`.
+To use uv with pre-commit, add one of the following examples to the `repos` list in the `.pre-commit-config.yaml`.
 
 To make sure your `uv.lock` file is up to date even if your `pyproject.toml` file was changed:
 
@@ -16,7 +12,7 @@ To make sure your `uv.lock` file is up to date even if your `pyproject.toml` fil
 repos:
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.9.3
+    rev: 0.9.26
     hooks:
       - id: uv-lock
 
@@ -30,7 +26,7 @@ To keep a `requirements.txt` file in sync with your `uv.lock` file:
 repos:
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.9.3
+    rev: 0.9.26
     hooks:
       - id: uv-export
 
@@ -44,7 +40,7 @@ To compile requirements files:
 repos:
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.9.3
+    rev: 0.9.26
     hooks:
       # Compile requirements
       - id: pip-compile
@@ -60,7 +56,7 @@ To compile alternative requirements files, modify `args` and `files`:
 repos:
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.9.3
+    rev: 0.9.26
     hooks:
       # Compile requirements
       - id: pip-compile
@@ -77,7 +73,7 @@ To run the hook over multiple files at the same time, add additional entries:
 repos:
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.9.3
+    rev: 0.9.26
     hooks:
       # Compile requirements
       - id: pip-compile
@@ -89,5 +85,3 @@ repos:
         files: ^requirements-dev\.(in|txt)$
 
 ```
-
-Back to top
