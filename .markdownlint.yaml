@@ -11,3 +11,4 @@ MD040: false  # Fenced code blocks don't need language specified
 MD035: false  # Horizontal rule style (scraped docs may use *** instead of ---)
 MD041: false  # First line doesn't need to be h1
 MD059: false  # Link text doesn't need to be descriptive (scraped docs have generic links)
+MD060: false  # Table column style (scraped docs may use compact pipe formatting)
