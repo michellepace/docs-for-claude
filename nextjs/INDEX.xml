@@ -272,4 +272,11 @@
     <local_file>functions-redirect-nextjs.md</local_file>
     <scraped_at>2026-01-08</scraped_at>
   </source>
+  <source>
+    <title>next.config.js: devIndicators | Next.js</title>
+    <description>`devIndicators` next.config.js option for on-screen development indicator showing route context. Position configuration (`bottom-right`, `bottom-left`, `top-right`, `top-left`), disabling indicator, troubleshooting static vs dynamic route marking, `next build --debug` output symbols.</description>
+    <source_url>https://nextjs.org/docs/app/api-reference/config/next-config-js/devIndicators</source_url>
+    <local_file>nextconfigjs-devindicators-nextjs.md</local_file>
+    <scraped_at>2026-01-17</scraped_at>
+  </source>
 </docs_index>
