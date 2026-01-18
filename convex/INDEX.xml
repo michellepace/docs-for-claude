@@ -118,4 +118,32 @@
     <local_file>continuous-integration-convex-developer-hub.md</local_file>
     <scraped_at>2026-01-07</scraped_at>
   </source>
+  <source>
+    <title>Schemas | Convex Developer Hub</title>
+    <description>Convex schema definition with `defineSchema`, `defineTable`, `v` validators: optional fields, unions, literals, `v.record`, `v.any`. Schema options `schemaValidation`, `strictTableNameTypes`. Circular reference handling, TypeScript `Doc&lt;TableName&gt;` types.</description>
+    <source_url>https://docs.convex.dev/database/schemas</source_url>
+    <local_file>schemas-convex-developer-hub.md</local_file>
+    <scraped_at>2026-01-19</scraped_at>
+  </source>
+  <source>
+    <title>Data Types | Convex Developer Hub</title>
+    <description>Convex data types reference: Id, Null, Int64, Float64, Boolean, String, Bytes, Array, Object, Record with `v` validators, system fields `_id`/`_creationTime`, size limits, `undefined` behaviour, dates/times storage patterns.</description>
+    <source_url>https://docs.convex.dev/database/types</source_url>
+    <local_file>data-types-convex-developer-hub.md</local_file>
+    <scraped_at>2026-01-19</scraped_at>
+  </source>
+  <source>
+    <title>Document IDs | Convex Developer Hub</title>
+    <description>Document IDs: unique string identifiers via `ctx.db.insert`, retrieval with `ctx.db.get`, `Id&lt;table&gt;` TypeScript type, references for relationships, `v.id()` validators, `normalizeId` for external ID validation, nested documents vs relationships trade-offs.</description>
+    <source_url>https://docs.convex.dev/database/document-ids</source_url>
+    <local_file>document-ids-convex-developer-hub.md</local_file>
+    <scraped_at>2026-01-19</scraped_at>
+  </source>
+  <source>
+    <title>dataModel.d.ts | Convex Developer Hub</title>
+    <description>Generated TypeScript types in `dataModel.d.ts`: `TableNames`, `Doc&lt;TableName&gt;`, `Id&lt;TableName&gt;`, `DataModel`. Created via `npx convex dev`, used to type-parameterise queries and mutations.</description>
+    <source_url>https://docs.convex.dev/generated-api/data-model</source_url>
+    <local_file>datamodeldts-convex-developer-hub.md</local_file>
+    <scraped_at>2026-01-19</scraped_at>
+  </source>
 </docs_index>
